@@ -1,0 +1,41 @@
+name: Quantum Experiments
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  run-experiments:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install requirements (if present)
+        run: |
+          REQ=BS_GodFile/Content/Python/quantum/requirements.txt
+          if [ -f "$REQ" ]; then
+            python -m pip install --upgrade pip
+            python -m pip install -r "$REQ"
+          else
+            echo "No requirements.txt found at $REQ, skipping."
+          fi
+
+      - name: Run experiments
+        run: |
+          python BS_GodFile/Content/Python/quantum/experiment_harness.py --trials 20 --out results.csv --summary results.json
+
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: quantum-experiment-results
+          path: |
+            results.csv
+            results.json
