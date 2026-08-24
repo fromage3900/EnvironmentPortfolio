@@ -1,8 +1,19 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # Melodia pre-commit hook (fallback when pre-commit framework is not installed)
 # Runs the same validators as .pre-commit-config.yaml in plain POSIX sh.
 
-set -euo pipefail
+set -eu
+
+# Git for Windows may launch hooks with a PATH that omits its POSIX helpers.
+PATH="/usr/bin:$PATH"
+export PATH
+
+for REQUIRED_TOOL in dirname grep python; do
+    command -v "$REQUIRED_TOOL" >/dev/null 2>&1 || {
+        echo "ERROR: required hook command is unavailable: $REQUIRED_TOOL" >&2
+        exit 1
+    }
+done
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"

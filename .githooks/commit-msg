@@ -1,8 +1,18 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # Melodia commit-msg hook — enforces Conventional Commits + live-ops safety tags
 # https://www.conventionalcommits.org/
 
-set -euo pipefail
+set -eu
+
+PATH="/usr/bin:$PATH"
+export PATH
+
+for REQUIRED_TOOL in head grep; do
+    command -v "$REQUIRED_TOOL" >/dev/null 2>&1 || {
+        echo "ERROR: required hook command is unavailable: $REQUIRED_TOOL" >&2
+        exit 1
+    }
+done
 
 MSG_FILE="$1"
 MSG="$(head -n1 "$MSG_FILE")"
