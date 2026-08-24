@@ -20,6 +20,9 @@
 *.ini   text eol=crlf
 *.uproject text eol=lf
 
+# Git hooks must stay LF so WSL / macOS runners can execute them
+.githooks/* text eol=lf
+
 # ------------------------------------------------------------------------------
 # Binary Assets — Git LFS with Atomic Locking (lockable)
 # ------------------------------------------------------------------------------
