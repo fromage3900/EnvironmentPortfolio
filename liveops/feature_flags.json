@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2026-08-24T00:00:00Z",
+  "flags": [
+    {
+      "id": "FEATURE_KALEIDONAVE_EXPERIMENTAL",
+      "default": false,
+      "owner": "level-design",
+      "requires_restart": false,
+      "description": "Enable experimental KaleidoNave level nodes in the build."
+    },
+    {
+      "id": "FEATURE_MELUSINA_V7_PREVIEW",
+      "default": false,
+      "owner": "character-art",
+      "requires_restart": true,
+      "description": "Show Melusina v7 preview assets in the wardrobe."
+    },
+    {
+      "id": "FEATURE_RHYTHM_HIGHWAY_GLOBAL",
+      "default": true,
+      "owner": "audio-design",
+      "requires_restart": false,
+      "description": "Enable the site-wide Harmonix rhythm highway HUD."
+    },
+    {
+      "id": "FEATURE_LIVEOPS_BANNER_001",
+      "default": true,
+      "owner": "liveops",
+      "requires_restart": false,
+      "description": "Enable the Founding Melody soft-launch banner."
+    },
+    {
+      "id": "FEATURE_ECONOMY_REFUND_V2",
+      "default": false,
+      "owner": "economy",
+      "requires_restart": false,
+      "description": "Enable the v2 duplicate-consumable refund policy."
+    }
+  ]
+}

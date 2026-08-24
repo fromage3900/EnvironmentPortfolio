@@ -1,0 +1,40 @@
+name: Live-Ops Hotfix
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag to branch from (e.g. v0.1.0)'
+        required: true
+        type: string
+
+jobs:
+  create-hotfix:
+    name: Create hotfix branch
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configure git
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+      - name: Validate tag
+        shell: bash
+        run: |
+          TAG="${{ inputs.tag }}"
+          if [[ ! "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Invalid tag: $TAG"
+            exit 1
+          fi
+      - name: Create hotfix branch
+        shell: bash
+        run: |
+          TAG="${{ inputs.tag }}"
+          BRANCH="hotfix/${TAG}"
+          git fetch origin tag "$TAG"
+          git checkout -b "$BRANCH" "$TAG"
+          git push origin "$BRANCH"
+          echo "Created $BRANCH from $TAG"

@@ -1,0 +1,64 @@
+name: Live-Ops CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'liveops/**'
+      - 'tools/validate_gacha.py'
+      - 'tools/validate_feature_flags.py'
+      - 'tools/validate_assets.py'
+      - 'tools/_verify_site_facts.py'
+      - '.github/workflows/liveops-ci.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'liveops/**'
+      - 'tools/validate_gacha.py'
+      - 'tools/validate_feature_flags.py'
+      - 'tools/validate_assets.py'
+      - 'tools/_verify_site_facts.py'
+      - '.github/workflows/liveops-ci.yml'
+  workflow_dispatch:
+
+jobs:
+  validate-gacha:
+    name: Validate gacha / economy / banners
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate gacha configs
+        run: python tools/validate_gacha.py --strict
+
+  validate-feature-flags:
+    name: Validate feature flags
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate feature flags
+        run: python tools/validate_feature_flags.py
+
+  site-integrity:
+    name: Site assets & facts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate generated assets
+        run: python tools/validate_assets.py
+      - name: Verify site facts
+        run: python tools/_verify_site_facts.py

@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2026-08-24T00:00:00Z",
+  "currencies": [
+    {
+      "id": "PRIMOGEM",
+      "name": "Primogem",
+      "type": "premium",
+      "is_purchasable": true,
+      "refundable": false
+    },
+    {
+      "id": "INTERTWINED_FATE",
+      "name": "Intertwined Fate",
+      "type": "gacha_token",
+      "is_purchasable": true,
+      "refundable": false
+    },
+    {
+      "id": "STARDUST",
+      "name": "Stardust",
+      "type": "f2p_earn",
+      "is_purchasable": false,
+      "refundable": true,
+      "refund_policy_version": "v2"
+    },
+    {
+      "id": "STARGLITTER",
+      "name": "Starglitter",
+      "type": "f2p_earn",
+      "is_purchasable": false,
+      "refundable": true,
+      "refund_policy_version": "v2"
+    }
+  ],
+  "conversion_rules": [
+    {
+      "from": "STARDUST",
+      "to": "INTERTWINED_FATE",
+      "rate": 75,
+      "weekly_limit": 5
+    },
+    {
+      "from": "STARGLITTER",
+      "to": "INTERTWINED_FATE",
+      "rate": 5,
+      "monthly_limit": 5
+    }
+  ],
+  "pity_carryover": {
+    "enabled": true,
+    "same_banner_type": true,
+    "cross_banner_type": false
+  },
+  "duplicate_refund": {
+    "enabled": true,
+    "version": "v2",
+    "rarity_5": { "stardust": 10, "starglitter": 2 },
+    "rarity_4": { "stardust": 2, "starglitter": 0 },
+    "rarity_3": { "stardust": 0, "starglitter": 0 }
+  },
+  "daily_login": {
+    "enabled": true,
+    "reset_utc": "04:00",
+    "rewards": [
+      { "day": 1, "currency": "PRIMOGEM", "amount": 60 },
+      { "day": 2, "currency": "PRIMOGEM", "amount": 60 },
+      { "day": 3, "currency": "PRIMOGEM", "amount": 60 },
+      { "day": 4, "currency": "PRIMOGEM", "amount": 60 },
+      { "day": 5, "currency": "PRIMOGEM", "amount": 60 },
+      { "day": 6, "currency": "PRIMOGEM", "amount": 60 },
+      { "day": 7, "currency": "INTERTWINED_FATE", "amount": 1 }
+    ]
+  }
+}

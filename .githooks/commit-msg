@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Melodia commit-msg hook — enforces Conventional Commits + live-ops safety tags
+# https://www.conventionalcommits.org/
+
+set -euo pipefail
+
+MSG_FILE="$1"
+MSG="$(head -n1 "$MSG_FILE")"
+
+# Conventional commit regex (type(scope): subject)
+PATTERN='^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert|liveops)(\([a-z0-9_-]+\))?!?: .{1,120}$'
+
+if ! echo "$MSG" | grep -Eq "$PATTERN"; then
+    echo "ERROR: Commit message does not follow Conventional Commits." >&2
+    echo "Expected format: <type>[optional scope]: <description>" >&2
+    echo "Allowed types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert, liveops" >&2
+    exit 1
+fi
+
+# For live-ops commits, require a player-impact tag
+if echo "$MSG" | grep -Eq '^liveops'; then
+    if ! grep -Eq '\[(player-visible|backend|banner|economy|flag)\]' "$MSG_FILE"; then
+        echo "ERROR: liveops commits must include a player-impact tag: [player-visible|backend|banner|economy|flag]" >&2
+        exit 1
+    fi
+fi

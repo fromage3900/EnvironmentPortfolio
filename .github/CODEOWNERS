@@ -1,0 +1,22 @@
+# Melodia Monorepo — Code Ownership & Review Routing
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Global fallback — project lead owns anything not explicitly assigned
+* @fromage3900
+
+# Live-ops configs affect revenue and player trust; require senior review
+/liveops/ @fromage3900
+
+# Gacha/economy validators are safety-critical
+/tools/validate_gacha.py @fromage3900
+/tools/validate_feature_flags.py @fromage3900
+/tools/validate_economy.py @fromage3900
+
+# CI/CD infrastructure
+/.github/workflows/ @fromage3900
+/.githooks/ @fromage3900
+/.pre-commit-config.yaml @fromage3900
+
+# Source-control governance
+/CHANGELOG.md @fromage3900
+/VERSION @fromage3900

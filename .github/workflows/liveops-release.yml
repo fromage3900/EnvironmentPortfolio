@@ -1,0 +1,59 @@
+name: Live-Ops Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: 'Semver segment to bump'
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      note:
+        description: 'Release note snippet'
+        required: false
+        type: string
+
+jobs:
+  prepare-release:
+    name: Prepare release branch
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Configure git
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+      - name: Bump version
+        run: python tools/bump_version.py ${{ inputs.bump }} --no-commit
+      - name: Compute new version
+        id: version
+        shell: bash
+        run: |
+          echo "version=$(cat VERSION)" >> "$GITHUB_OUTPUT"
+      - name: Create release branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          BRANCH="release/v${VERSION}"
+          git checkout -b "$BRANCH"
+          git add VERSION CHANGELOG.md
+          git commit -m "liveops(release): prepare v${VERSION} [backend]"
+          git push origin "$BRANCH"
+          gh pr create \
+            --title "Release v${VERSION}" \
+            --body "${{ inputs.note }}" \
+            --base main \
+            --head "$BRANCH" \
+            --label "release,liveops"

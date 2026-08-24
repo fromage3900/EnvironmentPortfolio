@@ -1,0 +1,37 @@
+{
+  "devDependencies": {
+    "@wix/cli": "^1.0.0",
+    "@wix/eslint-plugin-cli": "^1.0.0",
+    "eslint": "^8.25.0",
+    "postcss-scss": "^4.0.9",
+    "react": "16.14.0",
+    "stylelint": "^16.26.1",
+    "stylelint-config-standard": "^36.0.1",
+    "vite": "^8.2.1"
+  },
+  "scripts": {
+    "postinstall": "wix sync-types",
+    "dev": "wix dev",
+    "lint": "eslint --resolve-plugins-relative-to . .",
+    "lint:css": "stylelint wix/**/*.css --custom-syntax postcss-scss",
+    "lint:tokens": "node tools/lint-tokens.js",
+    "paths:wix": "python tools/normalize-paths.py wix",
+    "paths:github": "python tools/normalize-paths.py github",
+    "verify:manifest": "python tools/verify_deployment_manifest.py",
+    "verify:all": "npm run lint:tokens && python tools/_verify_site_facts.py && python tools/validate_assets.py",
+    "validate:liveops": "python tools/validate_gacha.py --strict && python tools/validate_feature_flags.py",
+    "validate:gacha": "python tools/validate_gacha.py --strict",
+    "validate:flags": "python tools/validate_feature_flags.py",
+    "lfs:guard": "python tools/git_lfs_guard.py",
+    "release": "python tools/bump_version.py",
+    "health": "python BS_GodFile/Tools/health.py --offline",
+    "overnight": "powershell -File BS_GodFile/Tools/overnight_run.ps1",
+    "research": "python BS_GodFile/Tools/rhythm_research_runner.py --iterations 3",
+    "models": "python BS_GodFile/Tools/run_model_fleet.py",
+    "models:qwen": "python BS_GodFile/Tools/run_model_fleet.py --models qwen2.5-coder:7b,qwen2.5-coder:14b",
+    "models:muse": "python BS_GodFile/Tools/run_model_fleet.py --models muse-glimmer-30b",
+    "models:p0": "python BS_GodFile/Tools/run_model_fleet.py --p0-only",
+    "test:mcp": "python BS_GodFile/Tools/test_melodia_mcp.py",
+    "test:p0-economy": "python BS_GodFile/Tools/test_p0_economy_mcp.py"
+  }
+}

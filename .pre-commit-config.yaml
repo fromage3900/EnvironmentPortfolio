@@ -1,0 +1,57 @@
+# Melodia elite source-control gate
+# Install:  pre-commit install
+# Run:      pre-commit run --all-files
+# Local-only hooks avoid external network dependencies for locked-down UE runners.
+
+repos:
+  - repo: local
+    hooks:
+      - id: check-added-large-files
+        name: Block accidental large-file commits
+        entry: python -c "import sys,subprocess,os; sys.exit(subprocess.run([sys.executable,'-m','pre_commit_hooks.check_added_large_files','--maxkb=5120']).returncode)"
+        language: system
+        stages: [pre-commit]
+        types: [file]
+
+      - id: validate-gacha
+        name: Validate gacha / economy configs
+        entry: python tools/validate_gacha.py
+        language: system
+        pass_filenames: false
+        always_run: false
+        files: ^liveops/
+        stages: [pre-commit]
+
+      - id: validate-feature-flags
+        name: Validate feature flags
+        entry: python tools/validate_feature_flags.py
+        language: system
+        pass_filenames: false
+        always_run: false
+        files: ^liveops/feature_flags\.json$
+        stages: [pre-commit]
+
+      - id: lfs-lock-guard
+        name: LFS lock guard (local binaries)
+        entry: python tools/git_lfs_guard.py
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]
+
+      - id: lint-tokens
+        name: Lint design tokens
+        entry: node tools/lint-tokens.js
+        language: system
+        pass_filenames: false
+        always_run: false
+        files: ^wix/.*\.(css|js|html)$
+        stages: [pre-commit]
+
+      - id: commit-message-conventional
+        name: Conventional commit message
+        entry: python tools/check_commit_msg.py
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [commit-msg]

@@ -1,0 +1,39 @@
+{
+  "$schema": "./banner.schema.json",
+  "id": "BANNER_FOUNDING_MELODY_001",
+  "name": "Founding Melody — Soft Launch",
+  "start_utc": "2026-08-24T00:00:00Z",
+  "end_utc": "2026-10-05T23:59:59Z",
+  "currency": "INTERTWINED_FATE",
+  "featured_items": ["MELUSINA_STARSEER", "CHORAL_SHEEP_PIANO"],
+  "pools": [
+    {
+      "rarity": 5,
+      "rate": 0.006,
+      "items": ["MELUSINA_STARSEER"],
+      "is_guaranteed": false
+    },
+    {
+      "rarity": 4,
+      "rate": 0.051,
+      "items": ["CHORAL_SHEEP_PIANO", "TORII_WISP", "Sakura_4Star_A", "Sakura_4Star_B"],
+      "is_guaranteed": false
+    },
+    {
+      "rarity": 3,
+      "rate": 0.943,
+      "items": ["Common_A", "Common_B", "Common_C", "Common_D", "Common_E"],
+      "is_guaranteed": false
+    }
+  ],
+  "pity": {
+    "soft": 74,
+    "hard": 90,
+    "guarantee_rarity": 5,
+    "carryover_banner_ids": []
+  },
+  "metadata": {
+    "region_whitelist": [],
+    "region_blacklist": []
+  }
+}

@@ -1,0 +1,104 @@
+name: Deploy portfolio to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate assets & portfolio
+    runs-on: ubuntu-latest
+    outputs:
+      wix_enabled: ${{ steps.check_wix.outputs.wix_enabled }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Check Wix token availability
+        id: check_wix
+        run: |
+          if [ -n "$WIX_TOKEN" ]; then
+            echo "wix_enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "wix_enabled=false" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          WIX_TOKEN: ${{ secrets.WIX_CLI_TOKEN }}
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate assets (tiered)
+        run: python tools/validate_assets.py
+      - name: Validate gacha / live-ops configs
+        run: python tools/validate_gacha.py --strict
+      - name: Validate feature flags
+        run: python tools/validate_feature_flags.py
+      - name: Validate portfolio (links + JSON)
+        shell: pwsh
+        run: ./tools/validate_portfolio.ps1
+
+  build:
+    name: Build portfolio with Vite
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Normalize paths for GitHub Pages
+        run: npm run paths:github
+      - name: Build static site
+        run: npx vite build
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./my-site-deploy
+
+  deploy-github-pages:
+    name: Deploy to GitHub Pages
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  deploy-wix:
+    name: Deploy to Wix
+    needs: validate
+    if: needs.validate.outputs.wix_enabled == 'true'
+    runs-on: ubuntu-latest
+    env:
+      WIX_CLI_TOKEN: ${{ secrets.WIX_CLI_TOKEN }}
+      WIX_SITE_ID: ${{ secrets.WIX_SITE_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install Wix CLI
+        run: npm ci
+      - name: Deploy to Wix
+        run: npx wix deploy --site-id $WIX_SITE_ID

@@ -1,0 +1,27 @@
+name: LFS Guard
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  lfs-audit:
+    name: Audit LFS tracking and lock state
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Git LFS
+        shell: bash
+        run: |
+          git lfs install
+          git lfs status
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: LFS lock / pointer guard
+        env:
+          GITHUB_ACTIONS: 'true'
+        run: python tools/git_lfs_guard.py

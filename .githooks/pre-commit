@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# Melodia pre-commit hook (fallback when pre-commit framework is not installed)
+# Runs the same validators as .pre-commit-config.yaml in plain POSIX sh.
+
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$ROOT"
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+
+fail=0
+
+run() {
+    echo "▶ $1"
+    if ! eval "$2"; then
+        echo -e "${RED}✗ $1 failed${NC}"
+        fail=1
+    else
+        echo -e "${GREEN}✓ $1 passed${NC}"
+    fi
+}
+
+# Only run gacha validators when liveops/ changed
+if git diff --cached --name-only | grep -qE '^liveops/'; then
+    run "Validate gacha / economy configs" "python tools/validate_gacha.py"
+    run "Validate feature flags" "python tools/validate_feature_flags.py"
+fi
+
+# Only run token linter when wix/ changed
+if git diff --cached --name-only | grep -qE '^wix/'; then
+    run "Lint design tokens" "node tools/lint-tokens.js"
+fi
+
+# Always run LFS lock guard when binary files are touched
+run "LFS lock guard" "python tools/git_lfs_guard.py"
+
+if [ "$fail" -ne 0 ]; then
+    echo -e "${RED}Pre-commit failed. Fix issues before committing.${NC}"
+    exit 1
+fi
