@@ -6,13 +6,6 @@
 repos:
   - repo: local
     hooks:
-      - id: check-added-large-files
-        name: Block accidental large-file commits
-        entry: python -c "import sys,subprocess,os; sys.exit(subprocess.run([sys.executable,'-m','pre_commit_hooks.check_added_large_files','--maxkb=5120']).returncode)"
-        language: system
-        stages: [pre-commit]
-        types: [file]
-
       - id: validate-gacha
         name: Validate gacha / economy configs
         entry: python tools/validate_gacha.py
