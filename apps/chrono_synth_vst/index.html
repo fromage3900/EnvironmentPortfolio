@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SOPHIE-X — Physical Modeling &amp; Hyperpop Latex Sound Engine</title>
+<link rel="stylesheet" href="chrono_synth.css">
+</head>
+<body>
+
+<main class="vst-rack">
+  <!-- Top Hardware Header -->
+  <header class="vst-header">
+    <div class="vst-brand">
+      <div class="vst-logo-icon">💖</div>
+      <h1 class="vst-title">SOPHIE-X</h1>
+      <span class="vst-version-tag">PHYSICAL MODELING / HYPERPOP</span>
+    </div>
+
+    <div class="vst-preset-bar">
+      <select id="vst-preset-select" class="vst-preset-select" aria-label="SOPHIE Sound Bank Presets">
+        <option value="bipp_bubble">✦ 01: BIPP BUBBLE POP (Liquid Rubber)</option>
+        <option value="faceshopping_bass">✦ 02: FACESHOPPING BASS (Abrasive Tanh Metal)</option>
+        <option value="lemonade_clang">✦ 03: LEMONADE CLANG (Inharmonic FM Metal)</option>
+        <option value="immaterial_lead">✦ 04: IMMATERIAL SHIMMER (Euphoric Hyperpop)</option>
+        <option value="ponyboy_whip">✦ 05: PONYBOY WHIP (Latex Elastic Strike)</option>
+      </select>
+
+      <button type="button" id="vst-record-wav-btn" class="vst-rec-btn">
+        ● RECORD WAV
+      </button>
+    </div>
+  </header>
+
+  <!-- Modular Controls Grid -->
+  <div class="vst-body-grid">
+    
+    <!-- LEFT MODULE: MATERIAL & ELASTICITY -->
+    <div class="vst-module">
+      <h2 class="vst-module-title">Material Waveform <span>PHYS-MOD</span></h2>
+      
+      <div class="vst-toggle-row">
+        <button type="button" class="vst-toggle-btn active" data-osc="sine">SINE (Bubble)</button>
+        <button type="button" class="vst-toggle-btn" data-osc="sawtooth">SAW (Latex)</button>
+        <button type="button" class="vst-toggle-btn" data-osc="triangle">TRI (Clang)</button>
+        <button type="button" class="vst-toggle-btn" data-osc="square">SQR (Hard)</button>
+      </div>
+
+      <div class="vst-slider-row">
+        <div class="vst-slider-head"><span>Liquid Pitch Snap</span><span id="val-pitch-snap">85%</span></div>
+        <input type="range" id="slider-pitch-snap" class="vst-slider-input" min="0" max="1" step="0.05" value="0.85" />
+      </div>
+
+      <div class="vst-slider-row">
+        <div class="vst-slider-head"><span>Inharmonic FM Metal</span><span id="val-metallic-fm">10%</span></div>
+        <input type="range" id="slider-metallic-fm" class="vst-slider-input" min="0" max="1" step="0.05" value="0.1" />
+      </div>
+
+      <h2 class="vst-module-title" style="margin-top: 0.5rem;">Abrasive Drive <span>TANH / CLIP</span></h2>
+      
+      <div class="vst-slider-row">
+        <div class="vst-slider-head"><span>Monomachine Tanh Drive</span><span id="val-drive">20%</span></div>
+        <input type="range" id="slider-drive" class="vst-slider-input" min="0" max="1" step="0.05" value="0.2" />
+      </div>
+    </div>
+
+    <!-- CENTER MODULE: LIQUID MEMBRANE PHOSPHOR CRT SCOPE -->
+    <div class="vst-module vst-crt-screen-card">
+      <h2 class="vst-module-title">Liquid Membrane Vector Scope <span>48kHz / 32-BIT</span></h2>
+      
+      <div class="vst-crt-container">
+        <canvas id="crt-scope-canvas" class="vst-crt-canvas"></canvas>
+        <div class="vst-crt-scanlines"></div>
+        <div class="vst-crt-glass"></div>
+        <div class="vst-crt-hud">
+          <span>LATEX FLUID DEFORMATION</span>
+          <span>ELASTIC SNAP: ACTIVE</span>
+        </div>
+      </div>
+
+      <!-- Sequencer Controls -->
+      <div class="vst-sequencer-strip">
+        <button type="button" id="seq-play-toggle" class="vst-toggle-btn" style="flex: 0 0 85px; font-weight: 700; color: #ffe600;">
+          ▶ RUN
+        </button>
+        <div class="vst-step-grid" role="group" aria-label="Hyperpop 16-Step Sequencer">
+          <div class="vst-seq-step active" data-step="0"></div>
+          <div class="vst-seq-step" data-step="1"></div>
+          <div class="vst-seq-step active" data-step="2"></div>
+          <div class="vst-seq-step active" data-step="3"></div>
+          <div class="vst-seq-step" data-step="4"></div>
+          <div class="vst-seq-step active" data-step="5"></div>
+          <div class="vst-seq-step" data-step="6"></div>
+          <div class="vst-seq-step active" data-step="7"></div>
+          <div class="vst-seq-step active" data-step="8"></div>
+          <div class="vst-seq-step" data-step="9"></div>
+          <div class="vst-seq-step active" data-step="10"></div>
+          <div class="vst-seq-step" data-step="11"></div>
+          <div class="vst-seq-step active" data-step="12"></div>
+          <div class="vst-seq-step active" data-step="13"></div>
+          <div class="vst-seq-step" data-step="14"></div>
+          <div class="vst-seq-step active" data-step="15"></div>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 0.78rem; color: #ff66b3; font-weight: 700;" id="val-seq-bpm">
+          135 BPM
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT MODULE: RESONANT FILTER & FORMANT -->
+    <div class="vst-module">
+      <h2 class="vst-module-title">Resonant Cut &amp; Formant <span>24dB/OCT</span></h2>
+      
+      <div class="vst-slider-row">
+        <div class="vst-slider-head"><span>Cutoff Frequency</span><span id="val-cutoff">3200 Hz</span></div>
+        <input type="range" id="slider-cutoff" class="vst-slider-input" min="80" max="8000" step="20" value="3200" />
+      </div>
+
+      <div class="vst-slider-row">
+        <div class="vst-slider-head"><span>Resonance Peak (Q)</span><span id="val-res">18.0 Q</span></div>
+        <input type="range" id="slider-res" class="vst-slider-input" min="0.5" max="30" step="0.5" value="18.0" />
+      </div>
+
+      <div class="vst-slider-head" style="margin-top: 0.35rem;"><span>Hyper-Vocal Formant</span></div>
+      <div class="vst-toggle-row">
+        <button type="button" class="vst-toggle-btn" data-formant="none">RAW</button>
+        <button type="button" class="vst-toggle-btn" data-formant="a">/A/</button>
+        <button type="button" class="vst-toggle-btn" data-formant="i">/I/</button>
+        <button type="button" class="vst-toggle-btn active" data-formant="u">/U/</button>
+        <button type="button" class="vst-toggle-btn" data-formant="o">/O/</button>
+      </div>
+
+      <h2 class="vst-module-title" style="margin-top: 0.5rem;">Hyperpop Tempo <span>BPM</span></h2>
+      
+      <div class="vst-slider-row">
+        <div class="vst-slider-head"><span>Clock Speed</span></div>
+        <input type="range" id="slider-seq-bpm" class="vst-slider-input" min="80" max="180" step="1" value="135" />
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM SECTION: BUBBLEGUM KEYBED -->
+  <section class="vst-keybed-section" aria-label="SOPHIE Hyperpop Keyboard">
+    <div class="vst-piano-keys">
+      <!-- White Keys -->
+      <div class="vst-white-key" data-note="C4">A</div>
+      <div class="vst-white-key" data-note="D4">S</div>
+      <div class="vst-white-key" data-note="E4">D</div>
+      <div class="vst-white-key" data-note="F4">F</div>
+      <div class="vst-white-key" data-note="G4">G</div>
+      <div class="vst-white-key" data-note="A4">H</div>
+      <div class="vst-white-key" data-note="B4">J</div>
+      <div class="vst-white-key" data-note="C5">K</div>
+      <div class="vst-white-key" data-note="D5">L</div>
+      <div class="vst-white-key" data-note="E5">;</div>
+      <div class="vst-white-key" data-note="F5">'</div>
+      <div class="vst-white-key" data-note="G5">/</div>
+
+      <!-- Black Keys -->
+      <div class="vst-black-key" data-note="C#4">W</div>
+      <div class="vst-black-key" data-note="D#4">E</div>
+      <div class="vst-black-key" data-note="F#4">T</div>
+      <div class="vst-black-key" data-note="G#4">Y</div>
+      <div class="vst-black-key" data-note="A#4">U</div>
+      <div class="vst-black-key" data-note="C#5">O</div>
+      <div class="vst-black-key" data-note="D#5">P</div>
+      <div class="vst-black-key" data-note="F#5">]</div>
+    </div>
+  </section>
+</main>
+
+<footer class="vst-footer">
+  <p>Inspired by <strong>SOPHIE</strong> · Physical Modeling, Liquid Bubble Pops, Latex Plucks &amp; Abrasive Tanh Metal. Play with <span class="vst-kbd-badge">A - L</span> or click <span class="vst-kbd-badge">● RECORD WAV</span> to export samples directly to your DAW.</p>
+</footer>
+
+<script src="chrono_synth.js"></script>
+</body>
+</html>

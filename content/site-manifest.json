@@ -1,0 +1,306 @@
+{
+  "site": {
+    "name": "Brennan Shepherd · Melodia Portfolio",
+    "version": "2.0.0",
+    "engine": "UE 5.8",
+    "modeling": "Blender 5.2",
+    "textures": "Substance 3D Painter",
+    "materials": "Material Maker",
+    "lastUpdated": "2026-08-20",
+    "url": "https://fromage3900.github.io/my-site/"
+  },
+  "stats": {
+    "totalEnvironments": 4,
+    "totalMaterials": 30,
+    "totalPCGGraphs": 36,
+    "totalTriangles": 267000,
+    "totalDrawCalls": 133,
+    "totalRenders": 85,
+    "totalPages": 22,
+    "pillarCaseStudies": 1
+  },
+  "environments": [
+    {
+      "slug": "melodia-stage-character",
+      "name": "L_MelusinaMorning",
+      "worldNum": 1,
+      "label": "World 01 · L_MelusinaMorning",
+      "page": "melodia-stage-character.html",
+      "status": "live",
+      "triangles": "68k",
+      "drawCalls": 24,
+      "materials": 22,
+      "pcgGraphs": 6,
+      "renderCount": 16,
+      "heroWebm": "WP_MelusinaStage.webm",
+      "tags": [
+        "character atelier",
+        "EEVEE glam",
+        "wireframe topology",
+        "stage passport"
+      ],
+      "description": "Opening morning atelier and character dressing stage: EEVEE glam beauty plates, wireframe topology, and technical asset passport."
+    },
+    {
+      "slug": "sakura-case-study",
+      "name": "L_SakuraDream",
+      "worldNum": 2,
+      "label": "World 02 · L_SakuraDream",
+      "page": "sakura-case-study.html",
+      "status": "live",
+      "triangles": "72k",
+      "drawCalls": 35,
+      "materials": 30,
+      "pcgGraphs": 12,
+      "renderCount": 18,
+      "heroWebm": "WP_SakuraDream.webm",
+      "tags": [
+        "toon shaders",
+        "PCG scatter",
+        "shrine axis",
+        "warm lacquer"
+      ],
+      "description": "Shrine-axis composition, warm lacquer materials, PCG-driven petal scatter, and toon shader proof."
+    },
+    {
+      "slug": "space-cathedral",
+      "name": "L_KaleidoNave",
+      "worldNum": 3,
+      "label": "World 03 · L_KaleidoNave",
+      "page": "space-cathedral.html",
+      "status": "live",
+      "triangles": "68k",
+      "drawCalls": 32,
+      "materials": 28,
+      "pcgGraphs": 8,
+      "renderCount": 15,
+      "heroWebm": "WP_SpaceCathedral.webm",
+      "tags": [
+        "gothic sci-fi",
+        "SDF materials",
+        "rose window PCG",
+        "celestial void"
+      ],
+      "description": "Gothic sci-fi cathedral: vaulted ribs, rose window scattering, cosmic SDF materials, and toon-shaded sacred geometry."
+    },
+    {
+      "slug": "pcg-system-impact",
+      "name": "L_FallenMoon",
+      "worldNum": 4,
+      "label": "World 04 · L_FallenMoon",
+      "page": "pcg-system-impact.html",
+      "status": "live",
+      "triangles": "82k",
+      "drawCalls": 38,
+      "materials": 32,
+      "pcgGraphs": 10,
+      "renderCount": 14,
+      "heroWebm": null,
+      "heroStill": "level_fallen_moon.png",
+      "tags": [
+        "cosmic crater",
+        "PCG ecosystem",
+        "heatmap proof",
+        "route verification"
+      ],
+      "description": "Cosmic crater and PCG ecosystem: in-scene procedural proof, route traversal validation, and heatmap density analytics. Homepage plate uses level_fallen_moon.png (not Orrery terrain)."
+    },
+    {
+      "slug": "cosmic-orrery",
+      "name": "Cosmic Orrery",
+      "worldNum": null,
+      "label": "Pillar · Cosmic Orrery",
+      "page": "cosmic-orrery.html",
+      "status": "live",
+      "triangles": "45k",
+      "drawCalls": 28,
+      "materials": 24,
+      "pcgGraphs": 6,
+      "renderCount": 12,
+      "heroWebm": "WP_CosmicOrrery.webm",
+      "heroStill": "WP_CosmicOrrery_terrain.png",
+      "tags": [
+        "celestial",
+        "orrery rig",
+        "aurora VFX",
+        "starmap shaders"
+      ],
+      "description": "Standalone celestial sphere case study: planetary orrery, cosmic SDF material family, aurora veils, and stylized astronomy. Discoverable via nav/hub/dossier — not the L_FallenMoon homepage plate.",
+      "role": "pillar"
+    }
+  ],
+  "pages": [
+    {
+      "slug": "index",
+      "name": "Home",
+      "file": "index.html",
+      "nav": true
+    },
+    {
+      "slug": "recruiter-one-sheet",
+      "name": "One-sheet",
+      "file": "recruiter-one-sheet.html",
+      "nav": true
+    },
+    {
+      "slug": "hiring-dossier",
+      "name": "Hiring Dossier",
+      "file": "hiring-dossier.html",
+      "nav": true
+    },
+    {
+      "slug": "resume",
+      "name": "Resume",
+      "file": "resume.html",
+      "nav": true
+    },
+    {
+      "slug": "application-hub",
+      "name": "All Environments",
+      "file": "application-hub.html",
+      "nav": false
+    },
+    {
+      "slug": "sakura-case-study",
+      "name": "Sakura Dream",
+      "file": "sakura-case-study.html",
+      "nav": false
+    },
+    {
+      "slug": "space-cathedral",
+      "name": "Space Cathedral",
+      "file": "space-cathedral.html",
+      "nav": false
+    },
+    {
+      "slug": "melodia-stage-character",
+      "name": "Melusina Stage",
+      "file": "melodia-stage-character.html",
+      "nav": false
+    },
+    {
+      "slug": "pcg-system-impact",
+      "name": "PCG System Impact",
+      "file": "pcg-system-impact.html",
+      "nav": false
+    },
+    {
+      "slug": "cosmic-orrery",
+      "name": "Cosmic Orrery",
+      "file": "cosmic-orrery.html",
+      "nav": true
+    },
+    {
+      "slug": "hero-renders",
+      "name": "Hero Renders",
+      "file": "hero-renders.html",
+      "nav": false
+    },
+    {
+      "slug": "shader-breakdowns",
+      "name": "Shaders",
+      "file": "shader-breakdowns.html",
+      "nav": true
+    },
+    {
+      "slug": "world-bible",
+      "name": "World Bible",
+      "file": "world-bible.html",
+      "nav": false
+    },
+    {
+      "slug": "melodia-gameplay-loop",
+      "name": "Gameplay Loop",
+      "file": "melodia-gameplay-loop.html",
+      "nav": false
+    },
+    {
+      "slug": "ornament-kitbash",
+      "name": "Ornamental Kitbash",
+      "file": "ornament-kitbash.html",
+      "nav": false
+    },
+    {
+      "slug": "zbrush-breakdown",
+      "name": "Sculpt Breakdown",
+      "file": "zbrush-breakdown.html",
+      "nav": false
+    },
+    {
+      "slug": "geometry-nodes",
+      "name": "Geometry Nodes",
+      "file": "geometry-nodes.html",
+      "nav": false
+    },
+    {
+      "slug": "sdf-material-gallery",
+      "name": "SDF Material Gallery",
+      "file": "sdf-material-gallery.html",
+      "nav": false
+    },
+    {
+      "slug": "touchdesigner-architecture",
+      "name": "TouchDesigner",
+      "file": "touchdesigner-architecture.html",
+      "nav": false
+    },
+    {
+      "slug": "production-roadmap",
+      "name": "Production Roadmap",
+      "file": "production-roadmap.html",
+      "nav": false
+    },
+    {
+      "slug": "pipeline",
+      "name": "Pipeline",
+      "file": "pipeline.html",
+      "nav": false
+    },
+    {
+      "slug": "melodia-melusina",
+      "name": "Melodia Melusina UI",
+      "file": "melodia-melusina.html",
+      "nav": false
+    }
+  ],
+  "pipeline": {
+    "tools": [
+      {
+        "name": "Unreal Engine 5.8",
+        "role": "Environment assembly, Substrate Toon materials, PCG scattering, render capture"
+      },
+      {
+        "name": "Blender 5.2",
+        "role": "Melodia Studio GN Stack (165 builders / 12 categories), stylized geometry, modular kits"
+      },
+      {
+        "name": "Substance 3D Painter",
+        "role": "PBR texture baking, wear/dirt masks, material reference"
+      },
+      {
+        "name": "Material Maker",
+        "role": "Procedural PBR graphs, SDF generators, toon ramp textures (72–105 node graphs)"
+      },
+      {
+        "name": "TouchDesigner",
+        "role": "Real-time VFX prototyping, MCP server for TouchDesigner workflows"
+      },
+      {
+        "name": "VS Code + PowerShell",
+        "role": "Website build, deploy automation, template scaffolding"
+      },
+      {
+        "name": "GitHub Pages",
+        "role": "Static hosting, custom domain, Wix iframe embedding"
+      }
+    ],
+    "workflow": [
+      "Model in Blender → export FBX to UE5",
+      "Build materials in UE5 Material Editor + Material Maker",
+      "Scatter with PCG graphs (60+ systems)",
+      "Capture renders with Python capture pipeline",
+      "Run tools/ingest-renders.ps1 → copies to generated/assets/",
+      "Run deploy/quick-deploy.ps1 → sync → commit → push → live"
+    ]
+  }
+}
