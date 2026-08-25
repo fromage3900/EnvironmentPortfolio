@@ -1,0 +1,770 @@
+[
+  {
+    "path": "C:/Users/froma/AppData/Local\\Programs",
+    "size_gb": 62.78
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\JetBrains",
+    "size_gb": 28.13
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Packages",
+    "size_gb": 18.73
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Voiceger",
+    "size_gb": 11.27
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Google",
+    "size_gb": 5.93
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Roblox",
+    "size_gb": 5.84
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Microsoft",
+    "size_gb": 5.5
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\NVIDIA",
+    "size_gb": 3.53
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\uv",
+    "size_gb": 2.61
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\hermes",
+    "size_gb": 2.09
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Discord",
+    "size_gb": 1.11
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\GitHubDesktop",
+    "size_gb": 1.1
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Nekki Limited",
+    "size_gb": 0.94
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Figma",
+    "size_gb": 0.91
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\kimi-desktop-updater",
+    "size_gb": 0.89
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\OpenAI",
+    "size_gb": 0.74
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\ms-playwright",
+    "size_gb": 0.72
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Autodesk",
+    "size_gb": 0.66
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\npm-cache",
+    "size_gb": 0.59
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\EpicGamesLauncher",
+    "size_gb": 0.52
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Steam",
+    "size_gb": 0.48
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Escape Motions",
+    "size_gb": 0.42
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Zed",
+    "size_gb": 0.32
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\InfinityNikkiGlobal Launcher",
+    "size_gb": 0.3
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\antigravity-updater",
+    "size_gb": 0.28
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\FabPlugins",
+    "size_gb": 0.28
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\devin",
+    "size_gb": 0.27
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Temp",
+    "size_gb": 0.27
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\@opencode-aidesktop-updater",
+    "size_gb": 0.25
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\GitKrakenCLI",
+    "size_gb": 0.25
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\qoder-work-updater",
+    "size_gb": 0.25
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\VOCALOID6",
+    "size_gb": 0.24
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Adobe",
+    "size_gb": 0.19
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\agy",
+    "size_gb": 0.17
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\CrashDumps",
+    "size_gb": 0.17
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Gryphline",
+    "size_gb": 0.17
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\unityhub-updater",
+    "size_gb": 0.16
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Respondus",
+    "size_gb": 0.15
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\electron",
+    "size_gb": 0.14
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\GitHubCopilotCLI",
+    "size_gb": 0.13
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\MisterHorse",
+    "size_gb": 0.12
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\NuGet",
+    "size_gb": 0.12
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\copilot",
+    "size_gb": 0.11
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\ms-playwright-go",
+    "size_gb": 0.1
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\UnrealEditorFortnite",
+    "size_gb": 0.1
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\diversiondesktop-updater",
+    "size_gb": 0.09
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\MaxonApp",
+    "size_gb": 0.08
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Unity",
+    "size_gb": 0.08
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\FortniteGame",
+    "size_gb": 0.07
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Maxon",
+    "size_gb": 0.07
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\UnrealEngine",
+    "size_gb": 0.07
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Derivative",
+    "size_gb": 0.06
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\EBWebView",
+    "size_gb": 0.06
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\node-gyp",
+    "size_gb": 0.06
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Package Cache",
+    "size_gb": 0.06
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\pip",
+    "size_gb": 0.06
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Red Giant",
+    "size_gb": 0.06
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\riot-repair-tool-updater",
+    "size_gb": 0.06
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\foundry-licensing-utility-updater",
+    "size_gb": 0.05
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\com.parakeet-inc.paravo",
+    "size_gb": 0.04
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\MaxonNeutrino",
+    "size_gb": 0.04
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\SpliceSettings",
+    "size_gb": 0.04
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\TuneLab",
+    "size_gb": 0.04
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\CLO",
+    "size_gb": 0.03
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\ConnectedDevicesPlatform",
+    "size_gb": 0.03
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\wally",
+    "size_gb": 0.03
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\ADPWebView",
+    "size_gb": 0.02
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\ASUS",
+    "size_gb": 0.02
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\bluepoch",
+    "size_gb": 0.02
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\CEF",
+    "size_gb": 0.02
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Comms",
+    "size_gb": 0.02
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\reverse1999-launcher",
+    "size_gb": 0.02
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Riot Games",
+    "size_gb": 0.02
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Blender Foundation",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\BorisFX",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\CefSharp",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Chief Architect Premier X13",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\com.autodesk.cer-dialog",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\CrashReportClient",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\drmingw",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Elgato",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Epic Games",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\FigmaAgent",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\fontconfig",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Games",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Godot",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\HP",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\OGH",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\OMORI",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Pal",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\PlatformProcess",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Publishers",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\pypa",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\qBittorrent",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Revit",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Unity Technologies",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\UnrealBuildTool",
+    "size_gb": 0.01
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\.IdentityService",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\.qoder-cn",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\3dsmax",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\AcLoader",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\AcSdkInsLog",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\aescripts.com",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\antigravity",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Application Data",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\AWSToolkit",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Backup",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\BANDAI NAMCO Entertainment",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Blizzard Entertainment",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\bonsai",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\BuildPatchInstallerLib",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\cache",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Canopy",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Cavalry",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Claude Nest-3p",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Claude-3p",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\claude-cli-nodejs",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\com.maxon.vfxbang",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\com.redgiant.Colorista-IV",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\cursor-compile-cache",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\D3DSCache",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\DBG",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\DefaultDomain_Path_fmdyh3ih455dogvbkfdaqgefcnigxagq",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Epic",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Exoside",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Faceform",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Foundry",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\GBFR",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\GitHub CLI",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\github-copilot",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\gk",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\gstreamer-1.0",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\History",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\HPOmenServices",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\IconCache.db",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\IdentityNexusIntegration",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\IDV, Inc",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\ImageMagick",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\iZotope",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\karboncalligraphyrc",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\kimi-code",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Kontakt 7",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\krita-sysinfo.log",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\krita.log",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\kritacrash.log",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\kritadisplayrc",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\kritarc",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Live++",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\LooksBuilder",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\main.kts.compiled.cache",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Marmoset Toolbag 3",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Marmoset Toolbag 5",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\matplotlib",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\McNeel",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Microsoft SDKs",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\MinecraftInstaller",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Monolith",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Native Instruments",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\numba",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\NVIDIA Corporation",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Ollama",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\OmenCamera",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\OneDrive",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\P5XGame",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\PlaceholderTileLogoFolder",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\plastic4",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\PureRef",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Redshift",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\RefSrcSymbols",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\robloxstudio-mcp",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\SafeNet Sentinel",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\sandbox-cli",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Seiko_Epson_Corporation",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\selene",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Sentry",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\SilentHill2",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\SketchUp",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\SolidDocuments",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\SquirrelTemp",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\StudioMCP",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Symbols",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\SymbolSourceSymbols",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Temporary Internet Files",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\ToastNotificationManagerCompat",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Trimble",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\uninst_95142.log",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\UnrealEngineLauncher",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\VideoCopilot",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\VirtualStore",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\voicevox-engine",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Waves Audio",
+    "size_gb": 0.0
+  },
+  {
+    "path": "C:/Users/froma/AppData/Local\\Xfer",
+    "size_gb": 0.0
+  }
+]

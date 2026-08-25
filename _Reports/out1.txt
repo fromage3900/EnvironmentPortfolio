@@ -1,0 +1,108 @@
+===== Rhythm
+81D6D5F9829BEBFFA","name":"WidgetType","direction":"input","type":"class:UserWidget","default_object":"/Game/Melodia/UI/Rhythm/WBP_MelodiaRhythmHighway.WBP_MelodiaRhythmHighway_C","connected_to":[],"connected_to_ids":[]},{"id":"B13034BC489453D110
+---
+,"name":"WidgetType","direction":"input","type":"class:UserWidget","default_object":"/Game/Melodia/UI/Rhythm/WBP_MelodiaRhythmHighway.WBP_MelodiaRhythmHighway_C","connected_to":[],"connected_to_ids":[]},{"id":"B13034BC489453D1105FC096F83F3574","n
+---
+ection":"input","type":"class:UserWidget","default_object":"/Game/Melodia/UI/Rhythm/WBP_MelodiaRhythmHighway.WBP_MelodiaRhythmHighway_C","connected_to":[],"connected_to_ids":[]},{"id":"B13034BC489453D1105FC096F83F3574","name":"OwningPlayer","dire
+---
+===== Highway
+cted_to":[],"connected_to_ids":[]}]},{"id":"K2Node_VariableGet_47","class":"K2Node_VariableGet","title":"Get MelodiaNoteHighway","pos":[192,192],"pins":[{"id":"5431A42140AAEF19943FA9B3B8B8A43E","name":"MelodiaNoteHighway","direction":"output","typ
+---
+t","title":"Get MelodiaNoteHighway","pos":[192,192],"pins":[{"id":"5431A42140AAEF19943FA9B3B8B8A43E","name":"MelodiaNoteHighway","direction":"output","type":"object:Image","connected_to":["K2Node_CallFunction_34.self"],"connected_to_ids":["B112E6A
+---
+":["K2Node_CallFunction_34.self"],"connected_to_ids":["B112E6A34F3AB2D7BC6F8181603350CE"]}],"variable_name":"MelodiaNoteHighway","is_self_context":true},{"id":"K2Node_CallFunction_18","class":"K2Node_CallFunction","title":"Create Widget","pos":[12
+---
+":"WidgetType","direction":"input","type":"class:UserWidget","default_object":"/Game/Melodia/UI/Rhythm/WBP_MelodiaRhythmHighway.WBP_MelodiaRhythmHighway_C","connected_to":[],"connected_to_ids":[]},{"id":"B13034BC489453D1105FC096F83F3574","name":"O
+---
+":"input","type":"class:UserWidget","default_object":"/Game/Melodia/UI/Rhythm/WBP_MelodiaRhythmHighway.WBP_MelodiaRhythmHighway_C","connected_to":[],"connected_to_ids":[]},{"id":"B13034BC489453D1105FC096F83F3574","name":"OwningPlayer","direction":
+---
+181603350CE","name":"self","direction":"input","type":"object:Widget","connected_to":["K2Node_VariableGet_47.MelodiaNoteHighway"],"connected_to_ids":["5431A42140AAEF19943FA9B3B8B8A43E"]},{"id":"5EA1AB6248CB13729C37759D31FBA7FE","name":"InVisibilit
+---
+cted_to":[],"connected_to_ids":[]}]},{"id":"K2Node_VariableGet_48","class":"K2Node_VariableGet","title":"Get MelodiaNoteHighway","pos":[100,500],"pins":[{"id":"74FD34694F6E5E0C8E40F8A848C7A783","name":"MelodiaNoteHighway","direction":"output","typ
+---
+t","title":"Get MelodiaNoteHighway","pos":[100,500],"pins":[{"id":"74FD34694F6E5E0C8E40F8A848C7A783","name":"MelodiaNoteHighway","direction":"output","type":"object:Image","connected_to":["K2Node_CallFunction_35.self"],"connected_to_ids":["A52204E
+---
+":["K2Node_CallFunction_35.self"],"connected_to_ids":["A52204EE4EB7FB2EF2AD5C8C151A71F3"]}],"variable_name":"MelodiaNoteHighway","is_self_context":true},{"id":"K2Node_CallFunction_35","class":"K2Node_CallFunction","title":"Set Visibility\nTarget i
+---
+C8C151A71F3","name":"self","direction":"input","type":"object:Widget","connected_to":["K2Node_VariableGet_48.MelodiaNoteHighway"],"connected_to_ids":["74FD34694F6E5E0C8E40F8A848C7A783"]},{"id":"3E2B828F44591A35A0302EA9E1615BA4","name":"InVisibilit
+---
+9D6AF0FF5D","to_pin_id":"E53DD5654B8C528051E919AA8926E01C"},{"from_node":"K2Node_VariableGet_47","from_pin":"MelodiaNoteHighway","to_node":"K2Node_CallFunction_34","to_pin":"self","from_pin_id":"5431A42140AAEF19943FA9B3B8B8A43E","to_pin_id":"B112E
+---
+A129E64B91","to_pin_id":"87BE8F844D1171A7861B358B72769A53"},{"from_node":"K2Node_VariableGet_48","from_pin":"MelodiaNoteHighway","to_node":"K2Node_CallFunction_35","to_pin":"self","from_pin_id":"74FD34694F6E5E0C8E40F8A848C7A783","to_pin_id":"A5220
+---
+===== InputContext
+allFunction_50","class":"K2Node_CallFunction","title":"Get","pos":[-720,-735],"function":"Get","function_class":"MelodiaInputContextSubsystem","pins":[{"id":"082FB14B41EBB115D293EF92B911D57B","name":"ReturnValue","direction":"output","type":"object:Mel
+---
+ystem","pins":[{"id":"082FB14B41EBB115D293EF92B911D57B","name":"ReturnValue","direction":"output","type":"object:MelodiaInputContextSubsystem","connected_to":["K2Node_CallFunction_51.self"],"connected_to_ids":["09683BF44A6E8BDBBD65539D6C2405B1"]}]},{"i
+---
+Context\nTarget is Melodia Input Context Subsystem","pos":[-280,-735],"function":"PushContext","function_class":"MelodiaInputContextSubsystem","pins":[{"id":"8391665644C4ED5D5918A88C3F46ECEC","name":"execute","direction":"input","type":"exec","connecte
+---
+A487CDDFBA326F0BA7C"]},{"id":"09683BF44A6E8BDBBD65539D6C2405B1","name":"self","direction":"input","type":"object:MelodiaInputContextSubsystem","connected_to":["K2Node_CallFunction_50.ReturnValue"],"connected_to_ids":["082FB14B41EBB115D293EF92B911D57B"]
+---
+5D293EF92B911D57B"]},{"id":"B0D7F96C45BEFB9625DE22A3FE98842D","name":"Context","direction":"input","type":"enum:EMelodiaInputContext","default_value":"Battle","connected_to":[],"connected_to_ids":[]},{"id":"D0DF7FF9470D9DD0ED0EC79FE2F5770C","name":"Own
+---
+087F22E7DF2"]},{"id":"4A66A2C64D7427362AABB0893D9AAD6D","name":"ReturnValue","direction":"output","type":"struct:MelodiaInputContextHandle","connected_to":["K2Node_VariableSet_0.MelodiaBattleInputContextHandle"],"connected_to_ids":["762566BC49D18268BA7
+---
+alue","direction":"output","type":"struct:MelodiaInputContextHandle","connected_to":["K2Node_VariableSet_0.MelodiaBattleInputContextHandle"],"connected_to_ids":["762566BC49D18268BA7351A255E74FF8"]}]},{"id":"K2Node_VariableSet_0","class":"K2Node_Variabl
+---
+2566BC49D18268BA7351A255E74FF8"]}]},{"id":"K2Node_VariableSet_0","class":"K2Node_VariableSet","title":"Set MelodiaBattleInputContextHandle","pos":[20,-900],"pins":[{"id":"87BE8F844D1171A7861B358B72769A53","name":"execute","direction":"input","type":"ex
+---
+,"connected_to_ids":["81A8605B4B01362E1C1068B57590282A"]},{"id":"762566BC49D18268BA7351A255E74FF8","name":"MelodiaBattleInputContextHandle","direction":"input","type":"struct:MelodiaInputContextHandle","connected_to":["K2Node_CallFunction_51.ReturnValu
+---
+":"762566BC49D18268BA7351A255E74FF8","name":"MelodiaBattleInputContextHandle","direction":"input","type":"struct:MelodiaInputContextHandle","connected_to":["K2Node_CallFunction_51.ReturnValue"],"connected_to_ids":["4A66A2C64D7427362AABB0893D9AAD6D"]},{
+---
+B0893D9AAD6D"]},{"id":"6DAE6916435CD82876BF168EEFF02111","name":"Output_Get","direction":"output","type":"struct:MelodiaInputContextHandle","connected_to":[],"connected_to_ids":[]}],"variable_name":"MelodiaBattleInputContextHandle","is_self_context":tr
+---
+tput","type":"struct:MelodiaInputContextHandle","connected_to":[],"connected_to_ids":[]}],"variable_name":"MelodiaBattleInputContextHandle","is_self_context":true},{"id":"K2Node_Self_0","class":"K2Node_Self","title":"Self-Reference","pos":[-480,-560],"
+---
+allFunction_52","class":"K2Node_CallFunction","title":"Get","pos":[-720,-255],"function":"Get","function_class":"MelodiaInputContextSubsystem","pins":[{"id":"C1617B2C43D1246A16D0D5A9BEDDB1DC","name":"ReturnValue","direction":"output","type":"object:Mel
+---
+ystem","pins":[{"id":"C1617B2C43D1246A16D0D5A9BEDDB1DC","name":"ReturnValue","direction":"output","type":"object:MelodiaInputContextSubsystem","connected_to":["K2Node_CallFunction_53.self"],"connected_to_ids":["4BD1F30649AB68447803D999C17A7541"]}]},{"i
+---
+1F30649AB68447803D999C17A7541"]}]},{"id":"K2Node_VariableGet_45","class":"K2Node_VariableGet","title":"Get MelodiaBattleInputContextHandle","pos":[-480,-95],"pins":[{"id":"11BC79EA45F1CFEBAA8354B55D6B5671","name":"MelodiaBattleInputContextHandle","dire
+---
+MelodiaBattleInputContextHandle","pos":[-480,-95],"pins":[{"id":"11BC79EA45F1CFEBAA8354B55D6B5671","name":"MelodiaBattleInputContextHandle","direction":"output","type":"struct:MelodiaInputContextHandle","connected_to":["K2Node_CallFunction_53.Handle"],
+---
+:"11BC79EA45F1CFEBAA8354B55D6B5671","name":"MelodiaBattleInputContextHandle","direction":"output","type":"struct:MelodiaInputContextHandle","connected_to":["K2Node_CallFunction_53.Handle"],"connected_to_ids":["6FA74490411B0F18961E37AE7923F738"]}],"vari
+---
+K2Node_CallFunction_53.Handle"],"connected_to_ids":["6FA74490411B0F18961E37AE7923F738"]}],"variable_name":"MelodiaBattleInputContextHandle","is_self_context":true},{"id":"K2Node_CallFunction_53","class":"K2Node_CallFunction","title":"Pop Context\nTarge
+---
+ Context\nTarget is Melodia Input Context Subsystem","pos":[-280,-255],"function":"PopContext","function_class":"MelodiaInputContextSubsystem","pins":[{"id":"E53DD5654B8C528051E919AA8926E01C","name":"execute","direction":"input","type":"exec","connecte
+---
+014E595679B6322E72C"]},{"id":"4BD1F30649AB68447803D999C17A7541","name":"self","direction":"input","type":"object:MelodiaInputContextSubsystem","connected_to":["K2Node_CallFunction_52.ReturnValue"],"connected_to_ids":["C1617B2C43D1246A16D0D5A9BEDDB1DC"]
+---
+A16D0D5A9BEDDB1DC"]},{"id":"6FA74490411B0F18961E37AE7923F738","name":"Handle","direction":"input","type":"struct:MelodiaInputContextHandle","connected_to":["K2Node_VariableGet_45.MelodiaBattleInputContextHandle"],"connected_to_ids":["11BC79EA45F1CFEBAA
+---
+ndle","direction":"input","type":"struct:MelodiaInputContextHandle","connected_to":["K2Node_VariableGet_45.MelodiaBattleInputContextHandle"],"connected_to_ids":["11BC79EA45F1CFEBAA8354B55D6B5671"]},{"id":"F40EE3C940B13DEAA9EE9E84A50F09AD","name":"Retur
+---
+,{"from_node":"K2Node_CallFunction_51","from_pin":"ReturnValue","to_node":"K2Node_VariableSet_0","to_pin":"MelodiaBattleInputContextHandle","from_pin_id":"4A66A2C64D7427362AABB0893D9AAD6D","to_pin_id":"762566BC49D18268BA7351A255E74FF8"},{"from_node":"K
+---
+BEDDB1DC","to_pin_id":"4BD1F30649AB68447803D999C17A7541"},{"from_node":"K2Node_VariableGet_45","from_pin":"MelodiaBattleInputContextHandle","to_node":"K2Node_CallFunction_53","to_pin":"Handle","from_pin_id":"11BC79EA45F1CFEBAA8354B55D6B5671","to_pin_id
+---
+===== AddToViewport
+unction_21","class":"K2Node_CallFunction","title":"Add to Viewport\nTarget is User Widget","pos":[1500,200],"function":"AddToViewport","pins":[{"id":"9E5DD2294B5FEC575842B9966963C6EF","name":"execute","direction":"input","type":"exec","connected_to":[],
+---
+Function_32","class":"K2Node_CallFunction","title":"Add to Viewport\nTarget is User Widget","pos":[400,300],"function":"AddToViewport","pins":[{"id":"BFB5FE544BC506A888D10DAD3E2C9E94","name":"execute","direction":"input","type":"exec","connected_to":["K
+---
+Function_46","class":"K2Node_CallFunction","title":"Add to Viewport\nTarget is User Widget","pos":[350,900],"function":"AddToViewport","pins":[{"id":"A3336263475FDA5CA3271EA0CBCC105A","name":"execute","direction":"input","type":"exec","connected_to":["K
+---
+Function_59","class":"K2Node_CallFunction","title":"Add to Viewport\nTarget is User Widget","pos":[750,900],"function":"AddToViewport","pins":[{"id":"929C7D494153B61121E917ADB0856827","name":"execute","direction":"input","type":"exec","connected_to":["K
+---
+===== RemoveFromParent
+lFunction_4","class":"K2Node_CallFunction","title":"Remove from Parent\nTarget is Widget","pos":[1719,-256],"function":"RemoveFromParent","pins":[{"id":"098D2A404277DB8D8E6936AD016C8072","name":"execute","direction":"input","type":"exec","connected_to":["K
+---
+===== SetVisibility
+e_CallFunction_9","class":"K2Node_CallFunction","title":"Set Visibility\nTarget is Widget","pos":[520,-735],"function":"SetVisibility","pins":[{"id":"8B65B8BF4B2E0D8136F3A9A577ADD7AC","name":"execute","direction":"input","type":"exec","connected_to":["K
+---
+_CallFunction_13","class":"K2Node_CallFunction","title":"Set Visibility\nTarget is Widget","pos":[520,-255],"function":"SetVisibility","pins":[{"id":"66D7970945F5E2B5433F379EB4237BDD","name":"execute","direction":"input","type":"exec","connected_to":["K
+---
+e_CallFunction_34","class":"K2Node_CallFunction","title":"Set Visibility\nTarget is Widget","pos":[700,300],"function":"SetVisibility","pins":[{"id":"D31646BB47A4FA487CDDFBA326F0BA7C","name":"execute","direction":"input","type":"exec","connected_to":["K
+---
+e_CallFunction_35","class":"K2Node_CallFunction","title":"Set Visibility\nTarget is Widget","pos":[350,500],"function":"SetVisibility","pins":[{"id":"33552C4E4F722014E595679B6322E72C","name":"execute","direction":"input","type":"exec","connected_to":["K
+---
+e_CallFunction_39","class":"K2Node_CallFunction","title":"Set Visibility\nTarget is Widget","pos":[350,700],"function":"SetVisibility","pins":[{"id":"CAEE344B4AF2F2E29D413AA9F794A4CE","name":"execute","direction":"input","type":"exec","connected_to":[],
+---
+e_CallFunction_47","class":"K2Node_CallFunction","title":"Set Visibility\nTarget is Widget","pos":[700,900],"function":"SetVisibility","pins":[{"id":"BDB26D88483211DFAE4B5287304D7320","name":"execute","direction":"input","type":"exec","connected_to":["K
+---
+_CallFunction_60","class":"K2Node_CallFunction","title":"Set Visibility\nTarget is Widget","pos":[1100,900],"function":"SetVisibility","pins":[{"id":"5843EABE444076D4F470478EF4A2F839","name":"execute","direction":"input","type":"exec","connected_to":["K
+---

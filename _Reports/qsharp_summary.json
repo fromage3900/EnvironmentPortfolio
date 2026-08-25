@@ -1,0 +1,15 @@
+{
+  "num_trials": 100,
+  "kernel_sanity_40_shots": {
+    "A": 19,
+    "B": 21
+  },
+  "mean_latency_ms": 49.832528000406455,
+  "backends": {
+    "qsharp-simulator": 100
+  },
+  "wins": {
+    "A": 45,
+    "B": 55
+  }
+}
