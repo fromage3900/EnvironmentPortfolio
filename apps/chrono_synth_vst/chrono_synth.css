@@ -1,0 +1,488 @@
+/* ==========================================================================
+   SOPHIE-X: Physical Modeling & Hyperpop Latex Sound Engine
+   Aesthetic: Bubblegum Pink Latex, Liquid Chrome, Glossy Black Vinyl PVC,
+   Silicone Touchpads, Phosphor CRT Waveform Scope, and Candy Neon Lighting.
+   ========================================================================== */
+
+:root {
+  --sophie-pink: #ff1a8c;
+  --sophie-hotpink: #ff0077;
+  --sophie-bubblegum: #ff66b3;
+  --sophie-pearl: #fff0f6;
+  --sophie-chrome: #e6ebf5;
+  --sophie-latex-black: #0a0a0f;
+  --sophie-vinyl-dark: #12131a;
+  --sophie-silver-border: #3d435a;
+  --sophie-neon-cyan: #00f0ff;
+  --sophie-neon-yellow: #ffe600;
+  
+  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  --font-display: 'Orbitron', 'Rajdhani', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+body {
+  background: radial-gradient(circle at 50% 30%, #2a0b1e 0%, #0c0812 60%, #030205 100%);
+  color: var(--sophie-pearl);
+  font-family: var(--font-display);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  overflow-x: hidden;
+}
+
+/* --- Hyperpop Main Chassis --- */
+.vst-rack {
+  width: 100%;
+  max-width: 1280px;
+  background: linear-gradient(145deg, #18111e 0%, #0d0813 50%, #170a1a 100%);
+  border: 3px solid #ff0077;
+  border-radius: 16px;
+  box-shadow: 
+    0 24px 80px rgba(255, 0, 119, 0.25),
+    0 0 40px rgba(255, 26, 140, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glossy Latex Reflections */
+.vst-rack::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* --- Top Header Strip --- */
+.vst-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem 2rem;
+  border-bottom: 2px solid rgba(255, 0, 119, 0.4);
+  background: linear-gradient(90deg, #240b1d 0%, #150616 50%, #240b1d 100%);
+  position: relative;
+  z-index: 2;
+}
+
+.vst-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.vst-logo-icon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #ff0077, #ffe600);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: 0 0 16px #ff0077;
+}
+
+.vst-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #fff;
+  text-shadow: 
+    0 0 10px #ff0077,
+    0 0 24px rgba(255, 0, 119, 0.6);
+}
+
+.vst-version-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: #ffe600;
+  background: rgba(255, 230, 0, 0.12);
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 230, 0, 0.4);
+  margin-left: 0.5rem;
+  letter-spacing: 0.1em;
+}
+
+/* Header Preset Bar */
+.vst-preset-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.vst-preset-select {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: #09030b;
+  color: #ff66b3;
+  border: 1px solid #ff0077;
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+  outline: none;
+  cursor: pointer;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(255, 0, 119, 0.3);
+}
+
+.vst-rec-btn {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  background: linear-gradient(135deg, #ff0077 0%, #d4005e 100%);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 14px rgba(255, 0, 119, 0.5);
+  transition: all 0.2s ease;
+}
+
+.vst-rec-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(255, 0, 119, 0.8);
+}
+
+.vst-rec-btn.recording {
+  background: #ff0033;
+  animation: pulseSophie 0.8s infinite alternate;
+}
+
+@keyframes pulseSophie {
+  from { box-shadow: 0 0 10px #ff0033; transform: scale(1); }
+  to { box-shadow: 0 0 30px #ff0077; transform: scale(1.04); }
+}
+
+/* --- Main Dashboard Modular Grid --- */
+.vst-body-grid {
+  display: grid;
+  grid-template-columns: 340px 1fr 340px;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background: var(--sophie-latex-black);
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 1100px) {
+  .vst-body-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Modular Control Modules */
+.vst-module {
+  background: linear-gradient(180deg, #1f0f22 0%, #110815 100%);
+  border: 1px solid rgba(255, 0, 119, 0.3);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 
+    inset 0 1px 0 rgba(255,255,255,0.1),
+    0 8px 24px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.vst-module-title {
+  font-size: 0.82rem;
+  letter-spacing: 0.15em;
+  color: var(--sophie-bubblegum);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255, 0, 119, 0.25);
+  padding-bottom: 0.45rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* --- Center Scope Screen (Liquid & Vector Phosphor) --- */
+.vst-crt-screen-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.vst-crt-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #08030b;
+  border: 3px solid #ff0077;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 
+    inset 0 0 35px rgba(255, 0, 119, 0.4),
+    0 0 25px rgba(255, 0, 119, 0.3);
+}
+
+.vst-crt-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.vst-crt-glass {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, transparent 50%, rgba(0,0,0,0.4) 100%);
+}
+
+.vst-crt-scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 0, 119, 0.08) 0px,
+    rgba(255, 0, 119, 0.08) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+}
+
+.vst-crt-hud {
+  position: absolute;
+  top: 10px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--sophie-neon-cyan);
+  text-shadow: 0 0 8px var(--sophie-neon-cyan);
+  pointer-events: none;
+}
+
+/* Sliders */
+.vst-slider-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.vst-slider-head {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #ffb3d9;
+}
+
+.vst-slider-input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: #08030a;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 0, 119, 0.3);
+  outline: none;
+}
+
+.vst-slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff 0%, #ff0077 70%);
+  cursor: pointer;
+  box-shadow: 0 0 12px #ff0077;
+}
+
+/* Toggle Switches */
+.vst-toggle-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.vst-toggle-btn {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.45rem 0.2rem;
+  background: #0b050f;
+  border: 1px solid rgba(255, 0, 119, 0.3);
+  border-radius: 6px;
+  color: #d19bb8;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.vst-toggle-btn.active {
+  background: linear-gradient(135deg, #ff0077, #d4005e);
+  border-color: #ff0077;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 0 12px rgba(255, 0, 119, 0.6);
+}
+
+/* --- Keyboard & Sequencer Bed --- */
+.vst-keybed-section {
+  background: linear-gradient(180deg, #15091a 0%, #0a030d 100%);
+  padding: 1.25rem 2rem 1.75rem;
+  border-top: 3px solid rgba(255, 0, 119, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.vst-sequencer-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  background: #08030b;
+  padding: 0.7rem 1.25rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 0, 119, 0.3);
+}
+
+.vst-step-grid {
+  display: flex;
+  gap: 6px;
+}
+
+.vst-seq-step {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: #1e0b25;
+  border: 1px solid rgba(255, 0, 119, 0.35);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.vst-seq-step.active {
+  background: #ff0077;
+  box-shadow: 0 0 12px #ff0077;
+  border-color: #fff;
+}
+
+.vst-seq-step.current {
+  border-color: var(--sophie-neon-yellow);
+  transform: scale(1.15);
+}
+
+/* Interactive Musical Piano Keys */
+.vst-piano-keys {
+  display: flex;
+  position: relative;
+  height: 130px;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+}
+
+.vst-white-key {
+  flex: 1;
+  background: linear-gradient(180deg, #fff0f6 0%, #ffd6e8 85%, #fcaecc 100%);
+  border: 1px solid #d48ba8;
+  border-radius: 0 0 6px 6px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: #8c2452;
+  font-weight: 700;
+  transition: background 0.1s;
+}
+
+.vst-white-key:hover {
+  background: #ffffff;
+}
+
+.vst-white-key.pressed {
+  background: linear-gradient(180deg, #ff0077 0%, #b8004f 100%);
+  color: #fff;
+  box-shadow: 0 0 18px #ff0077;
+}
+
+.vst-black-key {
+  position: absolute;
+  width: 5.5%;
+  height: 65%;
+  background: linear-gradient(180deg, #2b0c24 0%, #100311 100%);
+  border: 1px solid #4a1540;
+  border-radius: 0 0 4px 4px;
+  z-index: 2;
+  cursor: pointer;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.8);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--sophie-neon-yellow);
+}
+
+.vst-black-key.pressed {
+  background: linear-gradient(180deg, var(--sophie-neon-cyan) 0%, #0088cc 100%);
+  color: #fff;
+  box-shadow: 0 0 16px var(--sophie-neon-cyan);
+}
+
+/* Black key offsets */
+.vst-black-key[data-note="C#4"] { left: 5.2%; }
+.vst-black-key[data-note="D#4"] { left: 13.5%; }
+.vst-black-key[data-note="F#4"] { left: 30.2%; }
+.vst-black-key[data-note="G#4"] { left: 38.5%; }
+.vst-black-key[data-note="A#4"] { left: 46.8%; }
+.vst-black-key[data-note="C#5"] { left: 63.5%; }
+.vst-black-key[data-note="D#5"] { left: 71.8%; }
+.vst-black-key[data-note="F#5"] { left: 88.5%; }
+
+/* --- Footer Instructions --- */
+.vst-footer {
+  margin-top: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #d19bb8;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.vst-kbd-badge {
+  background: #08030b;
+  color: var(--sophie-neon-cyan);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 0, 119, 0.4);
+}

@@ -1,0 +1,251 @@
+oth, what remains for actuial liuve synchs from belnder to my website to git etc
+    #!/usr/bin/env python3
+"""Melodia Conductor - turn git history into music.
+
+A musical workflow tool for a game about music. Three modes:
+
+    python Tools/melodia_conductor.py score [--commits N]
+        Render recent commits as an ASCII piano-roll score.
+        One staff line per pitch; each column is a commit.
+
+    python Tools/melodia_conductor.py midi [--out FILE] [--bpm BPM] [--commits N]
+        Sonify commit history into a real .mid file you can open in any DAW
+        or media player. Pure-stdlib MIDI writer, no dependencies.
+
+        Mapping (deterministic, so the same history always sounds the same):
+          - time      : one commit = one 16th note, oldest -> newest
+          - pitch     : A-minor pentatonic; degree from commit-hash bytes,
+                        octave band from commit hour (late-night commits play higher)
+          - velocity  : lines changed (+/-) mapped to 40..127
+          - instrument: conventional-commit type picks the voice
+                        feat=flute lead, fix=fingered bass, docs=warm pad,
+                        chore/refactor=electric piano, merge/timeline=koto,
+                        default=grand piano
+
+    python Tools/melodia_conductor.py play [--commits N]
+        Play the most recent commits' motif through the console speaker
+        (winsound.Beep). The project's heartbeat, audible.
+
+Exit codes: 0 ok, 1 nothing to sonify.
+"""
+
+from __future__ import annotations
+
+import argparse
+import re
+import struct
+import subprocess
+import sys
+from datetime import datetime
+from pathlib import Path
+
+DEFAULT_REPO = Path(__file__).resolve().parent.parent
+
+# A-minor pentatonic across 4 octaves, low -> high (MIDI note numbers).
+SCALE = [n + d for n in (45, 57, 69, 81) for d in (0, 3, 5, 7, 10)]
+
+INSTRUMENTS = {
+    "feat": (73, "Flute"),            # GM program 73
+    "fix": (33, "Fingered Bass"),     # GM program 33
+    "docs": (89, "Warm Pad"),         # GM program 89
+    "chore": (4, "Electric Piano"),   # GM program 4
+    "refactor": (4, "Electric Piano"),
+    "merge": (107, "Koto"),           # GM program 107
+    "timeline": (107, "Koto"),
+}
+DEFAULT_PROGRAM = (0, "Grand Piano")
+
+HEADER_RE = re.compile(r"^([0-9a-f]{40})\x1f([0-9a-f]+)\x1f(\d+)\x1f(.*)$")
+
+
+def sh(repo: Path, *args: str) -> str:
+    proc = subprocess.run(
+        ["git", "-C", str(repo), *args],
+        capture_output=True, text=True, timeout=60,
+        encoding="utf-8", errors="replace",
+    )
+    return proc.stdout if proc.returncode == 0 else ""
+
+
+def load_commits(repo: Path, count: int) -> list[dict]:
+    fmt = "%H%x1f%h%x1f%at%x1f%s"
+    raw = sh(repo, "log", f"-{count}", f"--pretty=format:{fmt}", "--numstat")
+    commits: list[dict] = []
+    cur: dict | None = None
+
+    def flush() -> None:
+        nonlocal cur
+        if cur is not None:
+            ctype = cur["subject"].split("(")[0].strip().lower()
+            if ":" in ctype:
+                ctype = ctype.split(":")[0]
+            cur["type"] = ctype.strip() or "?"
+            commits.append(cur)
+            cur = None
+
+    for line in raw.splitlines():
+        m = HEADER_RE.match(line)
+        if m:
+            flush()
+            cur = {
+                "full": m.group(1), "short": m.group(2),
+                "ts": int(m.group(3)), "subject": m.group(4)[:60],
+                "added": 0, "deleted": 0, "files": 0,
+            }
+        elif cur is not None and "\t" in line:
+            cols = line.split("\t")
+            if len(cols) >= 3:
+                try:
+                    cur["added"] += int(cols[0])
+                    cur["deleted"] += int(cols[1])
+                    cur["files"] += 1
+                except ValueError:
+                    pass  # binary files show "-"
+    flush()
+    return commits
+
+
+def note_for(c: dict) -> int:
+    """Deterministic pitch: hash bytes pick the degree, hour picks the octave band."""
+    h = int(c["full"][:8], 16)
+    hour = datetime.fromtimestamp(c["ts"]).hour
+    octave_band = min(3, max(0, hour // 6))            # 0-3 across the day
+    degree = h % len(SCALE)
+    idx = (degree + octave_band * 3) % len(SCALE)
+    return SCALE[idx]
+
+
+def velocity_for(c: dict) -> int:
+    churn = c["added"] + c["deleted"]
+    return max(40, min(127, 40 + int(churn ** 0.5) * 6))
+
+
+def program_for(c: dict) -> tuple[int, str]:
+    return INSTRUMENTS.get(c["type"], DEFAULT_PROGRAM)
+
+
+# ---------------------------------------------------------------- ASCII score
+
+def render_score(commits: list[dict]) -> str:
+    if not commits:
+        return "(no commits)"
+    notes = [note_for(c) for c in commits]
+    lo, hi = min(notes), max(notes)
+    rows = []
+    for pitch in range(hi, lo - 1, -1):
+        row = []
+        for n in notes:
+            row.append(" o " if n == pitch else " . ")
+        rows.append("".join(row))
+    header = "".join(f"{c['short'][:3]:>3}" for c in commits)
+    legend = ", ".join(f"{c['short']}={c['subject'][:24]}" for c in commits[-4:])
+    body = "\n".join(rows)
+    return (
+        "MELODIA CONDUCTOR - commit score (each column = 1 commit, oldest left)\n"
+        f"{body}\n{'-' * len(header)}\n{header}\n\nrecent: {legend}"
+    )
+
+
+# ------------------------------------------------------------------ MIDI out
+
+def vlq(value: int) -> bytes:
+    """MIDI variable-length quantity."""
+    out = bytearray([value & 0x7F])
+    value >>= 7
+    while value:
+        out.insert(0, 0x80 | (value & 0x7F))
+        value >>= 7
+    return bytes(out)
+
+
+def track_chunk(events: list[tuple[int, bytes]]) -> bytes:
+    """events: (absolute_tick, raw_bytes). Returns an MTrk chunk."""
+    merged = sorted(events, key=lambda e: e[0])
+    data = bytearray()
+    last = 0
+    for tick, payload in merged:
+        data += vlq(tick - last) + payload
+        last = tick
+    data += vlq(0) + b"\xff\x2f\x00"  # end of track
+    return b"MTrk" + struct.pack(">I", len(data)) + bytes(data)
+
+
+def build_midi(commits: list[dict], bpm: int) -> bytes:
+    tick_per_16th = 120  # PPQ 480, sixteenth note = 120 ticks
+    tempo_us = int(60_000_000 / bpm)
+
+    tracks: dict[int, list[tuple[int, bytes]]] = {}
+    # Conductor track: tempo + 4/4 time signature.
+    tracks[-1] = [
+        (0, b"\xff\x51\x03" + struct.pack(">I", tempo_us)[1:]),
+        (0, b"\xff\x58\x04\x04\x02\x18\x08"),
+    ]
+
+    for i, c in enumerate(commits):
+        prog, _name = program_for(c)
+        channel = i % 15  # avoid channel 9 (GM percussion)
+        start = i * tick_per_16th
+        dur = tick_per_16th * 2  # eighth-note feel
+        note = note_for(c)
+        vel = velocity_for(c)
+        ev = tracks.setdefault(channel, [])
+        if not any(e[1][:1] == b"\xc0" for e in ev):
+            ev.append((0, bytes([0xC0 | channel, prog])))
+        ev.append((start, bytes([0x90 | channel, note, vel])))
+        ev.append((start + dur, bytes([0x80 | channel, note, 0])))
+
+    header = b"MThd" + struct.pack(">IHHH", 6, 1, len(tracks), 480)
+    return header + b"".join(track_chunk(ev) for _, ev in sorted(tracks.items()))
+
+
+# ------------------------------------------------------------------- beeping
+
+def freq(midi_note: int) -> int:
+    return int(440 * 2 ** ((midi_note - 69) / 12))
+
+
+def play_motif(commits: list[dict]) -> None:
+    import winsound
+    print(f"Playing {len(commits)} commits as a motif (Ctrl+C to stop)...")
+    for c in reversed(commits):  # oldest first, like listening to history
+        n = note_for(c)
+        dur = min(900, 90 + velocity_for(c))
+        print(f"  {c['short']}  note={n:>3} ({freq(n)} Hz)  {c['subject'][:48]}")
+        winsound.Beep(freq(n), dur)
+
+
+# ---------------------------------------------------------------------- main
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description="Sonify Melodia's git history")
+    ap.add_argument("mode", choices=["score", "midi", "play"])
+    ap.add_argument("--repo", default=str(DEFAULT_REPO))
+    ap.add_argument("--commits", type=int, default=32)
+    ap.add_argument("--bpm", type=int, default=96)
+    ap.add_argument("--out", default=None, help="output .mid path")
+    args = ap.parse_args()
+
+    repo = Path(args.repo).resolve()
+    commits = load_commits(repo, args.commits)
+    if not commits:
+        print("no commits found")
+        return 1
+
+    if args.mode == "score":
+        print(render_score(commits))
+    elif args.mode == "play":
+        play_motif(commits)
+    else:
+        out = Path(args.out) if args.out else repo / "Exports" / "melodia_history.mid"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_bytes(build_midi(commits, args.bpm))
+        kinds: dict[str, int] = {}
+        for c in commits:
+            kinds[c["type"]] = kinds.get(c["type"], 0) + 1
+        print(f"wrote {out} ({len(commits)} commits, {args.bpm} bpm)")
+        print("voices: " + ", ".join(f"{k} x{v}" for k, v in sorted(kinds.items())))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

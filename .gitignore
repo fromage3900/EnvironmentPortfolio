@@ -2,8 +2,8 @@
 node_modules/
 .vscode/
 .idea/
-.wix/
-jsconfig.json
+wix/
+BS_GodFile/
 .git_disabled/
 
 # API keys & credentials — DO NOT COMMIT
@@ -22,3 +22,35 @@ generated/assets/**/*[0-9][0-9][0-9][0-9].png
 *.bundle
 *.log
 *report.json
+
+# Scratchpads, backups, and agent scratch dirs
+.agents/
+_site_backup_20260820_145000/
+_merge_backup_20260822/
+scratch/
+ui_binding_backup/
+.claude/
+.codex/
+.hermes/
+.kiro_video_review/
+.rider/
+.opencode.json
+.stylelintrc.json
+
+# Large binary dumps (not for plain git — use LFS if needed)
+Saved/
+generated/
+Imports/
+VFX/
+my-site-deploy/
+
+# Build artifacts and non-project dirs
+qdk-learning/
+O58pkg/
+O58src/
+__pycache__/
+.pytest_cache/
+
+# wix/ and BS_GodFile/ are independent repos — exclude from parent
+wix/
+BS_GodFile/

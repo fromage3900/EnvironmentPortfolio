@@ -1,0 +1,16 @@
+node_modules/
+BS_GodFile/
+MelodiaMelusinaV2/
+_Scripts/
+_Reports/
+_Archive/
+Imports/
+CompatibilityLabs/
+Melodia_ClaireonTest/
+_github_deploy/
+my-site-clean/
+my-site-deploy/
+scratch/
+generated/
+.idea/
+.git/

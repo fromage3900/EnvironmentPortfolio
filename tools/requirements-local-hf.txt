@@ -1,0 +1,9 @@
+torch>=2.7
+torchvision>=0.26
+transformers>=5.8.0.dev0
+accelerate>=1.10
+bitsandbytes>=0.47
+fastapi>=0.115
+uvicorn[standard]>=0.34
+pillow>=11
+safetensors>=0.5

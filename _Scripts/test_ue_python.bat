@@ -1,0 +1,1 @@
+@"C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe" -? 2>nul | findstr /i "python" >nul && echo HAS_PYTHON || echo NO_PYTHON

@@ -1,0 +1,10 @@
+import real
+hero_path = "/Game/EnvSandbox/Materials/ToonProfiles/TP_Hero"
+tp_hero = real.EditorAssetLibrary.load_asset(hero_path)
+if tp_hero:
+    for prop in tp_hero.get_class().get_properties():
+        try:
+            value = prop.get_value_in_object(tp_hero)
+            print(prop.get_name() + ": " + str(value))
+        except Exception as e:
+            print(prop.get_name() + ": ERROR: " + str(e))
