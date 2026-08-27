@@ -29,7 +29,17 @@ _site_backup_20260820_145000/
 _merge_backup_20260822/
 scratch/
 ui_binding_backup/
-.claude/
+# .claude holds BOTH machine-local state and shareable project assets. Ignore the
+# directory's contents, then re-include the shareable subdirectories so skills,
+# slash commands and agent definitions can be version-controlled with the project.
+# Note the trailing /* -- with a bare `.claude/` git never descends into the
+# directory and the !-rules below can never match.
+.claude/*
+!.claude/skills/
+!.claude/commands/
+!.claude/agents/
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
 .codex/
 .hermes/
 .kiro_video_review/
