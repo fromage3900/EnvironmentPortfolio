@@ -150,6 +150,15 @@ Marketing, funding and hiring material lives under `BS_GodFile/Docs/Career/` and
 ## 🧭 Repo status
 
 - `BS_GodFile/.git` is the active Unreal repository; `main` and `v2/main` are synchronized at `840b7650`.
+- **Source control is hybrid.** Git remains authoritative for code, configuration, tools, docs, and
+  automation. The local Helix Core pilot at `localhost:1667` owns the seeded
+  `//melodia/Exports/...` path (Perforce change `2`, 50 files). Git copies remain until clean-machine
+  validation and a verified depot backup; do not edit the same export in both systems.
+- `Content/` has **not** moved to Perforce. Its future migration is blocked by active asset edits,
+  storage capacity, and the shared-server/backup requirement. See
+  [`BS_GodFile/Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md`](BS_GodFile/Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md).
+- `Melodia Source Control Triage` runs locally every 12 hours in report-only mode. It writes
+  `BS_GodFile/Saved/Audit/source_control_triage.json`; commits require an explicit approved batch.
 - `my-site-clean/.git` is the website repository; local tip `3cfa5f0` is not synchronized with its
   configured remote because the histories are unrelated. Do not force-push or merge unrelated
   histories without an owner decision.
