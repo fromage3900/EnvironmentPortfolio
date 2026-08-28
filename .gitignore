@@ -29,6 +29,15 @@ _site_backup_20260820_145000/
 _merge_backup_20260822/
 scratch/
 ui_binding_backup/
+# Scratch/test request files and generated binary test outputs
+req.json
+req2.json
+req3.json
+test_mcp.json
+test_query.json
+test_output.fbx
+# GitHub Pages deploy output — built artifact, not source
+_github_deploy/
 # .claude holds BOTH machine-local state and shareable project assets. Ignore the
 # directory's contents, then re-include the shareable subdirectories so skills,
 # slash commands and agent definitions can be version-controlled with the project.
@@ -64,3 +73,13 @@ __pycache__/
 # wix/ and BS_GodFile/ are independent repos — exclude from parent
 wix/
 BS_GodFile/
+
+# Embody / Envoy (auto-managed)
+Backup/
+logs/
+CrashAutoSave*
+.venv/
+.embody/*
+!.embody/project.json
+.claude/projects/
+.DS_Store
