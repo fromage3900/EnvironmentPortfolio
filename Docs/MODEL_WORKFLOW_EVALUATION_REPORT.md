@@ -1,29 +1,12 @@
 # Melodia Melusina AI Pipeline — Model Workflow Evaluation Report
 
-> ## SUPERSEDED 2026-08-20 — the 0.0% pass rate was a harness defect, not a model finding
->
-> This report scored `qwen2.5-coder:7b` at **60.35%** with a **0.0% pass rate**. Read as a
-> model-capability result, that is wrong.
->
-> **Root cause:** 16 of the 17 tool calls failed with an identical
-> `'blueprint_name' is a required property`. `Tools/run_math_models.py::_tool_catalog` emitted
-> only `name: description[:140]` and discarded each tool's `inputSchema` — then validated the
-> model's arguments against the schema it had withheld. The model was scored on a contract it
-> was never shown. **Fixed 2026-08-20** (`_format_schema` in that file).
->
-> **Replacement:** `Tools/run_production_lanes.py` — local models are judged by whether a real
-> game artifact passes a real contract. Binary acceptance, no score, no self-certification.
-> Task set: `specs/mcp/production_tasks.v1.json`.
->
-> Retained as the record of the defect. Do not cite its numbers.
+> **Run mode: REFERENCE** — schema/fixture validation using golden tool-call fixtures, not live LLM scores.
 
-> **Run mode: LIVE** — scores from real Ollama/OpenRouter LLM tool-call generation.
-
-**Evaluation Date:** 2026-08-19T05:44:55Z  
+**Evaluation Date:** 2026-08-28T01:51:42Z  
 **Unreal Engine Target:** Unreal Engine 5.8 (C++ & MCP Subsystems)  
 **Registered MCP Tools:** 95 Subsystem Wrappers  
-**Overall Pipeline Pass Rate:** 0.0%  
-**Overall Mean Benchmark Score:** 60.35%  
+**Overall Pipeline Pass Rate:** 100.0%  
+**Overall Mean Benchmark Score:** 100.0%  
 
 ---
 
@@ -44,7 +27,18 @@ This evaluation benchmark validates the expanded Unreal Engine Blueprint & Pytho
 ## 3. Model Benchmark Score Matrix
 | Model | Subsystem Task | Schema Valid (%) | Topology Score (%) | Completeness (%) | Overall Score | Status |
 |---|---|---|---|---|---|---|
-| `qwen2.5-coder:7b` | anim_melusina_locomotion_physics | 5.9% | 100.0% | 93.3% | **60.35%** | ❌ FAIL |
+| `qwen3.8-27b` | anim_melusina_locomotion_physics | 100.0% | 100.0% | 100.0% | **100.0%** | ✅ PASS |
+| `qwen3.8-27b` | audio_metasound_harmonic_synth | 100.0% | 100.0% | 100.0% | **100.0%** | ✅ PASS |
+| `qwen3.8-27b` | ui_melodia_rhythm_hud | 100.0% | 100.0% | 100.0% | **100.0%** | ✅ PASS |
+| `qwen3.8-27b` | gameplay_procedural_spell_logic | 100.0% | 100.0% | 100.0% | **100.0%** | ✅ PASS |
+| `qwen2.5-coder:7b` | anim_melusina_locomotion_physics | 100.0% | 100.0% | 100.0% | **100.0%** | ✅ PASS |
+| `qwen2.5-coder:7b` | audio_metasound_harmonic_synth | 100.0% | 100.0% | 100.0% | **100.0%** | ✅ PASS |
+| `qwen2.5-coder:7b` | ui_melodia_rhythm_hud | 100.0% | 100.0% | 100.0% | **100.0%** | ✅ PASS |
+| `qwen2.5-coder:7b` | gameplay_procedural_spell_logic | 100.0% | 100.0% | 100.0% | **100.0%** | ✅ PASS |
+| `muse-glimmer-30b` | anim_melusina_locomotion_physics | 100.0% | 100.0% | 100.0% | **100.0%** | ✅ PASS |
+| `muse-glimmer-30b` | audio_metasound_harmonic_synth | 100.0% | 100.0% | 100.0% | **100.0%** | ✅ PASS |
+| `muse-glimmer-30b` | ui_melodia_rhythm_hud | 100.0% | 100.0% | 100.0% | **100.0%** | ✅ PASS |
+| `muse-glimmer-30b` | gameplay_procedural_spell_logic | 100.0% | 100.0% | 100.0% | **100.0%** | ✅ PASS |
 
 ## 4. Subsystem Task Analysis & Generation Records
 ### Subsystem: Animation — Melusina Secondary Motion & Locomotion AnimGraph
@@ -88,7 +82,18 @@ This evaluation benchmark validates the expanded Unreal Engine Blueprint & Pytho
 
 ## 5. Artifacts & Generated Fixtures Index
 The evaluation process generated persistent Blueprint and graph fixture files saved under `BS_GodFile/Fixtures/Blueprints/`:
-- `BS_GodFile/Fixtures/Blueprints/qwen2.5-coder_7b_anim_melusina_locomotion_physics.json` (Score: 60.35%, Status: FAIL)
+- `BS_GodFile/Fixtures/Blueprints/qwen3.8-27b_anim_melusina_locomotion_physics.json` (Score: 100.0%, Status: PASS)
+- `BS_GodFile/Fixtures/Blueprints/qwen3.8-27b_audio_metasound_harmonic_synth.json` (Score: 100.0%, Status: PASS)
+- `BS_GodFile/Fixtures/Blueprints/qwen3.8-27b_ui_melodia_rhythm_hud.json` (Score: 100.0%, Status: PASS)
+- `BS_GodFile/Fixtures/Blueprints/qwen3.8-27b_gameplay_procedural_spell_logic.json` (Score: 100.0%, Status: PASS)
+- `BS_GodFile/Fixtures/Blueprints/qwen2.5-coder_7b_anim_melusina_locomotion_physics.json` (Score: 100.0%, Status: PASS)
+- `BS_GodFile/Fixtures/Blueprints/qwen2.5-coder_7b_audio_metasound_harmonic_synth.json` (Score: 100.0%, Status: PASS)
+- `BS_GodFile/Fixtures/Blueprints/qwen2.5-coder_7b_ui_melodia_rhythm_hud.json` (Score: 100.0%, Status: PASS)
+- `BS_GodFile/Fixtures/Blueprints/qwen2.5-coder_7b_gameplay_procedural_spell_logic.json` (Score: 100.0%, Status: PASS)
+- `BS_GodFile/Fixtures/Blueprints/muse-glimmer-30b_anim_melusina_locomotion_physics.json` (Score: 100.0%, Status: PASS)
+- `BS_GodFile/Fixtures/Blueprints/muse-glimmer-30b_audio_metasound_harmonic_synth.json` (Score: 100.0%, Status: PASS)
+- `BS_GodFile/Fixtures/Blueprints/muse-glimmer-30b_ui_melodia_rhythm_hud.json` (Score: 100.0%, Status: PASS)
+- `BS_GodFile/Fixtures/Blueprints/muse-glimmer-30b_gameplay_procedural_spell_logic.json` (Score: 100.0%, Status: PASS)
 
 ---
 *Report generated by Melodia Melusina AI Pipeline Orchestration Subsystem.*

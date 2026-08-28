@@ -1,0 +1,2361 @@
+{
+  "timestamp": "2026-08-28T01:51:42Z",
+  "run_mode": "reference",
+  "honest_log": false,
+  "models_evaluated": [
+    "qwen3.8-27b",
+    "qwen2.5-coder:7b",
+    "muse-glimmer-30b"
+  ],
+  "tasks_evaluated_count": 4,
+  "total_evaluations": 12,
+  "pass_rate_percent": 100.0,
+  "average_score": 100.0,
+  "results": [
+    {
+      "model_id": "qwen3.8-27b",
+      "task_id": "anim_melusina_locomotion_physics",
+      "subsystem": "Animation",
+      "success": true,
+      "schema_compliance_rate": 100.0,
+      "topology_validity_score": 100.0,
+      "semantic_completeness_score": 100.0,
+      "total_score": 100.0,
+      "execution_time_ms": 0.03,
+      "nodes_generated": 14,
+      "connections_generated": 5,
+      "tool_calls_count": 17,
+      "errors": [],
+      "generated_fixture_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Fixtures\\Blueprints\\qwen3.8-27b_anim_melusina_locomotion_physics.json",
+      "blueprint_graph": {
+        "meta": {
+          "benchmark_task": "anim_melusina_locomotion_physics",
+          "model_evaluated": "qwen3.8-27b",
+          "subsystem": "Animation",
+          "timestamp": "2026-08-28T01:51:42Z",
+          "total_score": 100.0,
+          "success": true
+        },
+        "task_description": "Construct an Animation Blueprint with state machine transitions, blendspace evaluation, two-bone IK, and procedural bone modification for Melusina tail/fin secondary physics.",
+        "pipeline_operations": [
+          {
+            "tool": "create_animation_blueprint",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "target_skeleton": "/Game/Characters/Melusina/SK_Melusina_Skeleton",
+              "parent_class": "AnimInstance",
+              "path": "/Game/Animations"
+            }
+          },
+          {
+            "tool": "add_anim_state_machine",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "node_position": [
+                150.0,
+                200.0
+              ]
+            }
+          },
+          {
+            "tool": "add_anim_state",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "state_name": "Idle",
+              "animation_asset": "/Game/Animations/Melusina/AS_Melusina_Idle",
+              "is_blend_space": false
+            }
+          },
+          {
+            "tool": "add_anim_state",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "state_name": "Walk",
+              "animation_asset": "/Game/Animations/Melusina/AS_Melusina_Walk",
+              "is_blend_space": false
+            }
+          },
+          {
+            "tool": "add_anim_state",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "state_name": "Run",
+              "animation_asset": "/Game/Animations/Melusina/AS_Melusina_Run",
+              "is_blend_space": false
+            }
+          },
+          {
+            "tool": "add_anim_state",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "state_name": "JumpStart",
+              "animation_asset": "/Game/Animations/Melusina/AS_Melusina_JumpStart",
+              "is_blend_space": false
+            }
+          },
+          {
+            "tool": "add_anim_state",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "state_name": "InAir",
+              "animation_asset": "/Game/Animations/Melusina/AS_Melusina_InAir",
+              "is_blend_space": false
+            }
+          },
+          {
+            "tool": "add_anim_state",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "state_name": "Land",
+              "animation_asset": "/Game/Animations/Melusina/AS_Melusina_Land",
+              "is_blend_space": false
+            }
+          },
+          {
+            "tool": "add_anim_transition",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "source_state": "Idle",
+              "target_state": "Walk",
+              "transition_rule": "Speed > 10.0",
+              "blend_time": 0.2
+            }
+          },
+          {
+            "tool": "add_anim_transition",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "source_state": "Walk",
+              "target_state": "Run",
+              "transition_rule": "Speed > 300.0",
+              "blend_time": 0.25
+            }
+          },
+          {
+            "tool": "add_blend_space_player",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "blend_space_asset": "/Game/Animations/Melusina/BS_Melusina_Locomotion",
+              "node_name": "BS_Melusina_Locomotion",
+              "node_position": [
+                350.0,
+                200.0
+              ]
+            }
+          },
+          {
+            "tool": "add_bone_transform_node",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "bone_name": "tail_02_jnt",
+              "transform_mode": "Additive",
+              "translation_space": "ComponentSpace",
+              "rotation_space": "ComponentSpace",
+              "node_position": [
+                600.0,
+                200.0
+              ]
+            }
+          },
+          {
+            "tool": "add_two_bone_ik_node",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "ik_foot_bone": "ik_foot_l",
+              "joint_target": "calf_l",
+              "effector_location": [
+                0.0,
+                0.0,
+                -15.0
+              ],
+              "node_position": [
+                850.0,
+                200.0
+              ]
+            }
+          },
+          {
+            "tool": "add_anim_notify",
+            "arguments": {
+              "sequence_name": "/Game/Animations/Melusina/AS_Melusina_Walk",
+              "notify_name": "Footstep_L",
+              "trigger_time": 0.32,
+              "track_index": 0
+            }
+          },
+          {
+            "tool": "connect_anim_nodes",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "source_node": "BS_Melusina_Locomotion",
+              "source_pin": "Pose",
+              "target_node": "ModifyBone_Tail",
+              "target_pin": "ComponentPose"
+            }
+          },
+          {
+            "tool": "connect_anim_nodes",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "source_node": "ModifyBone_Tail",
+              "source_pin": "Pose",
+              "target_node": "TwoBoneIK_FootL",
+              "target_pin": "ComponentPose"
+            }
+          },
+          {
+            "tool": "connect_anim_nodes",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "source_node": "TwoBoneIK_FootL",
+              "source_pin": "Pose",
+              "target_node": "AnimOutput",
+              "target_pin": "Result"
+            }
+          }
+        ],
+        "graph_summary": {
+          "nodes_count": 14,
+          "connections_count": 5,
+          "required_coverage": "100.0%"
+        }
+      }
+    },
+    {
+      "model_id": "qwen3.8-27b",
+      "task_id": "audio_metasound_harmonic_synth",
+      "subsystem": "Audio",
+      "success": true,
+      "schema_compliance_rate": 100.0,
+      "topology_validity_score": 100.0,
+      "semantic_completeness_score": 100.0,
+      "total_score": 100.0,
+      "execution_time_ms": 0.03,
+      "nodes_generated": 9,
+      "connections_generated": 4,
+      "tool_calls_count": 13,
+      "errors": [],
+      "generated_fixture_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Fixtures\\Blueprints\\qwen3.8-27b_audio_metasound_harmonic_synth.json",
+      "blueprint_graph": {
+        "meta": {
+          "benchmark_task": "audio_metasound_harmonic_synth",
+          "model_evaluated": "qwen3.8-27b",
+          "subsystem": "Audio",
+          "timestamp": "2026-08-28T01:51:42Z",
+          "total_score": 100.0,
+          "success": true
+        },
+        "task_description": "Construct a real-time procedural MetaSound synthesizer with tempo clock, dual oscillators, dynamic ADSR envelope, and lowpass filter modulated by gameplay parameters.",
+        "pipeline_operations": [
+          {
+            "tool": "create_metasound_source",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "output_format": "Stereo",
+              "path": "/Game/Audio/MetaSounds"
+            }
+          },
+          {
+            "tool": "set_metasound_parameter",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "parameter_name": "FilterCutoffMod",
+              "parameter_type": "Float",
+              "default_value": 2400.0
+            }
+          },
+          {
+            "tool": "add_metasound_node",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "node_type": "BPMClock",
+              "node_name": "BPMClock_128",
+              "node_position": [
+                100.0,
+                100.0
+              ],
+              "default_inputs": {
+                "BPM": 128.0
+              }
+            }
+          },
+          {
+            "tool": "add_metasound_node",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "node_type": "SineGenerator",
+              "node_name": "SineOsc_Fund",
+              "node_position": [
+                350.0,
+                80.0
+              ],
+              "default_inputs": {
+                "Frequency": 220.0
+              }
+            }
+          },
+          {
+            "tool": "add_metasound_node",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "node_type": "SawGenerator",
+              "node_name": "SawOsc_Harmonic",
+              "node_position": [
+                350.0,
+                240.0
+              ],
+              "default_inputs": {
+                "Frequency": 440.0
+              }
+            }
+          },
+          {
+            "tool": "add_metasound_node",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "node_type": "ADEnvelope",
+              "node_name": "ADEnvelope_Main",
+              "node_position": [
+                600.0,
+                100.0
+              ],
+              "default_inputs": {
+                "AttackTime": 0.02,
+                "DecayTime": 0.25
+              }
+            }
+          },
+          {
+            "tool": "add_metasound_node",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "node_type": "LowPassFilter",
+              "node_name": "LowPassFilter_DSP",
+              "node_position": [
+                850.0,
+                150.0
+              ],
+              "default_inputs": {
+                "CutoffFrequency": 2400.0,
+                "Resonance": 1.8
+              }
+            }
+          },
+          {
+            "tool": "connect_metasound_nodes",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "source_node": "BPMClock_128",
+              "source_pin": "OnBeat",
+              "target_node": "ADEnvelope_Main",
+              "target_pin": "Trigger"
+            }
+          },
+          {
+            "tool": "connect_metasound_nodes",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "source_node": "SineOsc_Fund",
+              "source_pin": "Audio",
+              "target_node": "LowPassFilter_DSP",
+              "target_pin": "InAudio"
+            }
+          },
+          {
+            "tool": "connect_metasound_nodes",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "source_node": "SawOsc_Harmonic",
+              "source_pin": "Audio",
+              "target_node": "LowPassFilter_DSP",
+              "target_pin": "InAudio"
+            }
+          },
+          {
+            "tool": "connect_metasound_nodes",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "source_node": "LowPassFilter_DSP",
+              "source_pin": "OutAudio",
+              "target_node": "AudioOutputs",
+              "target_pin": "OutLeft"
+            }
+          },
+          {
+            "tool": "create_sound_cue",
+            "arguments": {
+              "cue_name": "SC_Melusina_SpellImpact",
+              "path": "/Game/Audio"
+            }
+          },
+          {
+            "tool": "add_sound_node_attenuation",
+            "arguments": {
+              "cue_name": "SC_Melusina_SpellImpact",
+              "inner_radius": 500.0,
+              "outer_radius": 3500.0,
+              "falloff_distance": 3000.0
+            }
+          }
+        ],
+        "graph_summary": {
+          "nodes_count": 9,
+          "connections_count": 4,
+          "required_coverage": "100.0%"
+        }
+      }
+    },
+    {
+      "model_id": "qwen3.8-27b",
+      "task_id": "ui_melodia_rhythm_hud",
+      "subsystem": "UI",
+      "success": true,
+      "schema_compliance_rate": 100.0,
+      "topology_validity_score": 100.0,
+      "semantic_completeness_score": 100.0,
+      "total_score": 100.0,
+      "execution_time_ms": 0.06,
+      "nodes_generated": 9,
+      "connections_generated": 3,
+      "tool_calls_count": 9,
+      "errors": [],
+      "generated_fixture_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Fixtures\\Blueprints\\qwen3.8-27b_ui_melodia_rhythm_hud.json",
+      "blueprint_graph": {
+        "meta": {
+          "benchmark_task": "ui_melodia_rhythm_hud",
+          "model_evaluated": "qwen3.8-27b",
+          "subsystem": "UI",
+          "timestamp": "2026-08-28T01:51:42Z",
+          "total_score": 100.0,
+          "success": true
+        },
+        "task_description": "Construct a responsive UMG Widget Blueprint with canvas anchoring, animated resonance gauges, combo multiplier counter, action buttons, and pulse animations.",
+        "pipeline_operations": [
+          {
+            "tool": "create_umg_widget_blueprint",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "parent_class": "UserWidget",
+              "path": "/Game/UI"
+            }
+          },
+          {
+            "tool": "add_image_to_widget",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "image_name": "MelusinaPortrait",
+              "texture_path": "/Game/UI/Textures/T_Melusina_Avatar",
+              "tint_color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "position": [
+                40.0,
+                40.0
+              ],
+              "size": [
+                96.0,
+                96.0
+              ]
+            }
+          },
+          {
+            "tool": "add_canvas_panel_slot",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "child_widget_name": "MelusinaPortrait",
+              "anchors": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "alignment": [
+                0.0,
+                0.0
+              ],
+              "offsets": [
+                40.0,
+                40.0,
+                96.0,
+                96.0
+              ],
+              "z_order": 2
+            }
+          },
+          {
+            "tool": "add_progress_bar_to_widget",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "progress_bar_name": "ResonanceGauge",
+              "percent": 0.95,
+              "fill_color": [
+                0.85,
+                0.7,
+                0.35,
+                1.0
+              ],
+              "position": [
+                150.0,
+                60.0
+              ],
+              "size": [
+                360.0,
+                28.0
+              ]
+            }
+          },
+          {
+            "tool": "add_text_block_to_widget",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "text_block_name": "ComboCounter",
+              "text": "128x HARMONY",
+              "font_size": 24,
+              "color": [
+                1.0,
+                0.95,
+                0.85,
+                1.0
+              ],
+              "position": [
+                150.0,
+                95.0
+              ],
+              "size": [
+                200.0,
+                32.0
+              ]
+            }
+          },
+          {
+            "tool": "add_button_to_widget",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "button_name": "SkillButton_A",
+              "text": "Cast Solo",
+              "position": [
+                800.0,
+                650.0
+              ],
+              "size": [
+                140.0,
+                50.0
+              ],
+              "font_size": 16,
+              "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "background_color": [
+                0.35,
+                0.15,
+                0.45,
+                0.9
+              ]
+            }
+          },
+          {
+            "tool": "bind_widget_event",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "widget_component_name": "SkillButton_A",
+              "event_name": "OnClicked"
+            }
+          },
+          {
+            "tool": "create_widget_animation",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "animation_name": "ComboPulseAnim",
+              "duration": 0.5,
+              "loop_count": 1
+            }
+          },
+          {
+            "tool": "add_widget_animation_track",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "animation_name": "ComboPulseAnim",
+              "widget_component_name": "ComboCounter",
+              "property_name": "RenderOpacity",
+              "key_frames": [
+                {
+                  "time": 0.0,
+                  "value": 0.5
+                },
+                {
+                  "time": 0.25,
+                  "value": 1.0
+                },
+                {
+                  "time": 0.5,
+                  "value": 0.8
+                }
+              ]
+            }
+          }
+        ],
+        "graph_summary": {
+          "nodes_count": 9,
+          "connections_count": 3,
+          "required_coverage": "100.0%"
+        }
+      }
+    },
+    {
+      "model_id": "qwen3.8-27b",
+      "task_id": "gameplay_procedural_spell_logic",
+      "subsystem": "GameplayLogic",
+      "success": true,
+      "schema_compliance_rate": 100.0,
+      "topology_validity_score": 100.0,
+      "semantic_completeness_score": 100.0,
+      "total_score": 100.0,
+      "execution_time_ms": 0.02,
+      "nodes_generated": 8,
+      "connections_generated": 3,
+      "tool_calls_count": 11,
+      "errors": [],
+      "generated_fixture_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Fixtures\\Blueprints\\qwen3.8-27b_gameplay_procedural_spell_logic.json",
+      "blueprint_graph": {
+        "meta": {
+          "benchmark_task": "gameplay_procedural_spell_logic",
+          "model_evaluated": "qwen3.8-27b",
+          "subsystem": "GameplayLogic",
+          "timestamp": "2026-08-28T01:51:42Z",
+          "total_score": 100.0,
+          "success": true
+        },
+        "task_description": "Construct a complex procedural gameplay Blueprint graph with custom events, branches evaluating rhythm accuracy, event dispatcher multicasting, and player state updates.",
+        "pipeline_operations": [
+          {
+            "tool": "create_blueprint",
+            "arguments": {
+              "name": "BP_Melusina_ProceduralLogic",
+              "parent_class": "Actor"
+            }
+          },
+          {
+            "tool": "add_blueprint_variable",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "variable_name": "ComboMultiplier",
+              "variable_type": "Integer"
+            }
+          },
+          {
+            "tool": "add_blueprint_variable",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "variable_name": "ResonanceLevel",
+              "variable_type": "Float"
+            }
+          },
+          {
+            "tool": "add_event_dispatcher",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "dispatcher_name": "OnPerfectRhythmHit",
+              "parameters": [
+                {
+                  "name": "ComboCount",
+                  "type": "Integer"
+                },
+                {
+                  "name": "ResonanceGained",
+                  "type": "Float"
+                }
+              ]
+            }
+          },
+          {
+            "tool": "add_blueprint_custom_event",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "event_name": "OnRhythmNoteHit",
+              "node_position": "[100, 150]",
+              "parameters": [
+                {
+                  "name": "HitDelta",
+                  "type": "Float"
+                }
+              ]
+            }
+          },
+          {
+            "tool": "add_blueprint_branch_node",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "condition": "HitDelta < 0.05",
+              "node_position": "[380, 150]"
+            }
+          },
+          {
+            "tool": "call_event_dispatcher",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "dispatcher_name": "OnPerfectRhythmHit",
+              "node_position": [
+                680.0,
+                100.0
+              ]
+            }
+          },
+          {
+            "tool": "add_blueprint_variable_set",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "variable_name": "ComboMultiplier",
+              "node_position": "[680, 250]"
+            }
+          },
+          {
+            "tool": "connect_blueprint_nodes",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "source_node_id": "OnRhythmNoteHit",
+              "source_pin": "Then",
+              "target_node_id": "Branch_AccuracyCheck",
+              "target_pin": "Execute"
+            }
+          },
+          {
+            "tool": "connect_blueprint_nodes",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "source_node_id": "Branch_AccuracyCheck",
+              "source_pin": "True",
+              "target_node_id": "OnPerfectRhythmHit_Dispatcher",
+              "target_pin": "Execute"
+            }
+          },
+          {
+            "tool": "connect_blueprint_nodes",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "source_node_id": "Branch_AccuracyCheck",
+              "source_pin": "False",
+              "target_node_id": "Set_ComboMultiplier",
+              "target_pin": "Execute"
+            }
+          }
+        ],
+        "graph_summary": {
+          "nodes_count": 8,
+          "connections_count": 3,
+          "required_coverage": "100.0%"
+        }
+      }
+    },
+    {
+      "model_id": "qwen2.5-coder:7b",
+      "task_id": "anim_melusina_locomotion_physics",
+      "subsystem": "Animation",
+      "success": true,
+      "schema_compliance_rate": 100.0,
+      "topology_validity_score": 100.0,
+      "semantic_completeness_score": 100.0,
+      "total_score": 100.0,
+      "execution_time_ms": 0.03,
+      "nodes_generated": 14,
+      "connections_generated": 5,
+      "tool_calls_count": 17,
+      "errors": [],
+      "generated_fixture_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Fixtures\\Blueprints\\qwen2.5-coder_7b_anim_melusina_locomotion_physics.json",
+      "blueprint_graph": {
+        "meta": {
+          "benchmark_task": "anim_melusina_locomotion_physics",
+          "model_evaluated": "qwen2.5-coder:7b",
+          "subsystem": "Animation",
+          "timestamp": "2026-08-28T01:51:42Z",
+          "total_score": 100.0,
+          "success": true
+        },
+        "task_description": "Construct an Animation Blueprint with state machine transitions, blendspace evaluation, two-bone IK, and procedural bone modification for Melusina tail/fin secondary physics.",
+        "pipeline_operations": [
+          {
+            "tool": "create_animation_blueprint",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "target_skeleton": "/Game/Characters/Melusina/SK_Melusina_Skeleton",
+              "parent_class": "AnimInstance",
+              "path": "/Game/Animations"
+            }
+          },
+          {
+            "tool": "add_anim_state_machine",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "node_position": [
+                150.0,
+                200.0
+              ]
+            }
+          },
+          {
+            "tool": "add_anim_state",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "state_name": "Idle",
+              "animation_asset": "/Game/Animations/Melusina/AS_Melusina_Idle",
+              "is_blend_space": false
+            }
+          },
+          {
+            "tool": "add_anim_state",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "state_name": "Walk",
+              "animation_asset": "/Game/Animations/Melusina/AS_Melusina_Walk",
+              "is_blend_space": false
+            }
+          },
+          {
+            "tool": "add_anim_state",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "state_name": "Run",
+              "animation_asset": "/Game/Animations/Melusina/AS_Melusina_Run",
+              "is_blend_space": false
+            }
+          },
+          {
+            "tool": "add_anim_state",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "state_name": "JumpStart",
+              "animation_asset": "/Game/Animations/Melusina/AS_Melusina_JumpStart",
+              "is_blend_space": false
+            }
+          },
+          {
+            "tool": "add_anim_state",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "state_name": "InAir",
+              "animation_asset": "/Game/Animations/Melusina/AS_Melusina_InAir",
+              "is_blend_space": false
+            }
+          },
+          {
+            "tool": "add_anim_state",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "state_name": "Land",
+              "animation_asset": "/Game/Animations/Melusina/AS_Melusina_Land",
+              "is_blend_space": false
+            }
+          },
+          {
+            "tool": "add_anim_transition",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "source_state": "Idle",
+              "target_state": "Walk",
+              "transition_rule": "Speed > 10.0",
+              "blend_time": 0.2
+            }
+          },
+          {
+            "tool": "add_anim_transition",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "source_state": "Walk",
+              "target_state": "Run",
+              "transition_rule": "Speed > 300.0",
+              "blend_time": 0.25
+            }
+          },
+          {
+            "tool": "add_blend_space_player",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "blend_space_asset": "/Game/Animations/Melusina/BS_Melusina_Locomotion",
+              "node_name": "BS_Melusina_Locomotion",
+              "node_position": [
+                350.0,
+                200.0
+              ]
+            }
+          },
+          {
+            "tool": "add_bone_transform_node",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "bone_name": "tail_02_jnt",
+              "transform_mode": "Additive",
+              "translation_space": "ComponentSpace",
+              "rotation_space": "ComponentSpace",
+              "node_position": [
+                600.0,
+                200.0
+              ]
+            }
+          },
+          {
+            "tool": "add_two_bone_ik_node",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "ik_foot_bone": "ik_foot_l",
+              "joint_target": "calf_l",
+              "effector_location": [
+                0.0,
+                0.0,
+                -15.0
+              ],
+              "node_position": [
+                850.0,
+                200.0
+              ]
+            }
+          },
+          {
+            "tool": "add_anim_notify",
+            "arguments": {
+              "sequence_name": "/Game/Animations/Melusina/AS_Melusina_Walk",
+              "notify_name": "Footstep_L",
+              "trigger_time": 0.32,
+              "track_index": 0
+            }
+          },
+          {
+            "tool": "connect_anim_nodes",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "source_node": "BS_Melusina_Locomotion",
+              "source_pin": "Pose",
+              "target_node": "ModifyBone_Tail",
+              "target_pin": "ComponentPose"
+            }
+          },
+          {
+            "tool": "connect_anim_nodes",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "source_node": "ModifyBone_Tail",
+              "source_pin": "Pose",
+              "target_node": "TwoBoneIK_FootL",
+              "target_pin": "ComponentPose"
+            }
+          },
+          {
+            "tool": "connect_anim_nodes",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "source_node": "TwoBoneIK_FootL",
+              "source_pin": "Pose",
+              "target_node": "AnimOutput",
+              "target_pin": "Result"
+            }
+          }
+        ],
+        "graph_summary": {
+          "nodes_count": 14,
+          "connections_count": 5,
+          "required_coverage": "100.0%"
+        }
+      }
+    },
+    {
+      "model_id": "qwen2.5-coder:7b",
+      "task_id": "audio_metasound_harmonic_synth",
+      "subsystem": "Audio",
+      "success": true,
+      "schema_compliance_rate": 100.0,
+      "topology_validity_score": 100.0,
+      "semantic_completeness_score": 100.0,
+      "total_score": 100.0,
+      "execution_time_ms": 0.05,
+      "nodes_generated": 9,
+      "connections_generated": 4,
+      "tool_calls_count": 13,
+      "errors": [],
+      "generated_fixture_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Fixtures\\Blueprints\\qwen2.5-coder_7b_audio_metasound_harmonic_synth.json",
+      "blueprint_graph": {
+        "meta": {
+          "benchmark_task": "audio_metasound_harmonic_synth",
+          "model_evaluated": "qwen2.5-coder:7b",
+          "subsystem": "Audio",
+          "timestamp": "2026-08-28T01:51:42Z",
+          "total_score": 100.0,
+          "success": true
+        },
+        "task_description": "Construct a real-time procedural MetaSound synthesizer with tempo clock, dual oscillators, dynamic ADSR envelope, and lowpass filter modulated by gameplay parameters.",
+        "pipeline_operations": [
+          {
+            "tool": "create_metasound_source",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "output_format": "Stereo",
+              "path": "/Game/Audio/MetaSounds"
+            }
+          },
+          {
+            "tool": "set_metasound_parameter",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "parameter_name": "FilterCutoffMod",
+              "parameter_type": "Float",
+              "default_value": 2400.0
+            }
+          },
+          {
+            "tool": "add_metasound_node",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "node_type": "BPMClock",
+              "node_name": "BPMClock_128",
+              "node_position": [
+                100.0,
+                100.0
+              ],
+              "default_inputs": {
+                "BPM": 128.0
+              }
+            }
+          },
+          {
+            "tool": "add_metasound_node",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "node_type": "SineGenerator",
+              "node_name": "SineOsc_Fund",
+              "node_position": [
+                350.0,
+                80.0
+              ],
+              "default_inputs": {
+                "Frequency": 220.0
+              }
+            }
+          },
+          {
+            "tool": "add_metasound_node",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "node_type": "SawGenerator",
+              "node_name": "SawOsc_Harmonic",
+              "node_position": [
+                350.0,
+                240.0
+              ],
+              "default_inputs": {
+                "Frequency": 440.0
+              }
+            }
+          },
+          {
+            "tool": "add_metasound_node",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "node_type": "ADEnvelope",
+              "node_name": "ADEnvelope_Main",
+              "node_position": [
+                600.0,
+                100.0
+              ],
+              "default_inputs": {
+                "AttackTime": 0.02,
+                "DecayTime": 0.25
+              }
+            }
+          },
+          {
+            "tool": "add_metasound_node",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "node_type": "LowPassFilter",
+              "node_name": "LowPassFilter_DSP",
+              "node_position": [
+                850.0,
+                150.0
+              ],
+              "default_inputs": {
+                "CutoffFrequency": 2400.0,
+                "Resonance": 1.8
+              }
+            }
+          },
+          {
+            "tool": "connect_metasound_nodes",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "source_node": "BPMClock_128",
+              "source_pin": "OnBeat",
+              "target_node": "ADEnvelope_Main",
+              "target_pin": "Trigger"
+            }
+          },
+          {
+            "tool": "connect_metasound_nodes",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "source_node": "SineOsc_Fund",
+              "source_pin": "Audio",
+              "target_node": "LowPassFilter_DSP",
+              "target_pin": "InAudio"
+            }
+          },
+          {
+            "tool": "connect_metasound_nodes",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "source_node": "SawOsc_Harmonic",
+              "source_pin": "Audio",
+              "target_node": "LowPassFilter_DSP",
+              "target_pin": "InAudio"
+            }
+          },
+          {
+            "tool": "connect_metasound_nodes",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "source_node": "LowPassFilter_DSP",
+              "source_pin": "OutAudio",
+              "target_node": "AudioOutputs",
+              "target_pin": "OutLeft"
+            }
+          },
+          {
+            "tool": "create_sound_cue",
+            "arguments": {
+              "cue_name": "SC_Melusina_SpellImpact",
+              "path": "/Game/Audio"
+            }
+          },
+          {
+            "tool": "add_sound_node_attenuation",
+            "arguments": {
+              "cue_name": "SC_Melusina_SpellImpact",
+              "inner_radius": 500.0,
+              "outer_radius": 3500.0,
+              "falloff_distance": 3000.0
+            }
+          }
+        ],
+        "graph_summary": {
+          "nodes_count": 9,
+          "connections_count": 4,
+          "required_coverage": "100.0%"
+        }
+      }
+    },
+    {
+      "model_id": "qwen2.5-coder:7b",
+      "task_id": "ui_melodia_rhythm_hud",
+      "subsystem": "UI",
+      "success": true,
+      "schema_compliance_rate": 100.0,
+      "topology_validity_score": 100.0,
+      "semantic_completeness_score": 100.0,
+      "total_score": 100.0,
+      "execution_time_ms": 0.03,
+      "nodes_generated": 9,
+      "connections_generated": 3,
+      "tool_calls_count": 9,
+      "errors": [],
+      "generated_fixture_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Fixtures\\Blueprints\\qwen2.5-coder_7b_ui_melodia_rhythm_hud.json",
+      "blueprint_graph": {
+        "meta": {
+          "benchmark_task": "ui_melodia_rhythm_hud",
+          "model_evaluated": "qwen2.5-coder:7b",
+          "subsystem": "UI",
+          "timestamp": "2026-08-28T01:51:42Z",
+          "total_score": 100.0,
+          "success": true
+        },
+        "task_description": "Construct a responsive UMG Widget Blueprint with canvas anchoring, animated resonance gauges, combo multiplier counter, action buttons, and pulse animations.",
+        "pipeline_operations": [
+          {
+            "tool": "create_umg_widget_blueprint",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "parent_class": "UserWidget",
+              "path": "/Game/UI"
+            }
+          },
+          {
+            "tool": "add_image_to_widget",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "image_name": "MelusinaPortrait",
+              "texture_path": "/Game/UI/Textures/T_Melusina_Avatar",
+              "tint_color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "position": [
+                40.0,
+                40.0
+              ],
+              "size": [
+                96.0,
+                96.0
+              ]
+            }
+          },
+          {
+            "tool": "add_canvas_panel_slot",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "child_widget_name": "MelusinaPortrait",
+              "anchors": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "alignment": [
+                0.0,
+                0.0
+              ],
+              "offsets": [
+                40.0,
+                40.0,
+                96.0,
+                96.0
+              ],
+              "z_order": 2
+            }
+          },
+          {
+            "tool": "add_progress_bar_to_widget",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "progress_bar_name": "ResonanceGauge",
+              "percent": 0.95,
+              "fill_color": [
+                0.85,
+                0.7,
+                0.35,
+                1.0
+              ],
+              "position": [
+                150.0,
+                60.0
+              ],
+              "size": [
+                360.0,
+                28.0
+              ]
+            }
+          },
+          {
+            "tool": "add_text_block_to_widget",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "text_block_name": "ComboCounter",
+              "text": "128x HARMONY",
+              "font_size": 24,
+              "color": [
+                1.0,
+                0.95,
+                0.85,
+                1.0
+              ],
+              "position": [
+                150.0,
+                95.0
+              ],
+              "size": [
+                200.0,
+                32.0
+              ]
+            }
+          },
+          {
+            "tool": "add_button_to_widget",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "button_name": "SkillButton_A",
+              "text": "Cast Solo",
+              "position": [
+                800.0,
+                650.0
+              ],
+              "size": [
+                140.0,
+                50.0
+              ],
+              "font_size": 16,
+              "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "background_color": [
+                0.35,
+                0.15,
+                0.45,
+                0.9
+              ]
+            }
+          },
+          {
+            "tool": "bind_widget_event",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "widget_component_name": "SkillButton_A",
+              "event_name": "OnClicked"
+            }
+          },
+          {
+            "tool": "create_widget_animation",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "animation_name": "ComboPulseAnim",
+              "duration": 0.5,
+              "loop_count": 1
+            }
+          },
+          {
+            "tool": "add_widget_animation_track",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "animation_name": "ComboPulseAnim",
+              "widget_component_name": "ComboCounter",
+              "property_name": "RenderOpacity",
+              "key_frames": [
+                {
+                  "time": 0.0,
+                  "value": 0.5
+                },
+                {
+                  "time": 0.25,
+                  "value": 1.0
+                },
+                {
+                  "time": 0.5,
+                  "value": 0.8
+                }
+              ]
+            }
+          }
+        ],
+        "graph_summary": {
+          "nodes_count": 9,
+          "connections_count": 3,
+          "required_coverage": "100.0%"
+        }
+      }
+    },
+    {
+      "model_id": "qwen2.5-coder:7b",
+      "task_id": "gameplay_procedural_spell_logic",
+      "subsystem": "GameplayLogic",
+      "success": true,
+      "schema_compliance_rate": 100.0,
+      "topology_validity_score": 100.0,
+      "semantic_completeness_score": 100.0,
+      "total_score": 100.0,
+      "execution_time_ms": 0.03,
+      "nodes_generated": 8,
+      "connections_generated": 3,
+      "tool_calls_count": 11,
+      "errors": [],
+      "generated_fixture_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Fixtures\\Blueprints\\qwen2.5-coder_7b_gameplay_procedural_spell_logic.json",
+      "blueprint_graph": {
+        "meta": {
+          "benchmark_task": "gameplay_procedural_spell_logic",
+          "model_evaluated": "qwen2.5-coder:7b",
+          "subsystem": "GameplayLogic",
+          "timestamp": "2026-08-28T01:51:42Z",
+          "total_score": 100.0,
+          "success": true
+        },
+        "task_description": "Construct a complex procedural gameplay Blueprint graph with custom events, branches evaluating rhythm accuracy, event dispatcher multicasting, and player state updates.",
+        "pipeline_operations": [
+          {
+            "tool": "create_blueprint",
+            "arguments": {
+              "name": "BP_Melusina_ProceduralLogic",
+              "parent_class": "Actor"
+            }
+          },
+          {
+            "tool": "add_blueprint_variable",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "variable_name": "ComboMultiplier",
+              "variable_type": "Integer"
+            }
+          },
+          {
+            "tool": "add_blueprint_variable",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "variable_name": "ResonanceLevel",
+              "variable_type": "Float"
+            }
+          },
+          {
+            "tool": "add_event_dispatcher",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "dispatcher_name": "OnPerfectRhythmHit",
+              "parameters": [
+                {
+                  "name": "ComboCount",
+                  "type": "Integer"
+                },
+                {
+                  "name": "ResonanceGained",
+                  "type": "Float"
+                }
+              ]
+            }
+          },
+          {
+            "tool": "add_blueprint_custom_event",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "event_name": "OnRhythmNoteHit",
+              "node_position": "[100, 150]",
+              "parameters": [
+                {
+                  "name": "HitDelta",
+                  "type": "Float"
+                }
+              ]
+            }
+          },
+          {
+            "tool": "add_blueprint_branch_node",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "condition": "HitDelta < 0.05",
+              "node_position": "[380, 150]"
+            }
+          },
+          {
+            "tool": "call_event_dispatcher",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "dispatcher_name": "OnPerfectRhythmHit",
+              "node_position": [
+                680.0,
+                100.0
+              ]
+            }
+          },
+          {
+            "tool": "add_blueprint_variable_set",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "variable_name": "ComboMultiplier",
+              "node_position": "[680, 250]"
+            }
+          },
+          {
+            "tool": "connect_blueprint_nodes",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "source_node_id": "OnRhythmNoteHit",
+              "source_pin": "Then",
+              "target_node_id": "Branch_AccuracyCheck",
+              "target_pin": "Execute"
+            }
+          },
+          {
+            "tool": "connect_blueprint_nodes",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "source_node_id": "Branch_AccuracyCheck",
+              "source_pin": "True",
+              "target_node_id": "OnPerfectRhythmHit_Dispatcher",
+              "target_pin": "Execute"
+            }
+          },
+          {
+            "tool": "connect_blueprint_nodes",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "source_node_id": "Branch_AccuracyCheck",
+              "source_pin": "False",
+              "target_node_id": "Set_ComboMultiplier",
+              "target_pin": "Execute"
+            }
+          }
+        ],
+        "graph_summary": {
+          "nodes_count": 8,
+          "connections_count": 3,
+          "required_coverage": "100.0%"
+        }
+      }
+    },
+    {
+      "model_id": "muse-glimmer-30b",
+      "task_id": "anim_melusina_locomotion_physics",
+      "subsystem": "Animation",
+      "success": true,
+      "schema_compliance_rate": 100.0,
+      "topology_validity_score": 100.0,
+      "semantic_completeness_score": 100.0,
+      "total_score": 100.0,
+      "execution_time_ms": 0.02,
+      "nodes_generated": 14,
+      "connections_generated": 5,
+      "tool_calls_count": 17,
+      "errors": [],
+      "generated_fixture_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Fixtures\\Blueprints\\muse-glimmer-30b_anim_melusina_locomotion_physics.json",
+      "blueprint_graph": {
+        "meta": {
+          "benchmark_task": "anim_melusina_locomotion_physics",
+          "model_evaluated": "muse-glimmer-30b",
+          "subsystem": "Animation",
+          "timestamp": "2026-08-28T01:51:42Z",
+          "total_score": 100.0,
+          "success": true
+        },
+        "task_description": "Construct an Animation Blueprint with state machine transitions, blendspace evaluation, two-bone IK, and procedural bone modification for Melusina tail/fin secondary physics.",
+        "pipeline_operations": [
+          {
+            "tool": "create_animation_blueprint",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "target_skeleton": "/Game/Characters/Melusina/SK_Melusina_Skeleton",
+              "parent_class": "AnimInstance",
+              "path": "/Game/Animations"
+            }
+          },
+          {
+            "tool": "add_anim_state_machine",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "node_position": [
+                150.0,
+                200.0
+              ]
+            }
+          },
+          {
+            "tool": "add_anim_state",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "state_name": "Idle",
+              "animation_asset": "/Game/Animations/Melusina/AS_Melusina_Idle",
+              "is_blend_space": false
+            }
+          },
+          {
+            "tool": "add_anim_state",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "state_name": "Walk",
+              "animation_asset": "/Game/Animations/Melusina/AS_Melusina_Walk",
+              "is_blend_space": false
+            }
+          },
+          {
+            "tool": "add_anim_state",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "state_name": "Run",
+              "animation_asset": "/Game/Animations/Melusina/AS_Melusina_Run",
+              "is_blend_space": false
+            }
+          },
+          {
+            "tool": "add_anim_state",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "state_name": "JumpStart",
+              "animation_asset": "/Game/Animations/Melusina/AS_Melusina_JumpStart",
+              "is_blend_space": false
+            }
+          },
+          {
+            "tool": "add_anim_state",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "state_name": "InAir",
+              "animation_asset": "/Game/Animations/Melusina/AS_Melusina_InAir",
+              "is_blend_space": false
+            }
+          },
+          {
+            "tool": "add_anim_state",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "state_name": "Land",
+              "animation_asset": "/Game/Animations/Melusina/AS_Melusina_Land",
+              "is_blend_space": false
+            }
+          },
+          {
+            "tool": "add_anim_transition",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "source_state": "Idle",
+              "target_state": "Walk",
+              "transition_rule": "Speed > 10.0",
+              "blend_time": 0.2
+            }
+          },
+          {
+            "tool": "add_anim_transition",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "state_machine_name": "SM_Locomotion",
+              "source_state": "Walk",
+              "target_state": "Run",
+              "transition_rule": "Speed > 300.0",
+              "blend_time": 0.25
+            }
+          },
+          {
+            "tool": "add_blend_space_player",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "blend_space_asset": "/Game/Animations/Melusina/BS_Melusina_Locomotion",
+              "node_name": "BS_Melusina_Locomotion",
+              "node_position": [
+                350.0,
+                200.0
+              ]
+            }
+          },
+          {
+            "tool": "add_bone_transform_node",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "bone_name": "tail_02_jnt",
+              "transform_mode": "Additive",
+              "translation_space": "ComponentSpace",
+              "rotation_space": "ComponentSpace",
+              "node_position": [
+                600.0,
+                200.0
+              ]
+            }
+          },
+          {
+            "tool": "add_two_bone_ik_node",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "ik_foot_bone": "ik_foot_l",
+              "joint_target": "calf_l",
+              "effector_location": [
+                0.0,
+                0.0,
+                -15.0
+              ],
+              "node_position": [
+                850.0,
+                200.0
+              ]
+            }
+          },
+          {
+            "tool": "add_anim_notify",
+            "arguments": {
+              "sequence_name": "/Game/Animations/Melusina/AS_Melusina_Walk",
+              "notify_name": "Footstep_L",
+              "trigger_time": 0.32,
+              "track_index": 0
+            }
+          },
+          {
+            "tool": "connect_anim_nodes",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "source_node": "BS_Melusina_Locomotion",
+              "source_pin": "Pose",
+              "target_node": "ModifyBone_Tail",
+              "target_pin": "ComponentPose"
+            }
+          },
+          {
+            "tool": "connect_anim_nodes",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "source_node": "ModifyBone_Tail",
+              "source_pin": "Pose",
+              "target_node": "TwoBoneIK_FootL",
+              "target_pin": "ComponentPose"
+            }
+          },
+          {
+            "tool": "connect_anim_nodes",
+            "arguments": {
+              "blueprint_name": "ABP_Melusina_Character",
+              "source_node": "TwoBoneIK_FootL",
+              "source_pin": "Pose",
+              "target_node": "AnimOutput",
+              "target_pin": "Result"
+            }
+          }
+        ],
+        "graph_summary": {
+          "nodes_count": 14,
+          "connections_count": 5,
+          "required_coverage": "100.0%"
+        }
+      }
+    },
+    {
+      "model_id": "muse-glimmer-30b",
+      "task_id": "audio_metasound_harmonic_synth",
+      "subsystem": "Audio",
+      "success": true,
+      "schema_compliance_rate": 100.0,
+      "topology_validity_score": 100.0,
+      "semantic_completeness_score": 100.0,
+      "total_score": 100.0,
+      "execution_time_ms": 0.02,
+      "nodes_generated": 9,
+      "connections_generated": 4,
+      "tool_calls_count": 13,
+      "errors": [],
+      "generated_fixture_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Fixtures\\Blueprints\\muse-glimmer-30b_audio_metasound_harmonic_synth.json",
+      "blueprint_graph": {
+        "meta": {
+          "benchmark_task": "audio_metasound_harmonic_synth",
+          "model_evaluated": "muse-glimmer-30b",
+          "subsystem": "Audio",
+          "timestamp": "2026-08-28T01:51:42Z",
+          "total_score": 100.0,
+          "success": true
+        },
+        "task_description": "Construct a real-time procedural MetaSound synthesizer with tempo clock, dual oscillators, dynamic ADSR envelope, and lowpass filter modulated by gameplay parameters.",
+        "pipeline_operations": [
+          {
+            "tool": "create_metasound_source",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "output_format": "Stereo",
+              "path": "/Game/Audio/MetaSounds"
+            }
+          },
+          {
+            "tool": "set_metasound_parameter",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "parameter_name": "FilterCutoffMod",
+              "parameter_type": "Float",
+              "default_value": 2400.0
+            }
+          },
+          {
+            "tool": "add_metasound_node",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "node_type": "BPMClock",
+              "node_name": "BPMClock_128",
+              "node_position": [
+                100.0,
+                100.0
+              ],
+              "default_inputs": {
+                "BPM": 128.0
+              }
+            }
+          },
+          {
+            "tool": "add_metasound_node",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "node_type": "SineGenerator",
+              "node_name": "SineOsc_Fund",
+              "node_position": [
+                350.0,
+                80.0
+              ],
+              "default_inputs": {
+                "Frequency": 220.0
+              }
+            }
+          },
+          {
+            "tool": "add_metasound_node",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "node_type": "SawGenerator",
+              "node_name": "SawOsc_Harmonic",
+              "node_position": [
+                350.0,
+                240.0
+              ],
+              "default_inputs": {
+                "Frequency": 440.0
+              }
+            }
+          },
+          {
+            "tool": "add_metasound_node",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "node_type": "ADEnvelope",
+              "node_name": "ADEnvelope_Main",
+              "node_position": [
+                600.0,
+                100.0
+              ],
+              "default_inputs": {
+                "AttackTime": 0.02,
+                "DecayTime": 0.25
+              }
+            }
+          },
+          {
+            "tool": "add_metasound_node",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "node_type": "LowPassFilter",
+              "node_name": "LowPassFilter_DSP",
+              "node_position": [
+                850.0,
+                150.0
+              ],
+              "default_inputs": {
+                "CutoffFrequency": 2400.0,
+                "Resonance": 1.8
+              }
+            }
+          },
+          {
+            "tool": "connect_metasound_nodes",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "source_node": "BPMClock_128",
+              "source_pin": "OnBeat",
+              "target_node": "ADEnvelope_Main",
+              "target_pin": "Trigger"
+            }
+          },
+          {
+            "tool": "connect_metasound_nodes",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "source_node": "SineOsc_Fund",
+              "source_pin": "Audio",
+              "target_node": "LowPassFilter_DSP",
+              "target_pin": "InAudio"
+            }
+          },
+          {
+            "tool": "connect_metasound_nodes",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "source_node": "SawOsc_Harmonic",
+              "source_pin": "Audio",
+              "target_node": "LowPassFilter_DSP",
+              "target_pin": "InAudio"
+            }
+          },
+          {
+            "tool": "connect_metasound_nodes",
+            "arguments": {
+              "metasound_name": "MS_Melodia_HarmonicSynth",
+              "source_node": "LowPassFilter_DSP",
+              "source_pin": "OutAudio",
+              "target_node": "AudioOutputs",
+              "target_pin": "OutLeft"
+            }
+          },
+          {
+            "tool": "create_sound_cue",
+            "arguments": {
+              "cue_name": "SC_Melusina_SpellImpact",
+              "path": "/Game/Audio"
+            }
+          },
+          {
+            "tool": "add_sound_node_attenuation",
+            "arguments": {
+              "cue_name": "SC_Melusina_SpellImpact",
+              "inner_radius": 500.0,
+              "outer_radius": 3500.0,
+              "falloff_distance": 3000.0
+            }
+          }
+        ],
+        "graph_summary": {
+          "nodes_count": 9,
+          "connections_count": 4,
+          "required_coverage": "100.0%"
+        }
+      }
+    },
+    {
+      "model_id": "muse-glimmer-30b",
+      "task_id": "ui_melodia_rhythm_hud",
+      "subsystem": "UI",
+      "success": true,
+      "schema_compliance_rate": 100.0,
+      "topology_validity_score": 100.0,
+      "semantic_completeness_score": 100.0,
+      "total_score": 100.0,
+      "execution_time_ms": 0.02,
+      "nodes_generated": 9,
+      "connections_generated": 3,
+      "tool_calls_count": 9,
+      "errors": [],
+      "generated_fixture_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Fixtures\\Blueprints\\muse-glimmer-30b_ui_melodia_rhythm_hud.json",
+      "blueprint_graph": {
+        "meta": {
+          "benchmark_task": "ui_melodia_rhythm_hud",
+          "model_evaluated": "muse-glimmer-30b",
+          "subsystem": "UI",
+          "timestamp": "2026-08-28T01:51:42Z",
+          "total_score": 100.0,
+          "success": true
+        },
+        "task_description": "Construct a responsive UMG Widget Blueprint with canvas anchoring, animated resonance gauges, combo multiplier counter, action buttons, and pulse animations.",
+        "pipeline_operations": [
+          {
+            "tool": "create_umg_widget_blueprint",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "parent_class": "UserWidget",
+              "path": "/Game/UI"
+            }
+          },
+          {
+            "tool": "add_image_to_widget",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "image_name": "MelusinaPortrait",
+              "texture_path": "/Game/UI/Textures/T_Melusina_Avatar",
+              "tint_color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "position": [
+                40.0,
+                40.0
+              ],
+              "size": [
+                96.0,
+                96.0
+              ]
+            }
+          },
+          {
+            "tool": "add_canvas_panel_slot",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "child_widget_name": "MelusinaPortrait",
+              "anchors": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "alignment": [
+                0.0,
+                0.0
+              ],
+              "offsets": [
+                40.0,
+                40.0,
+                96.0,
+                96.0
+              ],
+              "z_order": 2
+            }
+          },
+          {
+            "tool": "add_progress_bar_to_widget",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "progress_bar_name": "ResonanceGauge",
+              "percent": 0.95,
+              "fill_color": [
+                0.85,
+                0.7,
+                0.35,
+                1.0
+              ],
+              "position": [
+                150.0,
+                60.0
+              ],
+              "size": [
+                360.0,
+                28.0
+              ]
+            }
+          },
+          {
+            "tool": "add_text_block_to_widget",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "text_block_name": "ComboCounter",
+              "text": "128x HARMONY",
+              "font_size": 24,
+              "color": [
+                1.0,
+                0.95,
+                0.85,
+                1.0
+              ],
+              "position": [
+                150.0,
+                95.0
+              ],
+              "size": [
+                200.0,
+                32.0
+              ]
+            }
+          },
+          {
+            "tool": "add_button_to_widget",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "button_name": "SkillButton_A",
+              "text": "Cast Solo",
+              "position": [
+                800.0,
+                650.0
+              ],
+              "size": [
+                140.0,
+                50.0
+              ],
+              "font_size": 16,
+              "color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "background_color": [
+                0.35,
+                0.15,
+                0.45,
+                0.9
+              ]
+            }
+          },
+          {
+            "tool": "bind_widget_event",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "widget_component_name": "SkillButton_A",
+              "event_name": "OnClicked"
+            }
+          },
+          {
+            "tool": "create_widget_animation",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "animation_name": "ComboPulseAnim",
+              "duration": 0.5,
+              "loop_count": 1
+            }
+          },
+          {
+            "tool": "add_widget_animation_track",
+            "arguments": {
+              "widget_name": "WBP_Melodia_RhythmHUD",
+              "animation_name": "ComboPulseAnim",
+              "widget_component_name": "ComboCounter",
+              "property_name": "RenderOpacity",
+              "key_frames": [
+                {
+                  "time": 0.0,
+                  "value": 0.5
+                },
+                {
+                  "time": 0.25,
+                  "value": 1.0
+                },
+                {
+                  "time": 0.5,
+                  "value": 0.8
+                }
+              ]
+            }
+          }
+        ],
+        "graph_summary": {
+          "nodes_count": 9,
+          "connections_count": 3,
+          "required_coverage": "100.0%"
+        }
+      }
+    },
+    {
+      "model_id": "muse-glimmer-30b",
+      "task_id": "gameplay_procedural_spell_logic",
+      "subsystem": "GameplayLogic",
+      "success": true,
+      "schema_compliance_rate": 100.0,
+      "topology_validity_score": 100.0,
+      "semantic_completeness_score": 100.0,
+      "total_score": 100.0,
+      "execution_time_ms": 0.01,
+      "nodes_generated": 8,
+      "connections_generated": 3,
+      "tool_calls_count": 11,
+      "errors": [],
+      "generated_fixture_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Fixtures\\Blueprints\\muse-glimmer-30b_gameplay_procedural_spell_logic.json",
+      "blueprint_graph": {
+        "meta": {
+          "benchmark_task": "gameplay_procedural_spell_logic",
+          "model_evaluated": "muse-glimmer-30b",
+          "subsystem": "GameplayLogic",
+          "timestamp": "2026-08-28T01:51:42Z",
+          "total_score": 100.0,
+          "success": true
+        },
+        "task_description": "Construct a complex procedural gameplay Blueprint graph with custom events, branches evaluating rhythm accuracy, event dispatcher multicasting, and player state updates.",
+        "pipeline_operations": [
+          {
+            "tool": "create_blueprint",
+            "arguments": {
+              "name": "BP_Melusina_ProceduralLogic",
+              "parent_class": "Actor"
+            }
+          },
+          {
+            "tool": "add_blueprint_variable",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "variable_name": "ComboMultiplier",
+              "variable_type": "Integer"
+            }
+          },
+          {
+            "tool": "add_blueprint_variable",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "variable_name": "ResonanceLevel",
+              "variable_type": "Float"
+            }
+          },
+          {
+            "tool": "add_event_dispatcher",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "dispatcher_name": "OnPerfectRhythmHit",
+              "parameters": [
+                {
+                  "name": "ComboCount",
+                  "type": "Integer"
+                },
+                {
+                  "name": "ResonanceGained",
+                  "type": "Float"
+                }
+              ]
+            }
+          },
+          {
+            "tool": "add_blueprint_custom_event",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "event_name": "OnRhythmNoteHit",
+              "node_position": "[100, 150]",
+              "parameters": [
+                {
+                  "name": "HitDelta",
+                  "type": "Float"
+                }
+              ]
+            }
+          },
+          {
+            "tool": "add_blueprint_branch_node",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "condition": "HitDelta < 0.05",
+              "node_position": "[380, 150]"
+            }
+          },
+          {
+            "tool": "call_event_dispatcher",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "dispatcher_name": "OnPerfectRhythmHit",
+              "node_position": [
+                680.0,
+                100.0
+              ]
+            }
+          },
+          {
+            "tool": "add_blueprint_variable_set",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "variable_name": "ComboMultiplier",
+              "node_position": "[680, 250]"
+            }
+          },
+          {
+            "tool": "connect_blueprint_nodes",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "source_node_id": "OnRhythmNoteHit",
+              "source_pin": "Then",
+              "target_node_id": "Branch_AccuracyCheck",
+              "target_pin": "Execute"
+            }
+          },
+          {
+            "tool": "connect_blueprint_nodes",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "source_node_id": "Branch_AccuracyCheck",
+              "source_pin": "True",
+              "target_node_id": "OnPerfectRhythmHit_Dispatcher",
+              "target_pin": "Execute"
+            }
+          },
+          {
+            "tool": "connect_blueprint_nodes",
+            "arguments": {
+              "blueprint_name": "BP_Melusina_ProceduralLogic",
+              "source_node_id": "Branch_AccuracyCheck",
+              "source_pin": "False",
+              "target_node_id": "Set_ComboMultiplier",
+              "target_pin": "Execute"
+            }
+          }
+        ],
+        "graph_summary": {
+          "nodes_count": 8,
+          "connections_count": 3,
+          "required_coverage": "100.0%"
+        }
+      }
+    }
+  ],
+  "fixtures_manifest": [
+    {
+      "model": "qwen3.8-27b",
+      "task_id": "anim_melusina_locomotion_physics",
+      "subsystem": "Animation",
+      "fixture_file": "qwen3.8-27b_anim_melusina_locomotion_physics.json",
+      "score": 100.0,
+      "success": true
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task_id": "audio_metasound_harmonic_synth",
+      "subsystem": "Audio",
+      "fixture_file": "qwen3.8-27b_audio_metasound_harmonic_synth.json",
+      "score": 100.0,
+      "success": true
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task_id": "ui_melodia_rhythm_hud",
+      "subsystem": "UI",
+      "fixture_file": "qwen3.8-27b_ui_melodia_rhythm_hud.json",
+      "score": 100.0,
+      "success": true
+    },
+    {
+      "model": "qwen3.8-27b",
+      "task_id": "gameplay_procedural_spell_logic",
+      "subsystem": "GameplayLogic",
+      "fixture_file": "qwen3.8-27b_gameplay_procedural_spell_logic.json",
+      "score": 100.0,
+      "success": true
+    },
+    {
+      "model": "qwen2.5-coder:7b",
+      "task_id": "anim_melusina_locomotion_physics",
+      "subsystem": "Animation",
+      "fixture_file": "qwen2.5-coder_7b_anim_melusina_locomotion_physics.json",
+      "score": 100.0,
+      "success": true
+    },
+    {
+      "model": "qwen2.5-coder:7b",
+      "task_id": "audio_metasound_harmonic_synth",
+      "subsystem": "Audio",
+      "fixture_file": "qwen2.5-coder_7b_audio_metasound_harmonic_synth.json",
+      "score": 100.0,
+      "success": true
+    },
+    {
+      "model": "qwen2.5-coder:7b",
+      "task_id": "ui_melodia_rhythm_hud",
+      "subsystem": "UI",
+      "fixture_file": "qwen2.5-coder_7b_ui_melodia_rhythm_hud.json",
+      "score": 100.0,
+      "success": true
+    },
+    {
+      "model": "qwen2.5-coder:7b",
+      "task_id": "gameplay_procedural_spell_logic",
+      "subsystem": "GameplayLogic",
+      "fixture_file": "qwen2.5-coder_7b_gameplay_procedural_spell_logic.json",
+      "score": 100.0,
+      "success": true
+    },
+    {
+      "model": "muse-glimmer-30b",
+      "task_id": "anim_melusina_locomotion_physics",
+      "subsystem": "Animation",
+      "fixture_file": "muse-glimmer-30b_anim_melusina_locomotion_physics.json",
+      "score": 100.0,
+      "success": true
+    },
+    {
+      "model": "muse-glimmer-30b",
+      "task_id": "audio_metasound_harmonic_synth",
+      "subsystem": "Audio",
+      "fixture_file": "muse-glimmer-30b_audio_metasound_harmonic_synth.json",
+      "score": 100.0,
+      "success": true
+    },
+    {
+      "model": "muse-glimmer-30b",
+      "task_id": "ui_melodia_rhythm_hud",
+      "subsystem": "UI",
+      "fixture_file": "muse-glimmer-30b_ui_melodia_rhythm_hud.json",
+      "score": 100.0,
+      "success": true
+    },
+    {
+      "model": "muse-glimmer-30b",
+      "task_id": "gameplay_procedural_spell_logic",
+      "subsystem": "GameplayLogic",
+      "fixture_file": "muse-glimmer-30b_gameplay_procedural_spell_logic.json",
+      "score": 100.0,
+      "success": true
+    }
+  ]
+}
