@@ -1,0 +1,36 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:20Z'
+network_path: /project1/ui/main_panel
+options:
+  include_dat_content: false
+  include_storage: true
+type: containerCOMP
+parameters:
+  w: 1920
+  h: 1080
+  resizecomp: =me
+  repocomp: =me
+  top: /project1/ui/bg
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+operators:
+- name: sidebar
+  type: containerCOMP
+  parameters:
+    x: 1620
+    w: 300
+    h: 1080
+    resizecomp: =me
+    repocomp: =me
+    align: horizlr
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/ui/main_panel/sidebar.tdn

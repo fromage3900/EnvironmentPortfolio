@@ -1,0 +1,30 @@
+{
+  "TP_Melusina_Profile_Spec": {
+    "description": "Substrate Toon Profile for Melusina with warm-violet surreal ramp",
+    "ramp_type": "3-key diffuse ramp + 1-key specular ramp",
+    "diffuse_ramp_keys": [
+      { "n_dot_l": 0.0, "color": "#352D40" },
+      { "n_dot_l": 0.3, "color": "#9E77A8" },
+      { "n_dot_l": 1.0, "color": "#DBB4BC" }
+    ],
+    "specular_ramp_keys": [
+      { "n_dot_l": 0.9, "color": "#FFFFFF" }
+    ],
+    "indirect_settings": {
+      "indirect_diffuse_intensity": 0.35,
+      "indirect_specular_intensity": 0.25
+    },
+    "shadow_settings": {
+      "shadow_opacity": 0.7,
+      "shadow_dilation": 1.5,
+      "b_use_shadow_opacity": true,
+      "edge_enable": true,
+      "edge_color": "#262633",
+      "edge_width": 1.5
+    },
+    "surreal_feeling": {
+      "description": "Warm-violet shadow replacement (#352D40 replaces black) creates depth perception without HDR blowout. Combined with Lumen GI and CustomDepth=3 stencil, produces soft dreamy toon shading suitable for Melusina's found-family warmth.",
+      "key_insight": "#352D40 (warm violet) as shadow base preserves silhouette clarity while evoking melancholic warmth -- Melusina's feeling state translated into visual language"
+    }
+  }
+}

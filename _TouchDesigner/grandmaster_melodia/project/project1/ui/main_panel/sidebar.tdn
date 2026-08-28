@@ -1,0 +1,300 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:22Z'
+network_path: /project1/ui/main_panel/sidebar
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  sliderCOMP:
+    parameters:
+      resizecomp: =me
+      repocomp: =me
+      clone: =op.TDTox.op('defaultCOMPs/slider')
+    size: [160, 76]
+  containerCOMP:
+    parameters:
+      layer: 2
+      clickthrough: true
+      resizecomp: =me
+      repocomp: =me
+      bgcolorr: =.2 * parent().par.colorr + .5
+      bgcolorg: =.2 * parent().par.colorg + .5
+      bgcolorb: =.2 * parent().par.colorb + .5
+      bgalpha: 1
+      borderover: false
+    flags:
+    - viewer
+    size: [118, 113]
+  outCHOP:
+    parameters:
+      label: =me.name
+      autoexportroot: =parent()
+    flags:
+    - viewer
+    size: [130, 90]
+  parameterCHOP:
+    parameters:
+      custom: false
+      builtin: true
+      autoexportroot: =parent()
+    flags:
+    - viewer
+    size: [130, 90]
+  textCOMP:
+    parameters:
+      text: =parent().par.label
+      type: multiline
+      legacyfontselection: true
+      hmode: fill
+      vmode: fill
+      clickthrough: true
+      resizecomp: =me
+      repocomp: =me
+      bgalpha: 1
+      leftborder: bordera
+      rightborder: bordera
+      bottomborder: bordera
+      topborder: bordera
+      borderover: false
+    flags:
+    - viewer
+  panelexecuteDAT:
+    parameters:
+      fromop: =parent()
+      panels: =parent()
+      offtoon: false
+      valuechange: true
+      defaultreadencoding: cp1252
+      loadonstart: true
+    flags:
+    - viewer
+type: containerCOMP
+parameters:
+  resizecomp: =me
+  repocomp: =me
+  align: horizlr
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+operators:
+- name: Day_Night1
+  type: sliderCOMP
+  parameters:
+    value0: 0.79798
+    alignorder: 3
+  position: [25, -25]
+  children:
+  - name: knob
+    type: containerCOMP
+    position: [25, -225]
+  - name: out1
+    type: outCHOP
+    position: [200, -100]
+    inputs:
+    - par1
+  - name: par1
+    type: parameterCHOP
+    parameters:
+      parameters: ='value0 value1' if parent().par.slidertype == 'slideruv' else 'value0'
+      renameto: v1 v2
+    position: [0, -100]
+  - name: text
+    type: textCOMP
+    parameters:
+      scaletofit: onlyshrink
+      fontsize: 10
+      fontcolorr: =.2 * parent().par.colorr + .5
+      fontcolorg: =.2 * parent().par.colorg + .5
+      fontcolorb: =.2 * parent().par.colorb + .5
+      textpaddingl: 4
+      textpaddingr: 4
+      textpaddingb: 3
+      textpaddingt: 3
+      alignx: left
+      bgcolorr: =0.4 * parent().par.colorr
+      bgcolorg: =0.4 * parent().par.colorg
+      bgcolorb: =0.4 * parent().par.colorb
+      borderar: =[c/.5 for c in [.23, .4]][parent().panel.rollover] * parent().par.colorr + 0.2
+      borderag: =[c/.5 for c in [.23, .4]][parent().panel.rollover] * parent().par.colorg + 0.2
+      borderab: =[c/.5 for c in [.23, .4]][parent().panel.rollover] * parent().par.colorb + 0.2
+    position: [175, -225]
+    size: [160, 76]
+  - name: panelexec1
+    type: panelexecuteDAT
+    parameters:
+      panelvalue: u v
+    position: [75, -325]
+    size: [124, 51]
+- name: slider_exec
+  type: chopexecuteDAT
+  parameters:
+    fromop: =parent()
+    chop: Spacefield_Gravity1 Bokeh_Shimmer1
+    file: project1/ui/main_panel/sidebar/slider_exec.py
+    syncfile: true
+  size: [130, 90]
+  color: [0.9, 0.3, 0.4]
+  tags:
+  - py
+- name: Bokeh_Shimmer1
+  type: sliderCOMP
+  parameters:
+    value0: 0.010101
+    alignorder: 2
+  position: [25, -25]
+  children:
+  - name: knob
+    type: containerCOMP
+    position: [25, -225]
+  - name: out1
+    type: outCHOP
+    position: [200, -100]
+    inputs:
+    - par1
+  - name: par1
+    type: parameterCHOP
+    parameters:
+      parameters: ='value0 value1' if parent().par.slidertype == 'slideruv' else 'value0'
+      renameto: v1 v2
+    position: [0, -100]
+  - name: text
+    type: textCOMP
+    parameters:
+      scaletofit: onlyshrink
+      fontsize: 10
+      fontcolorr: =.2 * parent().par.colorr + .5
+      fontcolorg: =.2 * parent().par.colorg + .5
+      fontcolorb: =.2 * parent().par.colorb + .5
+      textpaddingl: 4
+      textpaddingr: 4
+      textpaddingb: 3
+      textpaddingt: 3
+      alignx: left
+      bgcolorr: =0.4 * parent().par.colorr
+      bgcolorg: =0.4 * parent().par.colorg
+      bgcolorb: =0.4 * parent().par.colorb
+      borderar: =[c/.5 for c in [.23, .4]][parent().panel.rollover] * parent().par.colorr + 0.2
+      borderag: =[c/.5 for c in [.23, .4]][parent().panel.rollover] * parent().par.colorg + 0.2
+      borderab: =[c/.5 for c in [.23, .4]][parent().panel.rollover] * parent().par.colorb + 0.2
+    position: [175, -225]
+    size: [160, 76]
+  - name: panelexec1
+    type: panelexecuteDAT
+    parameters:
+      panelvalue: u v
+    position: [75, -325]
+    size: [124, 51]
+- name: Send_To_Unreal1
+  type: buttonCOMP
+  parameters:
+    alignorder: 4
+    resizecomp: =me
+    repocomp: =me
+    clone: =op.TDTox.op('defaultCOMPs/button')
+  position: [25, 100]
+  size: [160, 134]
+  children:
+  - name: out1
+    type: outCHOP
+    position: [275, 175]
+    inputs:
+    - par1
+  - name: par1
+    type: parameterCHOP
+    parameters:
+      parameters: value0
+      renameto: v1
+    position: [65, 175]
+  - name: text
+    type: textCOMP
+    parameters:
+      scaletofit: =parent().par[me.curPar.name] or me.curPar.val
+      fontsize: =parent().par[me.curPar.name] or me.curPar.val
+      linespacing: =parent().par[me.curPar.name] or me.curPar.val
+      fontcolorr: =[c/.5 for c in [.1, .3]][parent().par.value0] * parent().par.colorr + .5
+      fontcolorg: =[c/.5 for c in [.1, .3]][parent().par.value0] * parent().par.colorg + .5
+      fontcolorb: =[c/.5 for c in [.1, .3]][parent().par.value0] * parent().par.colorb + .5
+      textpaddingl: =parent().par[me.curPar.name] or me.curPar.val
+      textpaddingr: =parent().par[me.curPar.name] or me.curPar.val
+      textpaddingb: =parent().par[me.curPar.name] or me.curPar.val
+      textpaddingt: =parent().par[me.curPar.name] or me.curPar.val
+      bgcolorr: =[c/.5 for c in [.2, .4, .15, .35]][parent().par.value0 + 2*(r:=parent().panel.rollover)] * parent().par.colorr + r * 0.1
+      bgcolorg: =[c/.5 for c in [.2, .4, .15, .35]][parent().par.value0 + 2*(r:=parent().panel.rollover)] * parent().par.colorg + r * 0.1
+      bgcolorb: =[c/.5 for c in [.2, .4, .15, .35]][parent().par.value0 + 2*(r:=parent().panel.rollover)] * parent().par.colorb + r * 0.1
+      borderar: =[c/.5 for c in [.23, .4, .3, .6]][parent().par.value0 + 2*parent().panel.rollover] * parent().par.colorr + .2
+      borderag: =[c/.5 for c in [.23, .4, .3, .6]][parent().par.value0 + 2*parent().panel.rollover] * parent().par.colorg + .2
+      borderab: =[c/.5 for c in [.23, .4, .3, .6]][parent().par.value0 + 2*parent().panel.rollover] * parent().par.colorb + .2
+    position: [74, 26]
+    size: [113, 96]
+  - name: parexec1
+    type: parameterexecuteDAT
+    parameters:
+      fromop: =parent()
+      op: ..
+      pars: value0
+      onpulse: false
+      defaultreadencoding: cp1252
+      loadonstart: true
+    flags:
+    - viewer
+    position: [66, -83]
+    size: [128, 66]
+  - name: panelexec1
+    type: panelexecuteDAT
+    parameters:
+      panelvalue: state
+    position: [247, -81]
+    size: [126, 62]
+- name: Spacefield_Gravity1
+  type: sliderCOMP
+  parameters:
+    value0: 0.343434
+    alignorder: 1
+  position: [25, -25]
+  children:
+  - name: knob
+    type: containerCOMP
+    position: [25, -225]
+  - name: out1
+    type: outCHOP
+    position: [200, -100]
+    inputs:
+    - par1
+  - name: par1
+    type: parameterCHOP
+    parameters:
+      parameters: ='value0 value1' if parent().par.slidertype == 'slideruv' else 'value0'
+      renameto: v1 v2
+    position: [0, -100]
+  - name: text
+    type: textCOMP
+    parameters:
+      scaletofit: onlyshrink
+      fontsize: 10
+      fontcolorr: =.2 * parent().par.colorr + .5
+      fontcolorg: =.2 * parent().par.colorg + .5
+      fontcolorb: =.2 * parent().par.colorb + .5
+      textpaddingl: 4
+      textpaddingr: 4
+      textpaddingb: 3
+      textpaddingt: 3
+      alignx: left
+      bgcolorr: =0.4 * parent().par.colorr
+      bgcolorg: =0.4 * parent().par.colorg
+      bgcolorb: =0.4 * parent().par.colorb
+      borderar: =[c/.5 for c in [.23, .4]][parent().panel.rollover] * parent().par.colorr + 0.2
+      borderag: =[c/.5 for c in [.23, .4]][parent().panel.rollover] * parent().par.colorg + 0.2
+      borderab: =[c/.5 for c in [.23, .4]][parent().panel.rollover] * parent().par.colorb + 0.2
+    position: [175, -225]
+    size: [160, 76]
+  - name: panelexec1
+    type: panelexecuteDAT
+    parameters:
+      panelvalue: u v
+    position: [75, -325]
+    size: [124, 51]

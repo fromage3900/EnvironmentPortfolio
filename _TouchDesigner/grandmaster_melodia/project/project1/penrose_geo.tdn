@@ -1,0 +1,126 @@
+format: tdn
+version: '2.0'
+build: 1
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:20Z'
+network_path: /project1/penrose_geo
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  copySOP:
+    parameters:
+      copyg: ='copyGroup' + str(me.copyIndex)
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: geometryCOMP
+flags:
+- -display
+- -render
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+operators:
+- name: out1
+  type: outSOP
+  parameters:
+    label: =me.name
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - tessellate_prim
+- name: torus1
+  type: torusPOP
+  flags:
+  - display
+  - render
+  - viewer
+  position: [200, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: out1_tex
+  type: textureSOP
+  position: [0, -75]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - out1
+- name: out1_attr
+  type: attributecreateSOP
+  parameters:
+    comptang: true
+  flags:
+  - display
+  - render
+  position: [0, -150]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - out1_tex
+- name: stair_step
+  type: boxSOP
+  parameters:
+    sizex: 2
+    sizey: 0.5
+  position: [400, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: fractal_branch
+  type: copySOP
+  parameters:
+    ncy: 4
+    tx: 15
+    ry: 90
+  position: [600, 0]
+  inputs:
+  - penrose_builder
+- name: penrose_builder
+  type: copySOP
+  parameters:
+    ncy: 100
+    ty: 0.5
+    ry: 15
+  position: [800, 0]
+  inputs:
+  - stair_step
+- name: tessellate_prim
+  type: primitiveSOP
+  parameters:
+    sx: 0.8
+    sy: 0.8
+    sz: 0.8
+    px: =me.inputPrim.center[0]
+    py: =me.inputPrim.center[1]
+    pz: =me.inputPrim.center[2]
+    upvectorx: =me.inputPrim.normal[0]
+    upvectory: =me.inputPrim.normal[1]
+    upvectorz: =me.inputPrim.normal[2]
+    diffr: =me.inputColor[0]
+    diffg: =me.inputColor[1]
+    diffb: =me.inputColor[2]
+    alpha: =me.inputColor[3]
+    crease: =me.inputPrim.creaseweight[0]
+    doweight: =me.inputPrim.weight
+  position: [1000, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - tessellate_facet
+- name: tessellate_facet
+  type: facetSOP
+  parameters:
+    unique: true
+  position: [1200, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - tessellate_subdiv
+- name: tessellate_subdiv
+  type: subdivideSOP
+  position: [1400, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - fractal_branch

@@ -1,0 +1,46 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:24Z'
+network_path: /project1/geo_engines/cosmic_orrery/planets
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  geometryCOMP:
+    size: [160, 130]
+    color: [0.3, 0.5, 0.9]
+    tags:
+    - tdn
+type: baseCOMP
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+operators:
+- name: planet_1
+  type: geometryCOMP
+  parameters:
+    ry: =absTime.seconds * 18.0 + 39.6 * (op('/project1/audio/final_out')['beat'].eval() if op('/project1/audio/final_out') else 0.0)
+    material: /project1/geo_engines/cosmic_orrery/materials/mat_planet1
+  position: [-320, -300]
+  comment: Orbiting planet — rotation drives orbit
+  tdn_ref: project1/geo_engines/cosmic_orrery/planets/planet_1.tdn
+- name: planet_2
+  type: geometryCOMP
+  parameters:
+    ry: =absTime.seconds * 11.0 + 24.200000000000003 * (op('/project1/audio/final_out')['beat'].eval() if op('/project1/audio/final_out') else 0.0)
+    material: /project1/geo_engines/cosmic_orrery/materials/mat_planet2
+  position: [-160, -600]
+  comment: Orbiting planet — rotation drives orbit
+  tdn_ref: project1/geo_engines/cosmic_orrery/planets/planet_2.tdn
+- name: planet_3
+  type: geometryCOMP
+  parameters:
+    ry: =absTime.seconds * 7.0 + 15.400000000000002 * (op('/project1/audio/final_out')['beat'].eval() if op('/project1/audio/final_out') else 0.0)
+    material: /project1/geo_engines/cosmic_orrery/materials/mat_planet3
+  position: [0, -900]
+  comment: Orbiting planet — rotation drives orbit
+  tdn_ref: project1/geo_engines/cosmic_orrery/planets/planet_3.tdn

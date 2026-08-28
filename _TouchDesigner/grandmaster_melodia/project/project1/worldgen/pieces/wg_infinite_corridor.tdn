@@ -1,0 +1,114 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:23Z'
+network_path: /project1/worldgen/pieces/wg_infinite_corridor
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  boxSOP:
+    parameters:
+      sizez: 100
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  transformSOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: geometryCOMP
+parameters:
+  material: /project1/worldgen/materials/mat_cream
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: Infinite corridor — perspective illusion of endless depth  [cream]
+operators:
+- name: floor
+  type: boxSOP
+  parameters:
+    sizex: 8
+    sizey: 0.1
+  position: [500, 0]
+- name: wall_l
+  type: boxSOP
+  parameters:
+    sizex: 0.2
+    sizey: 10
+- name: wall_r
+  type: boxSOP
+  parameters:
+    sizex: 0.2
+    sizey: 10
+  position: [250, 0]
+- name: ceiling
+  type: boxSOP
+  parameters:
+    sizex: 8
+    sizey: 0.1
+  position: [750, 0]
+- name: floor_tx
+  type: transformSOP
+  parameters:
+    ty: -2.5
+  position: [650, 0]
+  inputs:
+  - floor
+- name: wall_l_tx
+  type: transformSOP
+  parameters:
+    tx: -4
+    ty: 2.5
+  position: [150, 0]
+  inputs:
+  - wall_l
+- name: wall_r_tx
+  type: transformSOP
+  parameters:
+    tx: 4
+    ty: 2.5
+  position: [400, 0]
+  inputs:
+  - wall_r
+- name: ceiling_tx
+  type: transformSOP
+  parameters:
+    ty: 7.5
+  position: [900, 0]
+  inputs:
+  - ceiling
+- name: render_cam
+  type: cameraCOMP
+  parameters:
+    tx: 112.381
+    ty: 87.0049
+    tz: 112.381
+    rx: -28
+    ry: 45
+  position: [0, 400]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/worldgen/pieces/wg_infinite_corridor/render_cam.tdn
+- name: effect_facet
+  type: facetSOP
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - corridor_merge
+- name: corridor_merge
+  type: mergeSOP
+  flags:
+  - display
+  - render
+  position: [1000, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - wall_l_tx
+  - wall_r_tx
+  - floor_tx
+  - ceiling_tx

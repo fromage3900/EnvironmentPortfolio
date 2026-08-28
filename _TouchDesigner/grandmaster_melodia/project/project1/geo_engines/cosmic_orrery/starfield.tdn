@@ -1,0 +1,59 @@
+format: tdn
+version: '2.0'
+build: 1
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:25Z'
+network_path: /project1/geo_engines/cosmic_orrery/starfield
+options:
+  include_dat_content: false
+  include_storage: true
+type: geometryCOMP
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: Star shell — tiny instanced stars on a sphere-like spread
+operators:
+- name: torus1
+  type: torusPOP
+  flags:
+  - display
+  - render
+  - viewer
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: star_box
+  type: boxSOP
+  parameters:
+    sizex: 0.03
+    sizey: 0.03
+    sizez: 0.03
+  flags:
+  - display
+  - render
+  position: [0, -200]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: star_copy
+  type: copySOP
+  parameters:
+    copyg: ='copyGroup' + str(me.copyIndex)
+  flags:
+  - display
+  - render
+  position: [250, -100]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - star_box
+  - star_grid
+- name: star_grid
+  type: gridSOP
+  parameters:
+    sizex: 60
+    sizey: 60
+    rows: 40
+    cols: 40
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]

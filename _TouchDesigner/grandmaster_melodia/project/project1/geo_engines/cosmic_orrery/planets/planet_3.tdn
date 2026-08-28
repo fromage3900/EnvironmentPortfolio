@@ -1,0 +1,50 @@
+format: tdn
+version: '2.0'
+build: 1
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:27Z'
+network_path: /project1/geo_engines/cosmic_orrery/planets/planet_3
+options:
+  include_dat_content: false
+  include_storage: true
+type: geometryCOMP
+parameters:
+  ry: =absTime.seconds * 7.0 + 15.400000000000002 * (op('/project1/audio/final_out')['beat'].eval() if op('/project1/audio/final_out') else 0.0)
+  material: /project1/geo_engines/cosmic_orrery/materials/mat_planet3
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: Orbiting planet — rotation drives orbit
+operators:
+- name: torus1
+  type: torusPOP
+  flags:
+  - display
+  - render
+  - viewer
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: sphere1
+  type: sphereSOP
+  parameters:
+    radx: 0.45
+    rady: 0.45
+    radz: 0.45
+    rows: 16
+    cols: 32
+  position: [150, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: orbit_offset
+  type: transformSOP
+  parameters:
+    tx: 7.5
+  flags:
+  - display
+  - render
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - sphere1

@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "project": "Grandmaster Melodia",
+    "ledger_purpose": "Durable state for the overnight TD effect-expansion loop. Each cron run reads this to find the next pending effect, then writes the outcome (applied/verified/saved/toe).",
+    "catalog": "docs/overnight_effect_catalog.json"
+  },
+  "state": {
+    "last_run_ts": null,
+    "current_effect": null,
+    "effects_done": [],
+    "effects_failed": [],
+    "saved_toe_paths": []
+  },
+  "runs": []
+}

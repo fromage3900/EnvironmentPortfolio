@@ -1,0 +1,286 @@
+path	type	strategy	rel_file_path	timestamp	dirty	build	touch_build	node_x	node_y	node_color
+/project1/externalizations	table	tsv	project1/externalizations.tsv	2026-07-15 18:29:44 UTC				0	25	0.9000,0.3000,0.4000
+/perform	window	tdn	perform.tdn	2026-08-27 03:14:13 UTC		1	099.2025.32460	-200	40	0.3000,0.5000,0.9000
+/project1	container	tdn	project1.tdn	2026-08-27 07:18:07 UTC		3	099.2025.32460	150	125	0.3000,0.5000,0.9000
+/project1/ui	base	tdn	project1/ui.tdn	2026-08-27 07:04:19 UTC		2	099.2025.32460	-685	176	0.3000,0.5000,0.9000
+/project1/ui/main_panel	container	tdn	project1/ui/main_panel.tdn	2026-08-27 07:04:20 UTC		2	099.2025.32460	0	0	0.3000,0.5000,0.9000
+/project1/ui/main_panel/sidebar	container	tdn	project1/ui/main_panel/sidebar.tdn	2026-08-27 07:04:22 UTC		2	099.2025.32460	0	0	0.3000,0.5000,0.9000
+/project1/geo	base	tdn	project1/geo.tdn	2026-08-27 03:14:16 UTC		1	099.2025.32460	994	-342	0.3000,0.5000,0.9000
+/project1/osc	base	tdn	project1/osc.tdn	2026-08-27 07:04:19 UTC		2	099.2025.32460	-125	-342	0.3000,0.5000,0.9000
+/project1/audio	base	tdn	project1/audio.tdn	2026-08-27 07:04:19 UTC		2	099.2025.32460	1274	-342	0.3000,0.5000,0.9000
+/project1/state	base	tdn	project1/state.tdn	2026-08-27 03:14:16 UTC		1	099.2025.32460	0	0	0.3000,0.5000,0.9000
+/project1/Embody	container	tdn	project1/Embody.tdn	2026-08-27 04:30:51 UTC		784	099.2025.32460	1554	-294	0.3000,0.5000,0.9000
+/project1/Embody/help	opviewer	tdn	project1/Embody/help.tdn	2026-08-27 04:30:46 UTC		16	099.2025.32460	196	675	0.3000,0.5000,0.9000
+/project1/Embody/list	container	tdn	project1/Embody/list.tdn	2026-08-27 04:30:46 UTC		42	099.2025.32460	300	75	0.3000,0.5000,0.9000
+/project1/Embody/list/list1	list	tdn	project1/Embody/list/list1.tdn	2026-08-27 03:14:17 UTC		57	099.2025.32460	445	0	0.3000,0.5000,0.9000
+/project1/Embody/tagger	container	tdn	project1/Embody/tagger.tdn	2026-08-27 04:30:47 UTC		29	099.2025.32460	900	225	0.3000,0.5000,0.9000
+/project1/Embody/tagger/header	container	tdn	project1/Embody/tagger/header.tdn	2026-08-27 04:30:40 UTC		11	099.2025.32460	0	275	0.3000,0.5000,0.9000
+/project1/Embody/tagger/header/text1	text	tdn	project1/Embody/tagger/header/text1.tdn	2026-08-27 03:14:17 UTC		6	099.2025.32460	-200	0	0.3000,0.5000,0.9000
+/project1/Embody/tagger/replicator1	replicator	tdn	project1/Embody/tagger/replicator1.tdn	2026-08-27 03:14:17 UTC		1	099.2025.32460	-225	0	0.3000,0.5000,0.9000
+/project1/Embody/wizard	container	tdn	project1/Embody/wizard.tdn	2026-08-27 04:30:47 UTC		3	099.2025.32460	1200	225	0.3000,0.5000,0.9000
+/project1/Embody/wizard/hint	text	tdn	project1/Embody/wizard/hint.tdn	2026-08-27 04:30:40 UTC		2	099.2025.32460	0	0	0.3000,0.5000,0.9000
+/project1/Embody/wizard/title	text	tdn	project1/Embody/wizard/title.tdn	2026-08-27 04:30:40 UTC		2	099.2025.32460	480	0	0.3000,0.5000,0.9000
+/project1/Embody/wizard/track	container	tdn	project1/Embody/wizard/track.tdn	2026-08-27 04:30:40 UTC		2	099.2025.32460	0	-150	0.3000,0.5000,0.9000
+/project1/Embody/wizard/track/fill	container	tdn	project1/Embody/wizard/track/fill.tdn	2026-08-27 04:30:39 UTC		2	099.2025.32460	0	0	0.3000,0.5000,0.9000
+/project1/Embody/wizard/footer	container	tdn	project1/Embody/wizard/footer.tdn	2026-08-27 04:30:41 UTC		2	099.2025.32460	250	-700	0.3000,0.5000,0.9000
+/project1/Embody/wizard/spacer	container	tdn	project1/Embody/wizard/spacer.tdn	2026-08-27 03:14:17 UTC		1	099.2025.32460	0	-300	0.3000,0.5000,0.9000
+/project1/Embody/wizard/divider	container	tdn	project1/Embody/wizard/divider.tdn	2026-08-27 03:14:17 UTC		1	099.2025.32460	240	-300	0.3000,0.5000,0.9000
+/project1/Embody/wizard/grp_mode	container	tdn	project1/Embody/wizard/grp_mode.tdn	2026-08-27 04:30:41 UTC		2	099.2025.32460	450	-800	0.3000,0.5000,0.9000
+/project1/Embody/wizard/botspacer	container	tdn	project1/Embody/wizard/botspacer.tdn	2026-08-27 03:14:18 UTC		1	099.2025.32460	0	-450	0.3000,0.5000,0.9000
+/project1/Embody/wizard/steplabel	text	tdn	project1/Embody/wizard/steplabel.tdn	2026-08-27 04:30:41 UTC		2	099.2025.32460	225	200	0.3000,0.5000,0.9000
+/project1/Embody/wizard/topspacer	container	tdn	project1/Embody/wizard/topspacer.tdn	2026-08-27 03:14:18 UTC		1	099.2025.32460	480	-450	0.3000,0.5000,0.9000
+/project1/Embody/wizard/grp_client	container	tdn	project1/Embody/wizard/grp_client.tdn	2026-08-27 04:30:41 UTC		2	099.2025.32460	935	-800	0.3000,0.5000,0.9000
+/project1/Embody/wizard/grp_assistant	container	tdn	project1/Embody/wizard/grp_assistant.tdn	2026-08-27 04:30:41 UTC		2	099.2025.32460	675	-800	0.3000,0.5000,0.9000
+/project1/Embody/wizard/grp_footprint	container	tdn	project1/Embody/wizard/grp_footprint.tdn	2026-08-27 03:14:18 UTC		1	099.2025.32460	1195	-800	0.3000,0.5000,0.9000
+/project1/Embody/wizard/grp_permissions	container	tdn	project1/Embody/wizard/grp_permissions.tdn	2026-08-27 03:14:18 UTC		1	099.2025.32460	1455	-800	0.3000,0.5000,0.9000
+/project1/Embody/manager	container	tdn	project1/Embody/manager.tdn	2026-08-27 03:14:18 UTC		14	099.2025.32460	500	475	0.3000,0.5000,0.9000
+/project1/Embody/toolbar	container	tdn	project1/Embody/toolbar.tdn	2026-08-27 04:30:47 UTC		32	099.2025.32460	300	200	0.3000,0.5000,0.9000
+/project1/Embody/toolbar/tooltip	container	tdn	project1/Embody/toolbar/tooltip.tdn	2026-08-27 04:30:41 UTC		39	099.2025.32460	800	-200	0.3000,0.5000,0.9000
+/project1/Embody/toolbar/tooltip/text	text	tdn	project1/Embody/toolbar/tooltip/text.tdn	2026-08-27 03:14:18 UTC		27	099.2025.32460	0	0	0.3000,0.5000,0.9000
+/project1/Embody/toolbar/container_left	container	tdn	project1/Embody/toolbar/container_left.tdn	2026-08-27 04:30:42 UTC		17	099.2025.32460	0	0	0.3000,0.5000,0.9000
+/project1/Embody/toolbar/container_left/status	text	tdn	project1/Embody/toolbar/container_left/status.tdn	2026-08-27 03:14:19 UTC		21	099.2025.32460	800	-200	0.3000,0.5000,0.9000
+/project1/Embody/toolbar/container_left/disable	text	tdn	project1/Embody/toolbar/container_left/disable.tdn	2026-08-27 03:14:19 UTC		11	099.2025.32460	0	0	0.3000,0.5000,0.9000
+/project1/Embody/toolbar/container_left/perform	text	tdn	project1/Embody/toolbar/container_left/perform.tdn	2026-08-27 03:14:19 UTC		1	099.2025.32460	0	0	0.3000,0.5000,0.9000
+/project1/Embody/toolbar/container_left/refresh	text	tdn	project1/Embody/toolbar/container_left/refresh.tdn	2026-08-27 03:14:19 UTC		11	099.2025.32460	200	0	0.3000,0.5000,0.9000
+/project1/Embody/toolbar/container_left/save_comp	text	tdn	project1/Embody/toolbar/container_left/save_comp.tdn	2026-08-27 03:14:19 UTC		1	099.2025.32460	1400	0	0.3000,0.5000,0.9000
+/project1/Embody/toolbar/container_left/export_tdn	text	tdn	project1/Embody/toolbar/container_left/export_tdn.tdn	2026-08-27 03:14:19 UTC		1	099.2025.32460	0	-200	0.3000,0.5000,0.9000
+/project1/Embody/toolbar/container_left/import_tdn	text	tdn	project1/Embody/toolbar/container_left/import_tdn.tdn	2026-08-27 03:14:19 UTC		1	099.2025.32460	400	-200	0.3000,0.5000,0.9000
+/project1/Embody/toolbar/container_left/initialize	text	tdn	project1/Embody/toolbar/container_left/initialize.tdn	2026-08-27 03:14:19 UTC		1	099.2025.32460	600	0	0.3000,0.5000,0.9000
+/project1/Embody/toolbar/container_left/spacer_tdn	container	tdn	project1/Embody/toolbar/container_left/spacer_tdn.tdn	2026-08-27 03:14:19 UTC		1	099.2025.32460	600	-200	0.3000,0.5000,0.9000
+/project1/Embody/toolbar/container_left/save_folder	text	tdn	project1/Embody/toolbar/container_left/save_folder.tdn	2026-08-27 03:14:19 UTC		11	099.2025.32460	400	0	0.3000,0.5000,0.9000
+/project1/Embody/toolbar/container_left/envoy_toggle	text	tdn	project1/Embody/toolbar/container_left/envoy_toggle.tdn	2026-08-27 03:14:19 UTC		5	099.2025.32460	800	0	0.3000,0.5000,0.9000
+/project1/Embody/toolbar/container_left/spacer_envoy	container	tdn	project1/Embody/toolbar/container_left/spacer_envoy.tdn	2026-08-27 03:14:19 UTC		1	099.2025.32460	1200	0	0.3000,0.5000,0.9000
+/project1/Embody/toolbar/container_left/export_comp_tdn	text	tdn	project1/Embody/toolbar/container_left/export_comp_tdn.tdn	2026-08-27 03:14:19 UTC		1	099.2025.32460	200	-200	0.3000,0.5000,0.9000
+/project1/Embody/toolbar/container_right	container	tdn	project1/Embody/toolbar/container_right.tdn	2026-08-27 04:30:42 UTC		23	099.2025.32460	175	0	0.3000,0.5000,0.9000
+/project1/Embody/toolbar/container_right/pars	text	tdn	project1/Embody/toolbar/container_right/pars.tdn	2026-08-27 03:14:20 UTC		1	099.2025.32460	600	0	0.3000,0.5000,0.9000
+/project1/Embody/toolbar/container_right/close	text	tdn	project1/Embody/toolbar/container_right/close.tdn	2026-08-27 03:14:20 UTC		1	099.2025.32460	0	0	0.3000,0.5000,0.9000
+/project1/Embody/toolbar/container_right/filter	text	tdn	project1/Embody/toolbar/container_right/filter.tdn	2026-08-27 03:14:20 UTC		1	099.2025.32460	200	0	0.3000,0.5000,0.9000
+/project1/Embody/toolbar/container_right/spacer_pars	container	tdn	project1/Embody/toolbar/container_right/spacer_pars.tdn	2026-08-27 03:14:20 UTC		1	099.2025.32460	400	0	0.3000,0.5000,0.9000
+/project1/Embody/templates	base	tdn	project1/Embody/templates.tdn	2026-08-27 04:30:47 UTC		22	099.2025.32460	-400	-1200	0.3000,0.5000,0.9000
+/project1/Embody/Collection	base	tdn	project1/Embody/Collection.tdn	2026-08-27 04:30:47 UTC		2	099.2025.32460	200	-550	0.3000,0.5000,0.9000
+/project1/Embody/windowHeader	container	tdn	project1/Embody/windowHeader.tdn	2026-08-27 04:30:48 UTC		14	099.2025.32460	300	300	0.3000,0.5000,0.9000
+/project1/Embody/windowHeader/title	text	tdn	project1/Embody/windowHeader/title.tdn	2026-08-27 03:14:20 UTC		49	099.2025.32460	0	0	0.3000,0.5000,0.9000
+/project1/Embody/windowHeader/button_max	text	tdn	project1/Embody/windowHeader/button_max.tdn	2026-08-27 03:14:20 UTC		1	099.2025.32460	600	0	0.3000,0.5000,0.9000
+/project1/Embody/windowHeader/button_min	text	tdn	project1/Embody/windowHeader/button_min.tdn	2026-08-27 03:14:20 UTC		1	099.2025.32460	300	0	0.3000,0.5000,0.9000
+/project1/Embody/windowHeader/button_close	text	tdn	project1/Embody/windowHeader/button_close.tdn	2026-08-27 03:14:20 UTC		1	099.2025.32460	900	0	0.3000,0.5000,0.9000
+/project1/Embody/window_wizard	window	tdn	project1/Embody/window_wizard.tdn	2026-08-27 03:14:21 UTC		1	099.2025.32460	1200	675	0.3000,0.5000,0.9000
+/project1/Embody/embot_template	base	tdn	project1/Embody/embot_template.tdn	2026-08-27 03:14:21 UTC		1	099.2025.32460	-700	-1200	0.3000,0.5000,0.9000
+/project1/Embody/window_manager	window	tdn	project1/Embody/window_manager.tdn	2026-08-27 03:14:21 UTC		13	099.2025.32460	500	675	0.3000,0.5000,0.9000
+/project1/Embody/window_tagging_menu	window	tdn	project1/Embody/window_tagging_menu.tdn	2026-08-27 03:14:21 UTC		24	099.2025.32460	900	675	0.3000,0.5000,0.9000
+/project1/output	base	tdn	project1/output.tdn	2026-08-27 07:04:19 UTC		1	099.2025.32460	1200	0	0.3000,0.5000,0.9000
+/project1/postfx	base	tdn	project1/postfx.tdn	2026-08-27 07:04:19 UTC		2	099.2025.32460	925	0	0.3000,0.5000,0.9000
+/project1/render	base	tdn	project1/render.tdn	2026-08-27 03:14:21 UTC		1	099.2025.32460	-405	162	0.3000,0.5000,0.9000
+/project1/filein1	fbx	tdn	project1/filein1.tdn	2026-08-27 07:04:20 UTC		2	099.2025.32460	-100	-100	0.3000,0.5000,0.9000
+/project1/filein1/file1	null	tdn	project1/filein1/file1.tdn	2026-08-27 07:04:20 UTC		1	099.2025.32460	629	0	0.3000,0.5000,0.9000
+/project1/filein1/group1	geo	tdn	project1/filein1/group1.tdn	2026-08-27 07:04:20 UTC		2	099.2025.32460	909	0	0.3000,0.5000,0.9000
+/project1/filein1/mergedGeos	null	tdn	project1/filein1/mergedGeos.tdn	2026-08-27 07:04:20 UTC		1	099.2025.32460	100	-225	0.3000,0.5000,0.9000
+/project1/shaders	base	tdn	project1/shaders.tdn	2026-08-27 07:04:20 UTC		2	099.2025.32460	-685	-279	0.3000,0.5000,0.9000
+/project1/shaders/cam1	cam	tdn	project1/shaders/cam1.tdn	2026-08-27 07:04:20 UTC		1	099.2025.32460	400	100	0.3000,0.5000,0.9000
+/project1/shaders/light1	light	tdn	project1/shaders/light1.tdn	2026-08-27 07:04:20 UTC		1	099.2025.32460	600	100	0.3000,0.5000,0.9000
+/project1/shaders/light2	light	tdn	project1/shaders/light2.tdn	2026-08-27 07:04:21 UTC		1	099.2025.32460	800	100	0.3000,0.5000,0.9000
+/project1/shaders/geo_toon	geo	tdn	project1/shaders/geo_toon.tdn	2026-08-27 07:04:21 UTC		1	099.2025.32460	0	100	0.3000,0.5000,0.9000
+/project1/shaders/geo_crystal	geo	tdn	project1/shaders/geo_crystal.tdn	2026-08-27 07:04:21 UTC		1	099.2025.32460	200	100	0.3000,0.5000,0.9000
+/project1/learn_td	base	tdn	project1/learn_td.tdn	2026-08-27 07:04:20 UTC		2	099.2025.32460	714	-342	0.3000,0.5000,0.9000
+/project1/learn_td/my_playground	geo	tdn	project1/learn_td/my_playground.tdn	2026-08-27 07:04:21 UTC		2	099.2025.32460	600	0	0.3000,0.5000,0.9000
+/project1/learn_td/my_playground/render_cam	cam	tdn	project1/learn_td/my_playground/render_cam.tdn	2026-08-27 07:04:22 UTC		1	099.2025.32460	150	200	0.3000,0.5000,0.9000
+/project1/learn_td/instanced_city	geo	tdn	project1/learn_td/instanced_city.tdn	2026-08-27 07:04:21 UTC		2	099.2025.32460	200	-400	0.3000,0.5000,0.9000
+/project1/learn_td/instanced_city/render_cam	cam	tdn	project1/learn_td/instanced_city/render_cam.tdn	2026-08-27 07:04:22 UTC		1	099.2025.32460	150	200	0.3000,0.5000,0.9000
+/project1/learn_td/nikki_sanctuary	fbx	tdn	project1/learn_td/nikki_sanctuary.tdn	2026-08-27 07:04:21 UTC		2	099.2025.32460	-400	0	0.3000,0.5000,0.9000
+/project1/learn_td/nikki_sanctuary/file1	null	tdn	project1/learn_td/nikki_sanctuary/file1.tdn	2026-08-27 07:04:22 UTC		1	099.2025.32460	629	0	0.3000,0.5000,0.9000
+/project1/learn_td/nikki_sanctuary/group1	geo	tdn	project1/learn_td/nikki_sanctuary/group1.tdn	2026-08-27 07:04:22 UTC		2	099.2025.32460	909	0	0.3000,0.5000,0.9000
+/project1/learn_td/nikki_sanctuary/mergedGeos	null	tdn	project1/learn_td/nikki_sanctuary/mergedGeos.tdn	2026-08-27 07:04:22 UTC		1	099.2025.32460	100	-225	0.3000,0.5000,0.9000
+/project1/learn_td/procedural_tower	geo	tdn	project1/learn_td/procedural_tower.tdn	2026-08-27 07:04:21 UTC		2	099.2025.32460	200	0	0.3000,0.5000,0.9000
+/project1/learn_td/procedural_tower/render_cam	cam	tdn	project1/learn_td/procedural_tower/render_cam.tdn	2026-08-27 07:04:23 UTC		1	099.2025.32460	875	-150	0.3000,0.5000,0.9000
+/project1/learn_td/escher_fractal_tower	geo	tdn	project1/learn_td/escher_fractal_tower.tdn	2026-08-27 07:04:21 UTC		2	099.2025.32460	200	-800	0.3000,0.5000,0.9000
+/project1/learn_td/escher_fractal_tower/render_cam	cam	tdn	project1/learn_td/escher_fractal_tower/render_cam.tdn	2026-08-27 07:04:23 UTC		1	099.2025.32460	2675	-500	0.3000,0.5000,0.9000
+/project1/learn_td/escher_penrose_stairs	geo	tdn	project1/learn_td/escher_penrose_stairs.tdn	2026-08-27 07:04:21 UTC		2	099.2025.32460	-400	-800	0.3000,0.5000,0.9000
+/project1/learn_td/escher_penrose_stairs/render_cam	cam	tdn	project1/learn_td/escher_penrose_stairs/render_cam.tdn	2026-08-27 07:04:23 UTC		1	099.2025.32460	150	200	0.3000,0.5000,0.9000
+/project1/learn_td/escher_spiral_staircase	geo	tdn	project1/learn_td/escher_spiral_staircase.tdn	2026-08-27 07:04:21 UTC		2	099.2025.32460	-400	-1200	0.3000,0.5000,0.9000
+/project1/learn_td/escher_spiral_staircase/render_cam	cam	tdn	project1/learn_td/escher_spiral_staircase/render_cam.tdn	2026-08-27 07:04:23 UTC		1	099.2025.32460	150	200	0.3000,0.5000,0.9000
+/project1/worldgen	base	tdn	project1/worldgen.tdn	2026-08-27 07:04:20 UTC		2	099.2025.32460	1000	-600	0.3000,0.5000,0.9000
+/project1/worldgen/pieces	base	tdn	project1/worldgen/pieces.tdn	2026-08-27 07:04:21 UTC		2	099.2025.32460	0	200	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_belvedere	geo	tdn	project1/worldgen/pieces/wg_belvedere.tdn	2026-08-27 07:04:23 UTC		2	099.2025.32460	2400	0	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_belvedere/render_cam	cam	tdn	project1/worldgen/pieces/wg_belvedere/render_cam.tdn	2026-08-27 07:04:25 UTC		1	099.2025.32460	0	400	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_waterfall	geo	tdn	project1/worldgen/pieces/wg_waterfall.tdn	2026-08-27 07:04:23 UTC		2	099.2025.32460	0	-600	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_waterfall/render_cam	cam	tdn	project1/worldgen/pieces/wg_waterfall/render_cam.tdn	2026-08-27 07:04:25 UTC		1	099.2025.32460	0	400	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_relativity	geo	tdn	project1/worldgen/pieces/wg_relativity.tdn	2026-08-27 07:04:23 UTC		2	099.2025.32460	1200	-600	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_relativity/render_cam	cam	tdn	project1/worldgen/pieces/wg_relativity/render_cam.tdn	2026-08-27 07:04:25 UTC		1	099.2025.32460	0	400	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_stair_well	geo	tdn	project1/worldgen/pieces/wg_stair_well.tdn	2026-08-27 07:04:23 UTC		2	099.2025.32460	600	-1200	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_stair_well/render_cam	cam	tdn	project1/worldgen/pieces/wg_stair_well/render_cam.tdn	2026-08-27 07:04:25 UTC		1	099.2025.32460	0	400	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_tessellation	geo	tdn	project1/worldgen/pieces/wg_tessellation.tdn	2026-08-27 07:04:23 UTC		2	099.2025.32460	1800	0	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_tessellation/render_cam	cam	tdn	project1/worldgen/pieces/wg_tessellation/render_cam.tdn	2026-08-27 07:04:25 UTC		1	099.2025.32460	0	400	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_fractal_tower	geo	tdn	project1/worldgen/pieces/wg_fractal_tower.tdn	2026-08-27 07:04:23 UTC		2	099.2025.32460	1200	0	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_fractal_tower/render_cam	cam	tdn	project1/worldgen/pieces/wg_fractal_tower/render_cam.tdn	2026-08-27 07:04:25 UTC		1	099.2025.32460	0	400	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_penrose_stairs	geo	tdn	project1/worldgen/pieces/wg_penrose_stairs.tdn	2026-08-27 07:04:23 UTC		2	099.2025.32460	0	0	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_penrose_stairs/render_cam	cam	tdn	project1/worldgen/pieces/wg_penrose_stairs/render_cam.tdn	2026-08-27 07:04:25 UTC		1	099.2025.32460	0	400	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_impossible_cube	geo	tdn	project1/worldgen/pieces/wg_impossible_cube.tdn	2026-08-27 07:04:23 UTC		2	099.2025.32460	0	-1200	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_impossible_cube/render_cam	cam	tdn	project1/worldgen/pieces/wg_impossible_cube/render_cam.tdn	2026-08-27 07:04:26 UTC		1	099.2025.32460	0	400	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_infinite_library	geo	tdn	project1/worldgen/pieces/wg_infinite_library.tdn	2026-08-27 07:04:23 UTC		2	099.2025.32460	600	-600	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_infinite_library/render_cam	cam	tdn	project1/worldgen/pieces/wg_infinite_library/render_cam.tdn	2026-08-27 07:04:26 UTC		1	099.2025.32460	0	400	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_spiral_staircase	geo	tdn	project1/worldgen/pieces/wg_spiral_staircase.tdn	2026-08-27 07:04:23 UTC		2	099.2025.32460	600	0	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_spiral_staircase/render_cam	cam	tdn	project1/worldgen/pieces/wg_spiral_staircase/render_cam.tdn	2026-08-27 07:04:26 UTC		1	099.2025.32460	0	400	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_infinite_corridor	geo	tdn	project1/worldgen/pieces/wg_infinite_corridor.tdn	2026-08-27 07:04:23 UTC		2	099.2025.32460	2400	-600	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_infinite_corridor/render_cam	cam	tdn	project1/worldgen/pieces/wg_infinite_corridor/render_cam.tdn	2026-08-27 07:04:26 UTC		1	099.2025.32460	0	400	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_mobius_architecture	geo	tdn	project1/worldgen/pieces/wg_mobius_architecture.tdn	2026-08-27 07:04:24 UTC		2	099.2025.32460	1200	-1200	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_mobius_architecture/render_cam	cam	tdn	project1/worldgen/pieces/wg_mobius_architecture/render_cam.tdn	2026-08-27 07:04:26 UTC		1	099.2025.32460	0	400	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_ascending_descending	geo	tdn	project1/worldgen/pieces/wg_ascending_descending.tdn	2026-08-27 07:04:24 UTC		2	099.2025.32460	1800	-600	0.3000,0.5000,0.9000
+/project1/worldgen/pieces/wg_ascending_descending/render_cam	cam	tdn	project1/worldgen/pieces/wg_ascending_descending/render_cam.tdn	2026-08-27 07:04:26 UTC		1	099.2025.32460	0	400	0.3000,0.5000,0.9000
+/project1/worldgen/renders	base	tdn	project1/worldgen/renders.tdn	2026-08-27 07:04:21 UTC		1	099.2025.32460	0	-300	0.3000,0.5000,0.9000
+/project1/worldgen/light_rig	base	tdn	project1/worldgen/light_rig.tdn	2026-08-27 07:04:21 UTC		2	099.2025.32460	-400	0	0.3000,0.5000,0.9000
+/project1/worldgen/light_rig/sun	light	tdn	project1/worldgen/light_rig/sun.tdn	2026-08-27 07:04:24 UTC		1	099.2025.32460	0	0	0.3000,0.5000,0.9000
+/project1/worldgen/light_rig/ambient	light	tdn	project1/worldgen/light_rig/ambient.tdn	2026-08-27 07:04:24 UTC		1	099.2025.32460	0	-150	0.3000,0.5000,0.9000
+/project1/worldgen/materials	base	tdn	project1/worldgen/materials.tdn	2026-08-27 07:04:21 UTC		1	099.2025.32460	-400	400	0.3000,0.5000,0.9000
+/project1/particles	base	tdn	project1/particles.tdn	2026-08-27 07:04:20 UTC		2	099.2025.32460	328	49	0.3000,0.5000,0.9000
+/project1/particles/cam1	cam	tdn	project1/particles/cam1.tdn	2026-08-27 07:04:21 UTC		1	099.2025.32460	200	0	0.3000,0.5000,0.9000
+/project1/particles/light1	light	tdn	project1/particles/light1.tdn	2026-08-27 07:04:21 UTC		1	099.2025.32460	200	-100	0.3000,0.5000,0.9000
+/project1/particles/geo_burst	geo	tdn	project1/particles/geo_burst.tdn	2026-08-27 07:04:21 UTC		1	099.2025.32460	200	150	0.3000,0.5000,0.9000
+/project1/particles/geo_motes	geo	tdn	project1/particles/geo_motes.tdn	2026-08-27 07:04:21 UTC		1	099.2025.32460	200	250	0.3000,0.5000,0.9000
+/project1/starfield	base	tdn	project1/starfield.tdn	2026-08-27 07:14:00 UTC		2	099.2025.32460	-425	-75	0.3000,0.5000,0.9000
+/project1/geo_engines	base	tdn	project1/geo_engines.tdn	2026-08-27 07:04:20 UTC		2	099.2025.32460	600	0	0.3000,0.5000,0.9000
+/project1/geo_engines/cam_look	null	tdn	project1/geo_engines/cam_look.tdn	2026-08-27 07:04:21 UTC		1	099.2025.32460	0	0	0.3000,0.5000,0.9000
+/project1/geo_engines/water_sim	geo	tdn	project1/geo_engines/water_sim.tdn	2026-08-27 07:04:21 UTC		1	099.2025.32460	367	-108	0.3000,0.5000,0.9000
+/project1/geo_engines/nuke_light	light	tdn	project1/geo_engines/nuke_light.tdn	2026-08-27 07:04:22 UTC		1	099.2025.32460	0	0	0.3000,0.5000,0.9000
+/project1/geo_engines/render_cam	cam	tdn	project1/geo_engines/render_cam.tdn	2026-08-27 07:04:22 UTC		1	099.2025.32460	87	276	0.3000,0.5000,0.9000
+/project1/geo_engines/nikki_shrine	geo	tdn	project1/geo_engines/nikki_shrine.tdn	2026-08-27 07:04:22 UTC		2	099.2025.32460	400	-400	0.3000,0.5000,0.9000
+/project1/geo_engines/nikki_shrine/shrine_mesh	fbx	tdn	project1/geo_engines/nikki_shrine/shrine_mesh.tdn	2026-08-27 07:04:24 UTC		2	099.2025.32460	0	0	0.3000,0.5000,0.9000
+/project1/geo_engines/nikki_shrine/shrine_mesh/file1	null	tdn	project1/geo_engines/nikki_shrine/shrine_mesh/file1.tdn	2026-08-27 07:04:26 UTC		1	099.2025.32460	629	0	0.3000,0.5000,0.9000
+/project1/geo_engines/nikki_shrine/shrine_mesh/group1	geo	tdn	project1/geo_engines/nikki_shrine/shrine_mesh/group1.tdn	2026-08-27 07:04:26 UTC		2	099.2025.32460	909	0	0.3000,0.5000,0.9000
+/project1/geo_engines/nikki_shrine/shrine_mesh/mergedGeos	null	tdn	project1/geo_engines/nikki_shrine/shrine_mesh/mergedGeos.tdn	2026-08-27 07:04:27 UTC		1	099.2025.32460	100	-225	0.3000,0.5000,0.9000
+/project1/geo_engines/render_light	light	tdn	project1/geo_engines/render_light.tdn	2026-08-27 07:04:22 UTC		1	099.2025.32460	367	119	0.3000,0.5000,0.9000
+/project1/geo_engines/cosmic_orrery	base	tdn	project1/geo_engines/cosmic_orrery.tdn	2026-08-27 07:04:22 UTC		2	099.2025.32460	800	-200	0.3000,0.5000,0.9000
+/project1/geo_engines/cosmic_orrery/sun	geo	tdn	project1/geo_engines/cosmic_orrery/sun.tdn	2026-08-27 07:04:24 UTC		1	099.2025.32460	-600	0	0.3000,0.5000,0.9000
+/project1/geo_engines/cosmic_orrery/cam1	cam	tdn	project1/geo_engines/cosmic_orrery/cam1.tdn	2026-08-27 07:04:24 UTC		1	099.2025.32460	0	600	0.3000,0.5000,0.9000
+/project1/geo_engines/cosmic_orrery/light1	light	tdn	project1/geo_engines/cosmic_orrery/light1.tdn	2026-08-27 07:04:24 UTC		1	099.2025.32460	0	300	0.3000,0.5000,0.9000
+/project1/geo_engines/cosmic_orrery/ambient	light	tdn	project1/geo_engines/cosmic_orrery/ambient.tdn	2026-08-27 07:04:24 UTC		1	099.2025.32460	200	300	0.3000,0.5000,0.9000
+/project1/geo_engines/cosmic_orrery/planets	base	tdn	project1/geo_engines/cosmic_orrery/planets.tdn	2026-08-27 07:04:24 UTC		2	099.2025.32460	-600	300	0.3000,0.5000,0.9000
+/project1/geo_engines/cosmic_orrery/planets/planet_1	geo	tdn	project1/geo_engines/cosmic_orrery/planets/planet_1.tdn	2026-08-27 07:04:27 UTC		1	099.2025.32460	-320	-300	0.3000,0.5000,0.9000
+/project1/geo_engines/cosmic_orrery/planets/planet_2	geo	tdn	project1/geo_engines/cosmic_orrery/planets/planet_2.tdn	2026-08-27 07:04:27 UTC		1	099.2025.32460	-160	-600	0.3000,0.5000,0.9000
+/project1/geo_engines/cosmic_orrery/planets/planet_3	geo	tdn	project1/geo_engines/cosmic_orrery/planets/planet_3.tdn	2026-08-27 07:04:27 UTC		1	099.2025.32460	0	-900	0.3000,0.5000,0.9000
+/project1/geo_engines/cosmic_orrery/materials	base	tdn	project1/geo_engines/cosmic_orrery/materials.tdn	2026-08-27 07:04:25 UTC		1	099.2025.32460	-1200	400	0.3000,0.5000,0.9000
+/project1/geo_engines/cosmic_orrery/starfield	geo	tdn	project1/geo_engines/cosmic_orrery/starfield.tdn	2026-08-27 07:04:25 UTC		1	099.2025.32460	-600	-600	0.3000,0.5000,0.9000
+/project1/geo_engines/cosmic_orrery/orbit_rings	geo	tdn	project1/geo_engines/cosmic_orrery/orbit_rings.tdn	2026-08-27 07:04:25 UTC		1	099.2025.32460	-1200	0	0.3000,0.5000,0.9000
+/project1/geo_engines/instanced_stars	geo	tdn	project1/geo_engines/instanced_stars.tdn	2026-08-27 07:04:22 UTC		1	099.2025.32460	-192	276	0.3000,0.5000,0.9000
+/project1/geo_engines/starfield_bubbles	geo	tdn	project1/geo_engines/starfield_bubbles.tdn	2026-08-27 07:04:22 UTC		1	099.2025.32460	600	-400	0.3000,0.5000,0.9000
+/project1/geo_engines/bubbles_and_stars_geo	geo	tdn	project1/geo_engines/bubbles_and_stars_geo.tdn	2026-08-27 07:04:22 UTC		1	099.2025.32460	-367	49	0.3000,0.5000,0.9000
+/project1/penrose_geo	geo	tdn	project1/penrose_geo.tdn	2026-08-27 07:04:20 UTC		1	099.2025.32460	-405	-342	0.3000,0.5000,0.9000
+/project1/fbx_importer	base	tdn	project1/fbx_importer.tdn	2026-08-27 07:04:20 UTC		2	099.2025.32460	450	-200	0.3000,0.5000,0.9000
+/project1/_fbxcomp_probe	fbx	tdn	project1/_fbxcomp_probe.tdn	2026-08-27 07:04:20 UTC		2	099.2025.32460	0	0	0.3000,0.5000,0.9000
+/project1/_fbxcomp_probe/file1	null	tdn	project1/_fbxcomp_probe/file1.tdn	2026-08-27 07:04:22 UTC		1	099.2025.32460	629	0	0.3000,0.5000,0.9000
+/project1/_fbxcomp_probe/group1	geo	tdn	project1/_fbxcomp_probe/group1.tdn	2026-08-27 07:04:22 UTC		2	099.2025.32460	909	0	0.3000,0.5000,0.9000
+/project1/_fbxcomp_probe/mergedGeos	null	tdn	project1/_fbxcomp_probe/mergedGeos.tdn	2026-08-27 07:04:22 UTC		1	099.2025.32460	100	-225	0.3000,0.5000,0.9000
+/project1/test_container	container	tdn	project1/test_container.tdn	2026-08-27 03:14:31 UTC		1	099.2025.32460	-685	-51	0.3000,0.5000,0.9000
+/project1/debug_render_net	base	tdn	project1/debug_render_net.tdn	2026-08-27 07:04:20 UTC		2	099.2025.32460	125	-150	0.3000,0.5000,0.9000
+/project1/debug_render_net/cam1	cam	tdn	project1/debug_render_net/cam1.tdn	2026-08-27 07:04:22 UTC		1	099.2025.32460	0	0	0.3000,0.5000,0.9000
+/project1/debug_render_net/geo1	geo	tdn	project1/debug_render_net/geo1.tdn	2026-08-27 07:04:22 UTC		1	099.2025.32460	0	0	0.3000,0.5000,0.9000
+/project1/debug_render_net/light1	light	tdn	project1/debug_render_net/light1.tdn	2026-08-27 07:04:22 UTC		1	099.2025.32460	0	0	0.3000,0.5000,0.9000
+/	base	tdn	grandmaster_melodia7.tdn	2026-08-27 03:14:35 UTC			099.2025.32460			
+/project1/ui/main_panel/sidebar/slider_exec	chopexec	py	project1/ui/main_panel/sidebar/slider_exec.py	2026-08-27 04:30:37 UTC				0	0	0.9000,0.3000,0.4000
+/project1/ui/PortfolioController	text	py	project1/ui/PortfolioController.py	2026-08-27 04:30:37 UTC				0	0	0.9000,0.3000,0.4000
+/project1/shaders/toon_satin_vertex	text	py	project1/shaders/toon_satin_vertex.py	2026-08-27 04:30:37 UTC				0	450	0.9000,0.3000,0.4000
+/project1/shaders/toon_satin_pixel	text	py	project1/shaders/toon_satin_pixel.py	2026-08-27 04:30:37 UTC				150	450	0.9000,0.3000,0.4000
+/project1/shaders/toon_satin_mat_vertex	text	glsl	project1/shaders/toon_satin_mat_vertex.glsl	2026-08-27 04:30:37 UTC				0	-120	0.9000,0.3000,0.4000
+/project1/shaders/toon_satin_mat_pixel	text	glsl	project1/shaders/toon_satin_mat_pixel.glsl	2026-08-27 04:30:37 UTC				160	-120	0.9000,0.3000,0.4000
+/project1/shaders/iridescent_crystal_vertex	text	py	project1/shaders/iridescent_crystal_vertex.py	2026-08-27 04:30:37 UTC				400	450	0.9000,0.3000,0.4000
+/project1/shaders/iridescent_crystal_pixel	text	py	project1/shaders/iridescent_crystal_pixel.py	2026-08-27 04:30:37 UTC				550	450	0.9000,0.3000,0.4000
+/project1/shaders/iridescent_crystal_mat_vertex	text	glsl	project1/shaders/iridescent_crystal_mat_vertex.glsl	2026-08-27 04:30:37 UTC				0	-120	0.9000,0.3000,0.4000
+/project1/shaders/iridescent_crystal_mat_pixel	text	glsl	project1/shaders/iridescent_crystal_mat_pixel.glsl	2026-08-27 04:30:37 UTC				160	-120	0.9000,0.3000,0.4000
+/project1/postfx/vignette_keys	table	tsv	project1/postfx/vignette_keys.tsv	2026-08-27 04:30:37 UTC				0	-120	0.9000,0.3000,0.4000
+/project1/postfx/nikki_lut_keys	table	tsv	project1/postfx/nikki_lut_keys.tsv	2026-08-27 04:30:37 UTC				0	-120	0.9000,0.3000,0.4000
+/project1/osc/preset_matrix	table	tsv	project1/osc/preset_matrix.tsv	2026-08-27 04:30:37 UTC				-200	100	0.9000,0.3000,0.4000
+/project1/learn_td/nikki_sanctuary_callbacks	text	py	project1/learn_td/nikki_sanctuary_callbacks.py	2026-08-27 04:30:37 UTC				-400	-160	0.9000,0.3000,0.4000
+/project1/learn_td/nikki_sanctuary/group1/touchMergedNodes	table	tsv	project1/learn_td/nikki_sanctuary/group1/touchMergedNodes.tsv	2026-08-27 04:30:37 UTC				554	0	0.9000,0.3000,0.4000
+/project1/geo_engines/nikki_shrine/shrine_mesh_callbacks	text	py	project1/geo_engines/nikki_shrine/shrine_mesh_callbacks.py	2026-08-27 04:30:37 UTC				0	-160	0.9000,0.3000,0.4000
+/project1/geo_engines/nikki_shrine/shrine_mesh/group1/touchMergedNodes	table	tsv	project1/geo_engines/nikki_shrine/shrine_mesh/group1/touchMergedNodes.tsv	2026-08-27 04:30:37 UTC				554	0	0.9000,0.3000,0.4000
+/project1/filein1_callbacks	text	py	project1/filein1_callbacks.py	2026-08-27 04:30:37 UTC				-100	-260	0.9000,0.3000,0.4000
+/project1/filein1/group1/touchMergedNodes	table	tsv	project1/filein1/group1/touchMergedNodes.tsv	2026-08-27 04:30:37 UTC				554	0	0.9000,0.3000,0.4000
+/project1/fbx_importer/FbxImporterExt	text	py	project1/fbx_importer/FbxImporterExt.py	2026-08-27 04:30:37 UTC				0	0	0.9000,0.3000,0.4000
+/project1/audio/pitch_analyzer_callbacks	text	py	project1/audio/pitch_analyzer_callbacks.py	2026-08-27 04:30:37 UTC				0	-120	0.9000,0.3000,0.4000
+/project1/audio/chord_detector_callbacks	text	py	project1/audio/chord_detector_callbacks.py	2026-08-27 04:30:37 UTC				550	-240	0.9000,0.3000,0.4000
+/project1/_fbxcomp_probe_callbacks	text	py	project1/_fbxcomp_probe_callbacks.py	2026-08-27 04:30:37 UTC				0	-160	0.9000,0.3000,0.4000
+/project1/_fbxcomp_probe/group1/touchMergedNodes	table	tsv	project1/_fbxcomp_probe/group1/touchMergedNodes.tsv	2026-08-27 04:30:37 UTC				554	0	0.9000,0.3000,0.4000
+/project1/PROJECT_LEGEND	text	py	project1/PROJECT_LEGEND.py	2026-08-27 04:30:37 UTC				75	475	0.9000,0.3000,0.4000
+/project1/MelodiaStudioCore	text	py	project1/MelodiaStudioCore.py	2026-08-27 04:30:37 UTC				1655	191	0.9000,0.3000,0.4000
+/project1/GraphManagerExt	text	py	project1/GraphManagerExt.py	2026-08-27 04:30:37 UTC				1655	348	0.9000,0.3000,0.4000
+/project1/Embody/wizard/title_callbacks	text	py	project1/Embody/wizard/title_callbacks.py	2026-08-27 04:30:37 UTC				240	-600	0.9000,0.3000,0.4000
+/project1/Embody/wizard/steplabel_callbacks	text	py	project1/Embody/wizard/steplabel_callbacks.py	2026-08-27 04:30:37 UTC				465	50	0.9000,0.3000,0.4000
+/project1/Embody/wizard/logic	text	py	project1/Embody/wizard/logic.py	2026-08-27 04:30:37 UTC				240	0	0.9000,0.3000,0.4000
+/project1/Embody/wizard/hint_callbacks	text	py	project1/Embody/wizard/hint_callbacks.py	2026-08-27 04:30:37 UTC				0	-600	0.9000,0.3000,0.4000
+/project1/Embody/wizard/clicks	panelexec	py	project1/Embody/wizard/clicks.py	2026-08-27 04:30:37 UTC				240	-150	0.9000,0.3000,0.4000
+/project1/Embody/windowHeader/panelexec1	panelexec	py	project1/Embody/windowHeader/panelexec1.py	2026-08-27 04:30:37 UTC				300	-200	0.9000,0.3000,0.4000
+/project1/Embody/windowHeader/WindowHeaderExt	text	py	project1/Embody/windowHeader/WindowHeaderExt.py	2026-08-27 04:30:37 UTC				0	-200	0.9000,0.3000,0.4000
+/project1/Embody/toolbar/tooltip/text_callbacks	text	py	project1/Embody/toolbar/tooltip/text_callbacks.py	2026-08-27 04:30:37 UTC				0	-160	0.9000,0.3000,0.4000
+/project1/Embody/toolbar/toolbar_config	table	tsv	project1/Embody/toolbar/toolbar_config.tsv	2026-08-27 04:30:37 UTC				0	-200	0.9000,0.3000,0.4000
+/project1/Embody/toolbar/parexec_responsive	parexec	py	project1/Embody/toolbar/parexec_responsive.py	2026-08-27 04:30:37 UTC				400	-200	0.9000,0.3000,0.4000
+/project1/Embody/toolbar/parexec_filter	parexec	py	project1/Embody/toolbar/parexec_filter.py	2026-08-27 04:30:37 UTC				600	-200	0.9000,0.3000,0.4000
+/project1/Embody/toolbar/panelexec_right	panelexec	py	project1/Embody/toolbar/panelexec_right.py	2026-08-27 04:30:37 UTC				1200	-200	0.9000,0.3000,0.4000
+/project1/Embody/toolbar/panelexec_left	panelexec	py	project1/Embody/toolbar/panelexec_left.py	2026-08-27 04:30:37 UTC				1000	-200	0.9000,0.3000,0.4000
+/project1/Embody/toolbar/container_left/status_callbacks	text	py	project1/Embody/toolbar/container_left/status_callbacks.py	2026-08-27 04:30:37 UTC				0	-160	0.9000,0.3000,0.4000
+/project1/Embody/toolbar/container_left/save_folder_callbacks	text	py	project1/Embody/toolbar/container_left/save_folder_callbacks.py	2026-08-27 04:30:37 UTC				0	-160	0.9000,0.3000,0.4000
+/project1/Embody/toolbar/container_left/save_comp_callbacks	text	py	project1/Embody/toolbar/container_left/save_comp_callbacks.py	2026-08-27 04:30:38 UTC				0	-160	0.9000,0.3000,0.4000
+/project1/Embody/toolbar/container_left/refresh_callbacks	text	py	project1/Embody/toolbar/container_left/refresh_callbacks.py	2026-08-27 04:30:38 UTC				0	-160	0.9000,0.3000,0.4000
+/project1/Embody/toolbar/container_left/perform_callbacks	text	py	project1/Embody/toolbar/container_left/perform_callbacks.py	2026-08-27 04:30:38 UTC				0	-160	0.9000,0.3000,0.4000
+/project1/Embody/toolbar/container_left/initialize_callbacks	text	py	project1/Embody/toolbar/container_left/initialize_callbacks.py	2026-08-27 04:30:38 UTC				0	-160	0.9000,0.3000,0.4000
+/project1/Embody/toolbar/container_left/import_tdn_callbacks	text	py	project1/Embody/toolbar/container_left/import_tdn_callbacks.py	2026-08-27 04:30:38 UTC				0	-160	0.9000,0.3000,0.4000
+/project1/Embody/toolbar/container_left/export_tdn_callbacks	text	py	project1/Embody/toolbar/container_left/export_tdn_callbacks.py	2026-08-27 04:30:38 UTC				0	-160	0.9000,0.3000,0.4000
+/project1/Embody/toolbar/container_left/export_comp_tdn_callbacks	text	py	project1/Embody/toolbar/container_left/export_comp_tdn_callbacks.py	2026-08-27 04:30:38 UTC				0	-160	0.9000,0.3000,0.4000
+/project1/Embody/toolbar/container_left/envoy_toggle_callbacks	text	py	project1/Embody/toolbar/container_left/envoy_toggle_callbacks.py	2026-08-27 04:30:38 UTC				0	-160	0.9000,0.3000,0.4000
+/project1/Embody/toolbar/container_left/disable_callbacks	text	py	project1/Embody/toolbar/container_left/disable_callbacks.py	2026-08-27 04:30:38 UTC				0	-160	0.9000,0.3000,0.4000
+/project1/Embody/toolbar/ToolbarExt	text	py	project1/Embody/toolbar/ToolbarExt.py	2026-08-27 04:30:38 UTC				200	-200	0.9000,0.3000,0.4000
+/project1/Embody/timer_callbacks	text	py	project1/Embody/timer_callbacks.py	2026-08-27 04:30:38 UTC				-700	-375	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_tdn_textconv	text	py	project1/Embody/templates/text_tdn_textconv.py	2026-08-27 04:30:38 UTC				0	-1000	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_skill_visual_aesthetics	text	md	project1/Embody/templates/text_skill_visual_aesthetics.md	2026-08-27 04:30:38 UTC				2100	-400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_skill_td_recovery	text	md	project1/Embody/templates/text_skill_td_recovery.md	2026-08-27 04:30:38 UTC				3300	-400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_skill_td_api_reference	text	md	project1/Embody/templates/text_skill_td_api_reference.md	2026-08-27 04:30:38 UTC				1500	-400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_skill_pop_networks	text	md	project1/Embody/templates/text_skill_pop_networks.md	2026-08-27 04:30:38 UTC				2400	-400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_skill_parameter_design	text	md	project1/Embody/templates/text_skill_parameter_design.md	2026-08-27 04:30:38 UTC				3000	-400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_skill_multi_session_etiquette	text	md	project1/Embody/templates/text_skill_multi_session_etiquette.md	2026-08-27 04:30:38 UTC				3600	-400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_skill_movie_export	text	md	project1/Embody/templates/text_skill_movie_export.md	2026-08-27 04:30:38 UTC				2700	-400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_skill_mcp_tools_reference	text	md	project1/Embody/templates/text_skill_mcp_tools_reference.md	2026-08-27 04:30:38 UTC				1800	-400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_skill_manage_annotations	text	md	project1/Embody/templates/text_skill_manage_annotations.md	2026-08-27 04:30:38 UTC				1200	-400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_skill_externalize	text	md	project1/Embody/templates/text_skill_externalize.md	2026-08-27 04:30:38 UTC				600	-400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_skill_debug_operator	text	md	project1/Embody/templates/text_skill_debug_operator.md	2026-08-27 04:30:38 UTC				300	-400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_skill_create_operator	text	md	project1/Embody/templates/text_skill_create_operator.md	2026-08-27 04:30:38 UTC				0	-400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_skill_create_extension	text	md	project1/Embody/templates/text_skill_create_extension.md	2026-08-27 04:30:38 UTC				900	-400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_settings_local	text	json	project1/Embody/templates/text_settings_local.json	2026-08-27 04:30:38 UTC				600	1200	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_rule_td_python	text	md	project1/Embody/templates/text_rule_td_python.md	2026-08-27 04:30:38 UTC				300	400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_rule_td_connectivity	text	md	project1/Embody/templates/text_rule_td_connectivity.md	2026-08-27 04:30:38 UTC				2400	400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_rule_refresh_after_commit	text	md	project1/Embody/templates/text_rule_refresh_after_commit.md	2026-08-27 04:30:38 UTC				1800	400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_rule_performance	text	md	project1/Embody/templates/text_rule_performance.md	2026-08-27 04:30:38 UTC				2100	400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_rule_parameters	text	md	project1/Embody/templates/text_rule_parameters.md	2026-08-27 04:30:38 UTC				900	400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_rule_network_layout	text	md	project1/Embody/templates/text_rule_network_layout.md	2026-08-27 04:30:38 UTC				0	400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_rule_multi_session	text	md	project1/Embody/templates/text_rule_multi_session.md	2026-08-27 04:30:38 UTC				2700	400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_rule_mcp_safety	text	md	project1/Embody/templates/text_rule_mcp_safety.md	2026-08-27 04:30:38 UTC				600	400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_rule_github_release	text	md	project1/Embody/templates/text_rule_github_release.md	2026-08-27 04:30:38 UTC				1500	400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_rule_commit_push_checklist	text	md	project1/Embody/templates/text_rule_commit_push_checklist.md	2026-08-27 04:30:38 UTC				1200	400	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_envoy_bridge	text	py	project1/Embody/templates/text_envoy_bridge.py	2026-08-27 04:30:38 UTC				900	1200	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_claude	text	md	project1/Embody/templates/text_claude.md	2026-08-27 04:30:38 UTC				0	1200	0.9000,0.3000,0.4000
+/project1/Embody/templates/text_agents_md	text	md	project1/Embody/templates/text_agents_md.md	2026-08-27 04:30:38 UTC				300	1200	0.9000,0.3000,0.4000
+/project1/Embody/tagger/replicator1_callbacks	text	py	project1/Embody/tagger/replicator1_callbacks.py	2026-08-27 04:30:38 UTC				-225	-160	0.9000,0.3000,0.4000
+/project1/Embody/tagger/header/text1_callbacks	text	py	project1/Embody/tagger/header/text1_callbacks.py	2026-08-27 04:30:38 UTC				-200	-160	0.9000,0.3000,0.4000
+/project1/Embody/shortcuts	text	py	project1/Embody/shortcuts.py	2026-08-27 04:30:38 UTC				-500	-375	0.9000,0.3000,0.4000
+/project1/Embody/parexec	parexec	py	project1/Embody/parexec.py	2026-08-27 04:30:38 UTC				-700	100	0.9000,0.3000,0.4000
+/project1/Embody/palette_catalog	table	tsv	project1/Embody/palette_catalog.tsv	2026-08-27 04:30:39 UTC				-500	200	0.9000,0.3000,0.4000
+/project1/Embody/list/list_callbacks	text	py	project1/Embody/list/list_callbacks.py	2026-08-27 04:30:39 UTC				625	0	0.9000,0.3000,0.4000
+/project1/Embody/list/inject_parents_callbacks	text	py	project1/Embody/list/inject_parents_callbacks.py	2026-08-27 04:30:39 UTC				-100	-120	0.9000,0.3000,0.4000
+/project1/Embody/keyboardin_callbacks	text	py	project1/Embody/keyboardin_callbacks.py	2026-08-27 04:30:39 UTC				-300	-375	0.9000,0.3000,0.4000
+/project1/Embody/help/text_help_display	text	py	project1/Embody/help/text_help_display.py	2026-08-27 04:30:39 UTC				0	-200	0.9000,0.3000,0.4000
+/project1/Embody/help/text_help	text	py	project1/Embody/help/text_help.py	2026-08-27 04:30:39 UTC				0	0	0.9000,0.3000,0.4000
+/project1/Embody/fifo1_callbacks	text	py	project1/Embody/fifo1_callbacks.py	2026-08-27 04:30:39 UTC				-275	100	0.9000,0.3000,0.4000
+/project1/Embody/execute	execute	py	project1/Embody/execute.py	2026-08-27 04:30:39 UTC				-700	200	0.9000,0.3000,0.4000
+/project1/Embody/envoy_viz	text	py	project1/Embody/envoy_viz.py	2026-08-27 04:30:39 UTC				-500	600	0.9000,0.3000,0.4000
+/project1/Embody/envoy_setup	text	py	project1/Embody/envoy_setup.py	2026-08-27 04:30:39 UTC				-500	700	0.9000,0.3000,0.4000
+/project1/Embody/envoy_read	text	py	project1/Embody/envoy_read.py	2026-08-27 04:30:39 UTC				-500	800	0.9000,0.3000,0.4000
+/project1/Embody/envoy_ops	text	py	project1/Embody/envoy_ops.py	2026-08-27 04:30:39 UTC				-500	400	0.9000,0.3000,0.4000
+/project1/Embody/envoy_layout	text	py	project1/Embody/envoy_layout.py	2026-08-27 04:30:39 UTC				-500	500	0.9000,0.3000,0.4000
+/project1/Embody/embody_launch	text	py	project1/Embody/embody_launch.py	2026-08-27 04:30:39 UTC				-275	800	0.9000,0.3000,0.4000
+/project1/Embody/embody_git	text	py	project1/Embody/embody_git.py	2026-08-27 04:30:39 UTC				-275	700	0.9000,0.3000,0.4000
+/project1/Embody/embody_admin	text	py	project1/Embody/embody_admin.py	2026-08-27 04:30:39 UTC				-700	400	0.9000,0.3000,0.4000
+/project1/Embody/divergent_defaults	table	tsv	project1/Embody/divergent_defaults.tsv	2026-08-27 04:30:39 UTC				-500	300	0.9000,0.3000,0.4000
+/project1/Embody/chopexec_exit_tagger	chopexec	py	project1/Embody/chopexec_exit_tagger.py	2026-08-27 04:30:39 UTC				-300	-650	0.9000,0.3000,0.4000
+/project1/Embody/TDNExt	text	py	project1/Embody/TDNExt.py	2026-08-27 04:30:39 UTC				-700	600	0.9000,0.3000,0.4000
+/project1/Embody/EnvoyExt	text	py	project1/Embody/EnvoyExt.py	2026-08-27 04:30:39 UTC				-700	700	0.9000,0.3000,0.4000
+/project1/Embody/EmbodyExt	text	py	project1/Embody/EmbodyExt.py	2026-08-27 04:30:39 UTC				-700	800	0.9000,0.3000,0.4000
+/project1/Embody/Collection/scanner	text	py	project1/Embody/Collection/scanner.py	2026-08-27 04:30:39 UTC				0	-200	0.9000,0.3000,0.4000
+/project1/Embody/Collection/safe_import	text	py	project1/Embody/Collection/safe_import.py	2026-08-27 04:30:39 UTC				400	-200	0.9000,0.3000,0.4000
+/project1/Embody/Collection/CollectionExt	text	py	project1/Embody/Collection/CollectionExt.py	2026-08-27 04:30:39 UTC				200	0	0.9000,0.3000,0.4000
+/project1/Embody/CatalogManagerExt	text	py	project1/Embody/CatalogManagerExt.py	2026-08-27 04:30:39 UTC				-700	500	0.9000,0.3000,0.4000

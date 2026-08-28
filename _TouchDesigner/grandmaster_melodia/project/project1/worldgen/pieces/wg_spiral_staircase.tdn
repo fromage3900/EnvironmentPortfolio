@@ -1,0 +1,946 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:23Z'
+network_path: /project1/worldgen/pieces/wg_spiral_staircase
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  boxSOP:
+    parameters:
+      sizex: 0.6
+      sizey: 0.08
+      sizez: 0.3
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  transformSOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: geometryCOMP
+parameters:
+  material: /project1/worldgen/materials/mat_ivory
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: Ascending spiral — 60 steps, 3 turns, expanding radius  [ivory]
+operators:
+- name: step_00
+  type: boxSOP
+- name: step_01
+  type: boxSOP
+  position: [250, 0]
+- name: step_02
+  type: boxSOP
+  position: [500, 0]
+- name: step_03
+  type: boxSOP
+  position: [750, 0]
+- name: step_04
+  type: boxSOP
+  position: [1000, 0]
+- name: step_05
+  type: boxSOP
+  position: [1250, 0]
+- name: step_06
+  type: boxSOP
+  position: [1500, 0]
+- name: step_07
+  type: boxSOP
+  position: [1750, 0]
+- name: step_08
+  type: boxSOP
+  position: [2000, 0]
+- name: step_09
+  type: boxSOP
+  position: [2250, 0]
+- name: step_10
+  type: boxSOP
+  position: [0, -150]
+- name: step_11
+  type: boxSOP
+  position: [250, -150]
+- name: step_12
+  type: boxSOP
+  position: [500, -150]
+- name: step_13
+  type: boxSOP
+  position: [750, -150]
+- name: step_14
+  type: boxSOP
+  position: [1000, -150]
+- name: step_15
+  type: boxSOP
+  position: [1250, -150]
+- name: step_16
+  type: boxSOP
+  position: [1500, -150]
+- name: step_17
+  type: boxSOP
+  position: [1750, -150]
+- name: step_18
+  type: boxSOP
+  position: [2000, -150]
+- name: step_19
+  type: boxSOP
+  position: [2250, -150]
+- name: step_20
+  type: boxSOP
+  position: [0, -300]
+- name: step_21
+  type: boxSOP
+  position: [250, -300]
+- name: step_22
+  type: boxSOP
+  position: [500, -300]
+- name: step_23
+  type: boxSOP
+  position: [750, -300]
+- name: step_24
+  type: boxSOP
+  position: [1000, -300]
+- name: step_25
+  type: boxSOP
+  position: [1250, -300]
+- name: step_26
+  type: boxSOP
+  position: [1500, -300]
+- name: step_27
+  type: boxSOP
+  position: [1750, -300]
+- name: step_28
+  type: boxSOP
+  position: [2000, -300]
+- name: step_29
+  type: boxSOP
+  position: [2250, -300]
+- name: step_30
+  type: boxSOP
+  position: [0, -450]
+- name: step_31
+  type: boxSOP
+  position: [250, -450]
+- name: step_32
+  type: boxSOP
+  position: [500, -450]
+- name: step_33
+  type: boxSOP
+  position: [750, -450]
+- name: step_34
+  type: boxSOP
+  position: [1000, -450]
+- name: step_35
+  type: boxSOP
+  position: [1250, -450]
+- name: step_36
+  type: boxSOP
+  position: [1500, -450]
+- name: step_37
+  type: boxSOP
+  position: [1750, -450]
+- name: step_38
+  type: boxSOP
+  position: [2000, -450]
+- name: step_39
+  type: boxSOP
+  position: [2250, -450]
+- name: step_40
+  type: boxSOP
+  position: [0, -600]
+- name: step_41
+  type: boxSOP
+  position: [250, -600]
+- name: step_42
+  type: boxSOP
+  position: [500, -600]
+- name: step_43
+  type: boxSOP
+  position: [750, -600]
+- name: step_44
+  type: boxSOP
+  position: [1000, -600]
+- name: step_45
+  type: boxSOP
+  position: [1250, -600]
+- name: step_46
+  type: boxSOP
+  position: [1500, -600]
+- name: step_47
+  type: boxSOP
+  position: [1750, -600]
+- name: step_48
+  type: boxSOP
+  position: [2000, -600]
+- name: step_49
+  type: boxSOP
+  position: [2250, -600]
+- name: step_50
+  type: boxSOP
+  position: [0, -750]
+- name: step_51
+  type: boxSOP
+  position: [250, -750]
+- name: step_52
+  type: boxSOP
+  position: [500, -750]
+- name: step_53
+  type: boxSOP
+  position: [750, -750]
+- name: step_54
+  type: boxSOP
+  position: [1000, -750]
+- name: step_55
+  type: boxSOP
+  position: [1250, -750]
+- name: step_56
+  type: boxSOP
+  position: [1500, -750]
+- name: step_57
+  type: boxSOP
+  position: [1750, -750]
+- name: step_58
+  type: boxSOP
+  position: [2000, -750]
+- name: step_59
+  type: boxSOP
+  position: [2250, -750]
+- name: render_cam
+  type: cameraCOMP
+  parameters:
+    tx: 11.2746
+    ty: 12.9505
+    tz: 11.1881
+    rx: -28
+    ry: 45
+  position: [0, 400]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/worldgen/pieces/wg_spiral_staircase/render_cam.tdn
+- name: step_00_tx
+  type: transformSOP
+  parameters:
+    tx: 1.5
+    ty: 0.1
+    ry: 90
+  position: [150, 0]
+  inputs:
+  - step_00
+- name: step_01_tx
+  type: transformSOP
+  parameters:
+    tx: 1.4361
+    ty: 0.25
+    tz: 0.466616
+    ry: 108
+  position: [400, 0]
+  inputs:
+  - step_01
+- name: step_02_tx
+  type: transformSOP
+  parameters:
+    tx: 1.22971
+    ty: 0.4
+    tz: 0.893434
+    ry: 126
+  position: [650, 0]
+  inputs:
+  - step_02
+- name: step_03_tx
+  type: transformSOP
+  parameters:
+    tx: 0.899311
+    ty: 0.55
+    tz: 1.2378
+    ry: 144
+  position: [900, 0]
+  inputs:
+  - step_03
+- name: step_04_tx
+  type: transformSOP
+  parameters:
+    tx: 0.475886
+    ty: 0.7
+    tz: 1.46463
+    ry: 162
+  position: [1150, 0]
+  inputs:
+  - step_04
+- name: step_05_tx
+  type: transformSOP
+  parameters:
+    ty: 0.85
+    tz: 1.55
+    ry: 180
+  position: [1400, 0]
+  inputs:
+  - step_05
+- name: step_06_tx
+  type: transformSOP
+  parameters:
+    tx: -0.482067
+    ty: 1
+    tz: 1.48365
+    ry: 198
+  position: [1650, 0]
+  inputs:
+  - step_06
+- name: step_07_tx
+  type: transformSOP
+  parameters:
+    tx: -0.922823
+    ty: 1.15
+    tz: 1.27016
+    ry: 216
+  position: [1900, 0]
+  inputs:
+  - step_07
+- name: step_08_tx
+  type: transformSOP
+  parameters:
+    tx: -1.27825
+    ty: 1.3
+    tz: 0.928701
+    ry: 234
+  position: [2150, 0]
+  inputs:
+  - step_08
+- name: step_09_tx
+  type: transformSOP
+  parameters:
+    tx: -1.51218
+    ty: 1.45
+    tz: 0.491337
+    ry: 252
+  position: [2400, 0]
+  inputs:
+  - step_09
+- name: step_10_tx
+  type: transformSOP
+  parameters:
+    tx: -1.6
+    ty: 1.6
+    ry: 270
+  position: [150, -150]
+  inputs:
+  - step_10
+- name: step_11_tx
+  type: transformSOP
+  parameters:
+    tx: -1.5312
+    ty: 1.75
+    tz: -0.497517
+    ry: 288
+  position: [400, -150]
+  inputs:
+  - step_11
+- name: step_12_tx
+  type: transformSOP
+  parameters:
+    tx: -1.31061
+    ty: 1.9
+    tz: -0.952212
+    ry: 306
+  position: [650, -150]
+  inputs:
+  - step_12
+- name: step_13_tx
+  type: transformSOP
+  parameters:
+    tx: -0.95809
+    ty: 2.05
+    tz: -1.3187
+    ry: 324
+  position: [900, -150]
+  inputs:
+  - step_13
+- name: step_14_tx
+  type: transformSOP
+  parameters:
+    tx: -0.506788
+    ty: 2.2
+    tz: -1.55973
+    ry: 342
+  position: [1150, -150]
+  inputs:
+  - step_14
+- name: step_15_tx
+  type: transformSOP
+  parameters:
+    ty: 2.35
+    tz: -1.65
+    ry: 360
+  position: [1400, -150]
+  inputs:
+  - step_15
+- name: step_16_tx
+  type: transformSOP
+  parameters:
+    tx: 0.512968
+    ty: 2.5
+    tz: -1.57875
+    ry: 378
+  position: [1650, -150]
+  inputs:
+  - step_16
+- name: step_17_tx
+  type: transformSOP
+  parameters:
+    tx: 0.981601
+    ty: 2.65
+    tz: -1.35106
+    ry: 396
+  position: [1900, -150]
+  inputs:
+  - step_17
+- name: step_18_tx
+  type: transformSOP
+  parameters:
+    tx: 1.35915
+    ty: 2.8
+    tz: -0.987479
+    ry: 414
+  position: [2150, -150]
+  inputs:
+  - step_18
+- name: step_19_tx
+  type: transformSOP
+  parameters:
+    tx: 1.60729
+    ty: 2.95
+    tz: -0.522239
+    ry: 432
+  position: [2400, -150]
+  inputs:
+  - step_19
+- name: step_20_tx
+  type: transformSOP
+  parameters:
+    tx: 1.7
+    ty: 3.1
+    ry: 450
+  position: [150, -300]
+  inputs:
+  - step_20
+- name: step_21_tx
+  type: transformSOP
+  parameters:
+    tx: 1.62631
+    ty: 3.25
+    tz: 0.528419
+    ry: 468
+  position: [400, -300]
+  inputs:
+  - step_21
+- name: step_22_tx
+  type: transformSOP
+  parameters:
+    tx: 1.39151
+    ty: 3.4
+    tz: 1.01099
+    ry: 486
+  position: [650, -300]
+  inputs:
+  - step_22
+- name: step_23_tx
+  type: transformSOP
+  parameters:
+    tx: 1.01687
+    ty: 3.55
+    tz: 1.3996
+    ry: 504
+  position: [900, -300]
+  inputs:
+  - step_23
+- name: step_24_tx
+  type: transformSOP
+  parameters:
+    tx: 0.53769
+    ty: 3.7
+    tz: 1.65484
+    ry: 522
+  position: [1150, -300]
+  inputs:
+  - step_24
+- name: step_25_tx
+  type: transformSOP
+  parameters:
+    ty: 3.85
+    tz: 1.75
+    ry: 540
+  position: [1400, -300]
+  inputs:
+  - step_25
+- name: step_26_tx
+  type: transformSOP
+  parameters:
+    tx: -0.54387
+    ty: 4
+    tz: 1.67386
+    ry: 558
+  position: [1650, -300]
+  inputs:
+  - step_26
+- name: step_27_tx
+  type: transformSOP
+  parameters:
+    tx: -1.04038
+    ty: 4.15
+    tz: 1.43196
+    ry: 576
+  position: [1900, -300]
+  inputs:
+  - step_27
+- name: step_28_tx
+  type: transformSOP
+  parameters:
+    tx: -1.44005
+    ty: 4.3
+    tz: 1.04626
+    ry: 594
+  position: [2150, -300]
+  inputs:
+  - step_28
+- name: step_29_tx
+  type: transformSOP
+  parameters:
+    tx: -1.70239
+    ty: 4.45
+    tz: 0.55314
+    ry: 612
+  position: [2400, -300]
+  inputs:
+  - step_29
+- name: step_30_tx
+  type: transformSOP
+  parameters:
+    tx: -1.8
+    ty: 4.6
+    ry: 630
+  position: [150, -450]
+  inputs:
+  - step_30
+- name: step_31_tx
+  type: transformSOP
+  parameters:
+    tx: -1.72141
+    ty: 4.75
+    tz: -0.559321
+    ry: 648
+  position: [400, -450]
+  inputs:
+  - step_31
+- name: step_32_tx
+  type: transformSOP
+  parameters:
+    tx: -1.47241
+    ty: 4.9
+    tz: -1.06977
+    ry: 666
+  position: [650, -450]
+  inputs:
+  - step_32
+- name: step_33_tx
+  type: transformSOP
+  parameters:
+    tx: -1.07565
+    ty: 5.05
+    tz: -1.4805
+    ry: 684
+  position: [900, -450]
+  inputs:
+  - step_33
+- name: step_34_tx
+  type: transformSOP
+  parameters:
+    tx: -0.568591
+    ty: 5.2
+    tz: -1.74994
+    ry: 702
+  position: [1150, -450]
+  inputs:
+  - step_34
+- name: step_35_tx
+  type: transformSOP
+  parameters:
+    ty: 5.35
+    tz: -1.85
+    ry: 720
+  position: [1400, -450]
+  inputs:
+  - step_35
+- name: step_36_tx
+  type: transformSOP
+  parameters:
+    tx: 0.574772
+    ty: 5.5
+    tz: -1.76897
+    ry: 738
+  position: [1650, -450]
+  inputs:
+  - step_36
+- name: step_37_tx
+  type: transformSOP
+  parameters:
+    tx: 1.09916
+    ty: 5.65
+    tz: -1.51286
+    ry: 756
+  position: [1900, -450]
+  inputs:
+  - step_37
+- name: step_38_tx
+  type: transformSOP
+  parameters:
+    tx: 1.52095
+    ty: 5.8
+    tz: -1.10504
+    ry: 774
+  position: [2150, -450]
+  inputs:
+  - step_38
+- name: step_39_tx
+  type: transformSOP
+  parameters:
+    tx: 1.7975
+    ty: 5.95
+    tz: -0.584042
+    ry: 792
+  position: [2400, -450]
+  inputs:
+  - step_39
+- name: step_40_tx
+  type: transformSOP
+  parameters:
+    tx: 1.9
+    ty: 6.1
+    ry: 810
+  position: [150, -600]
+  inputs:
+  - step_40
+- name: step_41_tx
+  type: transformSOP
+  parameters:
+    tx: 1.81652
+    ty: 6.25
+    tz: 0.590222
+    ry: 828
+  position: [400, -600]
+  inputs:
+  - step_41
+- name: step_42_tx
+  type: transformSOP
+  parameters:
+    tx: 1.55331
+    ty: 6.4
+    tz: 1.12855
+    ry: 846
+  position: [650, -600]
+  inputs:
+  - step_42
+- name: step_43_tx
+  type: transformSOP
+  parameters:
+    tx: 1.13443
+    ty: 6.55
+    tz: 1.5614
+    ry: 864
+  position: [900, -600]
+  inputs:
+  - step_43
+- name: step_44_tx
+  type: transformSOP
+  parameters:
+    tx: 0.599493
+    ty: 6.7
+    tz: 1.84505
+    ry: 882
+  position: [1150, -600]
+  inputs:
+  - step_44
+- name: step_45_tx
+  type: transformSOP
+  parameters:
+    ty: 6.85
+    tz: 1.95
+    ry: 900
+  position: [1400, -600]
+  inputs:
+  - step_45
+- name: step_46_tx
+  type: transformSOP
+  parameters:
+    tx: -0.605673
+    ty: 7
+    tz: 1.86407
+    ry: 918
+  position: [1650, -600]
+  inputs:
+  - step_46
+- name: step_47_tx
+  type: transformSOP
+  parameters:
+    tx: -1.15794
+    ty: 7.15
+    tz: 1.59376
+    ry: 936
+  position: [1900, -600]
+  inputs:
+  - step_47
+- name: step_48_tx
+  type: transformSOP
+  parameters:
+    tx: -1.60185
+    ty: 7.3
+    tz: 1.16381
+    ry: 954
+  position: [2150, -600]
+  inputs:
+  - step_48
+- name: step_49_tx
+  type: transformSOP
+  parameters:
+    tx: -1.8926
+    ty: 7.45
+    tz: 0.614944
+    ry: 972
+  position: [2400, -600]
+  inputs:
+  - step_49
+- name: step_50_tx
+  type: transformSOP
+  parameters:
+    tx: -2
+    ty: 7.6
+    ry: 990
+  position: [150, -750]
+  inputs:
+  - step_50
+- name: step_51_tx
+  type: transformSOP
+  parameters:
+    tx: -1.91162
+    ty: 7.75
+    tz: -0.621124
+    ry: 1008
+  position: [400, -750]
+  inputs:
+  - step_51
+- name: step_52_tx
+  type: transformSOP
+  parameters:
+    tx: -1.63421
+    ty: 7.9
+    tz: -1.18733
+    ry: 1026
+  position: [650, -750]
+  inputs:
+  - step_52
+- name: step_53_tx
+  type: transformSOP
+  parameters:
+    tx: -1.1932
+    ty: 8.05
+    tz: -1.6423
+    ry: 1044
+  position: [900, -750]
+  inputs:
+  - step_53
+- name: step_54_tx
+  type: transformSOP
+  parameters:
+    tx: -0.630395
+    ty: 8.2
+    tz: -1.94016
+    ry: 1062
+  position: [1150, -750]
+  inputs:
+  - step_54
+- name: step_55_tx
+  type: transformSOP
+  parameters:
+    ty: 8.35
+    tz: -2.05
+    ry: 1080
+  position: [1400, -750]
+  inputs:
+  - step_55
+- name: step_56_tx
+  type: transformSOP
+  parameters:
+    tx: 0.636575
+    ty: 8.5
+    tz: -1.95918
+    ry: 1098
+  position: [1650, -750]
+  inputs:
+  - step_56
+- name: step_57_tx
+  type: transformSOP
+  parameters:
+    tx: 1.21672
+    ty: 8.65
+    tz: -1.67467
+    ry: 1116
+  position: [1900, -750]
+  inputs:
+  - step_57
+- name: step_58_tx
+  type: transformSOP
+  parameters:
+    tx: 1.68276
+    ty: 8.8
+    tz: -1.22259
+    ry: 1134
+  position: [2150, -750]
+  inputs:
+  - step_58
+- name: step_59_tx
+  type: transformSOP
+  parameters:
+    tx: 1.98771
+    ty: 8.95
+    tz: -0.645846
+    ry: 1152
+  position: [2400, -750]
+  inputs:
+  - step_59
+- name: effect_facet
+  type: facetSOP
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - spiral_merge
+- name: effect_point
+  type: pointSOP
+  parameters:
+    tx: =me.inputPoint.x
+    ty: =me.inputPoint.y
+    tz: =me.inputPoint.z
+    weight: =me.inputPoint.w
+    doclr: 'on'
+    diffr: =0.75 + 0.25 * math.sin(me.inputPoint.P[1] * 0.5 + absTime.seconds * 3.0)
+    diffg: =0.60 + 0.35 * math.cos(me.inputPoint.P[1] * 0.4 + absTime.seconds * 2.5)
+    diffb: =0.90 + 0.10 * math.sin(me.inputPoint.P[1] * 0.3 - absTime.seconds * 2.0)
+    alpha: =me.inputColor[3]
+    nx: =me.inputNormal[0]
+    ny: =me.inputNormal[1]
+    nz: =me.inputNormal[2]
+    mapu: =me.inputTexture[0]
+    mapv: =me.inputTexture[1]
+    mapw: =me.inputTexture[2]
+    width: =me.inputPoint.width[0]
+    pscale: =me.inputPoint.pscale[0]
+    tension: =me.inputPoint.tension[0]
+    springk: =me.inputPoint.springk[0]
+    vx: =me.inputPoint.v[0]
+    vy: =me.inputPoint.v[1]
+    vz: =me.inputPoint.v[2]
+    upx: =me.inputPoint.up[0]
+    upy: =me.inputPoint.up[1]
+    upz: =me.inputPoint.up[2]
+  flags:
+  - display
+  - render
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - effect_twist
+- name: effect_twist
+  type: twistSOP
+  parameters:
+    paxis: y
+    strength: =math.sin(absTime.seconds * 1.2) * 12.0 + (op('/project1/audio/final_out')['beat'].eval() if op('/project1/audio/final_out') else 0.0) * 18.0
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - effect_facet
+- name: spiral_merge
+  type: mergeSOP
+  position: [2700, -200]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - central_column_tx
+  - step_00_tx
+  - step_01_tx
+  - step_02_tx
+  - step_03_tx
+  - step_04_tx
+  - step_05_tx
+  - step_06_tx
+  - step_07_tx
+  - step_08_tx
+  - step_09_tx
+  - step_10_tx
+  - step_11_tx
+  - step_12_tx
+  - step_13_tx
+  - step_14_tx
+  - step_15_tx
+  - step_16_tx
+  - step_17_tx
+  - step_18_tx
+  - step_19_tx
+  - step_20_tx
+  - step_21_tx
+  - step_22_tx
+  - step_23_tx
+  - step_24_tx
+  - step_25_tx
+  - step_26_tx
+  - step_27_tx
+  - step_28_tx
+  - step_29_tx
+  - step_30_tx
+  - step_31_tx
+  - step_32_tx
+  - step_33_tx
+  - step_34_tx
+  - step_35_tx
+  - step_36_tx
+  - step_37_tx
+  - step_38_tx
+  - step_39_tx
+  - step_40_tx
+  - step_41_tx
+  - step_42_tx
+  - step_43_tx
+  - step_44_tx
+  - step_45_tx
+  - step_46_tx
+  - step_47_tx
+  - step_48_tx
+  - step_49_tx
+  - step_50_tx
+  - step_51_tx
+  - step_52_tx
+  - step_53_tx
+  - step_54_tx
+  - step_55_tx
+  - step_56_tx
+  - step_57_tx
+  - step_58_tx
+  - step_59_tx
+- name: central_column
+  type: tubeSOP
+  parameters:
+    rad1: 0.4
+    rad2: 0.4
+    height: 10
+    rows: 4
+    cols: 24
+  position: [0, 200]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: central_column_tx
+  type: transformSOP
+  parameters:
+    ty: 4.5
+  position: [150, 200]
+  inputs:
+  - central_column

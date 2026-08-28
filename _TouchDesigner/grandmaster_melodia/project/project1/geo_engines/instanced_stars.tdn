@@ -1,0 +1,79 @@
+format: tdn
+version: '2.0'
+build: 1
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:22Z'
+network_path: /project1/geo_engines/instanced_stars
+options:
+  include_dat_content: false
+  include_storage: true
+type: geometryCOMP
+parameters:
+  instancing: true
+  instanceop: /project1/geo_engines/instanced_stars/star_null
+  instancetx: tx
+  instancety: ty
+  instancetz: tz
+  instancesx: scale
+  instancesy: scale
+  instancesz: scale
+  material: /project1/geo_engines/iridescent_mat
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+operators:
+- name: torus1
+  type: torusPOP
+  flags:
+  - display
+  - render
+  - viewer
+  position: [-114, -78]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: star_null
+  type: nullCHOP
+  parameters:
+    autoexportroot: =parent()
+  position: [113, 78]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - star_noise
+- name: star_noise
+  type: noiseCHOP
+  parameters:
+    amp: =25.0 + (op('/project1/audio/final_out')['beat'].eval() if op('/project1/audio/final_out') else 0.0) * 15.0
+    tz: =absTime.seconds * 0.15
+    channelname: tx ty tz scale
+    end: 1500
+    rate: =me.time.rate
+    autoexportroot: =parent()
+  position: [-114, 78]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: star_shape
+  type: sphereSOP
+  parameters:
+    radx: 0.08
+    rady: 0.08
+    radz: 0.08
+    rows: 4
+    cols: 4
+  position: [114, -78]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: star_shape_attr
+  type: attributecreateSOP
+  parameters:
+    comptang: true
+  flags:
+  - display
+  - render
+  position: [114, -228]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - star_shape

@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "project": "Grandmaster Melodia",
+    "created": "2026-08-27",
+    "author": "Melusina + overnight loop",
+    "mcp_endpoint": "http://127.0.0.1:9870/mcp",
+    "purpose": "Seed catalog for the recursive overnight TD effect-expansion loop. Each cron run adds ONE effect from this pool, verifies it live, and logs evidence to the ledger."
+  },
+  "effects": [
+    {
+      "id": "E01",
+      "name": "Audio-reactive resonance rings",
+      "family": "COMP",
+      "room": "COMPOSITE",
+      "description": "Concentric rings radiating from the starfield center, radius and opacity driven by the 5-band audio analyzers (band1..band5) in /project1/audio.",
+      "recipe_hint": "Create a rings COMP under /project1; drive radius/opacity from audio band CHOPs; composite over starfield before spoutout1.",
+      "status": "pending"
+    },
+    {
+      "id": "E02",
+      "name": "Toon volumetric glow",
+      "family": "TOP",
+      "room": "COMPOSITE",
+      "description": "AAA toon-style volumetric glow (bloom with stepped/hard falloff) over the composite, tuned to the warm-violet palette.",
+      "recipe_hint": "glowTOP or bloomTOP with high-threshold stepped falloff; fold into postfx/comp_stars.",
+      "status": "pending"
+    },
+    {
+      "id": "E03",
+      "name": "Hand-openness bloom gate",
+      "family": "CHOP->TOP",
+      "room": "PERFORM->COMPOSITE",
+      "description": "Hand openness (hand/0/open) drives bloom intensity: open hand = wide ethereal bloom, fist = tight/no bloom.",
+      "recipe_hint": "map hand/0/open to glow/bloom amount par via expression; do not touch starfield transform bindings.",
+      "status": "pending"
+    },
+    {
+      "id": "E04",
+      "name": "Wrist-X hue shift",
+      "family": "TOP",
+      "room": "PERFORM->COMPOSITE",
+      "description": "Wrist x-position sweeps a hue shift across the composite, tying hand movement to color (performed color).",
+      "recipe_hint": "hsvTOP or levelTOP hue par driven by hand/0/wrist1; palette-aware.",
+      "status": "pending"
+    },
+    {
+      "id": "E05",
+      "name": "Beat-pulse starburst",
+      "family": "COMP",
+      "room": "COMPOSITE",
+      "description": "Starburst/cross flare that pulses on the beat (from beat_pulse_* in the osc COMP), synced to the song tempo.",
+      "recipe_hint": "Use beat_pulse_* channels already present; drive flare scale/opacity.",
+      "status": "pending"
+    },
+    {
+      "id": "E06",
+      "name": "Spectral rain particles",
+      "family": "COMP",
+      "room": "COMPOSITE",
+      "description": "Particle rain whose speed/alpha map to spectral_analyzer output; ties the audio spectrum to motion.",
+      "recipe_hint": "particlesGPUCOMP; per-particle attribute from spectral analyzer CHOP.",
+      "status": "pending"
+    },
+    {
+      "id": "E07",
+      "name": "Chord-detector color wash",
+      "family": "TOP",
+      "room": "AUDIO->COMPOSITE",
+      "description": "chord_detector output drives a slowly-changing background color wash, so the harmony is visible as color.",
+      "recipe_hint": "Map chord label to a color ramp (palette.json tokens); feed a TOP background gradient.",
+      "status": "pending"
+    },
+    {
+      "id": "E08",
+      "name": "Pinch-to-delay echo",
+      "family": "CHOP",
+      "room": "PERFORM->AUDIO",
+      "description": "Thumb-index distance drives audio delay time / echo feedback, an Imogen Heap-style live vocal/texture effect.",
+      "recipe_hint": "hand/0 thumb-index distance -> delay1CHOP or audio delay par; continuous gesture->sound.",
+      "status": "pending"
+    },
+    {
+      "id": "E09",
+      "name": "Two-finger harmony chord",
+      "family": "CHOP->TOP",
+      "room": "PERFORM->COMPOSITE",
+      "description": "Two fingers held up triggers a harmony chord: adds a layered note/visual harmonic to the composite.",
+      "recipe_hint": "Gesture classifier (hand/0/open + finger distances) -> chord trigger -> visual + optional MIDI note.",
+      "status": "pending"
+    },
+    {
+      "id": "E10",
+      "name": "Wave arpeggio spiral",
+      "family": "COMP",
+      "room": "PERFORM->COMPOSITE",
+      "description": "Waving gesture runs an arpeggio spiral (rotating radial arcs), each wave advancing the arpeggio.",
+      "recipe_hint": "Wave detection -> arpeggio step counter -> rotating spiral COMP.",
+      "status": "pending"
+    },
+    {
+      "id": "E11",
+      "name": "Spout-in live composite",
+      "family": "TOP",
+      "room": "SCENE->COMPOSITE",
+      "description": "Wire the Blender Spout input (syphonspoutinTOP) into the composite so the live Blender Eevee render is the scene layer.",
+      "recipe_hint": "syphonspoutinTOP sendername=Blender camera; composite under spoutout1.",
+      "status": "pending"
+    },
+    {
+      "id": "E12",
+      "name": "Grandmaster vignette + title",
+      "family": "TOP",
+      "room": "COMPOSITE",
+      "description": "Branded vignette and 'Grandmaster Melodia' title card using palette tokens, final polish before spoutout1.",
+      "recipe_hint": "vignetteTOP + textTOP; palette.json gold filigree + starlight.",
+      "status": "pending"
+    },
+    {
+      "id": "E13",
+      "name": "Infinity hyper-spiral (math orbit)",
+      "family": "COMP",
+      "room": "COMPOSITE",
+      "description": "INFINITY NIKKI-INSPIRED: a dense mathematical orbital spiral of nested rotating arcs (golden-ratio + Fibonacci spacing), infinitely-receding into the center. Complex, ornate, mathematical — the 'infinity' motif. Audio band2/3 drive rotation speed and scale breathing.",
+      "recipe_hint": "Topological/instanced radial arcs (circleTOP segments or point instances) arranged on a phi/Fibonacci spiral; rotate + scale-recede by audio bands; composite under postfx. Palette: golden_gilt + warm_lilac.",
+      "status": "pending"
+    },
+    {
+      "id": "E14",
+      "name": "CoPPL chromatic glitch (SOPHIE-style)",
+      "family": "TOP",
+      "room": "COMPOSITE",
+      "description": "CRAZY CoPPL EFFECT: harsh chromatic-aberration + glitch-displacement + scanline-dither RGB split that slams in on the beat. Ninajirachi/SOPHIE hyperpop energy — colorful, chaotic, crunchy.",
+      "recipe_hint": "rgbOffset/levelTOP RGB split + noise-driven displacement + quantized dither; beat-pulse to intensity. Palette: ether_mint + soft_rose contrast, overdriven.",
+      "status": "pending"
+    },
+    {
+      "id": "E15",
+      "name": "Infinity mirror room (recursive reflections)",
+      "family": "COMP",
+      "room": "COMPOSITE",
+      "description": "INFINITY NIKKI-INSPIRED: a recursive mirror-hall effect — the composite reflected into itself infinitely with depth fade, golden filigree edges. Gives the 'endless ornate palace' feel.",
+      "recipe_hint": "Feedback loop: compositeTOP feedbacking into itself via a delayed copy with shrink/rotate + opacity fade; gold edge overlay.",
+      "status": "pending"
+    },
+    {
+      "id": "E16",
+      "name": "CoPPL candy-glass distortion (Ninajirachi)",
+      "family": "CHOP->TOP",
+      "room": "PERFORM->COMPOSITE",
+      "description": "CRAZY CoPPL EFFECT: hand-openness sweeps a candy-glass liquid distortion (warp/liquify) — the visual 'bends' like molten candy with the hand. Sonic-bright, plastic, hyperpop.",
+      "recipe_hint": "warpTOP/liquify with amplitude mapped to hand openness + high band; smooth but extreme range.",
+      "status": "pending"
+    },
+    {
+      "id": "E17",
+      "name": "Mathematical Rose curve mandala",
+      "family": "COMP",
+      "room": "COMPOSITE",
+      "description": "INFINITY NIKKI-INSPIRED: live-generated rose-curve (r = a·cos(kθ)) mandala whose petal count k animates through integers driven by the chord detector — each chord = a new petal symmetry.",
+      "recipe_hint": "circleTOP/pointSOP instanced along rose curve; k from chord_detector; palette warm_lilac/soft_rose; slowly rotating.",
+      "status": "pending"
+    },
+    {
+      "id": "E18",
+      "name": "CoPPL bloom detonation (SOPHIE kick)",
+      "family": "TOP",
+      "room": "COMPOSITE",
+      "description": "CRAZY CoPPL EFFECT: sub-bass 'kick' triggers a bloom detonation — a hard, saturated, white-hot core that blooms out violently then crunches down. Maximalist, the SOPHIE drop feel.",
+      "recipe_hint": "threshold+bloom with a hard envelope from band1; color clip to hot white->gold; fast attack, slower decay.",
+      "status": "pending"
+    }
+  ]
+}

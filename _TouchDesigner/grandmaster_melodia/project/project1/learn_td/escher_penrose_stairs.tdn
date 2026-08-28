@@ -1,0 +1,196 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:21Z'
+network_path: /project1/learn_td/escher_penrose_stairs
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  boxSOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  transformSOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: geometryCOMP
+parameters:
+  material: /project1/worldgen/materials/mat_ivory
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: Penrose impossible stairs â€” 4 connected staircases forming a loop
+operators:
+- name: step_0_0
+  type: boxSOP
+- name: step_0_1
+  type: boxSOP
+  position: [0, -150]
+- name: step_0_2
+  type: boxSOP
+  position: [0, -300]
+- name: step_0_3
+  type: boxSOP
+  position: [0, -450]
+- name: step_1_0
+  type: boxSOP
+  position: [300, 0]
+- name: step_1_1
+  type: boxSOP
+  position: [300, -150]
+- name: step_1_2
+  type: boxSOP
+  position: [300, -300]
+- name: step_1_3
+  type: boxSOP
+  position: [300, -450]
+- name: step_2_0
+  type: boxSOP
+  position: [600, 0]
+- name: step_2_1
+  type: boxSOP
+  position: [600, -150]
+- name: step_2_2
+  type: boxSOP
+  position: [600, -300]
+- name: step_2_3
+  type: boxSOP
+  position: [600, -450]
+- name: step_3_0
+  type: boxSOP
+  position: [900, 0]
+- name: step_3_1
+  type: boxSOP
+  position: [900, -150]
+- name: step_3_2
+  type: boxSOP
+  position: [900, -300]
+- name: step_3_3
+  type: boxSOP
+  position: [900, -450]
+- name: all_steps
+  type: mergeSOP
+  position: [1400, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - step_tx_0_0
+  - step_tx_0_1
+  - step_tx_0_2
+  - step_tx_0_3
+  - step_tx_1_0
+  - step_tx_1_1
+  - step_tx_1_2
+  - step_tx_1_3
+  - step_tx_2_0
+  - step_tx_2_1
+  - step_tx_2_2
+  - step_tx_2_3
+  - step_tx_3_0
+  - step_tx_3_1
+  - step_tx_3_2
+  - step_tx_3_3
+- name: render_cam
+  type: cameraCOMP
+  parameters:
+    tx: 5
+    ty: 3
+    tz: 35
+    fov: 70
+  position: [150, 200]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/learn_td/escher_penrose_stairs/render_cam.tdn
+- name: render_out
+  type: renderTOP
+  parameters:
+    camera: /project1/learn_td/escher_penrose_stairs/render_cam
+  position: [200, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  comment: Renders this geometry â€” connected to master switch
+- name: step_tx_0_0
+  type: transformSOP
+  position: [150, 0]
+  inputs:
+  - step_0_0
+- name: step_tx_0_1
+  type: transformSOP
+  position: [150, -150]
+  inputs:
+  - step_0_1
+- name: step_tx_0_2
+  type: transformSOP
+  position: [150, -300]
+  inputs:
+  - step_0_2
+- name: step_tx_0_3
+  type: transformSOP
+  position: [150, -450]
+  inputs:
+  - step_0_3
+- name: step_tx_1_0
+  type: transformSOP
+  position: [450, 0]
+  inputs:
+  - step_1_0
+- name: step_tx_1_1
+  type: transformSOP
+  position: [450, -150]
+  inputs:
+  - step_1_1
+- name: step_tx_1_2
+  type: transformSOP
+  position: [450, -300]
+  inputs:
+  - step_1_2
+- name: step_tx_1_3
+  type: transformSOP
+  position: [450, -450]
+  inputs:
+  - step_1_3
+- name: step_tx_2_0
+  type: transformSOP
+  position: [750, 0]
+  inputs:
+  - step_2_0
+- name: step_tx_2_1
+  type: transformSOP
+  position: [750, -150]
+  inputs:
+  - step_2_1
+- name: step_tx_2_2
+  type: transformSOP
+  position: [750, -300]
+  inputs:
+  - step_2_2
+- name: step_tx_2_3
+  type: transformSOP
+  position: [750, -450]
+  inputs:
+  - step_2_3
+- name: step_tx_3_0
+  type: transformSOP
+  position: [1050, 0]
+  inputs:
+  - step_3_0
+- name: step_tx_3_1
+  type: transformSOP
+  position: [1050, -150]
+  inputs:
+  - step_3_1
+- name: step_tx_3_2
+  type: transformSOP
+  position: [1050, -300]
+  inputs:
+  - step_3_2
+- name: step_tx_3_3
+  type: transformSOP
+  position: [1050, -450]
+  inputs:
+  - step_3_3

@@ -1,0 +1,345 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:19Z'
+network_path: /project1/audio
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  audiofileinCHOP:
+    parameters:
+      file: =app.samplesFolder+'/Audio/JeremyCaulfield_www.dumb-unit.com.mp3'
+      index: =me.time.frame / root.time.rate
+      timecodeop: =tdu.Timecode()
+      autoexportroot: =parent()
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  lagCHOP:
+    parameters:
+      autoexportroot: =parent()
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  outCHOP:
+    parameters:
+      label: =me.name
+      autoexportroot: =parent()
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  textDAT:
+    size: [130, 90]
+  audiofilterCHOP:
+    parameters:
+      autoexportroot: =parent()
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  analyzeCHOP:
+    parameters:
+      autoexportroot: =parent()
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  renameCHOP:
+    parameters:
+      autoexportroot: =parent()
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  mergeCHOP:
+    parameters:
+      autoexportroot: =parent()
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  scriptCHOP:
+    parameters:
+      autoexportroot: =parent()
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: baseCOMP
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: AUDIO ENGINE — Melusina VoiceSynth WAV → pitch/amp/beat CHOPs → OSC to UE
+operators:
+- name: ain
+  type: audiofileinCHOP
+- name: lag
+  type: lagCHOP
+  position: [200, 0]
+  inputs:
+  - analyze
+- name: aout
+  type: audiodeviceoutCHOP
+  parameters:
+    volume: =op('/project1/hand_osc')['hand/0/open']
+    pan: =op('/project1/hand_osc')['hand/0/wrist2']*2-1
+    autoexportroot: =parent()
+  position: [400, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - afilter
+- name: out1
+  type: outCHOP
+  position: [600, 0]
+  inputs:
+  - lag
+- name: _probe2
+  type: textDAT
+  position: [0, 120]
+  color: [0.67, 0.67, 0.67]
+- name: afilter
+  type: audiofilterCHOP
+  parameters:
+    filter: highpass
+    cutofffrequency: =op('/project1/hand_osc')['hand/0/wrist1']*7800+200
+  position: [0, -200]
+  inputs:
+  - ain
+- name: analyze
+  type: analyzeCHOP
+  parameters:
+    function: minimum
+  position: [200, -200]
+  inputs:
+  - afilter
+- name: hsv_math
+  type: mathCHOP
+  parameters:
+    gain: 10
+    autoexportroot: =parent()
+  position: [1050, -110]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - bands_merge
+- name: band1_lag
+  type: lagCHOP
+  parameters:
+    lag1: 0.01
+    lag2: 0.5
+  position: [2550, 0]
+  inputs:
+  - band1_analyze
+- name: band2_lag
+  type: lagCHOP
+  parameters:
+    lag1: 0.01
+    lag2: 0.5
+  position: [2700, 0]
+  inputs:
+  - band2_analyze
+- name: band3_lag
+  type: lagCHOP
+  parameters:
+    lag1: 0.01
+    lag2: 0.5
+  position: [2850, 0]
+  inputs:
+  - band3_analyze
+- name: band4_lag
+  type: lagCHOP
+  parameters:
+    lag1: 0.01
+    lag2: 0.5
+  position: [600, -110]
+  inputs:
+  - band4_analyze
+- name: band5_lag
+  type: lagCHOP
+  parameters:
+    lag1: 0.01
+    lag2: 0.5
+  position: [750, -110]
+  inputs:
+  - band5_analyze
+- name: final_out
+  type: outCHOP
+  position: [1350, -110]
+  inputs:
+  - rename_hsv
+- name: rename_hsv
+  type: renameCHOP
+  parameters:
+    renamefrom: band1 band2 band3 band4 band5
+    renameto: beat h s v onset
+  position: [1200, -110]
+  inputs:
+  - hsv_math
+- name: bands_merge
+  type: mergeCHOP
+  position: [900, -110]
+  inputs:
+  - band1_lag
+  - band2_lag
+  - band3_lag
+  - band4_lag
+  - band5_lag
+- name: melusina_in
+  type: audiofileinCHOP
+  position: [400, -200]
+  comment: Load Melusina WAV from VoiceSynthResearch/
+- name: band1_filter
+  type: audiofilterCHOP
+  parameters:
+    cutofflog: 1.903
+  position: [1050, 0]
+  inputs:
+  - ain
+- name: band2_filter
+  type: audiofilterCHOP
+  parameters:
+    filter: bandpass
+    cutofflog: 2.397
+  position: [1200, 0]
+  inputs:
+  - ain
+- name: band3_filter
+  type: audiofilterCHOP
+  parameters:
+    filter: bandpass
+    cutofflog: 3
+  position: [1350, 0]
+  inputs:
+  - ain
+- name: band4_filter
+  type: audiofilterCHOP
+  parameters:
+    filter: bandpass
+    cutofflog: 3.602
+  position: [1500, 0]
+  inputs:
+  - ain
+- name: band5_filter
+  type: audiofilterCHOP
+  parameters:
+    filter: highpass
+    cutofflog: 3.903
+  position: [1650, 0]
+  inputs:
+  - ain
+- name: rename_chord
+  type: renameCHOP
+  parameters:
+    renamefrom: chan1 chan2
+    renameto: chord_root chord_quality
+  position: [800, -120]
+  inputs:
+  - chord_detector
+- name: rename_pitch
+  type: renameCHOP
+  parameters:
+    renamefrom: chan1 chan2
+    renameto: fundamental_pitch pitch_note
+  position: [550, 120]
+  inputs:
+  - pitch_analyzer
+- name: band1_analyze
+  type: analyzeCHOP
+  parameters:
+    function: rmspower
+    renameto: band1
+  position: [1800, 0]
+  inputs:
+  - band1_filter
+- name: band2_analyze
+  type: analyzeCHOP
+  parameters:
+    function: rmspower
+    renameto: band2
+  position: [1950, 0]
+  inputs:
+  - band2_filter
+- name: band3_analyze
+  type: analyzeCHOP
+  parameters:
+    function: rmspower
+    renameto: band3
+  position: [2100, 0]
+  inputs:
+  - band3_filter
+- name: band4_analyze
+  type: analyzeCHOP
+  parameters:
+    function: rmspower
+    renameto: band4
+  position: [2250, 0]
+  inputs:
+  - band4_filter
+- name: band5_analyze
+  type: analyzeCHOP
+  parameters:
+    function: rmspower
+    renameto: band5
+  position: [2400, 0]
+  inputs:
+  - band5_filter
+- name: preview_trail
+  type: trailCHOP
+  parameters:
+    rate: =me.time.rate
+    autoexportroot: =parent()
+  flags:
+  - viewer
+  position: [1250, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - audio_feature_merge
+- name: chord_detector
+  type: scriptCHOP
+  parameters:
+    callbacks: chord_detector_callbacks
+  position: [550, -120]
+  inputs:
+  - spectral_analyzer
+- name: pitch_analyzer
+  type: scriptCHOP
+  parameters:
+    callbacks: pitch_analyzer_callbacks
+  position: [300, 120]
+  inputs:
+  - ain
+- name: spectral_analyzer
+  type: audiospectrumCHOP
+  parameters:
+    autoexportroot: =parent()
+  position: [300, -120]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - ain
+- name: audio_feature_merge
+  type: mergeCHOP
+  position: [1000, 0]
+  inputs:
+  - rename_hsv
+  - rename_pitch
+  - rename_chord
+- name: chord_detector_callbacks
+  type: textDAT
+  parameters:
+    file: project1/audio/chord_detector_callbacks.py
+    syncfile: true
+    language: python
+  flags:
+  - viewer
+  position: [550, -240]
+  color: [0.9, 0.3, 0.4]
+  tags:
+  - py
+  dock: chord_detector
+- name: pitch_analyzer_callbacks
+  type: textDAT
+  parameters:
+    file: project1/audio/pitch_analyzer_callbacks.py
+    syncfile: true
+    language: python
+  flags:
+  - viewer
+  position: [0, -120]
+  color: [0.9, 0.3, 0.4]
+  tags:
+  - py
+  dock: pitch_analyzer

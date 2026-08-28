@@ -1,0 +1,113 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:23Z'
+network_path: /project1/worldgen/pieces/wg_waterfall
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  boxSOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  transformSOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: geometryCOMP
+parameters:
+  material: /project1/worldgen/materials/mat_sky
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: Infinite waterfall — water that falls up  [sky]
+operators:
+- name: flow
+  type: noiseSOP
+  parameters:
+    period: 0.8
+    amp: 0.3
+    tz: =absTime.seconds
+  position: [300, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - wall_tx
+- name: basin
+  type: boxSOP
+  parameters:
+    sizex: 6
+    sizey: 0.5
+    sizez: 6
+  position: [0, -200]
+- name: wall_tx
+  type: transformSOP
+  parameters:
+    ty: 6
+  position: [150, 0]
+  inputs:
+  - water_wall
+- name: basin_tx
+  type: transformSOP
+  parameters:
+    ty: -0.25
+  position: [150, -200]
+  inputs:
+  - basin
+- name: render_cam
+  type: cameraCOMP
+  parameters:
+    tx: 14.9292
+    ty: 16.3131
+    tz: 14.0476
+    rx: -28
+    ry: 45
+  position: [0, 400]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/worldgen/pieces/wg_waterfall/render_cam.tdn
+- name: water_wall
+  type: rectangleSOP
+  parameters:
+    sizex: 3
+    sizey: 12
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: water_merge
+  type: mergeSOP
+  flags:
+  - display
+  - render
+  position: [500, -100]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - flow
+  - basin_tx
+  - return_channel_tx
+- name: effect_facet
+  type: facetSOP
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - water_merge
+- name: return_channel
+  type: boxSOP
+  parameters:
+    sizex: 1.5
+    sizey: 0.3
+    sizez: 8
+  position: [250, -200]
+- name: return_channel_tx
+  type: transformSOP
+  parameters:
+    tx: 4
+    ty: 0.15
+    rz: -15
+  position: [400, -200]
+  inputs:
+  - return_channel

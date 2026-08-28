@@ -1,0 +1,113 @@
+format: tdn
+version: '2.0'
+build: 1
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:21Z'
+network_path: /project1/worldgen/materials
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  phongMAT:
+    parameters:
+      skelrootpath: =parent()
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: baseCOMP
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: Shared Nikki palette constantMATs
+operators:
+- name: mat_sky
+  type: phongMAT
+  parameters:
+    diffr: 0.25
+    diffg: 0.65
+    diffb: 0.95
+    specr: 0.3
+    specg: 0.7
+    specb: 1
+  position: [0, -900]
+  comment: Nikki sky â€” matches UE MI_Nikki_Sky
+- name: mat_gold
+  type: phongMAT
+  parameters:
+    diffr: 0.96
+    diffg: 0.74
+    diffb: 0.18
+    specr: 1
+    specg: 0.88
+    specb: 0.4
+  position: [0, -300]
+  comment: Nikki gold â€” matches UE MI_Nikki_Gold
+- name: mat_cream
+  type: phongMAT
+  parameters:
+    diffr: 0.96
+    diffg: 0.9
+    diffb: 0.78
+    specr: 0.45
+    specg: 0.4
+    specb: 0.3
+  comment: Nikki cream â€” matches UE MI_Nikki_Cream
+- name: mat_ivory
+  type: phongMAT
+  parameters:
+    diffr: 0.95
+    diffg: 0.92
+    diffb: 0.84
+    specr: 0.4
+    specg: 0.38
+    specb: 0.35
+    emitr: =(op('/project1/audio/final_out')['beat'].eval() if op('/project1/audio/final_out') else 0.0) * 0.3
+    emitg: =(op('/project1/audio/final_out')['beat'].eval() if op('/project1/audio/final_out') else 0.0) * 0.28
+    emitb: =(op('/project1/audio/final_out')['beat'].eval() if op('/project1/audio/final_out') else 0.0) * 0.2
+  position: [0, -450]
+  comment: Nikki ivory â€” matches UE MI_Nikki_Ivory
+- name: mat_lavender
+  type: phongMAT
+  parameters:
+    diffr: 0.7
+    diffg: 0.52
+    diffb: 0.88
+    specr: 0.6
+    specg: 0.45
+    specb: 0.8
+  position: [0, -600]
+  comment: Nikki lavender â€” matches UE MI_Nikki_Lavender
+- name: mat_dusk_blue
+  type: phongMAT
+  parameters:
+    diffr: 0.12
+    diffg: 0.2
+    diffb: 0.48
+    specr: 0.2
+    specg: 0.35
+    specb: 0.75
+  position: [0, -150]
+  comment: Nikki dusk_blue â€” matches UE MI_Nikki_Dusk_Blue
+- name: mat_rose_gold
+  type: phongMAT
+  parameters:
+    diffr: 0.92
+    diffg: 0.55
+    diffb: 0.52
+    specr: 0.95
+    specg: 0.75
+    specb: 0.7
+  position: [0, -750]
+  comment: Nikki rose_gold â€” matches UE MI_Nikki_Rose_Gold
+- name: mat_terracotta
+  type: phongMAT
+  parameters:
+    diffr: 0.85
+    diffg: 0.38
+    diffb: 0.22
+    specr: 0.5
+    specg: 0.25
+    specb: 0.15
+  position: [0, -1050]
+  comment: Nikki terracotta â€” matches UE MI_Nikki_Terracotta

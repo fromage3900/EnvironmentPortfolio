@@ -1,0 +1,71 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:23Z'
+network_path: /project1/worldgen/pieces/wg_infinite_library
+options:
+  include_dat_content: false
+  include_storage: true
+type: geometryCOMP
+parameters:
+  material: /project1/worldgen/materials/mat_terracotta
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: Infinite library — shelves receding past reason  [terracotta]
+operators:
+- name: render_cam
+  type: cameraCOMP
+  parameters:
+    tx: 26.9714
+    ty: 20.2812
+    tz: 26.9714
+    rx: -28
+    ry: 45
+  position: [0, 400]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/worldgen/pieces/wg_infinite_library/render_cam.tdn
+- name: shelf_copy
+  type: copySOP
+  parameters:
+    copyg: ='copyGroup' + str(me.copyIndex)
+  flags:
+  - display
+  - render
+  position: [350, -100]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - shelf_unit_tx
+  - shelf_grid
+- name: shelf_grid
+  type: gridSOP
+  parameters:
+    sizex: 20
+    sizey: 15
+    rows: 10
+    cols: 8
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: shelf_unit
+  type: boxSOP
+  parameters:
+    sizex: 4
+    sizey: 0.3
+    sizez: 0.4
+  position: [0, -200]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: shelf_unit_tx
+  type: transformSOP
+  position: [150, -200]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - shelf_unit

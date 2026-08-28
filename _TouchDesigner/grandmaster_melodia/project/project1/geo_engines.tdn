@@ -1,0 +1,170 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:20Z'
+network_path: /project1/geo_engines
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  geometryCOMP:
+    size: [160, 130]
+    color: [0.3, 0.5, 0.9]
+    tags:
+    - tdn
+  lightCOMP:
+    size: [160, 130]
+    color: [0.3, 0.5, 0.9]
+    tags:
+    - tdn
+  outTOP:
+    parameters:
+      label: =me.name
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: baseCOMP
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+operators:
+- name: cam_look
+  type: nullCOMP
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/geo_engines/cam_look.tdn
+- name: water_sim
+  type: geometryCOMP
+  parameters:
+    ty: -3
+    material: /project1/magical_visuals/water_sim/water_mat
+  position: [367, -108]
+  tdn_ref: project1/geo_engines/water_sim.tdn
+- name: nuke_light
+  type: lightCOMP
+  parameters:
+    ty: 5
+    tz: 20
+    dimmer: 2
+  tdn_ref: project1/geo_engines/nuke_light.tdn
+- name: out_orrery
+  type: outTOP
+  position: [1400, 0]
+  comment: Orrery scene output -> postfx
+  inputs:
+  - /project1/geo_engines/cosmic_orrery/out1
+- name: render_cam
+  type: cameraCOMP
+  parameters:
+    tz: 10
+    lookat: /project1/geo_engines/cam_look
+    fov: 70
+  position: [87, 276]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/geo_engines/render_cam.tdn
+- name: main_render
+  type: renderTOP
+  parameters:
+    camera: render_cam
+    lights: /project1/geo_engines/render_light
+  flags:
+  - display
+  position: [225, -375]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: select_beat
+  type: selectCHOP
+  parameters:
+    chops: /project1/audio/preview_trail
+    autoexportroot: =parent()
+  position: [-322, -118]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: nikki_shrine
+  type: geometryCOMP
+  position: [400, -400]
+  tdn_ref: project1/geo_engines/nikki_shrine.tdn
+- name: render_light
+  type: lightCOMP
+  position: [367, 119]
+  tdn_ref: project1/geo_engines/render_light.tdn
+- name: star_emitter
+  type: gridSOP
+  position: [-95, 109]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: cosmic_orrery
+  type: baseCOMP
+  position: [800, -200]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  comment: 'COSMIC ORRERY — integrated scene: audio-reactive planets, emissive sun, star shell. Rebuilt by build_orrery_scene.py — do not hand-edit.'
+  tags:
+  - tdn
+  tdn_ref: project1/geo_engines/cosmic_orrery.tdn
+- name: iridescent_mat
+  type: phongMAT
+  parameters:
+    diffr: 0.85
+    diffg: 0.65
+    diffb: 0.95
+    specr: 0.4
+    specg: 0.8
+    specb: 1
+    skelrootpath: =parent()
+  position: [-322, -276]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: star_particles
+  type: particleSOP
+  parameters:
+    timeinc: =1/me.time.rate
+  position: [131, 109]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - star_emitter
+- name: instanced_stars
+  type: geometryCOMP
+  parameters:
+    instancing: true
+    instanceop: /project1/geo_engines/instanced_stars/star_null
+    instancetx: tx
+    instancety: ty
+    instancetz: tz
+    instancesx: scale
+    instancesy: scale
+    instancesz: scale
+    material: /project1/geo_engines/iridescent_mat
+  position: [-192, 276]
+  tdn_ref: project1/geo_engines/instanced_stars.tdn
+- name: starfield_bubbles
+  type: geometryCOMP
+  parameters:
+    instancing: true
+    instanceop: /project1/geo_engines/instanced_stars/star_noise
+    instancetx: tx
+    instancety: ty
+    instancetz: tz
+  position: [600, -400]
+  tdn_ref: project1/geo_engines/starfield_bubbles.tdn
+- name: bubbles_and_stars_geo
+  type: geometryCOMP
+  parameters:
+    material: /project1/magical_visuals/iridescent_mat
+  position: [-367, 49]
+  tdn_ref: project1/geo_engines/bubbles_and_stars_geo.tdn
+- name: OUT_RENDER_REVIEW_theme
+  type: outTOP
+  flags:
+  - viewer
+  position: [750, -225]
+  inputs:
+  - main_render

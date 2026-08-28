@@ -1,0 +1,53 @@
+format: tdn
+version: '2.0'
+build: 1
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:22Z'
+network_path: /project1/debug_render_net/geo1
+options:
+  include_dat_content: false
+  include_storage: true
+type: geometryCOMP
+parameters:
+  rx: =op('/project1/debug_render_net/geo1/spin')['chan1']
+  ry: =op('/project1/debug_render_net/geo1/spin')['chan1']
+  material: phong1
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+operators:
+- name: spin
+  type: speedCHOP
+  parameters:
+    autoexportroot: =parent()
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - const
+- name: const
+  type: constantCHOP
+  parameters:
+    rate: =me.time.rate
+    autoexportroot: =parent()
+  sequences:
+    const:
+    - value: 90
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: torus1
+  type: torusPOP
+  flags:
+  - display
+  - render
+  - viewer
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: torus2
+  type: torusSOP
+  flags:
+  - display
+  - render
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]

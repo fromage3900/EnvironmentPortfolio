@@ -1,0 +1,75 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:21Z'
+network_path: /project1/learn_td/procedural_tower
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  tubeSOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: geometryCOMP
+flags:
+- -display
+- -render
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: Tube -> Noise -> Cone -> Merge tower
+operators:
+- name: warp
+  type: noiseSOP
+  parameters:
+    tz: =absTime.seconds
+  position: [250, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  comment: Select me, press P, tune amplitude
+  inputs:
+  - pillar
+- name: spire
+  type: tubeSOP
+  position: [0, -200]
+- name: pillar
+  type: tubeSOP
+- name: roof_pos
+  type: transformSOP
+  position: [250, -200]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - spire
+- name: full_tower
+  type: mergeSOP
+  position: [475, 25]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - warp
+  - roof_pos
+- name: render_cam
+  type: cameraCOMP
+  parameters:
+    tx: 5
+    ty: 3
+    tz: 35
+    fov: 70
+  position: [875, -150]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/learn_td/procedural_tower/render_cam.tdn
+- name: render_out
+  type: renderTOP
+  parameters:
+    camera: /project1/learn_td/procedural_tower/render_cam
+  position: [700, -75]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  comment: Renders this geometry â€” connected to master switch

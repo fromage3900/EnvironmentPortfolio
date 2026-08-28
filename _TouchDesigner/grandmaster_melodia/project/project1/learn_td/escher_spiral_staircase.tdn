@@ -1,0 +1,597 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:21Z'
+network_path: /project1/learn_td/escher_spiral_staircase
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  transformSOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  boxSOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: geometryCOMP
+parameters:
+  material: /project1/worldgen/materials/mat_ivory
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: Ascending spiral staircase â€” 60 steps wrapping a central column
+operators:
+- name: render_cam
+  type: cameraCOMP
+  parameters:
+    tx: 5
+    ty: 3
+    tz: 35
+    fov: 70
+  position: [150, 200]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/learn_td/escher_spiral_staircase/render_cam.tdn
+- name: render_out
+  type: renderTOP
+  parameters:
+    camera: /project1/learn_td/escher_spiral_staircase/render_cam
+  position: [200, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  comment: Renders this geometry â€” connected to master switch
+- name: spiral_merge
+  type: mergeSOP
+  position: [2800, -200]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - central_column
+  - spiral_tx_00
+  - spiral_tx_01
+  - spiral_tx_02
+  - spiral_tx_03
+  - spiral_tx_04
+  - spiral_tx_05
+  - spiral_tx_06
+  - spiral_tx_07
+  - spiral_tx_08
+  - spiral_tx_09
+  - spiral_tx_10
+  - spiral_tx_11
+  - spiral_tx_12
+  - spiral_tx_13
+  - spiral_tx_14
+  - spiral_tx_15
+  - spiral_tx_16
+  - spiral_tx_17
+  - spiral_tx_18
+  - spiral_tx_19
+  - spiral_tx_20
+  - spiral_tx_21
+  - spiral_tx_22
+  - spiral_tx_23
+  - spiral_tx_24
+  - spiral_tx_25
+  - spiral_tx_26
+  - spiral_tx_27
+  - spiral_tx_28
+  - spiral_tx_29
+  - spiral_tx_30
+  - spiral_tx_31
+  - spiral_tx_32
+  - spiral_tx_33
+  - spiral_tx_34
+  - spiral_tx_35
+  - spiral_tx_36
+  - spiral_tx_37
+  - spiral_tx_38
+  - spiral_tx_39
+  - spiral_tx_40
+  - spiral_tx_41
+  - spiral_tx_42
+  - spiral_tx_43
+  - spiral_tx_44
+  - spiral_tx_45
+  - spiral_tx_46
+  - spiral_tx_47
+  - spiral_tx_48
+  - spiral_tx_49
+  - spiral_tx_50
+  - spiral_tx_51
+  - spiral_tx_52
+  - spiral_tx_53
+  - spiral_tx_54
+  - spiral_tx_55
+  - spiral_tx_56
+  - spiral_tx_57
+  - spiral_tx_58
+  - spiral_tx_59
+- name: spiral_tx_00
+  type: transformSOP
+  position: [150, 0]
+  inputs:
+  - spiral_step_00
+- name: spiral_tx_01
+  type: transformSOP
+  position: [400, 0]
+  inputs:
+  - spiral_step_01
+- name: spiral_tx_02
+  type: transformSOP
+  position: [650, 0]
+  inputs:
+  - spiral_step_02
+- name: spiral_tx_03
+  type: transformSOP
+  position: [900, 0]
+  inputs:
+  - spiral_step_03
+- name: spiral_tx_04
+  type: transformSOP
+  position: [1150, 0]
+  inputs:
+  - spiral_step_04
+- name: spiral_tx_05
+  type: transformSOP
+  position: [1400, 0]
+  inputs:
+  - spiral_step_05
+- name: spiral_tx_06
+  type: transformSOP
+  position: [1650, 0]
+  inputs:
+  - spiral_step_06
+- name: spiral_tx_07
+  type: transformSOP
+  position: [1900, 0]
+  inputs:
+  - spiral_step_07
+- name: spiral_tx_08
+  type: transformSOP
+  position: [2150, 0]
+  inputs:
+  - spiral_step_08
+- name: spiral_tx_09
+  type: transformSOP
+  position: [2400, 0]
+  inputs:
+  - spiral_step_09
+- name: spiral_tx_10
+  type: transformSOP
+  position: [150, -150]
+  inputs:
+  - spiral_step_10
+- name: spiral_tx_11
+  type: transformSOP
+  position: [400, -150]
+  inputs:
+  - spiral_step_11
+- name: spiral_tx_12
+  type: transformSOP
+  position: [650, -150]
+  inputs:
+  - spiral_step_12
+- name: spiral_tx_13
+  type: transformSOP
+  position: [900, -150]
+  inputs:
+  - spiral_step_13
+- name: spiral_tx_14
+  type: transformSOP
+  position: [1150, -150]
+  inputs:
+  - spiral_step_14
+- name: spiral_tx_15
+  type: transformSOP
+  position: [1400, -150]
+  inputs:
+  - spiral_step_15
+- name: spiral_tx_16
+  type: transformSOP
+  position: [1650, -150]
+  inputs:
+  - spiral_step_16
+- name: spiral_tx_17
+  type: transformSOP
+  position: [1900, -150]
+  inputs:
+  - spiral_step_17
+- name: spiral_tx_18
+  type: transformSOP
+  position: [2150, -150]
+  inputs:
+  - spiral_step_18
+- name: spiral_tx_19
+  type: transformSOP
+  position: [2400, -150]
+  inputs:
+  - spiral_step_19
+- name: spiral_tx_20
+  type: transformSOP
+  position: [150, -300]
+  inputs:
+  - spiral_step_20
+- name: spiral_tx_21
+  type: transformSOP
+  position: [400, -300]
+  inputs:
+  - spiral_step_21
+- name: spiral_tx_22
+  type: transformSOP
+  position: [650, -300]
+  inputs:
+  - spiral_step_22
+- name: spiral_tx_23
+  type: transformSOP
+  position: [900, -300]
+  inputs:
+  - spiral_step_23
+- name: spiral_tx_24
+  type: transformSOP
+  position: [1150, -300]
+  inputs:
+  - spiral_step_24
+- name: spiral_tx_25
+  type: transformSOP
+  position: [1400, -300]
+  inputs:
+  - spiral_step_25
+- name: spiral_tx_26
+  type: transformSOP
+  position: [1650, -300]
+  inputs:
+  - spiral_step_26
+- name: spiral_tx_27
+  type: transformSOP
+  position: [1900, -300]
+  inputs:
+  - spiral_step_27
+- name: spiral_tx_28
+  type: transformSOP
+  position: [2150, -300]
+  inputs:
+  - spiral_step_28
+- name: spiral_tx_29
+  type: transformSOP
+  position: [2400, -300]
+  inputs:
+  - spiral_step_29
+- name: spiral_tx_30
+  type: transformSOP
+  position: [150, -450]
+  inputs:
+  - spiral_step_30
+- name: spiral_tx_31
+  type: transformSOP
+  position: [400, -450]
+  inputs:
+  - spiral_step_31
+- name: spiral_tx_32
+  type: transformSOP
+  position: [650, -450]
+  inputs:
+  - spiral_step_32
+- name: spiral_tx_33
+  type: transformSOP
+  position: [900, -450]
+  inputs:
+  - spiral_step_33
+- name: spiral_tx_34
+  type: transformSOP
+  position: [1150, -450]
+  inputs:
+  - spiral_step_34
+- name: spiral_tx_35
+  type: transformSOP
+  position: [1400, -450]
+  inputs:
+  - spiral_step_35
+- name: spiral_tx_36
+  type: transformSOP
+  position: [1650, -450]
+  inputs:
+  - spiral_step_36
+- name: spiral_tx_37
+  type: transformSOP
+  position: [1900, -450]
+  inputs:
+  - spiral_step_37
+- name: spiral_tx_38
+  type: transformSOP
+  position: [2150, -450]
+  inputs:
+  - spiral_step_38
+- name: spiral_tx_39
+  type: transformSOP
+  position: [2400, -450]
+  inputs:
+  - spiral_step_39
+- name: spiral_tx_40
+  type: transformSOP
+  position: [150, -600]
+  inputs:
+  - spiral_step_40
+- name: spiral_tx_41
+  type: transformSOP
+  position: [400, -600]
+  inputs:
+  - spiral_step_41
+- name: spiral_tx_42
+  type: transformSOP
+  position: [650, -600]
+  inputs:
+  - spiral_step_42
+- name: spiral_tx_43
+  type: transformSOP
+  position: [900, -600]
+  inputs:
+  - spiral_step_43
+- name: spiral_tx_44
+  type: transformSOP
+  position: [1150, -600]
+  inputs:
+  - spiral_step_44
+- name: spiral_tx_45
+  type: transformSOP
+  position: [1400, -600]
+  inputs:
+  - spiral_step_45
+- name: spiral_tx_46
+  type: transformSOP
+  position: [1650, -600]
+  inputs:
+  - spiral_step_46
+- name: spiral_tx_47
+  type: transformSOP
+  position: [1900, -600]
+  inputs:
+  - spiral_step_47
+- name: spiral_tx_48
+  type: transformSOP
+  position: [2150, -600]
+  inputs:
+  - spiral_step_48
+- name: spiral_tx_49
+  type: transformSOP
+  position: [2400, -600]
+  inputs:
+  - spiral_step_49
+- name: spiral_tx_50
+  type: transformSOP
+  position: [150, -750]
+  inputs:
+  - spiral_step_50
+- name: spiral_tx_51
+  type: transformSOP
+  position: [400, -750]
+  inputs:
+  - spiral_step_51
+- name: spiral_tx_52
+  type: transformSOP
+  position: [650, -750]
+  inputs:
+  - spiral_step_52
+- name: spiral_tx_53
+  type: transformSOP
+  position: [900, -750]
+  inputs:
+  - spiral_step_53
+- name: spiral_tx_54
+  type: transformSOP
+  position: [1150, -750]
+  inputs:
+  - spiral_step_54
+- name: spiral_tx_55
+  type: transformSOP
+  position: [1400, -750]
+  inputs:
+  - spiral_step_55
+- name: spiral_tx_56
+  type: transformSOP
+  position: [1650, -750]
+  inputs:
+  - spiral_step_56
+- name: spiral_tx_57
+  type: transformSOP
+  position: [1900, -750]
+  inputs:
+  - spiral_step_57
+- name: spiral_tx_58
+  type: transformSOP
+  position: [2150, -750]
+  inputs:
+  - spiral_step_58
+- name: spiral_tx_59
+  type: transformSOP
+  position: [2400, -750]
+  inputs:
+  - spiral_step_59
+- name: central_column
+  type: tubeSOP
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: spiral_step_00
+  type: boxSOP
+- name: spiral_step_01
+  type: boxSOP
+  position: [250, 0]
+- name: spiral_step_02
+  type: boxSOP
+  position: [500, 0]
+- name: spiral_step_03
+  type: boxSOP
+  position: [750, 0]
+- name: spiral_step_04
+  type: boxSOP
+  position: [1000, 0]
+- name: spiral_step_05
+  type: boxSOP
+  position: [1250, 0]
+- name: spiral_step_06
+  type: boxSOP
+  position: [1500, 0]
+- name: spiral_step_07
+  type: boxSOP
+  position: [1750, 0]
+- name: spiral_step_08
+  type: boxSOP
+  position: [2000, 0]
+- name: spiral_step_09
+  type: boxSOP
+  position: [2250, 0]
+- name: spiral_step_10
+  type: boxSOP
+  position: [0, -150]
+- name: spiral_step_11
+  type: boxSOP
+  position: [250, -150]
+- name: spiral_step_12
+  type: boxSOP
+  position: [500, -150]
+- name: spiral_step_13
+  type: boxSOP
+  position: [750, -150]
+- name: spiral_step_14
+  type: boxSOP
+  position: [1000, -150]
+- name: spiral_step_15
+  type: boxSOP
+  position: [1250, -150]
+- name: spiral_step_16
+  type: boxSOP
+  position: [1500, -150]
+- name: spiral_step_17
+  type: boxSOP
+  position: [1750, -150]
+- name: spiral_step_18
+  type: boxSOP
+  position: [2000, -150]
+- name: spiral_step_19
+  type: boxSOP
+  position: [2250, -150]
+- name: spiral_step_20
+  type: boxSOP
+  position: [0, -300]
+- name: spiral_step_21
+  type: boxSOP
+  position: [250, -300]
+- name: spiral_step_22
+  type: boxSOP
+  position: [500, -300]
+- name: spiral_step_23
+  type: boxSOP
+  position: [750, -300]
+- name: spiral_step_24
+  type: boxSOP
+  position: [1000, -300]
+- name: spiral_step_25
+  type: boxSOP
+  position: [1250, -300]
+- name: spiral_step_26
+  type: boxSOP
+  position: [1500, -300]
+- name: spiral_step_27
+  type: boxSOP
+  position: [1750, -300]
+- name: spiral_step_28
+  type: boxSOP
+  position: [2000, -300]
+- name: spiral_step_29
+  type: boxSOP
+  position: [2250, -300]
+- name: spiral_step_30
+  type: boxSOP
+  position: [0, -450]
+- name: spiral_step_31
+  type: boxSOP
+  position: [250, -450]
+- name: spiral_step_32
+  type: boxSOP
+  position: [500, -450]
+- name: spiral_step_33
+  type: boxSOP
+  position: [750, -450]
+- name: spiral_step_34
+  type: boxSOP
+  position: [1000, -450]
+- name: spiral_step_35
+  type: boxSOP
+  position: [1250, -450]
+- name: spiral_step_36
+  type: boxSOP
+  position: [1500, -450]
+- name: spiral_step_37
+  type: boxSOP
+  position: [1750, -450]
+- name: spiral_step_38
+  type: boxSOP
+  position: [2000, -450]
+- name: spiral_step_39
+  type: boxSOP
+  position: [2250, -450]
+- name: spiral_step_40
+  type: boxSOP
+  position: [0, -600]
+- name: spiral_step_41
+  type: boxSOP
+  position: [250, -600]
+- name: spiral_step_42
+  type: boxSOP
+  position: [500, -600]
+- name: spiral_step_43
+  type: boxSOP
+  position: [750, -600]
+- name: spiral_step_44
+  type: boxSOP
+  position: [1000, -600]
+- name: spiral_step_45
+  type: boxSOP
+  position: [1250, -600]
+- name: spiral_step_46
+  type: boxSOP
+  position: [1500, -600]
+- name: spiral_step_47
+  type: boxSOP
+  position: [1750, -600]
+- name: spiral_step_48
+  type: boxSOP
+  position: [2000, -600]
+- name: spiral_step_49
+  type: boxSOP
+  position: [2250, -600]
+- name: spiral_step_50
+  type: boxSOP
+  position: [0, -750]
+- name: spiral_step_51
+  type: boxSOP
+  position: [250, -750]
+- name: spiral_step_52
+  type: boxSOP
+  position: [500, -750]
+- name: spiral_step_53
+  type: boxSOP
+  position: [750, -750]
+- name: spiral_step_54
+  type: boxSOP
+  position: [1000, -750]
+- name: spiral_step_55
+  type: boxSOP
+  position: [1250, -750]
+- name: spiral_step_56
+  type: boxSOP
+  position: [1500, -750]
+- name: spiral_step_57
+  type: boxSOP
+  position: [1750, -750]
+- name: spiral_step_58
+  type: boxSOP
+  position: [2000, -750]
+- name: spiral_step_59
+  type: boxSOP
+  position: [2250, -750]

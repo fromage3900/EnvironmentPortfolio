@@ -1,0 +1,83 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:23Z'
+network_path: /project1/worldgen/pieces/wg_tessellation
+options:
+  include_dat_content: false
+  include_storage: true
+type: geometryCOMP
+parameters:
+  material: /project1/worldgen/materials/mat_terracotta
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: Escher tessellation — diamonds on warped grid  [terracotta]
+operators:
+- name: warp
+  type: noiseSOP
+  parameters:
+    amp: 0.1
+    tz: =absTime.seconds
+  position: [200, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - base_grid
+- name: diamond
+  type: boxSOP
+  parameters:
+    sizex: 0.8
+    sizey: 0.1
+    sizez: 0.8
+  position: [0, -200]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: base_grid
+  type: gridSOP
+  parameters:
+    sizex: 12
+    sizey: 12
+    rows: 12
+    cols: 12
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: tess_copy
+  type: copySOP
+  parameters:
+    copyg: ='copyGroup' + str(me.copyIndex)
+  flags:
+  - display
+  - render
+  position: [400, -100]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - diamond_tx
+  - warp
+- name: diamond_tx
+  type: transformSOP
+  parameters:
+    ry: 45
+  position: [150, -200]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - diamond
+- name: render_cam
+  type: cameraCOMP
+  parameters:
+    tx: 14.7571
+    ty: 11.0966
+    tz: 14.78
+    rx: -28
+    ry: 45
+  position: [0, 400]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/worldgen/pieces/wg_tessellation/render_cam.tdn

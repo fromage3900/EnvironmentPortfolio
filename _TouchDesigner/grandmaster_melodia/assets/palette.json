@@ -1,0 +1,23 @@
+{
+  "brand": "Grandmaster Melodia — Melodia Melusina",
+  "source_of_truth": true,
+  "note": "Single source of truth for the audio-reactive environment's palette. Consumed by all effect chains in the TD graph (starfield, particles, postfx). Warm-violet toon language matching the UE5.8 game's linear-color identity.",
+  "palette": {
+    "deep_violet_bg":  {"hex": "#352D40", "linear": [0.0351, 0.0263, 0.0528], "role": "background / base"},
+    "warm_lilac":      {"hex": "#9D7FC4", "linear": [0.30, 0.23, 0.44],   "role": "primary accent / melody"},
+    "soft_rose":       {"hex": "#E8B4C8", "linear": [0.60, 0.42, 0.50],   "role": "warm highlight / harmony"},
+    "golden_gilt":     {"hex": "#D9B26E", "linear": [0.55, 0.45, 0.27],   "role": "ornament / celestial gold"},
+    "celestial_white": {"hex": "#F3EEF8", "linear": [0.85, 0.82, 0.90],   "role": "sparkle / starfield core"},
+    "deep_plum":       {"hex": "#221A2B", "linear": [0.02, 0.015, 0.032], "role": "shadow / vignette edge"},
+    "ether_mint":      {"hex": "#A8D5C8", "linear": [0.45, 0.60, 0.55],   "role": "subtle contrast / MIDI note flash"}
+  },
+  "palette_hex": ["#352D40", "#9D7FC4", "#E8B4C8", "#D9B26E", "#F3EEF8", "#221A2B", "#A8D5C8"],
+  "drivers": {
+    "sub_bass":   {"map": "camera shake / pulse",       "source": "audio band1"},
+    "mid":        {"map": "lighting / starfield scale",  "source": "audio band2-3"},
+    "high":       {"map": "sparkle / highway highlights","source": "audio band4-5"},
+    "full":       {"map": "master envelope",             "source": "audio full RMS"},
+    "hand_open":  {"map": "chord burst / bloom gate",    "source": "OSC hand openness"},
+    "hand_wrist": {"map": "starfield tx/ty / hue shift",  "source": "OSC hand wrist"}
+  }
+}

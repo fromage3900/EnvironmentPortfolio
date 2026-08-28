@@ -1,0 +1,105 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:14:00Z'
+network_path: /project1/starfield
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  textDAT:
+    parameters:
+      language: glsl
+    flags:
+    - viewer
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: baseCOMP
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+operators:
+- name: out1
+  type: outTOP
+  parameters:
+    selecttop: blur1
+    label: =me.name
+  position: [50, -150]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - transform1
+- name: blur1
+  type: blurTOP
+  position: [200, 75]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - level1
+- name: level1
+  type: levelTOP
+  parameters:
+    blacklevel: 0.995
+    brightness1: 5
+  position: [525, 125]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - noise1
+- name: noise1
+  type: noiseTOP
+  parameters:
+    resolutionw: 1280
+    resolutionh: 720
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: transform1
+  type: transformTOP
+  parameters:
+    tx: =op('/project1/hand_osc')['hand/0/wrist1']*4
+    ty: =op('/project1/hand_osc')['hand/0/wrist2']*4
+    rotate: =op('/project1/hand_osc')['hand/0/index1']*360
+    sx: =0.5+op('/project1/hand_osc')['hand/0/open']*1.5
+    sy: =0.5+op('/project1/hand_osc')['hand/0/open']*1.5
+    bgcolorr: 0.826
+    bgcolorg: 0.826
+    bgcolorb: 0.826
+  flags:
+  - viewer
+  position: [300, -125]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - blur1
+- name: resonance_rings
+  type: glslTOP
+  parameters:
+    pixeldat: resonance_rings_pixel
+    computedat: resonance_rings_compute
+    nval: 5
+  position: [940, 125]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: resonance_rings_info
+  type: infoDAT
+  parameters:
+    op: resonance_rings
+  flags:
+  - viewer
+  position: [1090, 5]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  dock: resonance_rings
+- name: resonance_rings_pixel
+  type: textDAT
+  parameters:
+    extension: frag
+  position: [940, 5]
+  dock: resonance_rings
+- name: resonance_rings_compute
+  type: textDAT
+  position: [790, 5]
+  dock: resonance_rings

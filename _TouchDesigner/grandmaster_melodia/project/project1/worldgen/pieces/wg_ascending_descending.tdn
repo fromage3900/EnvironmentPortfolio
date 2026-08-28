@@ -1,0 +1,276 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:24Z'
+network_path: /project1/worldgen/pieces/wg_ascending_descending
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  boxSOP:
+    parameters:
+      sizex: 2
+      sizey: 0.2
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  transformSOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: geometryCOMP
+parameters:
+  material: /project1/worldgen/materials/mat_ivory
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: Ascending/Descending — the monks walk forever  [ivory]
+operators:
+- name: step_0
+  type: boxSOP
+- name: step_1
+  type: boxSOP
+  position: [250, 0]
+- name: step_2
+  type: boxSOP
+  position: [500, 0]
+- name: step_3
+  type: boxSOP
+  position: [750, 0]
+- name: step_4
+  type: boxSOP
+  position: [0, -200]
+- name: step_5
+  type: boxSOP
+  position: [250, -200]
+- name: step_6
+  type: boxSOP
+  position: [500, -200]
+- name: step_7
+  type: boxSOP
+  position: [750, -200]
+- name: step_8
+  type: boxSOP
+  position: [0, -400]
+- name: step_9
+  type: boxSOP
+  position: [250, -400]
+- name: step_10
+  type: boxSOP
+  position: [500, -400]
+- name: step_11
+  type: boxSOP
+  position: [750, -400]
+- name: step_12
+  type: boxSOP
+  position: [0, -600]
+- name: step_13
+  type: boxSOP
+  position: [250, -600]
+- name: step_14
+  type: boxSOP
+  position: [500, -600]
+- name: step_15
+  type: boxSOP
+  position: [750, -600]
+- name: step_0_tx
+  type: transformSOP
+  parameters:
+    tx: 6
+    ry: 90
+  position: [150, 0]
+  inputs:
+  - step_0
+- name: step_1_tx
+  type: transformSOP
+  parameters:
+    tx: 5.54328
+    ty: 0.25
+    tz: 2.2961
+    ry: 112.5
+  position: [400, 0]
+  inputs:
+  - step_1
+- name: step_2_tx
+  type: transformSOP
+  parameters:
+    tx: 4.24264
+    ty: 0.5
+    tz: 4.24264
+    ry: 135
+  position: [650, 0]
+  inputs:
+  - step_2
+- name: step_3_tx
+  type: transformSOP
+  parameters:
+    tx: 2.2961
+    ty: 0.75
+    tz: 5.54328
+    ry: 157.5
+  position: [900, 0]
+  inputs:
+  - step_3
+- name: step_4_tx
+  type: transformSOP
+  parameters:
+    ty: 1
+    tz: 6
+    ry: 180
+  position: [150, -200]
+  inputs:
+  - step_4
+- name: step_5_tx
+  type: transformSOP
+  parameters:
+    tx: -2.2961
+    ty: 1.25
+    tz: 5.54328
+    ry: 202.5
+  position: [400, -200]
+  inputs:
+  - step_5
+- name: step_6_tx
+  type: transformSOP
+  parameters:
+    tx: -4.24264
+    ty: 1.5
+    tz: 4.24264
+    ry: 225
+  position: [650, -200]
+  inputs:
+  - step_6
+- name: step_7_tx
+  type: transformSOP
+  parameters:
+    tx: -5.54328
+    ty: 1.75
+    tz: 2.2961
+    ry: 247.5
+  position: [900, -200]
+  inputs:
+  - step_7
+- name: step_8_tx
+  type: transformSOP
+  parameters:
+    tx: -6
+    ty: 2
+    ry: 270
+  position: [150, -400]
+  inputs:
+  - step_8
+- name: step_9_tx
+  type: transformSOP
+  parameters:
+    tx: -5.54328
+    ty: 2.25
+    tz: -2.2961
+    ry: 292.5
+  position: [400, -400]
+  inputs:
+  - step_9
+- name: loop_merge
+  type: mergeSOP
+  flags:
+  - display
+  - render
+  position: [1100, -300]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - step_0_tx
+  - step_1_tx
+  - step_2_tx
+  - step_3_tx
+  - step_4_tx
+  - step_5_tx
+  - step_6_tx
+  - step_7_tx
+  - step_8_tx
+  - step_9_tx
+  - step_10_tx
+  - step_11_tx
+  - step_12_tx
+  - step_13_tx
+  - step_14_tx
+  - step_15_tx
+- name: render_cam
+  type: cameraCOMP
+  parameters:
+    tx: 14.6095
+    ty: 12.8606
+    tz: 14.6095
+    rx: -28
+    ry: 45
+  position: [0, 400]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/worldgen/pieces/wg_ascending_descending/render_cam.tdn
+- name: step_10_tx
+  type: transformSOP
+  parameters:
+    tx: -4.24264
+    ty: 2.5
+    tz: -4.24264
+    ry: 315
+  position: [650, -400]
+  inputs:
+  - step_10
+- name: step_11_tx
+  type: transformSOP
+  parameters:
+    tx: -2.2961
+    ty: 2.75
+    tz: -5.54328
+    ry: 337.5
+  position: [900, -400]
+  inputs:
+  - step_11
+- name: step_12_tx
+  type: transformSOP
+  parameters:
+    ty: 3
+    tz: -6
+    ry: 360
+  position: [150, -600]
+  inputs:
+  - step_12
+- name: step_13_tx
+  type: transformSOP
+  parameters:
+    tx: 2.2961
+    ty: 3.25
+    tz: -5.54328
+    ry: 382.5
+  position: [400, -600]
+  inputs:
+  - step_13
+- name: step_14_tx
+  type: transformSOP
+  parameters:
+    tx: 4.24264
+    ty: 3.5
+    tz: -4.24264
+    ry: 405
+  position: [650, -600]
+  inputs:
+  - step_14
+- name: step_15_tx
+  type: transformSOP
+  parameters:
+    tx: 5.54328
+    ty: 3.75
+    tz: -2.2961
+    ry: 427.5
+  position: [900, -600]
+  inputs:
+  - step_15
+- name: effect_facet
+  type: facetSOP
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - loop_merge

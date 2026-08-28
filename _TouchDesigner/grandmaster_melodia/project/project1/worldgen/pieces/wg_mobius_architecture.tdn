@@ -1,0 +1,63 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:23Z'
+network_path: /project1/worldgen/pieces/wg_mobius_architecture
+options:
+  include_dat_content: false
+  include_storage: true
+type: geometryCOMP
+parameters:
+  material: /project1/worldgen/materials/mat_rose_gold
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: Mobius architecture — a building with one side and one edge  [rose_gold]
+operators:
+- name: profile
+  type: rectangleSOP
+  parameters:
+    sizex: 1.5
+    sizey: 3
+  position: [-200, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: backbone
+  type: circleSOP
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: half_twist
+  type: twistSOP
+  position: [200, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - backbone
+- name: render_cam
+  type: cameraCOMP
+  parameters:
+    tx: 3.93333
+    ty: 2.95767
+    tz: 3.93333
+    rx: -28
+    ry: 45
+  position: [0, 400]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/worldgen/pieces/wg_mobius_architecture/render_cam.tdn
+- name: mobius_sweep
+  type: sweepSOP
+  flags:
+  - display
+  - render
+  position: [400, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - profile
+  - half_twist

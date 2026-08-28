@@ -1,0 +1,67 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:22Z'
+network_path: /project1/_fbxcomp_probe/group1
+options:
+  include_dat_content: false
+  include_storage: true
+type: geometryCOMP
+parameters:
+  ty: 0.7
+  material: ./a
+flags:
+- viewer
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+operators:
+- name: a
+  type: phongMAT
+  parameters:
+    ambdiff: false
+    diffr: 0.756863
+    diffg: 0.756863
+    diffb: 0.756863
+    ambr: 0
+    ambg: 0
+    ambb: 0
+    specr: 0
+    specg: 0
+    specb: 0
+    skelrootpath: =parent()
+    postmultalpha: false
+  flags:
+  - viewer
+  position: [100, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: mesh
+  type: importselectPOP
+  parameters:
+    geometry: /group1
+    index: =me.time.frame
+  flags:
+  - display
+  - render
+  - viewer
+  position: [327, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: touchMergedNodes
+  type: tableDAT
+  parameters:
+    file: project1/_fbxcomp_probe/group1/touchMergedNodes.tsv
+    syncfile: true
+    rows: 28
+    cols: 1
+  flags:
+  - viewer
+  position: [554, 0]
+  size: [130, 90]
+  color: [0.9, 0.3, 0.4]
+  tags:
+  - tsv

@@ -1,0 +1,58 @@
+{
+  "version": "1.0",
+  "routes": {
+    "audio": {
+      "melusina_pitch": {
+        "path": "/melusina/pitch",
+        "type": "float",
+        "range": [60, 2000]
+      },
+      "melusina_amplitude": {
+        "path": "/melusina/amp",
+        "type": "float",
+        "range": [0, 1]
+      },
+      "melusina_formants": {
+        "path": "/melusina/formants",
+        "type": "float_array",
+        "size": 5
+      }
+    },
+    "camera": {
+      "ue_camera_transform": {
+        "path": "/ue/camera",
+        "type": "float_array",
+        "size": 16
+      },
+      "td_camera_transform": {
+        "path": "/td/camera",
+        "type": "float_array",
+        "size": 16
+      }
+    },
+    "material": {
+      "toon_params": {
+        "path": "/material/toon",
+        "type": "float_array",
+        "size": 12
+      },
+      "style_preset": {
+        "path": "/material/preset",
+        "type": "int",
+        "range": [0, 4]
+      }
+    },
+    "time": {
+      "day_night_cycle": {
+        "path": "/time/cycle",
+        "type": "float",
+        "range": [0, 1]
+      },
+      "beat_sync": {
+        "path": "/time/beat",
+        "type": "float",
+        "range": [0, 1]
+      }
+    }
+  }
+}

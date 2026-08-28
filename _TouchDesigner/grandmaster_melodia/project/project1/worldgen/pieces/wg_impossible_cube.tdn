@@ -1,0 +1,253 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:23Z'
+network_path: /project1/worldgen/pieces/wg_impossible_cube
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  tubeSOP:
+    parameters:
+      rad1: 0.08
+      rad2: 0.08
+      height: 3
+      rows: 4
+      cols: 24
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  transformSOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: geometryCOMP
+parameters:
+  material: /project1/worldgen/materials/mat_gold
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: Impossible cube — edges that disagree about depth  [gold]
+operators:
+- name: v_0
+  type: tubeSOP
+- name: v_1
+  type: tubeSOP
+  position: [200, 0]
+- name: v_2
+  type: tubeSOP
+  position: [400, 0]
+- name: v_3
+  type: tubeSOP
+  position: [600, 0]
+- name: h_0_0
+  type: tubeSOP
+  position: [0, -200]
+- name: h_0_1
+  type: tubeSOP
+  position: [200, -200]
+- name: h_0_2
+  type: tubeSOP
+  position: [400, -200]
+- name: h_0_3
+  type: tubeSOP
+  position: [600, -200]
+- name: h_1_0
+  type: tubeSOP
+  position: [0, -350]
+- name: h_1_1
+  type: tubeSOP
+  position: [200, -350]
+- name: h_1_2
+  type: tubeSOP
+  position: [400, -350]
+- name: h_1_3
+  type: tubeSOP
+  position: [600, -350]
+- name: v_0_tx
+  type: transformSOP
+  parameters:
+    ty: 1.5
+  position: [150, 0]
+  inputs:
+  - v_0
+- name: v_1_tx
+  type: transformSOP
+  parameters:
+    tx: 3
+    ty: 1.5
+  position: [350, 0]
+  inputs:
+  - v_1
+- name: v_2_tx
+  type: transformSOP
+  parameters:
+    tx: 3
+    ty: 1.5
+    tz: 3
+  position: [550, 0]
+  inputs:
+  - v_2
+- name: v_3_tx
+  type: transformSOP
+  parameters:
+    ty: 1.5
+    tz: 3
+  position: [750, 0]
+  inputs:
+  - v_3
+- name: h_0_0_tx
+  type: transformSOP
+  parameters:
+    tx: 1.5
+    rz: -90
+  position: [150, -200]
+  inputs:
+  - h_0_0
+- name: h_0_1_tx
+  type: transformSOP
+  parameters:
+    tx: 1.5
+    tz: 3
+    rz: -90
+  position: [350, -200]
+  inputs:
+  - h_0_1
+- name: h_0_2_tx
+  type: transformSOP
+  parameters:
+    tz: 1.5
+    rx: 90
+  position: [550, -200]
+  inputs:
+  - h_0_2
+- name: h_0_3_tx
+  type: transformSOP
+  parameters:
+    tx: 3
+    tz: 1.5
+    rx: 90
+  position: [750, -200]
+  inputs:
+  - h_0_3
+- name: h_1_0_tx
+  type: transformSOP
+  parameters:
+    tx: 1.5
+    ty: 3
+    rz: -90
+  position: [150, -350]
+  inputs:
+  - h_1_0
+- name: h_1_1_tx
+  type: transformSOP
+  parameters:
+    tx: 1.5
+    ty: 3
+    tz: 3
+    rz: -90
+  position: [350, -350]
+  inputs:
+  - h_1_1
+- name: h_1_2_tx
+  type: transformSOP
+  parameters:
+    ty: 3
+    tz: 1.5
+    rx: 90
+  position: [550, -350]
+  inputs:
+  - h_1_2
+- name: h_1_3_tx
+  type: transformSOP
+  parameters:
+    tx: 3
+    ty: 3
+    tz: 1.5
+    rx: 90
+  position: [750, -350]
+  inputs:
+  - h_1_3
+- name: cube_merge
+  type: mergeSOP
+  position: [1000, -200]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - v_0_tx
+  - v_1_tx
+  - v_2_tx
+  - v_3_tx
+  - h_0_0_tx
+  - h_0_1_tx
+  - h_0_2_tx
+  - h_0_3_tx
+  - h_1_0_tx
+  - h_1_1_tx
+  - h_1_2_tx
+  - h_1_3_tx
+- name: render_cam
+  type: cameraCOMP
+  parameters:
+    tx: 5.05124
+    ty: 4.17035
+    tz: 5.05124
+    rx: -28
+    ry: 45
+  position: [0, 400]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/worldgen/pieces/wg_impossible_cube/render_cam.tdn
+- name: effect_facet
+  type: facetSOP
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - cube_merge
+- name: effect_point
+  type: pointSOP
+  parameters:
+    tx: =me.inputPoint.x
+    ty: =me.inputPoint.y
+    tz: =me.inputPoint.z
+    weight: =me.inputPoint.w
+    doclr: 'on'
+    diffr: =0.75 + 0.25 * math.sin(me.inputPoint.P[1] * 0.5 + absTime.seconds * 3.0)
+    diffg: =0.60 + 0.35 * math.cos(me.inputPoint.P[1] * 0.4 + absTime.seconds * 2.5)
+    diffb: =0.90 + 0.10 * math.sin(me.inputPoint.P[1] * 0.3 - absTime.seconds * 2.0)
+    alpha: =me.inputColor[3]
+    nx: =me.inputNormal[0]
+    ny: =me.inputNormal[1]
+    nz: =me.inputNormal[2]
+    mapu: =me.inputTexture[0]
+    mapv: =me.inputTexture[1]
+    mapw: =me.inputTexture[2]
+    width: =me.inputPoint.width[0]
+    pscale: =me.inputPoint.pscale[0]
+    tension: =me.inputPoint.tension[0]
+    springk: =me.inputPoint.springk[0]
+    vx: =me.inputPoint.v[0]
+    vy: =me.inputPoint.v[1]
+    vz: =me.inputPoint.v[2]
+    upx: =me.inputPoint.up[0]
+    upy: =me.inputPoint.up[1]
+    upz: =me.inputPoint.up[2]
+  flags:
+  - display
+  - render
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - effect_twist
+- name: effect_twist
+  type: twistSOP
+  parameters:
+    paxis: y
+    strength: =math.sin(absTime.seconds * 1.2) * 12.0 + (op('/project1/audio/final_out')['beat'].eval() if op('/project1/audio/final_out') else 0.0) * 18.0
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - effect_facet

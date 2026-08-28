@@ -1,0 +1,124 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:23Z'
+network_path: /project1/worldgen/pieces/wg_relativity
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  boxSOP:
+    parameters:
+      sizex: 8
+      sizey: 8
+      sizez: 8
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  transformSOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: geometryCOMP
+parameters:
+  material: /project1/worldgen/materials/mat_lavender
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: Relativity — six rooms, six gravities  [lavender]
+operators:
+- name: room_0
+  type: boxSOP
+- name: room_1
+  type: boxSOP
+  position: [300, 0]
+- name: room_2
+  type: boxSOP
+  position: [600, 0]
+- name: room_3
+  type: boxSOP
+  position: [900, 0]
+- name: room_4
+  type: boxSOP
+  position: [1200, 0]
+- name: room_5
+  type: boxSOP
+  position: [1500, 0]
+- name: room_0_tx
+  type: transformSOP
+  position: [150, 0]
+  inputs:
+  - room_0
+- name: room_1_tx
+  type: transformSOP
+  parameters:
+    rx: 90
+  position: [450, 0]
+  inputs:
+  - room_1
+- name: room_2_tx
+  type: transformSOP
+  parameters:
+    rx: 180
+  position: [750, 0]
+  inputs:
+  - room_2
+- name: room_3_tx
+  type: transformSOP
+  parameters:
+    rx: 270
+  position: [1050, 0]
+  inputs:
+  - room_3
+- name: room_4_tx
+  type: transformSOP
+  parameters:
+    ty: 8
+    rx: 90
+  position: [1350, 0]
+  inputs:
+  - room_4
+- name: room_5_tx
+  type: transformSOP
+  parameters:
+    ty: -8
+    rx: -90
+  position: [1650, 0]
+  inputs:
+  - room_5
+- name: render_cam
+  type: cameraCOMP
+  parameters:
+    tx: 22
+    ty: 14
+    tz: 22
+    rx: -25
+    ry: 45
+  position: [0, 400]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/worldgen/pieces/wg_relativity/render_cam.tdn
+- name: rooms_merge
+  type: mergeSOP
+  flags:
+  - display
+  - render
+  position: [2000, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - room_0_tx
+  - room_1_tx
+  - room_2_tx
+  - room_3_tx
+  - room_4_tx
+  - room_5_tx
+- name: effect_facet
+  type: facetSOP
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - rooms_merge

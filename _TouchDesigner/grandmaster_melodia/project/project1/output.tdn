@@ -1,0 +1,31 @@
+format: tdn
+version: '2.0'
+build: 1
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:19Z'
+network_path: /project1/output
+options:
+  include_dat_content: false
+  include_storage: true
+type: baseCOMP
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+operators:
+- name: in1
+  type: inTOP
+  parameters:
+    label: =me.name
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: out1
+  type: outTOP
+  parameters:
+    label: =me.name
+  position: [200, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - in1

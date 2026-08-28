@@ -1,0 +1,75 @@
+format: tdn
+version: '2.0'
+build: 1
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:22Z'
+network_path: /project1/learn_td/nikki_sanctuary/mergedGeos
+options:
+  include_dat_content: false
+  include_storage: true
+type: nullCOMP
+parameters:
+  ty: 0.67
+flags:
+- -display
+- viewer
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+operators:
+- name: primitive1
+  type: primitivePOP
+  parameters:
+    addpts: true
+    method: pattern
+  sequences:
+    attr:
+    - name: color
+    prim:
+    - type: lines
+      pattern: 0 1
+    - type: lines
+      pattern: 2 3
+    - type: lines
+      pattern: 4 5
+    pt:
+    - posx: -0.1
+      colorg: 0
+      colorb: 0
+    - posx: 0.1
+      colorg: 0
+      colorb: 0
+    - posy: -0.1
+      colorr: 0
+      colorb: 0
+    - posy: 0.1
+      colorr: 0
+      colorb: 0
+    - posz: -0.1
+      colorr: 0
+      colorg: 0
+    - posz: 0.1
+      colorr: 0
+      colorg: 0
+  custom_pars:
+    Points:
+    - name: pt
+      style: Sequence
+      label: Point
+    - name: Posx
+      style: XYZW
+      label: Position
+      size: 3
+      sequence: pt
+    - name: Colorr
+      style: RGBA
+      label: Color
+      default: 1
+      sequence: pt
+  flags:
+  - display
+  - viewer
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]

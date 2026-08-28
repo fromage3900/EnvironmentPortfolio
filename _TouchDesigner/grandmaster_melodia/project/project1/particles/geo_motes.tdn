@@ -1,0 +1,31 @@
+format: tdn
+version: '2.0'
+build: 1
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:21Z'
+network_path: /project1/particles/geo_motes
+options:
+  include_dat_content: false
+  include_storage: true
+type: geometryCOMP
+parameters:
+  instancing: true
+  instanceop: /project1/particles/motes_pop
+  instancetx: P(0)
+  instancety: P(1)
+  instancetz: P(2)
+  material: /project1/particles/mat_motes
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+operators:
+- name: mesh
+  type: sphereSOP
+  parameters:
+    radx: 0.02
+    rady: 0.02
+    radz: 0.02
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]

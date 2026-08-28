@@ -1,0 +1,1628 @@
+format: tdn
+version: '2.0'
+build: 3
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:18:07Z'
+network_path: /project1
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  baseCOMP:
+    size: [160, 130]
+    color: [0.3, 0.5, 0.9]
+    tags:
+    - tdn
+  containerCOMP:
+    parameters:
+      resizecomp: =me
+      repocomp: =me
+  fbxCOMP:
+    parameters:
+      index: =me.time.frame
+    size: [160, 130]
+    color: [0.3, 0.5, 0.9]
+    tags:
+    - tdn
+  compositeTOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  transformTOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  circleTOP:
+    parameters:
+      fillalpha: 0
+      borderwidth: 0.004
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: containerCOMP
+parameters:
+  w: 1280
+  h: 720
+  resizecomp: =me
+  repocomp: =me
+  top: ./out1
+  borderover: false
+  parentshortcut: Project
+sequences:
+  ext:
+  - object: op('./MelodiaStudioCore').module.MelodiaStudioCore(me)
+    name: MelodiaStudioCore
+    promote: true
+  - object: op('./GraphManagerExt').module.GraphManagerExt(me)
+    name: GraphManagerExt
+    promote: true
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+operators:
+- name: ui
+  type: baseCOMP
+  sequences:
+    ext:
+    - object: op('./PortfolioController').module.PortfolioController(me)
+      name: PortfolioController
+      promote: true
+  position: [-685, 176]
+  comment: CONTROL PANEL — preset switcher, sliders, stats overlay
+  tdn_ref: project1/ui.tdn
+- name: geo
+  type: baseCOMP
+  position: [994, -342]
+  comment: GEOMETRY LOADER — FBX/USD import + camera rig + light rig
+  tdn_ref: project1/geo.tdn
+- name: osc
+  type: baseCOMP
+  position: [-125, -342]
+  comment: OSC ROUTING HUB — TD ↔ Blender (:9000) ↔ UE (:8000)
+  tdn_ref: project1/osc.tdn
+- name: out1
+  type: outTOP
+  parameters:
+    label: =me.name
+  flags:
+  - viewer
+  position: [-1000, 550]
+  size: [130, 72]
+  color: [0.9, 0.1, 0.1]
+  inputs:
+  - /project1/postfx/out1
+- name: audio
+  type: baseCOMP
+  position: [1274, -342]
+  comment: AUDIO ENGINE — Melusina VoiceSynth WAV → pitch/amp/beat CHOPs → OSC to UE
+  tdn_ref: project1/audio.tdn
+- name: state
+  type: baseCOMP
+  parameters:
+    opshortcut: State
+  tdn_ref: project1/state.tdn
+- name: Embody
+  type: containerCOMP
+  parameters:
+    w: ~op('./manager').par.w
+    h: ~op('./manager').par.h
+    display: false
+    borderover: false
+    align: horizlr
+    parentshortcut: Embody
+    opshortcut: Embody
+    opviewer: ./text_bg
+    reloadbuiltin: false
+  sequences:
+    ext:
+    - object: op('./EmbodyExt').module.EmbodyExt(me)
+      name: Embody
+      promote: true
+    - object: op('./EnvoyExt').module.EnvoyExt(me)
+      name: Envoy
+      promote: true
+    - object: op('./TDNExt').module.TDNExt(me)
+      name: TDN
+      promote: true
+    - object: op('./CatalogManagerExt').module.CatalogManagerExt(me)
+      name: CatalogManager
+      promote: true
+    - {}
+    - {}
+    - {}
+    - {}
+    - {}
+    - {}
+    - {}
+  custom_pars:
+    Embody:
+    - name: Setupwizard
+      style: Pulse
+      label: Setup Wizard
+      help: Open the Embody setup wizard to review or change your mode, AI assistant, and where config files are written.
+    - name: Embodymode
+      style: Menu
+      label: Mode
+      default: auto
+      menuNames:
+      - auto
+      - advanced
+      menuLabels:
+      - Auto - manage everything
+      - Advanced - ask first
+      help: How Embody handles invasive, project-level changes (git config, .venv, MCP/AI config files, network ops). 'Auto' manages everything silently -- recommended for most users. 'Advanced' asks before each such change and keeps the footprint minimal -- for users who want full control.
+    - name: Folder
+      style: Folder
+      label: Ext. Folder (Rel. to Project)
+      startSection: true
+      help: Root folder where externalized files are saved. All .tox, .py, .json, and other externalized files are written relative to this folder.
+    - name: Externalizeproject
+      style: Pulse
+      label: Externalize Full Project
+      startSection: true
+      help: Tags all eligible operators in the entire project for externalization. COMPs get .tox tags, DATs get file-type tags based on their content.
+    - name: Disable
+      style: Pulse
+      startSection: true
+      help: 'Disables Embody: removes all externalization tags from operators and stops tracking. Use Update to re-enable.'
+    - name: Update
+      style: Pulse
+      label: Enable / Update
+      help: 'Initializes Embody if not yet running, or triggers a full update cycle: scans all tagged operators, checks continuity, and syncs the externalizations table.'
+    - name: Refresh
+      style: Pulse
+      help: Refreshes the externalizations table by re-scanning tagged operators without triggering saves or continuity checks.
+    - name: Performmode
+      style: Toggle
+      label: Perform Mode
+      startSection: true
+    - name: Status
+      style: Str
+      label: Embody Status
+      startSection: true
+      readOnly: true
+      help: Current Embody status (read-only). Shows whether Embody is initialized and running.
+      value: Enabled
+    Tags:
+    - name: Toxtags
+      style: Header
+      label: tox Tags
+      help: Tag strings and operator colors for TOX externalization. COMPs tagged with the Tox tag are externalized as .tox files.
+    - name: Toxtagcolor
+      style: RGBA
+      label: tox Tag Color
+      size: 3
+      help: Color applied to tox-tagged COMP operators in the network editor. Makes externalized COMPs visually identifiable.
+      values: [0.325, 0.8, 0.3]
+    - name: Toxtag
+      style: Str
+      label: .tox Tag
+      help: Tag string applied to COMP operators for .tox externalization. Operators with this tag are externalized as .tox files.
+      value: tox
+    - name: Dattags
+      style: Header
+      label: DAT Tags
+      startSection: true
+      help: Tag strings and operator colors for DAT externalization. DATs are tagged with format-specific tags (py, json, xml, etc.) and externalized to matching file types.
+    - name: Dattagcolor
+      style: RGBA
+      label: DAT Tag Color
+      size: 3
+      help: Color applied to DAT-tagged operators in the network editor. Makes externalized DATs visually identifiable.
+      values: [0.9, 0.3, 0.4]
+    - name: Clonetagcolor
+      style: RGBA
+      label: Clone Tag Color
+      size: 3
+      help: Color applied to clone-tagged operators in the network editor. Distinguishes cloned externalized operators from originals.
+      values: [1, 0.7, 0.1]
+    - name: Pytag
+      style: Str
+      label: .py Tag
+      help: Tag string for .py (Python) externalization. Applied to text DATs containing Python code.
+      value: py
+    - name: Jsontag
+      style: Str
+      label: .json Tag
+      startSection: true
+      help: Tag string for .json externalization. Applied to text DATs containing JSON data.
+      value: json
+    - name: Xmltag
+      style: Str
+      label: .xml Tag
+      help: Tag string for .xml externalization. Applied to text DATs containing XML data.
+      value: xml
+    - name: Htmltag
+      style: Str
+      label: .html Tag
+      help: Tag string for .html externalization. Applied to text DATs containing HTML content.
+      value: html
+    - name: Glsltag
+      style: Str
+      label: .glsl Tag
+      startSection: true
+      help: Tag string for .glsl externalization. Applied to text DATs containing GLSL shader code.
+      value: glsl
+    - name: Fragtag
+      style: Str
+      label: .frag Tag
+      help: Tag string for .frag externalization. Applied to text DATs containing fragment shader code.
+      value: frag
+    - name: Verttag
+      style: Str
+      label: .vert Tag
+      help: Tag string for .vert externalization. Applied to text DATs containing vertex shader code.
+      value: vert
+    - name: Txttag
+      style: Str
+      label: .txt Tag
+      startSection: true
+      help: Tag string for .txt externalization. Applied to text DATs containing plain text.
+      value: txt
+    - name: Mdtag
+      style: Str
+      label: .md Tag
+      help: Tag string for .md externalization. Applied to text DATs containing Markdown content.
+      value: md
+    - name: Rtftag
+      style: Str
+      label: .rtf Tag
+      help: Tag string for .rtf externalization. Applied to text DATs containing rich text format content.
+      value: rtf
+    - name: Csvtag
+      style: Str
+      label: .csv Tag
+      startSection: true
+      help: Tag string for .csv externalization. Applied to table DATs with comma-separated values.
+      value: csv
+    - name: Tsvtag
+      style: Str
+      label: .tsv Tag
+      help: Tag string for .tsv externalization. Applied to table DATs with tab-separated values.
+      value: tsv
+    - name: Dattag
+      style: Str
+      label: .dat Tag
+      help: Tag string for .dat externalization. Generic DAT externalization format.
+      value: dat
+    - name: Tdntags
+      style: Header
+      label: TDN Tags
+      startSection: true
+      help: Tag strings and operator colors for TDN externalization. COMPs tagged with the TDN tag have their children exported as human-readable .tdn JSON network files.
+    - name: Tdntagcolor
+      style: RGBA
+      label: TDN Tag Color
+      default: 0.3
+      help: Color applied to TDN-tagged COMP operators in the network editor. Makes TDN-strategy COMPs visually identifiable.
+    - name: Tdntag
+      style: Str
+      label: .tdn Tag
+      help: Tag string for .tdn externalization. Applied to COMPs whose children are exported as human-readable JSON network files.
+      value: tdn
+    - name: Tdnexcludetag
+      style: Str
+      label: .tdn Exclude Tag
+      startSection: true
+      default: tdn_exclude
+      help: 'Tag name (default ''tdn_exclude'') that opts a COMP out of the entire TDN system. Primary use: opt a single child out of cascade autotag (when Tdncascade is on, the tdn tag normally propagates from a tdn-tagged parent to all its children -- apply this tag to a child to keep it excluded). Also useful for app-managed COMPs (e.g. spawned via .copy() at runtime) that the application is responsible for. Excluded COMPs are invisible to TDN: never exported, never inlined in parent .tdn files, never stripped on save, never destroyed by reconstruction.'
+    TDN:
+    - name: Tdnmode
+      style: Menu
+      label: TDN Mode
+      startSection: true
+      default: export
+      menuNames:
+      - 'off'
+      - export
+      - full
+      menuLabels:
+      - 'Off'
+      - Export-on-Save
+      - Roundtrip (Experimental)
+      help: Three-mode master for the TDN subsystem. Off = no TDN runtime (.tdn files on disk are preserved, Embody simply stops touching them). Export-on-Save (recommended) = write .tdn on save, .toe stays the source of truth, MCP reads live state via read_tdn. Roundtrip (Experimental) = bidirectional strip/restore of COMPs at save and open; may hit edge cases with extension reload timing on deeply-nested TDN COMPs.
+    - name: Clipboardautopaste
+      style: Toggle
+      label: Clipboard Auto-Paste
+      startSection: true
+      default: true
+      help: When on, Embody watches the OS clipboard and prompts to paste an Embody network the moment one is copied (e.g. the web "embody it" button) -- no keyboard shortcut needed. Turn off to disable the automatic prompt.
+    - name: Tdncascade
+      style: Toggle
+      label: Cascade to Children
+      startSection: true
+      help: When tagging a COMP for TDN, automatically tag all child COMPs so each gets its own .tdn file.
+    - name: Tdncascadewarn
+      style: Menu
+      label: Large TDN Warning
+      default: ask
+      menuNames:
+      - ask
+      - quiet
+      menuLabels:
+      - Ask
+      - Quiet
+      help: Controls whether a warning dialog is shown when a TDN file exceeds 5 MB. Set automatically when dismissed.
+    - name: Embeddatsintdns
+      style: Toggle
+      label: Embed DATs (default)
+      startSection: true
+      help: When enabled, DAT content (text and table data) is included in TDN exports by default. Can be overridden per-export. Disabling reduces file size but loses DAT content.
+    - name: Embedstorageintdns
+      style: Toggle
+      label: Embed Storage (default)
+      default: true
+      help: Include Python storage entries in TDN exports. Disable for COMPs with large storage to reduce file size. Can be overridden per-COMP from the tagging menu.
+    - name: Autosave
+      style: Toggle
+      label: Auto-Save Checkpoints
+      startSection: true
+      default: true
+      help: When on, after the agent (or you) goes idle Embody writes changed TDN COMPs to disk as a cheap ~6ms .tdn checkpoint -- NO full project save, no strip/restore, no freeze -- so a crash loses little unsaved work. Checkpointed COMPs are rebuilt on next open. Skips during Perform Mode and project saves.
+    - name: Tdncreateonstart
+      style: Toggle
+      label: TDN Create on Start
+      startSection: true
+      default: true
+      help: When enabled, reconstructs TDN-strategy COMP children from .tdn files on disk when the project opens. Required for TDN round-trip workflow where children are stripped on save.
+    - name: Autosavestatus
+      style: Str
+      label: Auto-Save Status
+      readOnly: true
+      help: 'Read-only auto-save state: Idle / Saving / Bypassed (Perform Mode) / Disabled.'
+      value: Saved 07:18:04 UTC
+    - name: Tdnstriponsave
+      style: Toggle
+      label: Strip on Save
+      default: true
+      help: When enabled, strips children from TDN-strategy COMPs during project save. Children are recreated on next open via TDN Create on Start. Keeps .toe files minimal.
+    - name: Tdnpalettehandling
+      style: Menu
+      label: Palette Handling
+      startSection: true
+      default: ask
+      menuNames:
+      - ask
+      - blackbox
+      - fullexport
+      menuLabels:
+      - Ask
+      - Black Box
+      - Full Export
+      help: 'How to handle TD palette COMPs (e.g. abletonLink, Widget components) during TDN export. Ask: prompt on first encounter per COMP. Black Box: reference the palette and skip internal children -- the correct choice for stock palette components. Full Export: export all internals -- use when the palette COMP has been heavily customized internally.'
+      value: blackbox
+    - name: Tdnfile
+      style: File
+      label: TDN File
+      startSection: true
+      help: Path to a .tdn file to import. Select a file, set the Network Path target, then pulse Import TDN.
+    - name: Networkpath
+      style: COMP
+      label: Network Path
+      help: Target COMP where the TDN file will be imported. Operators from the .tdn are created as children of this COMP.
+    - name: Importtdn
+      style: Pulse
+      label: Import TDN
+      help: Imports the specified TDN File into the Network Path target. Creates all operators, sets parameters, connections, and positions.
+    Envoy:
+    - name: Aiclient
+      style: Menu
+      label: AI Client
+      default: '0'
+      menuNames:
+      - claudecode
+      - codex
+      - gemini
+      - vscode
+      - cursor
+      - windsurf
+      - copilot
+      - none
+      menuLabels:
+      - Claude Code
+      - Codex
+      - Gemini
+      - VS Code
+      - Cursor
+      - Windsurf
+      - GitHub Copilot
+      - None
+      help: Selects the AI client used with Envoy. Determines which MCP configuration file format is generated (e.g. .mcp.json for Claude Code).
+      value: gemini
+    - name: Launchaiclient
+      style: Pulse
+      label: Launch AI Client
+      help: 'Open the AI client selected above at the project root: editors (VS Code, Cursor, Windsurf, Copilot) open the folder as a workspace; CLI tools (Claude Code, Codex, Gemini) open in a new terminal at the root.'
+    - name: Aiprojectroot
+      style: Menu
+      label: AI Project Root
+      startSection: true
+      default: gitroot
+      menuNames:
+      - gitroot
+      - projectfolder
+      - custom
+      menuLabels:
+      - Git repository root
+      - Project folder (.toe directory)
+      - Custom
+      help: Where Embody writes AI config (AGENTS.md, CLAUDE.md, .claude/, .cursor/, .mcp.json, .embody/). "Git root" (default) writes at the top of the git repo. "Project folder" writes alongside the .toe -- use this when your TD project lives in a subdirectory of a larger repo and you open that subdirectory as your AI tool workspace.
+    - name: Aiprojectrootcustom
+      style: Folder
+      label: AI Project Root (Custom)
+      help: Custom directory for AI/MCP config when "AI Project Root" is set to "Custom". Relative paths are resolved against the .toe directory (e.g. "../" places config one level above the .toe -- useful when multiple TouchDesigner projects share a parent folder in a monorepo). Absolute paths are used as-is. Changing this path migrates Embody state and AI config to the new location.
+    - name: Envoyenable
+      style: Toggle
+      label: Envoy Enable
+      startSection: true
+      help: Enables/disables the Envoy MCP server. When enabled, starts an HTTP server that exposes TouchDesigner operations to Claude Code and other MCP clients.
+      value: true
+    - name: Envoyport
+      style: Int
+      label: Envoy Port
+      default: 9870
+      help: 'Port number for the Envoy MCP server (default: 9870). Changing while running automatically restarts the server on the new port.'
+    - name: Embotenable
+      style: Toggle
+      label: Embot
+      startSection: true
+      default: true
+      help: Show the Embot builder mascot. He appears on each operator Envoy creates or edits and narrates what it does. Off hides him entirely (no character, no camera movement).
+    - name: Envoyfollow
+      style: Toggle
+      label: Envoy Follow
+      default: true
+      help: Camera follows the operator Envoy is working on, panning the network editor to it. Works with or without the Embot character shown.
+    - name: Autoexternalize
+      style: Menu
+      label: Auto-Externalize New Ops
+      startSection: true
+      default: neither
+      menuNames:
+      - neither
+      - dats
+      - comps
+      - both
+      menuLabels:
+      - Neither
+      - DATs
+      - COMPs
+      - DATs and COMPs
+      help: 'Auto-tag operators that Envoy creates via create_op for externalization to version-control-friendly files. Neither = off. DATs = externalize created DATs (source files). COMPs = externalize created COMPs (TDN). DATs and COMPs = both. Only ops at an externalization boundary are tagged -- never ops already inside an externalized COMP, palette clones, or Embody itself. Additive only: it never deletes files or removes tags.'
+    - name: Toolpermissions
+      style: Menu
+      label: Tool Permissions
+      default: all
+      menuNames:
+      - all
+      - some
+      - prompt
+      - leave
+      menuLabels:
+      - Don't prompt for any tool
+      - Prompt for some tools (read-only auto-approved)
+      - Prompt for all tools
+      - Leave settings file alone
+      help: Whether Embody pre-approves Envoy MCP tool calls in .claude/settings.local.json so Claude Code isn't prompted on every tool use. all = pre-approve all Envoy tools (no prompts). some = pre-approve read-only/query tools only; tools that create/edit/delete/execute still prompt. prompt = pre-approve nothing; every tool prompts. leave = never create or modify settings.local.json. Except for 'leave', Embody also whitelists the OS temp directory so captured TOP images can be read without a prompt. The setup wizard sets this; you can change it here anytime.
+    - name: Envoystatus
+      style: Str
+      label: Envoy Status
+      startSection: true
+      readOnly: true
+      help: Current status of the Envoy MCP server (read-only). Shows Running, Stopped, or error information.
+      value: Running on port 9870
+    Logs:
+    - name: Verbose
+      style: Toggle
+      label: Verbose (Debug)
+      help: Enables debug-level logging. When off, only INFO and above are logged. Enable for detailed diagnostics when troubleshooting issues.
+    - name: Print
+      style: Toggle
+      label: Print to Textport
+      help: Echoes all log messages to the TouchDesigner textport. Useful for monitoring Embody activity in real-time.
+      value: true
+    - name: Logtofile
+      style: Toggle
+      label: Log to File
+      help: Writes log messages to a file on disk. Files are saved to the Log Folder with automatic rotation at 10 MB.
+      value: true
+    - name: Logfolder
+      style: Folder
+      label: Log Folder
+      help: Folder where log files are saved. Defaults to dev/logs/ in the project directory. Files are named <project>_YYMMDD.log.
+      value: logs
+    UI:
+    - name: Openmanager
+      style: Pulse
+      label: Open Manager
+      help: Opens the Embody Manager window, which provides a list view of all externalized operators with status, actions, and strategy management.
+    - name: Closemanager
+      style: Pulse
+      label: Close Manager
+      help: Closes the Embody Manager window.
+    - name: Textcolor
+      style: RGBA
+      label: Text Color
+      startSection: true
+      help: Text color used throughout the Embody UI (toolbar, manager, dialogs).
+      values: [1, 0.571, 0.808212, 1]
+    - name: Backgroundcolor
+      style: RGBA
+      label: Background Color
+      help: Background color for the Embody UI panels and windows.
+      values: [0.5776, 0.8, 0.8, 0.8]
+    - name: Buttonbackgroundcolor
+      style: RGBA
+      label: Button Background Color
+      help: Background color for buttons in the Embody UI.
+      values: [0.1246, 0.14, 0.13, 1]
+    - name: Listheadercolor
+      style: RGBA
+      label: List Header Color
+      help: Header row color in the Manager list view.
+      values: [0.089419, 0.121, 0.103104, 1]
+    - name: Listrowcolor
+      style: RGBA
+      label: List Row Color
+      help: Default row color in the Manager list view.
+      values: [0.1246, 0.14, 0.13, 1]
+    - name: Listrowselectcolor
+      style: RGBA
+      label: List Row Select Color
+      help: Selected row highlight color in the Manager list view.
+      values: [0.220088, 0.244, 0.221283, 1]
+    - name: Savedcolor
+      style: RGBA
+      label: Saved Color
+      help: Color indicator for operators that are saved and up-to-date (not dirty).
+      values: [0.227574, 0.423, 0.289133, 0.5]
+    - name: Dirtycolor
+      style: RGBA
+      label: Dirty Color
+      help: Color indicator for operators that have unsaved changes (dirty state).
+      values: [0.675, 0.25668, 0.2268, 1]
+    - name: Dirtyparcolor
+      style: RGBA
+      label: Dirty Par Color
+      help: Color indicator for parameters that have been modified since last save.
+      values: [0.49, 0.321897, 0.16464, 1]
+    - name: Uncommittedcolor
+      style: RGBA
+      label: Uncommitted Color
+      default: 0.6
+      help: Color indicator for externalized files that are saved to disk but not yet committed to git (uncommitted). Distinct from the red unsaved color and the amber par-change color.
+    - name: Taggingmenucolor
+      style: RGBA
+      label: Tagging Menu Color
+      help: Background color for the tagging menu popup.
+      values: [0.2, 0.2, 0.2, 1]
+    - name: Highlightcolor
+      style: RGBA
+      label: Highlight Color
+      help: Accent/highlight color used for interactive elements in the Embody UI.
+      values: [1, 1, 1, 1]
+    - name: Tdnsavedcolor
+      style: RGBA
+      label: TDN Saved Color
+      help: Color indicator for TDN-strategy operators that are saved and up-to-date.
+      values: [0.153552, 0.376081, 0.457, 1]
+    Shortcuts:
+    - name: Enablekeyboardshortcuts
+      style: Toggle
+      label: Enable Keyboard Shortcuts
+      default: true
+      help: Master switch for Embody's keyboard shortcuts. When off, the Keyboard In DAT is disabled and no Embody shortcut (including the tagger double-tap) fires.
+    - name: Shortcutmanager
+      style: Str
+      label: Open Manager
+      startSection: true
+      default: ctrl+shift+o
+      help: 'Keyboard shortcut for Open Manager. Lowercase combo like ''cmd+shift+o'' or ''ctrl+shift+o'': modifiers joined with ''+'' plus one trigger key. ctrl and cmd are distinct keys on macOS (matched exactly); on Windows/Linux, which has no Cmd key, a cmd binding fires via Ctrl. Each combo may be assigned to only one action. Leave empty to disable. Edit by hand or pulse Record below.'
+      value: cmd+shift+o
+    - name: Recordmanager
+      style: Pulse
+      label: Record
+      help: 'Arm the shortcut recorder for Open Manager: press the desired key combo -- the first non-modifier key commits it with whatever modifiers are held. If the combo already drives another action, a dialog explains and recording continues. Esc cancels; times out after 10 seconds.'
+    - name: Shortcutupdateall
+      style: Str
+      label: Update All Externalizations
+      startSection: true
+      default: ctrl+shift+u
+      help: 'Keyboard shortcut for Update All Externalizations. Lowercase combo like ''cmd+shift+o'' or ''ctrl+shift+o'': modifiers joined with ''+'' plus one trigger key. ctrl and cmd are distinct keys on macOS (matched exactly); on Windows/Linux, which has no Cmd key, a cmd binding fires via Ctrl. Each combo may be assigned to only one action. Leave empty to disable. Edit by hand or pulse Record below.'
+      value: cmd+shift+u
+    - name: Recordupdateall
+      style: Pulse
+      label: Record
+      help: 'Arm the shortcut recorder for Update All Externalizations: press the desired key combo -- the first non-modifier key commits it with whatever modifiers are held. If the combo already drives another action, a dialog explains and recording continues. Esc cancels; times out after 10 seconds.'
+    - name: Shortcutupdatecomp
+      style: Str
+      label: Update Current COMP
+      startSection: true
+      default: ctrl+alt+u
+      help: 'Keyboard shortcut for Update Current COMP. Lowercase combo like ''cmd+shift+o'' or ''ctrl+shift+o'': modifiers joined with ''+'' plus one trigger key. ctrl and cmd are distinct keys on macOS (matched exactly); on Windows/Linux, which has no Cmd key, a cmd binding fires via Ctrl. Each combo may be assigned to only one action. Leave empty to disable. Edit by hand or pulse Record below.'
+      value: cmd+alt+u
+    - name: Recordupdatecomp
+      style: Pulse
+      label: Record
+      help: 'Arm the shortcut recorder for Update Current COMP: press the desired key combo -- the first non-modifier key commits it with whatever modifiers are held. If the combo already drives another action, a dialog explains and recording continues. Esc cancels; times out after 10 seconds.'
+    - name: Shortcutrefresh
+      style: Str
+      label: Refresh Tracking
+      startSection: true
+      default: ctrl+shift+r
+      help: 'Keyboard shortcut for Refresh Tracking. Lowercase combo like ''cmd+shift+o'' or ''ctrl+shift+o'': modifiers joined with ''+'' plus one trigger key. ctrl and cmd are distinct keys on macOS (matched exactly); on Windows/Linux, which has no Cmd key, a cmd binding fires via Ctrl. Each combo may be assigned to only one action. Leave empty to disable. Edit by hand or pulse Record below.'
+      value: cmd+shift+r
+    - name: Recordrefresh
+      style: Pulse
+      label: Record
+      help: 'Arm the shortcut recorder for Refresh Tracking: press the desired key combo -- the first non-modifier key commits it with whatever modifiers are held. If the combo already drives another action, a dialog explains and recording continues. Esc cancels; times out after 10 seconds.'
+    - name: Shortcutexportproject
+      style: Str
+      label: Export Project to TDN
+      startSection: true
+      default: ctrl+shift+e
+      help: 'Keyboard shortcut for Export Project to TDN. Lowercase combo like ''cmd+shift+o'' or ''ctrl+shift+o'': modifiers joined with ''+'' plus one trigger key. ctrl and cmd are distinct keys on macOS (matched exactly); on Windows/Linux, which has no Cmd key, a cmd binding fires via Ctrl. Each combo may be assigned to only one action. Leave empty to disable. Edit by hand or pulse Record below.'
+      value: cmd+shift+e
+    - name: Recordexportproject
+      style: Pulse
+      label: Record
+      help: 'Arm the shortcut recorder for Export Project to TDN: press the desired key combo -- the first non-modifier key commits it with whatever modifiers are held. If the combo already drives another action, a dialog explains and recording continues. Esc cancels; times out after 10 seconds.'
+    - name: Shortcutexportcomp
+      style: Str
+      label: Export Current COMP to TDN
+      startSection: true
+      default: ctrl+alt+e
+      help: 'Keyboard shortcut for Export Current COMP to TDN. Lowercase combo like ''cmd+shift+o'' or ''ctrl+shift+o'': modifiers joined with ''+'' plus one trigger key. ctrl and cmd are distinct keys on macOS (matched exactly); on Windows/Linux, which has no Cmd key, a cmd binding fires via Ctrl. Each combo may be assigned to only one action. Leave empty to disable. Edit by hand or pulse Record below.'
+      value: cmd+alt+e
+    - name: Recordexportcomp
+      style: Pulse
+      label: Record
+      help: 'Arm the shortcut recorder for Export Current COMP to TDN: press the desired key combo -- the first non-modifier key commits it with whatever modifiers are held. If the combo already drives another action, a dialog explains and recording continues. Esc cancels; times out after 10 seconds.'
+    - name: Shortcutcopytdn
+      style: Str
+      label: Copy Selected COMP as TDN
+      startSection: true
+      default: ctrl+shift+c
+      help: 'Keyboard shortcut for Copy Selected COMP as TDN. Lowercase combo like ''cmd+shift+o'' or ''ctrl+shift+o'': modifiers joined with ''+'' plus one trigger key. ctrl and cmd are distinct keys on macOS (matched exactly); on Windows/Linux, which has no Cmd key, a cmd binding fires via Ctrl. Each combo may be assigned to only one action. Leave empty to disable. Edit by hand or pulse Record below.'
+      value: cmd+shift+c
+    - name: Recordcopytdn
+      style: Pulse
+      label: Record
+      help: 'Arm the shortcut recorder for Copy Selected COMP as TDN: press the desired key combo -- the first non-modifier key commits it with whatever modifiers are held. If the combo already drives another action, a dialog explains and recording continues. Esc cancels; times out after 10 seconds.'
+    - name: Shortcuttagger
+      style: Menu
+      label: Tagger Double-Tap Key
+      startSection: true
+      default: lctrl
+      menuSource: op('./shortcuts').module.taggerMenu()
+      help: 'Modifier key that opens the tagger for the operator under the cursor when double-tapped (two presses within half a second). Entries are physical keys and adapt per platform: macOS offers Left Ctrl plus left/right Cmd (Apple keyboards have no right Ctrl); Windows/Linux offers left/right Ctrl (no Cmd key). A choice a platform''s keyboard lacks falls back to its closest key -- the saved value is never rewritten, so it round-trips between platforms intact. Off disables the tagger shortcut.'
+    - name: Resetshortcuts
+      style: Pulse
+      label: Reset Shortcuts to Defaults
+      startSection: true
+      help: Restore all keyboard shortcuts (and the tagger double-tap key) to factory defaults.
+    Advanced:
+    - name: Createexternalizationstable
+      style: Pulse
+      label: Create Externalizations Table
+      startSection: true
+      help: Creates the externalizations tracking table as a sibling operator if it does not already exist. Safe to pulse at any time — no-op if the table is already connected. Use this to recover if the table was lost after an Embody upgrade.
+    - name: Externalizations
+      style: DAT
+      label: Externalizations Table
+      help: Reference to the externalizations tracking table DAT (stored in TSV format). Lists all externalized operators with their paths, types, timestamps, and dirty state.
+      value: /project1/externalizations
+    - name: Openexternalizationstable
+      style: Pulse
+      label: Open Externalizations Table
+      help: Opens the externalizations tracking table in a floating viewer window.
+    - name: Detectduplicatepaths
+      style: Toggle
+      label: Detect Duplicate Paths
+      startSection: true
+      help: When enabled, warns if multiple operators resolve to the same externalized file path. Helps catch naming conflicts.
+      value: true
+    - name: Templatemaster
+      style: Str
+      label: Template Master Name
+      default: __template__
+      help: When duplicate external paths are detected, an operator whose path contains a folder/COMP with this exact name is auto-selected as the master (the rest are tagged as clones), with no prompt. Matches only when exactly one operator in the group contains this name. Clear this field to always choose the master manually, or set it to your own naming convention (e.g. '_master').
+    - name: Localtimestamps
+      style: Toggle
+      label: Local Timestamps
+      default: true
+      help: When enabled, timestamps in the externalizations table are displayed in your local timezone instead of UTC.
+    - name: Toxrestoreonstart
+      style: Toggle
+      label: Restore toxes on Start
+      help: When enabled, automatically restores TOX-strategy COMPs from .tox files on disk when the project opens. Useful when COMPs were externalized but the .toe was not saved.
+      value: true
+    - name: Datrestoreonstart
+      style: Toggle
+      label: Restore DATs on Start
+      default: true
+      help: When enabled, automatically restores DAT-strategy operators from externalized files on disk when the project opens. Recreates missing DATs (py, json, xml, etc.) and configures file sync. Safely excludes Embody descendants and DATs inside TOX/TDN COMPs.
+    - name: Filecleanup
+      style: Menu
+      label: File Cleanup
+      startSection: true
+      default: ask
+      menuNames:
+      - ask
+      - keep
+      - delete
+      menuLabels:
+      - Ask
+      - Always Keep Files
+      - Always Delete Files
+      help: 'When a deleted operator''s external file still exists on disk: Ask prompts each time, Always Keep removes the tracking entry but leaves files on disk, Always Delete removes both the entry and the file.'
+      value: keep
+    - name: Toxdropexpr
+      style: Menu
+      label: Dropped .tox Expression
+      startSection: true
+      default: ask
+      menuNames:
+      - ask
+      - clean
+      - ignore
+      menuLabels:
+      - Ask
+      - Always Clean
+      - Always Ignore
+      help: 'How to handle the default expression TouchDesigner writes into a COMP''s External .tox when a .tox is dragged in (me.parent().fileFolder + ''/'' + ...). Ask: prompt when detected (the dialog''s Always buttons set this parameter). Always Clean: silently clear the expression. Always Ignore: silently leave it. Embody''s own descendants are always cleaned regardless.'
+    - name: Tdndatsafety
+      style: Menu
+      label: Content Safety
+      default: ask
+      menuNames:
+      - ask
+      - externalize
+      - ignore
+      menuLabels:
+      - Ask Each Save
+      - Always Externalize
+      - Never Ask
+      help: What to do when TDN COMPs contain DATs or storage that will be lost on save. 'Ask Each Save' prompts on each save (recommended), 'Always Externalize' auto-externalizes at-risk DATs without asking, 'Never Ask' suppresses the check entirely. Prefer 'Ask' or 'Always Externalize' -- 'Never Ask' is an opt-in escape hatch for power users who accept the risk.
+    - name: Uninstall
+      style: Pulse
+      startSection: true
+      help: 'Removes Embody from this project: deletes Embody-generated config (CLAUDE.md / AGENTS.md / .claude / .cursor / ...), Embody''s .venv, and .embody/ state; strips only Embody''s block from shared files (.gitignore, .gitattributes, .mcp.json); un-sets the .tdn git diff driver. Your own files, externalized .tox / .tdn / .py, and the Embody COMP are NOT removed. Asks for confirmation first.'
+    About:
+    - name: Version
+      style: Str
+      startSection: true
+      readOnly: true
+      help: Embody version string (read-only).
+      value: 6.0.126
+    - name: Touchbuild
+      style: Str
+      label: Touch Build
+      readOnly: true
+      help: TouchDesigner build number this version was developed on (read-only).
+      value: '2025.32460'
+    - name: Author
+      style: Str
+      readOnly: true
+      help: Embody author (read-only).
+      value: Dylan Roscover
+    - name: Build
+      style: Int
+      label: Build Number
+      readOnly: true
+      help: Embody build number (read-only). Incremented with each release.
+      value: 784
+    - name: Github
+      style: Pulse
+      label: GitHub
+      startSection: true
+      help: Opens the Embody GitHub repository in your web browser.
+    - name: Date
+      style: Str
+      label: Build Date
+      readOnly: true
+      help: Date of this Embody build (read-only).
+      value: 2026-08-27 04:30:50 UTC
+    - name: Help
+      style: Pulse
+      help: Opens the Embody help documentation.
+  flags:
+  - display
+  - viewer
+  position: [1554, -294]
+  size: [160, 98]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  storage:
+    claudius_running: false
+    _tdn_restore_failures:
+    - /embody/base1
+    expand_order: []
+    _start_in_progress: true
+    git_status:
+      /project1/externalizations: ??
+      /project1/ui: ??
+      /project1/ui/main_panel: ??
+      /project1/ui/main_panel/sidebar: ??
+      /project1/osc: ??
+      /project1/audio: ??
+      /project1/output: ??
+      /project1/postfx: ??
+      /project1/filein1: ??
+      /project1/filein1/file1: ??
+      /project1/filein1/group1: ??
+      /project1/filein1/mergedGeos: ??
+      /project1/shaders: ??
+      /project1/shaders/cam1: ??
+      /project1/shaders/light1: ??
+      /project1/shaders/light2: ??
+      /project1/shaders/geo_toon: ??
+      /project1/shaders/geo_crystal: ??
+      /project1/learn_td: ??
+      /project1/learn_td/my_playground: ??
+      /project1/learn_td/my_playground/render_cam: ??
+      /project1/learn_td/instanced_city: ??
+      /project1/learn_td/instanced_city/render_cam: ??
+      /project1/learn_td/nikki_sanctuary: ??
+      /project1/learn_td/nikki_sanctuary/file1: ??
+      /project1/learn_td/nikki_sanctuary/group1: ??
+      /project1/learn_td/nikki_sanctuary/mergedGeos: ??
+      /project1/learn_td/procedural_tower: ??
+      /project1/learn_td/procedural_tower/render_cam: ??
+      /project1/learn_td/escher_fractal_tower: ??
+      /project1/learn_td/escher_fractal_tower/render_cam: ??
+      /project1/learn_td/escher_penrose_stairs: ??
+      /project1/learn_td/escher_penrose_stairs/render_cam: ??
+      /project1/learn_td/escher_spiral_staircase: ??
+      /project1/learn_td/escher_spiral_staircase/render_cam: ??
+      /project1/worldgen: ??
+      /project1/worldgen/pieces: ??
+      /project1/worldgen/pieces/wg_belvedere: ??
+      /project1/worldgen/pieces/wg_belvedere/render_cam: ??
+      /project1/worldgen/pieces/wg_waterfall: ??
+      /project1/worldgen/pieces/wg_waterfall/render_cam: ??
+      /project1/worldgen/pieces/wg_relativity: ??
+      /project1/worldgen/pieces/wg_relativity/render_cam: ??
+      /project1/worldgen/pieces/wg_stair_well: ??
+      /project1/worldgen/pieces/wg_stair_well/render_cam: ??
+      /project1/worldgen/pieces/wg_tessellation: ??
+      /project1/worldgen/pieces/wg_tessellation/render_cam: ??
+      /project1/worldgen/pieces/wg_fractal_tower: ??
+      /project1/worldgen/pieces/wg_fractal_tower/render_cam: ??
+      /project1/worldgen/pieces/wg_penrose_stairs: ??
+      /project1/worldgen/pieces/wg_penrose_stairs/render_cam: ??
+      /project1/worldgen/pieces/wg_impossible_cube: ??
+      /project1/worldgen/pieces/wg_impossible_cube/render_cam: ??
+      /project1/worldgen/pieces/wg_infinite_library: ??
+      /project1/worldgen/pieces/wg_infinite_library/render_cam: ??
+      /project1/worldgen/pieces/wg_spiral_staircase: ??
+      /project1/worldgen/pieces/wg_spiral_staircase/render_cam: ??
+      /project1/worldgen/pieces/wg_infinite_corridor: ??
+      /project1/worldgen/pieces/wg_infinite_corridor/render_cam: ??
+      /project1/worldgen/pieces/wg_mobius_architecture: ??
+      /project1/worldgen/pieces/wg_mobius_architecture/render_cam: ??
+      /project1/worldgen/pieces/wg_ascending_descending: ??
+      /project1/worldgen/pieces/wg_ascending_descending/render_cam: ??
+      /project1/worldgen/renders: ??
+      /project1/worldgen/light_rig: ??
+      /project1/worldgen/light_rig/sun: ??
+      /project1/worldgen/light_rig/ambient: ??
+      /project1/worldgen/materials: ??
+      /project1/particles: ??
+      /project1/particles/cam1: ??
+      /project1/particles/light1: ??
+      /project1/particles/geo_burst: ??
+      /project1/particles/geo_motes: ??
+      /project1/starfield: ??
+      /project1/geo_engines: ??
+      /project1/geo_engines/cam_look: ??
+      /project1/geo_engines/water_sim: ??
+      /project1/geo_engines/nuke_light: ??
+      /project1/geo_engines/render_cam: ??
+      /project1/geo_engines/nikki_shrine: ??
+      /project1/geo_engines/nikki_shrine/shrine_mesh: ??
+      /project1/geo_engines/nikki_shrine/shrine_mesh/file1: ??
+      /project1/geo_engines/nikki_shrine/shrine_mesh/group1: ??
+      /project1/geo_engines/nikki_shrine/shrine_mesh/mergedGeos: ??
+      /project1/geo_engines/render_light: ??
+      /project1/geo_engines/cosmic_orrery: ??
+      /project1/geo_engines/cosmic_orrery/sun: ??
+      /project1/geo_engines/cosmic_orrery/cam1: ??
+      /project1/geo_engines/cosmic_orrery/light1: ??
+      /project1/geo_engines/cosmic_orrery/ambient: ??
+      /project1/geo_engines/cosmic_orrery/planets: ??
+      /project1/geo_engines/cosmic_orrery/planets/planet_1: ??
+      /project1/geo_engines/cosmic_orrery/planets/planet_2: ??
+      /project1/geo_engines/cosmic_orrery/planets/planet_3: ??
+      /project1/geo_engines/cosmic_orrery/materials: ??
+      /project1/geo_engines/cosmic_orrery/starfield: ??
+      /project1/geo_engines/cosmic_orrery/orbit_rings: ??
+      /project1/geo_engines/instanced_stars: ??
+      /project1/geo_engines/starfield_bubbles: ??
+      /project1/geo_engines/bubbles_and_stars_geo: ??
+      /project1/penrose_geo: ??
+      /project1/fbx_importer: ??
+      /project1/_fbxcomp_probe: ??
+      /project1/_fbxcomp_probe/file1: ??
+      /project1/_fbxcomp_probe/group1: ??
+      /project1/_fbxcomp_probe/mergedGeos: ??
+      /project1/debug_render_net: ??
+      /project1/debug_render_net/cam1: ??
+      /project1/debug_render_net/geo1: ??
+      /project1/debug_render_net/light1: ??
+    _watchdog_gen: 918
+    _suite_proof_progress:
+      todo:
+      - test_ancestor_rename
+      - test_catalog_bootstrap_palette
+      - test_catalog_palette_scan
+      - test_claude_config
+      - test_clipboard_paste
+      - test_collection_safe_import
+      - test_collection_scanner
+      - test_crud_operators
+      - test_dat_restoration
+      - test_delete_cleanup
+      - test_duplicate_handling
+      - test_envoy_bridge
+      - test_envoy_lifecycle_hardening
+      - test_envoy_registry
+      - test_envoy_setup_environment
+      - test_envoy_thread_comm
+      - test_envoy_watchdog
+      - test_externalization
+      - test_file_management
+      - test_glsl_externalize
+      - test_issue21_safe_cell
+      - test_layout_lint
+      - test_logging
+      - test_mcp_annotations
+      - test_mcp_batch
+      - test_mcp_code_execution
+      - test_mcp_connections
+      - test_mcp_dat_content
+      - test_mcp_diagnostics
+      - test_mcp_extensions
+      - test_mcp_externalization
+      - test_mcp_flags_position
+      - test_mcp_operators
+      - test_mcp_parameters
+      - test_mcp_performance
+      - test_mcp_project_performance
+      - test_mcp_tdn_tools
+      - test_mcp_top_capture
+      - test_operator_queries
+      - test_os_label
+      - test_param_tracker
+      - test_path_utils
+      - test_rename_move_lifecycle
+      - test_server_lifecycle
+      - test_settings_persistence
+      - test_smoke_release
+      - test_specimen_publish
+      - test_strategy_handlers
+      - test_tag_lifecycle
+      - test_tag_management
+      - test_tdn_crash_safety
+      - test_tdn_exclude
+      - test_tdn_export_import
+      - test_tdn_external_connections
+      - test_tdn_file_io
+      - test_tdn_fingerprint
+      - test_tdn_helpers
+      - test_tdn_mode
+      - test_tdn_palette_catalog
+      - test_tdn_reconstruction
+      - test_tdn_safety_guards
+      - test_tdn_sequences
+      - test_tdn_yaml
+      - test_update_sync
+      - test_v6_hardening
+      done: []
+    _suite_proof_result:
+      agg:
+        total: 1576
+        passed: 1573
+        failed: 2
+        errors: 0
+        skipped: 1
+      fails:
+      - $type: tuple
+        $value:
+        - test_envoy_thread_comm
+        - null
+        - FAIL
+      - $type: tuple
+        $value:
+        - test_envoy_thread_comm
+        - null
+        - FAIL
+      n: 65
+    _e2e_result:
+      pre_seed_is_none: true
+      results:
+        test_envoy_setup_environment:
+          pass: 17
+          tot: 17
+          fail: 0
+          err: 0
+        test_envoy_lifecycle_hardening:
+          pass: 4
+          tot: 4
+          fail: 0
+          err: 0
+        test_smoke_release:
+          pass: 33
+          tot: 33
+          fail: 0
+          err: 0
+    _setgate_test:
+      results:
+        test_envoy_setup_environment:
+          pass: 17
+          tot: 17
+        test_envoy_lifecycle_hardening:
+          pass: 4
+          tot: 4
+        test_smoke_release:
+          pass: 33
+          tot: 33
+      onboarding_seed_before: 40
+      onboarding_seed_after: 0
+      onboarding_prompts_fired: 40
+    _noseed_test:
+      seed_cleared: true
+      smoke:
+        pass: 32
+        tot: 33
+      pending_prompt_right_after_run: absent
+    _final_noseed_test:
+      seed_was_clear: true
+      results:
+        test_envoy_setup_environment:
+          pass: 17
+          tot: 17
+          fail: 0
+        test_envoy_lifecycle_hardening:
+          pass: 4
+          tot: 4
+          fail: 0
+        test_smoke_release:
+          pass: 32
+          tot: 33
+          fail: 1
+      pending_after: absent
+    _clip_watch_gen: 683
+    _shortcut_rec_gen: 139
+    _init_complete: true
+  tdn_ref: project1/Embody.tdn
+- name: noise1
+  type: noiseCHOP
+  parameters:
+    type: hermite
+    rough: 0.25
+    tx: =absTime.frame*.6
+    constraint: offset
+    constrmean: 0.5
+    end: 2
+    rate: =me.time.rate
+    autoexportroot: =me.parent()
+  flags:
+  - viewer
+  position: [1655, -124]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: output
+  type: baseCOMP
+  position: [1200, 0]
+  tdn_ref: project1/output.tdn
+- name: postfx
+  type: baseCOMP
+  position: [925, 0]
+  comment: POST-FX CHAIN — Nikki bloom (3-pass Gaussian), LUT grade, DOF bokeh
+  inputs:
+  - /project1/geo_engines/out_orrery
+  tdn_ref: project1/postfx.tdn
+- name: render
+  type: baseCOMP
+  position: [-405, 162]
+  comment: RENDER OUTPUT — main + hero + preview + stats overlay
+  tdn_ref: project1/render.tdn
+- name: filein1
+  type: fbxCOMP
+  parameters:
+    file: G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/SM_MelodyToken.fbx
+    callbacks: filein1_callbacks
+  position: [-100, -100]
+  tdn_ref: project1/filein1.tdn
+- name: shaders
+  type: baseCOMP
+  position: [-685, -279]
+  comment: SHADER LAB — GLSL TOPs for toon, satin, crystal, sparkle prototyping
+  tdn_ref: project1/shaders.tdn
+- name: _devlist
+  type: textDAT
+  position: [-400, 621]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: hand_osc
+  type: oscinCHOP
+  parameters:
+    port: 7000
+    autoexportroot: =parent()
+  position: [-200, 800]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: learn_td
+  type: baseCOMP
+  position: [714, -342]
+  comment: LEARN TD — Tutorial + Escher geometry playground (5 pieces)
+  tdn_ref: project1/learn_td.tdn
+- name: worldgen
+  type: baseCOMP
+  position: [1000, -600]
+  comment: WORLDGEN â€” procedural Nikki x Escher world pieces. Rebuilt by scripts/worldgen/world_builder.py â€” do not hand-edit.
+  tdn_ref: project1/worldgen.tdn
+- name: mcp_test1
+  type: sliderCOMP
+  parameters:
+    resizecomp: =me
+    repocomp: =me
+    clone: =op.TDTox.op('defaultCOMPs/slider')
+  position: [154, -261]
+  size: [160, 76]
+  children:
+  - name: knob
+    type: containerCOMP
+    parameters:
+      x: =(parent().par.zonel + [tdu.remap(parent().par.value0.eval(), parent().par.valuerange0l.eval(), parent().par.valuerange0h.eval(), 0., 1.), 0., tdu.remap(parent().par.value0.eval(), parent().par.valuerange0l.eval(), parent().par.valuerange0h.eval(), 0., 1.)][parent().par.slidertype] * (parent().par.zoner-parent().par.zonel)) * parent().width - [0., me.width/2][me.width<5]
+      y: =(parent().par.zoneb + [0., tdu.remap(parent().par.value1.eval(), parent().par.valuerange1l.eval(), parent().par.valuerange1h.eval(), 0., 1.), tdu.remap(parent().par.value1.eval(), parent().par.valuerange1l.eval(), parent().par.valuerange1h.eval(), 0., 1.)][parent().par.slidertype] * (parent().par.zonet-parent().par.zoneb)) * parent().height - [0., me.height/2][me.height<5]
+      w: =parent().width if parent().par.slidertype == 'sliderv' else  4
+      h: =parent().height if parent().par.slidertype == 'slideru' else 4
+      layer: 2
+      clickthrough: true
+      bgcolorr: =.2 * parent().par.colorr + .5
+      bgcolorg: =.2 * parent().par.colorg + .5
+      bgcolorb: =.2 * parent().par.colorb + .5
+      bgalpha: 1
+      borderover: false
+    flags:
+    - viewer
+    position: [25, -225]
+    size: [118, 113]
+  - name: out1
+    type: outCHOP
+    parameters:
+      label: =me.name
+      autoexportroot: =parent()
+    flags:
+    - viewer
+    position: [200, -100]
+    size: [130, 90]
+    inputs:
+    - par1
+  - name: par1
+    type: parameterCHOP
+    parameters:
+      parameters: ='value0 value1' if parent().par.slidertype == 'slideruv' else 'value0'
+      custom: false
+      builtin: true
+      renameto: v1 v2
+      autoexportroot: =parent()
+    flags:
+    - viewer
+    position: [0, -100]
+    size: [130, 90]
+  - name: text
+    type: textCOMP
+    parameters:
+      text: =parent().par.label
+      type: multiline
+      legacyfontselection: true
+      scaletofit: onlyshrink
+      fontsize: 10
+      fontcolorr: =.2 * parent().par.colorr + .5
+      fontcolorg: =.2 * parent().par.colorg + .5
+      fontcolorb: =.2 * parent().par.colorb + .5
+      textpaddingl: 4
+      textpaddingr: 4
+      textpaddingb: 3
+      textpaddingt: 3
+      alignx: left
+      hmode: fill
+      vmode: fill
+      clickthrough: true
+      resizecomp: =me
+      repocomp: =me
+      bgcolorr: =0.4 * parent().par.colorr
+      bgcolorg: =0.4 * parent().par.colorg
+      bgcolorb: =0.4 * parent().par.colorb
+      bgalpha: 1
+      borderar: =[c/.5 for c in [.23, .4]][parent().panel.rollover] * parent().par.colorr + 0.2
+      borderag: =[c/.5 for c in [.23, .4]][parent().panel.rollover] * parent().par.colorg + 0.2
+      borderab: =[c/.5 for c in [.23, .4]][parent().panel.rollover] * parent().par.colorb + 0.2
+      leftborder: bordera
+      rightborder: bordera
+      bottomborder: bordera
+      topborder: bordera
+      borderover: false
+    flags:
+    - viewer
+    position: [175, -225]
+    size: [160, 76]
+  - name: panelexec1
+    type: panelexecuteDAT
+    parameters:
+      fromop: =parent()
+      panels: =parent()
+      panelvalue: u v
+      offtoon: false
+      valuechange: true
+      defaultreadencoding: cp1252
+      loadonstart: true
+    flags:
+    - viewer
+    position: [75, -325]
+    size: [124, 51]
+- name: particles
+  type: baseCOMP
+  position: [328, 49]
+  comment: 'PARTICLE SYSTEMS — POPs: sparkles, motes, wish burst, petals, fabric trail'
+  inputs:
+  - pulse_transform
+  tdn_ref: project1/particles.tdn
+- name: spoutout1
+  type: syphonspoutoutTOP
+  parameters:
+    sendername: TD_Portfolio_Output
+  position: [-640, 621]
+  size: [130, 90]
+  color: [0.9, 0.1, 0.1]
+  inputs:
+  - out1
+- name: starfield
+  type: baseCOMP
+  position: [-425, -75]
+  tdn_ref: project1/starfield.tdn
+- name: comp_rings
+  type: compositeTOP
+  position: [-700, 800]
+  inputs:
+  - /project1/postfx/out1
+- name: comp_stars
+  type: overTOP
+  position: [-75, 500]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - /project1/starfield/out1
+  - out1
+- name: comp_trails
+  type: compositeTOP
+  parameters:
+    operand: add
+  position: [675, 275]
+  inputs:
+  - pulse_transform
+  - /project1/particles/out1
+- name: geo_engines
+  type: baseCOMP
+  position: [600, 0]
+  tdn_ref: project1/geo_engines.tdn
+- name: penrose_geo
+  type: geometryCOMP
+  flags:
+  - -display
+  - -render
+  position: [-405, -342]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/penrose_geo.tdn
+- name: fbx_importer
+  type: baseCOMP
+  sequences:
+    ext:
+    - object: =op('FbxImporterExt').module.FbxImporterExt(me)
+      promote: true
+  custom_pars:
+    FBX Importer:
+    - name: Fbxpath
+      style: File
+      label: FBX Path
+  position: [450, -200]
+  tdn_ref: project1/fbx_importer.tdn
+- name: PROJECT_LEGEND
+  type: textDAT
+  parameters:
+    file: project1/PROJECT_LEGEND.py
+    syncfile: true
+    language: python
+  position: [75, 475]
+  size: [800, 300]
+  color: [0.9, 0.3, 0.4]
+  comment: Read me first â€” project guide for newcomers
+  tags:
+  - py
+- name: _fbxcomp_probe
+  type: fbxCOMP
+  parameters:
+    file: G:/EnvironmentPortfolio/BS_GodFile/_TouchDesigner/exports/nikki_sanctuary.fbx
+    callbacks: _fbxcomp_probe_callbacks
+  tdn_ref: project1/_fbxcomp_probe.tdn
+- name: melusina_rings
+  type: containerCOMP
+  position: [-1000, 800]
+  size: [160, 130]
+  color: [0.67, 0.67, 0.67]
+  children:
+  - name: tx1
+    type: transformTOP
+    parameters:
+      sx: =1.0 + op('/project1/audio/band1_analyze')['band1']*0.45
+      sy: =1.0 + op('/project1/audio/band1_analyze')['band1']*0.45
+    position: [750, 0]
+    inputs:
+    - ring1
+  - name: tx2
+    type: transformTOP
+    parameters:
+      sx: =1.0 + op('/project1/audio/band2_analyze')['band2']*0.55
+      sy: =1.0 + op('/project1/audio/band2_analyze')['band2']*0.55
+    position: [900, 0]
+    inputs:
+    - ring2
+  - name: tx3
+    type: transformTOP
+    parameters:
+      sx: =1.0 + op('/project1/audio/band3_analyze')['band3']*0.65
+      sy: =1.0 + op('/project1/audio/band3_analyze')['band3']*0.65
+    position: [1050, 0]
+    inputs:
+    - ring3
+  - name: tx4
+    type: transformTOP
+    parameters:
+      sx: =1.0 + op('/project1/audio/band4_analyze')['band4']*0.75
+      sy: =1.0 + op('/project1/audio/band4_analyze')['band4']*0.75
+    position: [1200, 0]
+    inputs:
+    - ring4
+  - name: tx5
+    type: transformTOP
+    parameters:
+      sx: =1.0 + op('/project1/audio/band5_analyze')['band5']*0.9
+      sy: =1.0 + op('/project1/audio/band5_analyze')['band5']*0.9
+    position: [1350, 0]
+    inputs:
+    - ring5
+  - name: ring1
+    type: circleTOP
+    parameters:
+      borderr: 0.45
+      borderg: 0.3
+      borderb: 0.62
+  - name: ring2
+    type: circleTOP
+    parameters:
+      borderr: 0.55
+      borderg: 0.42
+      borderb: 0.75
+    position: [150, 0]
+  - name: ring3
+    type: circleTOP
+    parameters:
+      borderr: 0.93
+      borderg: 0.72
+      borderb: 0.45
+    position: [300, 0]
+  - name: ring4
+    type: circleTOP
+    parameters:
+      borderr: 0.96
+      borderg: 0.6
+      borderb: 0.7
+    position: [450, 0]
+  - name: ring5
+    type: circleTOP
+    parameters:
+      borderr: 0.65
+      borderg: 0.9
+      borderb: 0.85
+    position: [600, 0]
+  - name: compose
+    type: compositeTOP
+    position: [1500, 0]
+    inputs:
+    - tx1
+    - tx2
+    - tx3
+    - tx4
+    - tx5
+- name: test_container
+  type: containerCOMP
+  position: [-685, -51]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/test_container.tdn
+- name: GraphManagerExt
+  type: textDAT
+  parameters:
+    file: project1/GraphManagerExt.py
+    syncfile: true
+    language: python
+  position: [1655, 348]
+  size: [130, 90]
+  color: [0.9, 0.3, 0.4]
+  tags:
+  - py
+- name: pulse_transform
+  type: transformTOP
+  parameters:
+    sx: =1.0 + op('/project1/audio/out1')[0]
+    sy: =1.0 + op('/project1/audio/out1')[0]
+  position: [-150, 450]
+  inputs:
+  - comp_stars
+- name: debug_render_net
+  type: baseCOMP
+  position: [125, -150]
+  tdn_ref: project1/debug_render_net.tdn
+- name: externalizations
+  type: tableDAT
+  parameters:
+    file: project1/externalizations.tsv
+    syncfile: true
+    rows: 286
+    cols: 11
+  position: [1655, 33]
+  size: [130, 90]
+  color: [0.9, 0.3, 0.4]
+  tags:
+  - tsv
+- name: MelodiaStudioCore
+  type: textDAT
+  parameters:
+    file: project1/MelodiaStudioCore.py
+    syncfile: true
+    language: python
+  position: [1655, 191]
+  size: [130, 90]
+  color: [0.9, 0.3, 0.4]
+  tags:
+  - py
+- name: filein1_callbacks
+  type: textDAT
+  parameters:
+    file: project1/filein1_callbacks.py
+    syncfile: true
+    language: python
+  flags:
+  - viewer
+  position: [-100, -260]
+  size: [160, 130]
+  color: [0.9, 0.3, 0.4]
+  tags:
+  - py
+  dock: filein1
+- name: _fbxcomp_probe_callbacks
+  type: textDAT
+  parameters:
+    file: project1/_fbxcomp_probe_callbacks.py
+    syncfile: true
+    language: python
+  flags:
+  - viewer
+  position: [0, -160]
+  size: [160, 130]
+  color: [0.9, 0.3, 0.4]
+  tags:
+  - py
+  dock: _fbxcomp_probe
+annotations:
+- name: annotate6
+  mode: annotate
+  title: Annotate
+  position: [892, -75]
+  size: [382, 288]
+  color: [0.45, 0.45, 0.45]
+- name: annotate_audio
+  mode: annotate
+  title: AUDIO  — Melodia Audio Engine
+  text: |-
+    Vocal/audio analysis engine (35 ops).
+    ain(audiofileinCHOP MP3) -> afilter(audiofilterCHOP) -> aout(audiodeviceoutCHOP);
+    5-band filter+analyze+lag chains band1..band5;
+    chord_detector / pitch_analyzer / spectral_analyzer;
+    audio_feature_merge + hsv_math.
+  position: [1050, -520]
+  size: [640, 340]
+  color: [0.2902, 0.2431, 0.3686]
+  opacity: 0.85
+- name: annotate_composite
+  mode: annotate
+  title: COMPOSITE  — Starfield + PostFX Out
+  text: |-
+    Output composite room.
+    starfield (noise1->blur1->level1->transform1->out1);
+    postfx (bg_nebula, bloom chain, LUT, vignette);
+    final /project1/out1 -> spoutout1.
+  position: [-560, -260]
+  size: [600, 320]
+  color: [0.9608, 0.9294, 1.0]
+  opacity: 0.85
+- name: annotate_perform
+  mode: annotate
+  title: PERFORM  — Hand OSC + Gesture
+  text: |-
+    Live hand-tracking bridge.
+    hand_osc (oscinCHOP port 7000);
+    osc COMP: in_battle + beat_pulse_* + preset matrix;
+    feeds starfield transform1 tx/ty/rotate/sx/sy (EXPRESSION-BOUND - do not touch).
+  position: [-560, 620]
+  size: [560, 320]
+  color: [0.7176, 0.4784, 0.6196]
+  opacity: 0.85
+- name: annotate_scene
+  mode: annotate
+  title: SCENE  — Spout/Blender Video In
+  text: |-
+    Blender/Spout video input room.
+    Core: spoutout1 (syphonspoutoutTOP) fed by /project1/out1;
+    pulse_transform + comp_stars preview taps.
+  position: [-1080, 380]
+  size: [620, 300]
+  color: [0.8314, 0.6863, 0.2157]
+  opacity: 0.85
+- name: envoy_bot_arm_l
+  mode: networkbox
+  position: [-661, 921]
+  size: [10, 26]
+  color: [0.05, 0.6833, 1.0]
+- name: envoy_bot_arm_r
+  mode: networkbox
+  position: [-617, 922]
+  size: [10, 26]
+  color: [0.05, 0.6833, 1.0]
+- name: envoy_bot_body
+  mode: networkbox
+  position: [-650, 914]
+  size: [30, 34]
+  color: [0.05, 0.6833, 1.0]
+- name: envoy_bot_eye_l
+  mode: networkbox
+  position: [-649, 959]
+  size: [12, 13]
+  color: [0.0, 0.0, 0.0]
+- name: envoy_bot_eye_r
+  mode: networkbox
+  position: [-633, 959]
+  size: [12, 13]
+  color: [0.0, 0.0, 0.0]
+- name: envoy_bot_head
+  mode: networkbox
+  position: [-652, 949]
+  size: [34, 26]
+  color: [0.05, 0.6833, 1.0]
+- name: envoy_bot_leg_l
+  mode: networkbox
+  position: [-648, 890]
+  size: [11, 24]
+  color: [0.05, 0.6833, 1.0]
+- name: envoy_bot_leg_r
+  mode: networkbox
+  position: [-632, 890]
+  size: [11, 24]
+  color: [0.05, 0.6833, 1.0]
+- name: envoy_bot_speech
+  mode: annotate
+  title: Embot
+  text: '- blended two layers...'
+  position: [-727, 989]
+  size: [185, 74]
+  color: [0.12, 0.12, 0.17]
+  backAlpha: 0.95
+  bodyFontSize: 11

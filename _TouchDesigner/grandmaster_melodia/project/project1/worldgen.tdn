@@ -1,0 +1,61 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:20Z'
+network_path: /project1/worldgen
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  baseCOMP:
+    size: [160, 130]
+    color: [0.3, 0.5, 0.9]
+    tags:
+    - tdn
+type: baseCOMP
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: WORLDGEN â€” procedural Nikki x Escher world pieces. Rebuilt by scripts/worldgen/world_builder.py â€” do not hand-edit.
+operators:
+- name: out1
+  type: outTOP
+  parameters:
+    label: =me.name
+  position: [800, -300]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  comment: worldgen COMP output â€” wire me in /project1
+  inputs:
+  - master_out
+- name: pieces
+  type: baseCOMP
+  position: [0, 200]
+  comment: 13 Escher pieces â€” one geometryCOMP each, rerun-safe
+  tdn_ref: project1/worldgen/pieces.tdn
+- name: renders
+  type: baseCOMP
+  position: [0, -300]
+  comment: renderTOPs + piece_switch + out1 â€” flat, same network
+  tdn_ref: project1/worldgen/renders.tdn
+- name: light_rig
+  type: baseCOMP
+  position: [-400, 0]
+  comment: Golden hour â€” matches UE UDS ToD 17:00
+  tdn_ref: project1/worldgen/light_rig.tdn
+- name: materials
+  type: baseCOMP
+  position: [-400, 400]
+  comment: Shared Nikki palette constantMATs
+  tdn_ref: project1/worldgen/materials.tdn
+- name: master_out
+  type: nullTOP
+  position: [600, -300]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  comment: WORLDGEN OUT â€” current piece_switch selection
+  inputs:
+  - /project1/worldgen/renders/out1

@@ -1,0 +1,254 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:23Z'
+network_path: /project1/worldgen/pieces/wg_belvedere
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  tubeSOP:
+    parameters:
+      rows: 4
+      cols: 24
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  boxSOP:
+    parameters:
+      sizex: 10
+      sizey: 0.2
+      sizez: 3
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  transformSOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: geometryCOMP
+parameters:
+  material: /project1/worldgen/materials/mat_ivory
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: Belvedere — upper and lower pillars that cannot both be true  [ivory]
+operators:
+- name: lower_0
+  type: tubeSOP
+  parameters:
+    rad1: 0.25
+    rad2: 0.25
+    height: 6
+  position: [0, -200]
+- name: lower_1
+  type: tubeSOP
+  parameters:
+    rad1: 0.25
+    rad2: 0.25
+    height: 6
+  position: [200, -200]
+- name: lower_2
+  type: tubeSOP
+  parameters:
+    rad1: 0.25
+    rad2: 0.25
+    height: 6
+  position: [400, -200]
+- name: lower_3
+  type: tubeSOP
+  parameters:
+    rad1: 0.25
+    rad2: 0.25
+    height: 6
+  position: [600, -200]
+- name: upper_0
+  type: tubeSOP
+  parameters:
+    rad1: 0.15
+    rad2: 0.15
+    height: 4
+- name: upper_1
+  type: tubeSOP
+  parameters:
+    rad1: 0.15
+    rad2: 0.15
+    height: 4
+  position: [200, 0]
+- name: upper_2
+  type: tubeSOP
+  parameters:
+    rad1: 0.15
+    rad2: 0.15
+    height: 4
+  position: [400, 0]
+- name: upper_3
+  type: tubeSOP
+  parameters:
+    rad1: 0.15
+    rad2: 0.15
+    height: 4
+  position: [600, 0]
+- name: floor_top
+  type: boxSOP
+  position: [900, 0]
+- name: lower_0_tx
+  type: transformSOP
+  parameters:
+    tx: -2.5
+    ty: -1
+  position: [150, -200]
+  inputs:
+  - lower_0
+- name: lower_1_tx
+  type: transformSOP
+  parameters:
+    ty: -1
+  position: [350, -200]
+  inputs:
+  - lower_1
+- name: lower_2_tx
+  type: transformSOP
+  parameters:
+    tx: 2.5
+    ty: -1
+  position: [550, -200]
+  inputs:
+  - lower_2
+- name: lower_3_tx
+  type: transformSOP
+  parameters:
+    tx: 5
+    ty: -1
+  position: [750, -200]
+  inputs:
+  - lower_3
+- name: render_cam
+  type: cameraCOMP
+  parameters:
+    tx: 11.644
+    ty: 8.21175
+    tz: 11.519
+    rx: -28
+    ry: 45
+  position: [0, 400]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/worldgen/pieces/wg_belvedere/render_cam.tdn
+- name: upper_0_tx
+  type: transformSOP
+  parameters:
+    tx: -3.75
+    ty: 1
+  position: [150, 0]
+  inputs:
+  - upper_0
+- name: upper_1_tx
+  type: transformSOP
+  parameters:
+    tx: -1.25
+    ty: 1
+  position: [350, 0]
+  inputs:
+  - upper_1
+- name: upper_2_tx
+  type: transformSOP
+  parameters:
+    tx: 1.25
+    ty: 1
+  position: [550, 0]
+  inputs:
+  - upper_2
+- name: upper_3_tx
+  type: transformSOP
+  parameters:
+    tx: 3.75
+    ty: 1
+  position: [750, 0]
+  inputs:
+  - upper_3
+- name: effect_facet
+  type: facetSOP
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - belvedere_merge
+- name: effect_point
+  type: pointSOP
+  parameters:
+    tx: =me.inputPoint.x
+    ty: =me.inputPoint.y
+    tz: =me.inputPoint.z
+    weight: =me.inputPoint.w
+    doclr: 'on'
+    diffr: =0.75 + 0.25 * math.sin(me.inputPoint.P[1] * 0.5 + absTime.seconds * 3.0)
+    diffg: =0.60 + 0.35 * math.cos(me.inputPoint.P[1] * 0.4 + absTime.seconds * 2.5)
+    diffb: =0.90 + 0.10 * math.sin(me.inputPoint.P[1] * 0.3 - absTime.seconds * 2.0)
+    alpha: =me.inputColor[3]
+    nx: =me.inputNormal[0]
+    ny: =me.inputNormal[1]
+    nz: =me.inputNormal[2]
+    mapu: =me.inputTexture[0]
+    mapv: =me.inputTexture[1]
+    mapw: =me.inputTexture[2]
+    width: =me.inputPoint.width[0]
+    pscale: =me.inputPoint.pscale[0]
+    tension: =me.inputPoint.tension[0]
+    springk: =me.inputPoint.springk[0]
+    vx: =me.inputPoint.v[0]
+    vy: =me.inputPoint.v[1]
+    vz: =me.inputPoint.v[2]
+    upx: =me.inputPoint.up[0]
+    upy: =me.inputPoint.up[1]
+    upz: =me.inputPoint.up[2]
+  flags:
+  - display
+  - render
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - effect_twist
+- name: effect_twist
+  type: twistSOP
+  parameters:
+    paxis: y
+    strength: =math.sin(absTime.seconds * 1.2) * 12.0 + (op('/project1/audio/final_out')['beat'].eval() if op('/project1/audio/final_out') else 0.0) * 18.0
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - effect_facet
+- name: floor_bottom
+  type: boxSOP
+  position: [900, -200]
+- name: floor_top_tx
+  type: transformSOP
+  parameters:
+    ty: 3
+  position: [1050, 0]
+  inputs:
+  - floor_top
+- name: belvedere_merge
+  type: mergeSOP
+  position: [1100, -100]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - upper_0_tx
+  - lower_0_tx
+  - upper_1_tx
+  - lower_1_tx
+  - upper_2_tx
+  - lower_2_tx
+  - upper_3_tx
+  - lower_3_tx
+  - floor_top_tx
+  - floor_bottom_tx
+- name: floor_bottom_tx
+  type: transformSOP
+  parameters:
+    ty: -2
+  position: [1050, -200]
+  inputs:
+  - floor_bottom

@@ -1,0 +1,230 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:20Z'
+network_path: /project1/particles
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  levelTOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  particlePOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  geometryCOMP:
+    parameters:
+      instancing: true
+      instancetx: P(0)
+      instancety: P(1)
+      instancetz: P(2)
+    size: [160, 130]
+    color: [0.3, 0.5, 0.9]
+    tags:
+    - tdn
+  phongMAT:
+    parameters:
+      diffr: 1
+      skelrootpath: =parent()
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: baseCOMP
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: 'PARTICLE SYSTEMS — POPs: sparkles, motes, wish burst, petals, fabric trail'
+operators:
+- name: in1
+  type: inTOP
+  parameters:
+    label: =me.name
+  position: [400, -100]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: cam1
+  type: cameraCOMP
+  parameters:
+    ty: 3
+    tz: 35
+    fov: 70
+  position: [200, 0]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/particles/cam1.tdn
+- name: out1
+  type: outTOP
+  parameters:
+    label: =me.name
+  position: [1200, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - comp1
+- name: comp1
+  type: compositeTOP
+  parameters:
+    operand: add
+  position: [1000, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - thresh
+  - feedback1
+- name: light1
+  type: lightCOMP
+  parameters:
+    tx: 1
+    ty: 2
+    tz: 3
+  position: [200, -100]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/particles/light1.tdn
+- name: thresh
+  type: levelTOP
+  parameters:
+    blacklevel: 0.5
+  position: [800, 0]
+  inputs:
+  - comp_input
+- name: burst_pop
+  type: particlePOP
+  parameters:
+    maxparticles: 1500
+    birthrate: =op('select_audio')['onset'] * 400.0
+    life: 2.5
+    lifevariance: 0.5
+    jitterbirthpos: 0.8
+    initvelocityy: =0.2 + op('select_audio')['onset'] * 0.8
+  position: [-200, 150]
+  inputs:
+  - emitter_grid
+- name: feedback1
+  type: feedbackTOP
+  parameters:
+    top: /project1/particles/level_fade
+  position: [800, -150]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - thresh
+- name: geo_burst
+  type: geometryCOMP
+  parameters:
+    instanceop: /project1/particles/burst_pop
+    material: /project1/particles/mat_burst
+  position: [200, 150]
+  tdn_ref: project1/particles/geo_burst.tdn
+- name: geo_motes
+  type: geometryCOMP
+  parameters:
+    instanceop: /project1/particles/motes_pop
+    material: /project1/particles/mat_motes
+  position: [200, 250]
+  tdn_ref: project1/particles/geo_motes.tdn
+- name: mat_burst
+  type: phongMAT
+  parameters:
+    diffg: 0.95
+    diffb: 0.5
+    constantr: 1
+    constantg: 0.8
+    constantb: 0.2
+  position: [0, 100]
+- name: mat_motes
+  type: phongMAT
+  parameters:
+    diffg: 0.85
+    diffb: 0.65
+    constantr: 0.8
+    constantg: 0.6
+    constantb: 0.4
+  position: [0, 300]
+- name: motes_pop
+  type: particlePOP
+  parameters:
+    birthrate: =30.0 + op('select_audio')['onset'] * 150.0
+    life: 8
+    lifevariance: 1
+    jitterbirthpos: 0.5
+    initvelocityy: 0.05
+  position: [-200, 250]
+  inputs:
+  - emitter_grid
+- name: comp_input
+  type: overTOP
+  position: [600, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - in1
+  - render_motes
+- name: level_fade
+  type: levelTOP
+  parameters:
+    opacity: 0.95
+  position: [1200, -150]
+  inputs:
+  - transform1
+- name: onset_math
+  type: mathCHOP
+  parameters:
+    autoexportroot: =parent()
+  position: [-200, 400]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - select_audio
+- name: transform1
+  type: transformTOP
+  parameters:
+    rotate: =0.5
+    sx: =1.05
+    sy: =1.05
+  position: [1000, -150]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - comp1
+- name: onset_trail
+  type: trailCHOP
+  parameters:
+    rate: =me.time.rate
+    autoexportroot: =parent()
+  position: [0, 400]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - select_audio
+- name: emitter_grid
+  type: gridPOP
+  parameters:
+    sizex: 3
+    sizey: 3
+  position: [-400, 200]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: render_motes
+  type: renderTOP
+  parameters:
+    camera: /project1/particles/cam1
+  position: [400, 100]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: select_audio
+  type: selectCHOP
+  parameters:
+    chops: /project1/audio/final_out
+    channames: onset beat h s v
+    autoexportroot: =parent()
+  position: [-400, 400]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]

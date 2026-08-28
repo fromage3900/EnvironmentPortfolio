@@ -1,0 +1,113 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:21Z'
+network_path: /project1/worldgen/pieces
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  geometryCOMP:
+    size: [160, 130]
+    color: [0.3, 0.5, 0.9]
+    tags:
+    - tdn
+type: baseCOMP
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: 13 Escher pieces â€” one geometryCOMP each, rerun-safe
+operators:
+- name: wg_belvedere
+  type: geometryCOMP
+  parameters:
+    material: /project1/worldgen/materials/mat_ivory
+  position: [2400, 0]
+  comment: Belvedere — upper and lower pillars that cannot both be true  [ivory]
+  tdn_ref: project1/worldgen/pieces/wg_belvedere.tdn
+- name: wg_waterfall
+  type: geometryCOMP
+  parameters:
+    material: /project1/worldgen/materials/mat_sky
+  position: [0, -600]
+  comment: Infinite waterfall — water that falls up  [sky]
+  tdn_ref: project1/worldgen/pieces/wg_waterfall.tdn
+- name: wg_relativity
+  type: geometryCOMP
+  parameters:
+    material: /project1/worldgen/materials/mat_lavender
+  position: [1200, -600]
+  comment: Relativity — six rooms, six gravities  [lavender]
+  tdn_ref: project1/worldgen/pieces/wg_relativity.tdn
+- name: wg_stair_well
+  type: geometryCOMP
+  parameters:
+    material: /project1/worldgen/materials/mat_dusk_blue
+  position: [600, -1200]
+  comment: Stair well — 40 steps spiraling down into depth  [dusk_blue]
+  tdn_ref: project1/worldgen/pieces/wg_stair_well.tdn
+- name: wg_tessellation
+  type: geometryCOMP
+  parameters:
+    material: /project1/worldgen/materials/mat_terracotta
+  position: [1800, 0]
+  comment: Escher tessellation — diamonds on warped grid  [terracotta]
+  tdn_ref: project1/worldgen/pieces/wg_tessellation.tdn
+- name: wg_fractal_tower
+  type: geometryCOMP
+  parameters:
+    material: /project1/worldgen/materials/mat_rose_gold
+  position: [1200, 0]
+  comment: Recursive tower — 8 layers, -11% scale, +22.5 deg twist each  [rose_gold]
+  tdn_ref: project1/worldgen/pieces/wg_fractal_tower.tdn
+- name: wg_penrose_stairs
+  type: geometryCOMP
+  parameters:
+    material: /project1/worldgen/materials/mat_ivory
+  comment: Penrose impossible stairs — closed loop, forever ascending  [ivory]
+  tdn_ref: project1/worldgen/pieces/wg_penrose_stairs.tdn
+- name: wg_impossible_cube
+  type: geometryCOMP
+  parameters:
+    material: /project1/worldgen/materials/mat_gold
+  position: [0, -1200]
+  comment: Impossible cube — edges that disagree about depth  [gold]
+  tdn_ref: project1/worldgen/pieces/wg_impossible_cube.tdn
+- name: wg_infinite_library
+  type: geometryCOMP
+  parameters:
+    material: /project1/worldgen/materials/mat_terracotta
+  position: [600, -600]
+  comment: Infinite library — shelves receding past reason  [terracotta]
+  tdn_ref: project1/worldgen/pieces/wg_infinite_library.tdn
+- name: wg_spiral_staircase
+  type: geometryCOMP
+  parameters:
+    material: /project1/worldgen/materials/mat_ivory
+  position: [600, 0]
+  comment: Ascending spiral — 60 steps, 3 turns, expanding radius  [ivory]
+  tdn_ref: project1/worldgen/pieces/wg_spiral_staircase.tdn
+- name: wg_infinite_corridor
+  type: geometryCOMP
+  parameters:
+    material: /project1/worldgen/materials/mat_cream
+  position: [2400, -600]
+  comment: Infinite corridor — perspective illusion of endless depth  [cream]
+  tdn_ref: project1/worldgen/pieces/wg_infinite_corridor.tdn
+- name: wg_mobius_architecture
+  type: geometryCOMP
+  parameters:
+    material: /project1/worldgen/materials/mat_rose_gold
+  position: [1200, -1200]
+  comment: Mobius architecture — a building with one side and one edge  [rose_gold]
+  tdn_ref: project1/worldgen/pieces/wg_mobius_architecture.tdn
+- name: wg_ascending_descending
+  type: geometryCOMP
+  parameters:
+    material: /project1/worldgen/materials/mat_ivory
+  position: [1800, -600]
+  comment: Ascending/Descending — the monks walk forever  [ivory]
+  tdn_ref: project1/worldgen/pieces/wg_ascending_descending.tdn

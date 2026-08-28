@@ -1,0 +1,97 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:20Z'
+network_path: /project1/learn_td
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  geometryCOMP:
+    size: [160, 130]
+    color: [0.3, 0.5, 0.9]
+    tags:
+    - tdn
+type: baseCOMP
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: LEARN TD — Tutorial + Escher geometry playground (5 pieces)
+operators:
+- name: my_playground
+  type: geometryCOMP
+  flags:
+  - -display
+  - -render
+  position: [600, 0]
+  comment: Your sandbox — right-click to add SOPs
+  tdn_ref: project1/learn_td/my_playground.tdn
+- name: instanced_city
+  type: geometryCOMP
+  flags:
+  - -display
+  - -render
+  position: [200, -400]
+  tdn_ref: project1/learn_td/instanced_city.tdn
+- name: nikki_sanctuary
+  type: fbxCOMP
+  parameters:
+    file: =app.samplesFolder+'/FBX/TDLogo.fbx'
+    callbacks: nikki_sanctuary_callbacks
+    index: =me.time.frame
+  flags:
+  - -display
+  - -render
+  position: [-400, 0]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  comment: Double-click to enter. Set FBX file path in parameters.
+  tags:
+  - tdn
+  tdn_ref: project1/learn_td/nikki_sanctuary.tdn
+- name: procedural_tower
+  type: geometryCOMP
+  flags:
+  - -display
+  - -render
+  position: [200, 0]
+  comment: Tube -> Noise -> Cone -> Merge tower
+  tdn_ref: project1/learn_td/procedural_tower.tdn
+- name: escher_fractal_tower
+  type: geometryCOMP
+  parameters:
+    material: /project1/worldgen/materials/mat_ivory
+  position: [200, -800]
+  comment: Self-similar recursive tower â€” box scaled/rotated/stacked 8 times
+  tdn_ref: project1/learn_td/escher_fractal_tower.tdn
+- name: escher_penrose_stairs
+  type: geometryCOMP
+  parameters:
+    material: /project1/worldgen/materials/mat_ivory
+  position: [-400, -800]
+  comment: Penrose impossible stairs â€” 4 connected staircases forming a loop
+  tdn_ref: project1/learn_td/escher_penrose_stairs.tdn
+- name: escher_spiral_staircase
+  type: geometryCOMP
+  parameters:
+    material: /project1/worldgen/materials/mat_ivory
+  position: [-400, -1200]
+  comment: Ascending spiral staircase â€” 60 steps wrapping a central column
+  tdn_ref: project1/learn_td/escher_spiral_staircase.tdn
+- name: nikki_sanctuary_callbacks
+  type: textDAT
+  parameters:
+    file: project1/learn_td/nikki_sanctuary_callbacks.py
+    syncfile: true
+    language: python
+  flags:
+  - viewer
+  position: [-400, -160]
+  size: [160, 130]
+  color: [0.9, 0.3, 0.4]
+  tags:
+  - py
+  dock: nikki_sanctuary

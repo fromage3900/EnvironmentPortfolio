@@ -1,0 +1,39 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:21Z'
+network_path: /project1/worldgen/light_rig
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  lightCOMP:
+    size: [160, 130]
+    color: [0.3, 0.5, 0.9]
+    tags:
+    - tdn
+type: baseCOMP
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: Golden hour â€” matches UE UDS ToD 17:00
+operators:
+- name: sun
+  type: lightCOMP
+  parameters:
+    tx: 25
+    ty: 35
+    tz: 30
+    rx: -38
+    ry: 42
+    dimmer: =1.2 + (op('/project1/audio/final_out')['beat'].eval() if op('/project1/audio/final_out') else 0.0) * 0.6
+  tdn_ref: project1/worldgen/light_rig/sun.tdn
+- name: ambient
+  type: lightCOMP
+  parameters:
+    dimmer: 0.8
+  position: [0, -150]
+  tdn_ref: project1/worldgen/light_rig/ambient.tdn

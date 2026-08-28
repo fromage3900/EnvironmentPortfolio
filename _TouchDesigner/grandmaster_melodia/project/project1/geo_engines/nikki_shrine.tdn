@@ -1,0 +1,49 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:22Z'
+network_path: /project1/geo_engines/nikki_shrine
+options:
+  include_dat_content: false
+  include_storage: true
+type: geometryCOMP
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+operators:
+- name: torus1
+  type: torusPOP
+  flags:
+  - display
+  - render
+  - viewer
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: shrine_mesh
+  type: fbxCOMP
+  parameters:
+    file: G:/EnvironmentPortfolio/BS_GodFile/KitbashExport/OrnamentMusic_WIP/Gothic/P1_Heroes/SM_Orn_RoseWindow_8Petal.fbx
+    callbacks: shrine_mesh_callbacks
+    index: =me.time.frame
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/geo_engines/nikki_shrine/shrine_mesh.tdn
+- name: shrine_mesh_callbacks
+  type: textDAT
+  parameters:
+    file: project1/geo_engines/nikki_shrine/shrine_mesh_callbacks.py
+    syncfile: true
+    language: python
+  flags:
+  - viewer
+  position: [0, -160]
+  size: [160, 130]
+  color: [0.9, 0.3, 0.4]
+  tags:
+  - py
+  dock: shrine_mesh

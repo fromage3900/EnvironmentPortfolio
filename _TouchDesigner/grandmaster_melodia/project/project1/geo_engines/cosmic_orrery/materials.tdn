@@ -1,0 +1,105 @@
+format: tdn
+version: '2.0'
+build: 1
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:24Z'
+network_path: /project1/geo_engines/cosmic_orrery/materials
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  phongMAT:
+    parameters:
+      skelrootpath: =parent()
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: baseCOMP
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: Orrery materials — Nikki palette derived
+operators:
+- name: mat_sun
+  type: phongMAT
+  parameters:
+    diffr: 1
+    diffg: 0.85
+    diffb: 0.55
+    specr: 1
+    specg: 0.9
+    specb: 0.7
+    emitr: =0.9 + (op('/project1/audio/final_out')['beat'].eval() if op('/project1/audio/final_out') else 0.0) * 0.4
+    emitg: =0.7 + (op('/project1/audio/final_out')['beat'].eval() if op('/project1/audio/final_out') else 0.0) * 0.35
+    emitb: =0.4 + (op('/project1/audio/final_out')['beat'].eval() if op('/project1/audio/final_out') else 0.0) * 0.3
+    shininess: 64
+- name: mat_ring
+  type: phongMAT
+  parameters:
+    diffr: 0.96
+    diffg: 0.84
+    diffb: 0.63
+    specr: 0.9
+    specg: 0.8
+    specb: 0.6
+    emitr: 0.05
+    emitg: 0.04
+    emitb: 0.02
+    shininess: 40
+  position: [0, -600]
+- name: mat_star
+  type: phongMAT
+  parameters:
+    diffr: 1
+    diffg: 1
+    diffb: 1
+    specr: 1
+    specg: 1
+    specb: 1
+    emitr: 0.8
+    emitg: 0.8
+    emitb: 0.9
+    shininess: 20
+  position: [0, -750]
+- name: mat_planet1
+  type: phongMAT
+  parameters:
+    diffr: 0.85
+    diffg: 0.65
+    diffb: 0.95
+    specr: 0.4
+    specg: 0.8
+    specb: 1
+    emitr: 0.05
+    emitg: 0.05
+    emitb: 0.1
+  position: [0, -150]
+- name: mat_planet2
+  type: phongMAT
+  parameters:
+    diffr: 0.91
+    diffg: 0.78
+    diffb: 0.72
+    specr: 1
+    specg: 0.85
+    specb: 0.6
+    emitr: 0.03
+    emitg: 0.02
+    emitb: 0.02
+    shininess: 80
+  position: [0, -300]
+- name: mat_planet3
+  type: phongMAT
+  parameters:
+    diffr: 0.71
+    diffg: 0.85
+    diffb: 0.91
+    specr: 0.6
+    specg: 0.9
+    specb: 1
+    emitr: 0.02
+    emitg: 0.04
+    emitb: 0.08
+    shininess: 120
+  position: [0, -450]

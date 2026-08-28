@@ -1,0 +1,156 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:19Z'
+network_path: /project1/postfx
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  outTOP:
+    parameters:
+      label: =me.name
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  compositeTOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  rampTOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  overTOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  blurTOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  tableDAT:
+    parameters:
+      syncfile: true
+      cols: 5
+    flags:
+    - viewer
+    size: [130, 90]
+    color: [0.9, 0.3, 0.4]
+    tags:
+    - tsv
+type: baseCOMP
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: POST-FX CHAIN — Nikki bloom (3-pass Gaussian), LUT grade, DOF bokeh
+operators:
+- name: in1
+  type: inTOP
+  parameters:
+    label: =me.name
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: out1
+  type: outTOP
+  inputs:
+  - postfx_out
+- name: comp_bg
+  type: compositeTOP
+  parameters:
+    operand: over
+  inputs:
+  - bg_nebula
+  - comp_main
+- name: vignette
+  type: rampTOP
+  parameters:
+    dat: vignette_keys
+    type: radial
+  position: [250, -360]
+- name: bg_nebula
+  type: noiseTOP
+  parameters:
+    period: 3
+    mono: false
+    tz: =absTime.seconds * 0.08
+    resolutionw: 1920
+    resolutionh: 1080
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: comp_main
+  type: overTOP
+  inputs:
+  - in1
+  - bg_nebula
+- name: nikki_lut
+  type: rampTOP
+  parameters:
+    dat: nikki_lut_keys
+  position: [0, -360]
+  inputs:
+  - vignette_over
+- name: postfx_out
+  type: nullTOP
+  position: [750, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - nikki_lut
+- name: bloom_blur_5
+  type: blurTOP
+  position: [250, 0]
+  inputs:
+  - bloom_threshold
+- name: bloom_blur_15
+  type: blurTOP
+  position: [250, -120]
+  inputs:
+  - bloom_threshold
+- name: bloom_blur_30
+  type: blurTOP
+  position: [250, -240]
+  inputs:
+  - bloom_threshold
+- name: vignette_keys
+  type: tableDAT
+  parameters:
+    file: project1/postfx/vignette_keys.tsv
+  position: [0, -120]
+  dock: vignette
+- name: vignette_over
+  type: overTOP
+  position: [500, -240]
+  inputs:
+  - final_composite
+  - vignette
+- name: OUT_BG_VISUALS
+  type: outTOP
+  inputs:
+  - bg_nebula
+- name: nikki_lut_keys
+  type: tableDAT
+  parameters:
+    file: project1/postfx/nikki_lut_keys.tsv
+  position: [0, -120]
+  dock: nikki_lut
+- name: bloom_composite
+  type: compositeTOP
+  parameters:
+    operand: add
+  position: [500, 0]
+  inputs:
+  - bloom_blur_5
+  - bloom_blur_15
+  - bloom_blur_30
+- name: bloom_threshold
+  type: levelTOP
+  parameters:
+    blacklevel: 0.75
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - comp_main
+- name: final_composite
+  type: overTOP
+  inputs:
+  - bloom_composite
+  - comp_main

@@ -1,0 +1,59 @@
+format: tdn
+version: '2.0'
+build: 1
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:25Z'
+network_path: /project1/geo_engines/cosmic_orrery/orbit_rings
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  torusSOP:
+    parameters:
+      rady: 0.015
+      rows: 4
+      cols: 96
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: geometryCOMP
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: Thin orbit rings at each planet radius
+operators:
+- name: ring_0
+  type: torusSOP
+  parameters:
+    radx: 3.5
+- name: ring_1
+  type: torusSOP
+  parameters:
+    radx: 5.5
+  position: [250, 0]
+- name: ring_2
+  type: torusSOP
+  parameters:
+    radx: 7.5
+  position: [500, 0]
+- name: torus1
+  type: torusPOP
+  flags:
+  - display
+  - render
+  - viewer
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: rings_merge
+  type: mergeSOP
+  flags:
+  - display
+  - render
+  position: [800, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - ring_0
+  - ring_1
+  - ring_2

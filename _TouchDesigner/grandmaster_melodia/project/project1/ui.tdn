@@ -1,0 +1,51 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:19Z'
+network_path: /project1/ui
+options:
+  include_dat_content: false
+  include_storage: true
+type: baseCOMP
+sequences:
+  ext:
+  - object: op('./PortfolioController').module.PortfolioController(me)
+    name: PortfolioController
+    promote: true
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: CONTROL PANEL — preset switcher, sliders, stats overlay
+operators:
+- name: bg
+  type: selectTOP
+  parameters:
+    top: /project1/postfx/postfx_out
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: main_panel
+  type: containerCOMP
+  parameters:
+    w: 1920
+    h: 1080
+    resizecomp: =me
+    repocomp: =me
+    top: /project1/ui/bg
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/ui/main_panel.tdn
+- name: PortfolioController
+  type: textDAT
+  parameters:
+    file: project1/ui/PortfolioController.py
+    syncfile: true
+    language: python
+  size: [130, 90]
+  color: [0.9, 0.3, 0.4]
+  tags:
+  - py

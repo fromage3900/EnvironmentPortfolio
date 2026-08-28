@@ -1,0 +1,138 @@
+format: tdn
+version: '2.0'
+build: 1
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:21Z'
+network_path: /project1/worldgen/renders
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  renderTOP:
+    parameters:
+      lights: /project1/worldgen/light_rig/sun /project1/worldgen/light_rig/ambient
+      bgcolorr: 0.08
+      bgcolorg: 0.07
+      bgcolorb: 0.18
+      bgcolora: 1
+      resolutionw: 1920
+      resolutionh: 1080
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: baseCOMP
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: renderTOPs + piece_switch + out1 â€” flat, same network
+operators:
+- name: out1
+  type: outTOP
+  parameters:
+    label: =me.name
+  position: [1800, -200]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  comment: renders COMP output â€” appears on the renders node in worldgen
+  inputs:
+  - piece_switch
+- name: piece_switch
+  type: switchTOP
+  parameters:
+    index: 12
+  position: [1600, -200]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  comment: Index 0-12 = which piece renders out
+  inputs:
+  - render_penrose_stairs
+  - render_spiral_staircase
+  - render_fractal_tower
+  - render_tessellation
+  - render_belvedere
+  - render_waterfall
+  - render_infinite_library
+  - render_relativity
+  - render_ascending_descending
+  - render_infinite_corridor
+  - render_impossible_cube
+  - render_stair_well
+  - render_mobius_architecture
+- name: render_belvedere
+  type: renderTOP
+  parameters:
+    camera: /project1/worldgen/pieces/wg_belvedere/render_cam
+    geometry: /project1/worldgen/pieces/wg_belvedere
+  position: [1200, 0]
+- name: render_waterfall
+  type: renderTOP
+  parameters:
+    camera: /project1/worldgen/pieces/wg_waterfall/render_cam
+    geometry: /project1/worldgen/pieces/wg_waterfall
+  position: [0, -200]
+- name: render_relativity
+  type: renderTOP
+  parameters:
+    camera: /project1/worldgen/pieces/wg_relativity/render_cam
+    geometry: /project1/worldgen/pieces/wg_relativity
+  position: [600, -200]
+- name: render_stair_well
+  type: renderTOP
+  parameters:
+    camera: /project1/worldgen/pieces/wg_stair_well/render_cam
+    geometry: /project1/worldgen/pieces/wg_stair_well
+  position: [300, -400]
+- name: render_tessellation
+  type: renderTOP
+  parameters:
+    camera: /project1/worldgen/pieces/wg_tessellation/render_cam
+    geometry: /project1/worldgen/pieces/wg_tessellation
+  position: [900, 0]
+- name: render_fractal_tower
+  type: renderTOP
+  parameters:
+    camera: /project1/worldgen/pieces/wg_fractal_tower/render_cam
+    geometry: /project1/worldgen/pieces/wg_fractal_tower
+  position: [600, 0]
+- name: render_penrose_stairs
+  type: renderTOP
+  parameters:
+    camera: /project1/worldgen/pieces/wg_penrose_stairs/render_cam
+    geometry: /project1/worldgen/pieces/wg_penrose_stairs
+- name: render_impossible_cube
+  type: renderTOP
+  parameters:
+    camera: /project1/worldgen/pieces/wg_impossible_cube/render_cam
+    geometry: /project1/worldgen/pieces/wg_impossible_cube
+  position: [0, -400]
+- name: render_infinite_library
+  type: renderTOP
+  parameters:
+    camera: /project1/worldgen/pieces/wg_infinite_library/render_cam
+    geometry: /project1/worldgen/pieces/wg_infinite_library
+  position: [300, -200]
+- name: render_spiral_staircase
+  type: renderTOP
+  parameters:
+    camera: /project1/worldgen/pieces/wg_spiral_staircase/render_cam
+    geometry: /project1/worldgen/pieces/wg_spiral_staircase
+  position: [300, 0]
+- name: render_infinite_corridor
+  type: renderTOP
+  parameters:
+    camera: /project1/worldgen/pieces/wg_infinite_corridor/render_cam
+    geometry: /project1/worldgen/pieces/wg_infinite_corridor
+  position: [1200, -200]
+- name: render_mobius_architecture
+  type: renderTOP
+  parameters:
+    camera: /project1/worldgen/pieces/wg_mobius_architecture/render_cam
+    geometry: /project1/worldgen/pieces/wg_mobius_architecture
+  position: [600, -400]
+- name: render_ascending_descending
+  type: renderTOP
+  parameters:
+    camera: /project1/worldgen/pieces/wg_ascending_descending/render_cam
+    geometry: /project1/worldgen/pieces/wg_ascending_descending
+  position: [900, -200]

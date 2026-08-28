@@ -1,0 +1,98 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:22Z'
+network_path: /project1/geo_engines/cosmic_orrery
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  geometryCOMP:
+    size: [160, 130]
+    color: [0.3, 0.5, 0.9]
+    tags:
+    - tdn
+  lightCOMP:
+    size: [160, 130]
+    color: [0.3, 0.5, 0.9]
+    tags:
+    - tdn
+  baseCOMP:
+    size: [160, 130]
+    color: [0.3, 0.5, 0.9]
+    tags:
+    - tdn
+type: baseCOMP
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: 'COSMIC ORRERY — integrated scene: audio-reactive planets, emissive sun, star shell. Rebuilt by build_orrery_scene.py — do not hand-edit.'
+operators:
+- name: sun
+  type: geometryCOMP
+  parameters:
+    material: /project1/geo_engines/cosmic_orrery/materials/mat_sun
+  position: [-600, 0]
+  comment: Emissive gold sun — audio-pulsing
+  tdn_ref: project1/geo_engines/cosmic_orrery/sun.tdn
+- name: cam1
+  type: cameraCOMP
+  parameters:
+    tx: =16 * math.sin(absTime.seconds * 0.08)
+    ty: =4 + 2 * math.sin(absTime.seconds * 0.05)
+    tz: =16 * math.cos(absTime.seconds * 0.08)
+    lookat: /project1/geo_engines/cosmic_orrery/sun
+  position: [0, 600]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/geo_engines/cosmic_orrery/cam1.tdn
+- name: out1
+  type: outTOP
+  parameters:
+    label: =me.name
+  position: [1000, 600]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - render1
+- name: light1
+  type: lightCOMP
+  position: [0, 300]
+  tdn_ref: project1/geo_engines/cosmic_orrery/light1.tdn
+- name: ambient
+  type: lightCOMP
+  position: [200, 300]
+  tdn_ref: project1/geo_engines/cosmic_orrery/ambient.tdn
+- name: planets
+  type: baseCOMP
+  position: [-600, 300]
+  tdn_ref: project1/geo_engines/cosmic_orrery/planets.tdn
+- name: render1
+  type: renderTOP
+  parameters:
+    camera: /project1/geo_engines/cosmic_orrery/cam1
+    geometry: /project1/geo_engines/cosmic_orrery/sun /project1/geo_engines/cosmic_orrery/planets/planet_1 /project1/geo_engines/cosmic_orrery/planets/planet_2 /project1/geo_engines/cosmic_orrery/planets/planet_3 /project1/geo_engines/cosmic_orrery/orbit_rings /project1/geo_engines/cosmic_orrery/starfield
+    lights: /project1/geo_engines/cosmic_orrery/light1 /project1/geo_engines/cosmic_orrery/ambient
+  position: [800, 600]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: materials
+  type: baseCOMP
+  position: [-1200, 400]
+  comment: Orrery materials — Nikki palette derived
+  tdn_ref: project1/geo_engines/cosmic_orrery/materials.tdn
+- name: starfield
+  type: geometryCOMP
+  position: [-600, -600]
+  comment: Star shell — tiny instanced stars on a sphere-like spread
+  tdn_ref: project1/geo_engines/cosmic_orrery/starfield.tdn
+- name: orbit_rings
+  type: geometryCOMP
+  position: [-1200, 0]
+  comment: Thin orbit rings at each planet radius
+  tdn_ref: project1/geo_engines/cosmic_orrery/orbit_rings.tdn

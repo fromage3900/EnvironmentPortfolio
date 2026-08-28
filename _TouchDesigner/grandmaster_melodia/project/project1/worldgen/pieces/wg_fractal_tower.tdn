@@ -1,0 +1,188 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:23Z'
+network_path: /project1/worldgen/pieces/wg_fractal_tower
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  mergeSOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  boxSOP:
+    parameters:
+      sizex: 2
+      sizez: 2
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  transformSOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: geometryCOMP
+parameters:
+  material: /project1/worldgen/materials/mat_rose_gold
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: Recursive tower — 8 layers, -11% scale, +22.5 deg twist each  [rose_gold]
+operators:
+- name: acc_1
+  type: mergeSOP
+  position: [450, -150]
+  inputs:
+  - layer_0_tx
+  - layer_1_tx
+- name: acc_2
+  type: mergeSOP
+  position: [750, -150]
+  inputs:
+  - acc_1
+  - layer_2_tx
+- name: acc_3
+  type: mergeSOP
+  position: [1050, -150]
+  inputs:
+  - acc_2
+  - layer_3_tx
+- name: acc_4
+  type: mergeSOP
+  position: [1350, -150]
+  inputs:
+  - acc_3
+  - layer_4_tx
+- name: acc_5
+  type: mergeSOP
+  position: [1650, -150]
+  inputs:
+  - acc_4
+  - layer_5_tx
+- name: acc_6
+  type: mergeSOP
+  position: [1950, -150]
+  inputs:
+  - acc_5
+  - layer_6_tx
+- name: acc_7
+  type: mergeSOP
+  flags:
+  - display
+  - render
+  position: [2250, -150]
+  inputs:
+  - acc_6
+  - layer_7_tx
+- name: layer_0
+  type: boxSOP
+- name: layer_1
+  type: boxSOP
+  position: [300, 0]
+- name: layer_2
+  type: boxSOP
+  position: [600, 0]
+- name: layer_3
+  type: boxSOP
+  position: [900, 0]
+- name: layer_4
+  type: boxSOP
+  position: [1200, 0]
+- name: layer_5
+  type: boxSOP
+  position: [1500, 0]
+- name: layer_6
+  type: boxSOP
+  position: [1800, 0]
+- name: layer_7
+  type: boxSOP
+  position: [2100, 0]
+- name: layer_0_tx
+  type: transformSOP
+  position: [150, 0]
+  inputs:
+  - layer_0
+- name: layer_1_tx
+  type: transformSOP
+  parameters:
+    ty: 1.2
+    rx: 22.5
+    ry: 15.75
+  position: [450, 0]
+  inputs:
+  - layer_1
+- name: layer_2_tx
+  type: transformSOP
+  parameters:
+    ty: 2.4
+    rx: 45
+    ry: 31.5
+  position: [750, 0]
+  inputs:
+  - layer_2
+- name: layer_3_tx
+  type: transformSOP
+  parameters:
+    ty: 3.6
+    rx: 67.5
+    ry: 47.25
+  position: [1050, 0]
+  inputs:
+  - layer_3
+- name: layer_4_tx
+  type: transformSOP
+  parameters:
+    ty: 4.8
+    rx: 90
+    ry: 63
+  position: [1350, 0]
+  inputs:
+  - layer_4
+- name: layer_5_tx
+  type: transformSOP
+  parameters:
+    ty: 6
+    rx: 112.5
+    ry: 78.75
+  position: [1650, 0]
+  inputs:
+  - layer_5
+- name: layer_6_tx
+  type: transformSOP
+  parameters:
+    ty: 7.2
+    rx: 135
+    ry: 94.5
+  position: [1950, 0]
+  inputs:
+  - layer_6
+- name: layer_7_tx
+  type: transformSOP
+  parameters:
+    ty: 8.4
+    rx: 157.5
+    ry: 110.25
+  position: [2250, 0]
+  inputs:
+  - layer_7
+- name: render_cam
+  type: cameraCOMP
+  parameters:
+    tx: 10.9511
+    ty: 12.607
+    tz: 10.9511
+    rx: -28
+    ry: 45
+  position: [0, 400]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  tags:
+  - tdn
+  tdn_ref: project1/worldgen/pieces/wg_fractal_tower/render_cam.tdn
+- name: effect_facet
+  type: facetSOP
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - acc_1

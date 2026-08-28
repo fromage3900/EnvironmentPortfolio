@@ -1,0 +1,104 @@
+format: tdn
+version: '2.0'
+build: 1
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:21Z'
+network_path: /project1/geo_engines/water_sim
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  attributecreateSOP:
+    parameters:
+      comptang: true
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: geometryCOMP
+parameters:
+  ty: -3
+  material: /project1/magical_visuals/water_sim/water_mat
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+operators:
+- name: torus1
+  type: torusPOP
+  flags:
+  - display
+  - render
+  - viewer
+  position: [227, -78]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: water_mat
+  type: phongMAT
+  parameters:
+    diffr: 0.15
+    diffg: 0.7
+    diffb: 0.9
+    specr: 0.8
+    specg: 0.95
+    specb: 1
+    normalmap: /project1/geo_engines/water_sim/water_normal
+    skelrootpath: =parent()
+  position: [-227, -78]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: water_tex
+  type: textureSOP
+  position: [0, -153]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - water_grid
+- name: water_attr
+  type: attributecreateSOP
+  position: [0, -228]
+  inputs:
+  - water_tex
+- name: water_grid
+  type: gridSOP
+  parameters:
+    orient: yz
+    sizex: 40
+    sizey: 40
+    rows: 100
+    cols: 100
+  position: [0, -78]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+- name: water_normal
+  type: normalmapTOP
+  position: [0, 78]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  inputs:
+  - water_noise_top
+- name: water_attr_attr
+  type: attributecreateSOP
+  flags:
+  - display
+  - render
+  position: [0, -378]
+  inputs:
+  - water_attr
+- name: water_grid_attr
+  type: attributecreateSOP
+  flags:
+  - display
+  - render
+  position: [0, -228]
+  inputs:
+  - water_grid
+- name: water_noise_top
+  type: noiseTOP
+  parameters:
+    period: 1.5
+    tz: =absTime.seconds * 0.2
+    resolutionw: 512
+    resolutionh: 512
+  position: [-227, 78]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]

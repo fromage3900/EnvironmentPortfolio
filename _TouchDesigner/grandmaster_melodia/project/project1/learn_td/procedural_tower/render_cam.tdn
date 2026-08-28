@@ -1,0 +1,31 @@
+format: tdn
+version: '2.0'
+build: 1
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:22Z'
+network_path: /project1/learn_td/procedural_tower/render_cam
+options:
+  include_dat_content: false
+  include_storage: true
+type: cameraCOMP
+parameters:
+  tx: 5
+  ty: 3
+  tz: 35
+  fov: 70
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+operators:
+- name: file1
+  type: fileinPOP
+  parameters:
+    file: =app.samplesFolder + '/Geo/defcam.tog'
+    refresh: true
+  flags:
+  - display
+  - viewer
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]

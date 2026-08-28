@@ -66,3 +66,4 @@
 *.toe binary
 *.tox binary
 tools/rclone.exe filter=lfs diff=lfs merge=lfs -text
+*.tdc filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,414 @@
+format: tdn
+version: '2.0'
+build: 2
+generator: Embody/6.0.126
+td_build: 099.2025.32460
+source_file: grandmaster_melodia.1.toe
+exported_at: '2026-08-27T07:04:21Z'
+network_path: /project1/learn_td/escher_fractal_tower
+options:
+  include_dat_content: false
+  include_storage: true
+type_defaults:
+  transformSOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  boxSOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  mergeSOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  textureSOP:
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+  attributecreateSOP:
+    parameters:
+      comptang: true
+    flags:
+    - render
+    size: [130, 90]
+    color: [0.67, 0.67, 0.67]
+type: geometryCOMP
+parameters:
+  material: /project1/worldgen/materials/mat_ivory
+color: [0.3, 0.5, 0.9]
+tags:
+- tdn
+comment: Self-similar recursive tower â€” box scaled/rotated/stacked 8 times
+operators:
+- name: render_cam
+  type: cameraCOMP
+  parameters:
+    tx: 3
+    ty: 3
+    tz: 35
+    fov: 70
+  flags:
+  - render
+  position: [2675, -500]
+  size: [160, 130]
+  color: [0.3, 0.5, 0.9]
+  comment: Camera for render pipeline
+  tags:
+  - tdn
+  tdn_ref: project1/learn_td/escher_fractal_tower/render_cam.tdn
+- name: render_out
+  type: renderTOP
+  parameters:
+    camera: /project1/learn_td/escher_fractal_tower/render_cam
+  flags:
+  - render
+  position: [300, 0]
+  size: [130, 90]
+  color: [0.67, 0.67, 0.67]
+  comment: Renders this geometry â€” connected to master switch
+- name: fractal_tx_0
+  type: transformSOP
+  position: [150, 0]
+  inputs:
+  - fractal_box_0
+- name: fractal_tx_1
+  type: transformSOP
+  parameters:
+    scale: 0.89
+  position: [400, -100]
+  inputs:
+  - fractal_box_1
+- name: fractal_tx_2
+  type: transformSOP
+  parameters:
+    scale: 0.78
+  position: [650, -200]
+  inputs:
+  - fractal_box_2
+- name: fractal_tx_3
+  type: transformSOP
+  parameters:
+    scale: 0.67
+  position: [900, -300]
+  inputs:
+  - fractal_box_3
+- name: fractal_tx_4
+  type: transformSOP
+  parameters:
+    scale: 0.56
+  position: [1150, -400]
+  inputs:
+  - fractal_box_4
+- name: fractal_tx_5
+  type: transformSOP
+  parameters:
+    scale: 0.45
+  position: [1400, -500]
+  inputs:
+  - fractal_box_5
+- name: fractal_tx_6
+  type: transformSOP
+  parameters:
+    scale: 0.34
+  position: [1650, -600]
+  inputs:
+  - fractal_box_6
+- name: fractal_tx_7
+  type: transformSOP
+  parameters:
+    scale: 0.23
+  position: [1900, -700]
+  inputs:
+  - fractal_box_7
+- name: fractal_box_0
+  type: boxSOP
+- name: fractal_box_1
+  type: boxSOP
+  position: [250, -100]
+- name: fractal_box_2
+  type: boxSOP
+  position: [500, -200]
+- name: fractal_box_3
+  type: boxSOP
+  position: [750, -300]
+- name: fractal_box_4
+  type: boxSOP
+  position: [1000, -400]
+- name: fractal_box_5
+  type: boxSOP
+  position: [1250, -500]
+- name: fractal_box_6
+  type: boxSOP
+  position: [1500, -600]
+- name: fractal_box_7
+  type: boxSOP
+  position: [1750, -700]
+- name: fractal_layer_1
+  type: mergeSOP
+  position: [550, -100]
+  inputs:
+  - fractal_tx_0
+  - fractal_tx_1
+- name: fractal_layer_2
+  type: mergeSOP
+  position: [800, -200]
+  inputs:
+  - fractal_layer_1
+  - fractal_tx_2
+- name: fractal_layer_3
+  type: mergeSOP
+  position: [1050, -300]
+  inputs:
+  - fractal_layer_2
+  - fractal_tx_3
+- name: fractal_layer_4
+  type: mergeSOP
+  position: [1300, -400]
+  inputs:
+  - fractal_layer_3
+  - fractal_tx_4
+- name: fractal_layer_5
+  type: mergeSOP
+  position: [1550, -500]
+  inputs:
+  - fractal_layer_4
+  - fractal_tx_5
+- name: fractal_layer_6
+  type: mergeSOP
+  position: [1800, -600]
+  inputs:
+  - fractal_layer_5
+  - fractal_tx_6
+- name: fractal_layer_7
+  type: mergeSOP
+  position: [2050, -700]
+  inputs:
+  - fractal_layer_6
+  - fractal_tx_7
+- name: fractal_tx_0_tex
+  type: textureSOP
+  position: [150, -75]
+  inputs:
+  - fractal_tx_0
+- name: fractal_tx_1_tex
+  type: textureSOP
+  position: [400, -175]
+  inputs:
+  - fractal_tx_1
+- name: fractal_tx_2_tex
+  type: textureSOP
+  position: [650, -275]
+  inputs:
+  - fractal_tx_2
+- name: fractal_tx_3_tex
+  type: textureSOP
+  position: [900, -375]
+  inputs:
+  - fractal_tx_3
+- name: fractal_tx_4_tex
+  type: textureSOP
+  position: [1150, -475]
+  inputs:
+  - fractal_tx_4
+- name: fractal_tx_5_tex
+  type: textureSOP
+  position: [1400, -575]
+  inputs:
+  - fractal_tx_5
+- name: fractal_tx_6_tex
+  type: textureSOP
+  position: [1650, -675]
+  inputs:
+  - fractal_tx_6
+- name: fractal_tx_7_tex
+  type: textureSOP
+  position: [1900, -775]
+  inputs:
+  - fractal_tx_7
+- name: fractal_box_0_tex
+  type: textureSOP
+  position: [0, -75]
+  inputs:
+  - fractal_box_0
+- name: fractal_box_1_tex
+  type: textureSOP
+  position: [250, -175]
+  inputs:
+  - fractal_box_1
+- name: fractal_box_2_tex
+  type: textureSOP
+  position: [500, -275]
+  inputs:
+  - fractal_box_2
+- name: fractal_box_3_tex
+  type: textureSOP
+  position: [750, -375]
+  inputs:
+  - fractal_box_3
+- name: fractal_box_4_tex
+  type: textureSOP
+  position: [1000, -475]
+  inputs:
+  - fractal_box_4
+- name: fractal_box_5_tex
+  type: textureSOP
+  position: [1250, -575]
+  inputs:
+  - fractal_box_5
+- name: fractal_box_6_tex
+  type: textureSOP
+  position: [1500, -675]
+  inputs:
+  - fractal_box_6
+- name: fractal_box_7_tex
+  type: textureSOP
+  position: [1750, -775]
+  inputs:
+  - fractal_box_7
+- name: fractal_tx_0_attr
+  type: attributecreateSOP
+  position: [150, -150]
+  inputs:
+  - fractal_tx_0_tex
+- name: fractal_tx_1_attr
+  type: attributecreateSOP
+  position: [400, -250]
+  inputs:
+  - fractal_tx_1_tex
+- name: fractal_tx_2_attr
+  type: attributecreateSOP
+  position: [650, -350]
+  inputs:
+  - fractal_tx_2_tex
+- name: fractal_tx_3_attr
+  type: attributecreateSOP
+  position: [900, -450]
+  inputs:
+  - fractal_tx_3_tex
+- name: fractal_tx_4_attr
+  type: attributecreateSOP
+  position: [1150, -550]
+  inputs:
+  - fractal_tx_4_tex
+- name: fractal_tx_5_attr
+  type: attributecreateSOP
+  position: [1400, -650]
+  inputs:
+  - fractal_tx_5_tex
+- name: fractal_tx_6_attr
+  type: attributecreateSOP
+  position: [1650, -750]
+  inputs:
+  - fractal_tx_6_tex
+- name: fractal_tx_7_attr
+  type: attributecreateSOP
+  position: [1900, -850]
+  inputs:
+  - fractal_tx_7_tex
+- name: fractal_box_0_attr
+  type: attributecreateSOP
+  position: [0, -150]
+  inputs:
+  - fractal_box_0_tex
+- name: fractal_box_1_attr
+  type: attributecreateSOP
+  position: [250, -250]
+  inputs:
+  - fractal_box_1_tex
+- name: fractal_box_2_attr
+  type: attributecreateSOP
+  position: [500, -350]
+  inputs:
+  - fractal_box_2_tex
+- name: fractal_box_3_attr
+  type: attributecreateSOP
+  position: [750, -450]
+  inputs:
+  - fractal_box_3_tex
+- name: fractal_box_4_attr
+  type: attributecreateSOP
+  position: [1000, -550]
+  inputs:
+  - fractal_box_4_tex
+- name: fractal_box_5_attr
+  type: attributecreateSOP
+  position: [1250, -650]
+  inputs:
+  - fractal_box_5_tex
+- name: fractal_box_6_attr
+  type: attributecreateSOP
+  position: [1500, -750]
+  inputs:
+  - fractal_box_6_tex
+- name: fractal_box_7_attr
+  type: attributecreateSOP
+  position: [1750, -850]
+  inputs:
+  - fractal_box_7_tex
+- name: fractal_layer_1_tex
+  type: textureSOP
+  position: [550, -175]
+  inputs:
+  - fractal_layer_1
+- name: fractal_layer_2_tex
+  type: textureSOP
+  position: [800, -275]
+  inputs:
+  - fractal_layer_2
+- name: fractal_layer_3_tex
+  type: textureSOP
+  position: [1050, -375]
+  inputs:
+  - fractal_layer_3
+- name: fractal_layer_4_tex
+  type: textureSOP
+  position: [1300, -475]
+  inputs:
+  - fractal_layer_4
+- name: fractal_layer_5_tex
+  type: textureSOP
+  position: [1550, -575]
+  inputs:
+  - fractal_layer_5
+- name: fractal_layer_6_tex
+  type: textureSOP
+  position: [1800, -675]
+  inputs:
+  - fractal_layer_6
+- name: fractal_layer_7_tex
+  type: textureSOP
+  position: [2050, -775]
+  inputs:
+  - fractal_layer_7
+- name: fractal_layer_1_attr
+  type: attributecreateSOP
+  position: [550, -250]
+  inputs:
+  - fractal_layer_1_tex
+- name: fractal_layer_2_attr
+  type: attributecreateSOP
+  position: [800, -350]
+  inputs:
+  - fractal_layer_2_tex
+- name: fractal_layer_3_attr
+  type: attributecreateSOP
+  position: [1050, -450]
+  inputs:
+  - fractal_layer_3_tex
+- name: fractal_layer_4_attr
+  type: attributecreateSOP
+  position: [1300, -550]
+  inputs:
+  - fractal_layer_4_tex
+- name: fractal_layer_5_attr
+  type: attributecreateSOP
+  position: [1550, -650]
+  inputs:
+  - fractal_layer_5_tex
+- name: fractal_layer_6_attr
+  type: attributecreateSOP
+  position: [1800, -750]
+  inputs:
+  - fractal_layer_6_tex
+- name: fractal_layer_7_attr
+  type: attributecreateSOP
+  position: [2050, -850]
+  inputs:
+  - fractal_layer_7_tex
