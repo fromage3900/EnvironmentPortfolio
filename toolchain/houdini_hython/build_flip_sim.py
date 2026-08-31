@@ -18,7 +18,7 @@ import sys
 import hou  # noqa: F401  (hython provides this)
 
 
-def build_network(obj: hou.Node) -> hou.Node:
+def build_network(obj: hou.Node, res: int = 0) -> hou.Node:
     """Create /obj/flip_study geometry network: tank + ramp + FLIP sim + output cache."""
     geo = obj.createNode("geo", node_name="flip_study")
     geo.moveToGoodPosition()
@@ -59,6 +59,18 @@ def build_network(obj: hou.Node) -> hou.Node:
 
     out = flip.createOutputNodeAndConnect("null", "OUT_flip_study")
     out.setDisplayFlag(True)
+    if res:
+        # Best-effort resolution override across known parm names (container/solver variants)
+        for node in (flip,):
+            for child in (node, *node.children()):
+                for parm in ("resolution", "res", "gridres", "divsize"):
+                    p = child.parm(parm)
+                    if p is not None:
+                        try:
+                            p.set(res)
+                        except Exception:
+                            pass
+        print(f"[build_flip_sim] resolution override -> {res}", flush=True)
     return out
 
 
@@ -78,12 +90,13 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--frames", default="1-120")
     parser.add_argument("--out", default="exports/flip_study")
+    parser.add_argument("--res", type=int, default=0, help="best-effort sim resolution override (0 = defaults)")
     args = parser.parse_args()
     start_s, _, end_s = args.frames.partition("-")
     start, end = int(start_s), int(end_s or start_s)
 
     obj = hou.node("/obj")
-    out = build_network(obj)
+    out = build_network(obj, res=args.res)
     hou.setFps(24)
     cache_output(out, args.out, start, end)
     return 0
