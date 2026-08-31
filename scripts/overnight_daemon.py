@@ -610,6 +610,26 @@ def _find_hython() -> str | None:
     return str(versions[0]) if versions else None
 
 
+def _verify_sim_content(outdir: Path) -> dict:
+    """Content gate: ROP exit 0 is NOT a pass unless cached frames actually contain
+    fluid. Empty Houdini VDB frames are ~800 B; particle-bearing bgeo frames with
+    real fluid are far larger. Returns {'ok': bool, 'frames': int, 'detail': str}."""
+    bgeos = sorted(outdir.glob("*.bgeo.sc"))
+    if not bgeos:
+        return {"ok": False, "frames": 0, "detail": "no .bgeo.sc frames cached"}
+    # Empty-grid frames cluster near 1-10 KB; treat anything under 48 KB as suspect.
+    min_bytes = int(os.environ.get("HYTHON_MIN_FRAME_BYTES", "48000"))
+    small = [f.name for f in bgeos if f.stat().st_size < min_bytes]
+    if small:
+        return {
+            "ok": False,
+            "frames": len(bgeos),
+            "detail": f"{len(small)}/{len(bgeos)} frames under {min_bytes} B "
+                      f"(empty fluid; e.g. {small[0]} at {bgeos[0].stat().st_size} B)",
+        }
+    return {"ok": True, "frames": len(bgeos), "detail": "all frames above size threshold"}
+
+
 def lane_hython() -> int:
     """Hython benchmark lane: run a short headless FLIP sim via real hython.
 
@@ -638,9 +658,17 @@ def lane_hython() -> int:
     ok = proc.returncode == 0
     status = "done" if ok else f"exit={proc.returncode}"
     log(f"[HYTHON] {status}; tail: {(proc.stderr or proc.stdout or '')[-300:]}")
+    # Content gate: a clean exit with empty fluid is a FAILURE, not a pass.
+    content = _verify_sim_content(outdir)
+    if ok and not content["ok"]:
+        status = "empty_content"
+        ok = False
+    log(f"[HYTHON] content gate: {'PASS' if content['ok'] else 'FAIL'} — {content['detail']}")
     ledger_append("hython", {
         "frames": frames, "res": res, "status": status,
         "output_dir": str(outdir), "hython": hython,
+        "content_ok": content["ok"], "content_detail": content["detail"],
+        "content_frames": content["frames"],
     })
     return 1 if ok else 0
 

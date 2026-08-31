@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 import os
 import sys
+from pathlib import Path
 
 import hou  # noqa: F401  (hython provides this)
 
@@ -93,6 +94,18 @@ def cache_output(out_node: hou.Node, out_dir: str, start: int, end: int) -> None
         ft.set((start, end, 1))
     rop.render()
     print(f"[build_flip_sim] cached {start}-{end} -> {out_dir}", flush=True)
+    # Content gate (2026-08-31): ROP exit 0 is NOT a pass. Empty-fluid frames are
+    # ~1-10 KB (see FINDINGS_FLIP_HEADLESS_2026-08-31.md); real fluid is far larger.
+    cached = sorted(Path(out_dir).glob("*.bgeo.sc"))
+    min_bytes = 48000
+    small = [f for f in cached if f.stat().st_size < min_bytes]
+    if small:
+        print(f"[build_flip_sim] CONTENT GATE FAIL: {len(small)}/{len(cached)} frames "
+              f"under {min_bytes} B — sim produced no fluid. The flipcontainer macro's "
+              f"sim network is UI-only; author the sim in the UI (HIP/HDA) or use a "
+              f"full source contract. See FINDINGS_FLIP_HEADLESS_2026-08-31.md.",
+              flush=True)
+        return 1  # non-zero so callers/lanes treat this as a failure
 
 
 def main() -> int:
@@ -107,8 +120,7 @@ def main() -> int:
     obj = hou.node("/obj")
     hou.setFps(24)
     out = build_network(obj, res=args.res)
-    cache_output(out, args.out, start, end)
-    return 0
+    return cache_output(out, args.out, start, end)
 
 
 if __name__ == "__main__":

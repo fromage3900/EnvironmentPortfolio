@@ -46,6 +46,35 @@ fluid ever cooks, regardless of frame. The earlier "validate and repair" pass
    "ROP exit 0" must never again count as a pass. Wire this into the daemon
    `hython` lane ledger entry as `"content_ok": bool`.
 
+## DOP-net investigation (same session, follow-up)
+
+Attempted route 2 in-session; results:
+
+- `flipobject` (surfacetype=1 "Particle Field" + `soppath` → `particlefluidtank` fill)
+  wired into `flipsolver::2.0` with `gravity` DOP: **cooks without error but creates
+  zero sim objects**, even when the dopnet is cooked at advancing frames and via
+  SOP `dopimport` (donotsim=0). `dn.simulation().objects()` stays empty.
+- The SOP `flipsolver` macro's full source contract was mapped: input 0 needs
+  particles + VDBs named `surface` and `vel`; input 1 needs a domain carrying
+  detail attrs `gridscale`, `particlesep`, **and a string-array `volumenames`**
+  (validated by the internal `error1/enable2` Python expression); input 2 needs a
+  VDB named `collision`. With all that, frame 1 cooks, but frame 2+ fails inside
+  `FLIP_DATA → SETTINGS/rest_dual` — a flipcontainer-only setting the macro chain
+  still expects. The stock SOP `flipsolver` headless is a dead end without the UI
+  built network.
+- Conclusion: **route 1 (UI-authored HIP/HDA) is the only reliable path.** The
+  headless "validation" pass must never trust ROP exit codes again — hence the
+  content gate (implemented below).
+
+## Content gate (implemented)
+
+- `scripts/overnight_daemon.py` `_verify_sim_content()`: flags any cached frame
+  under `HYTHON_MIN_FRAME_BYTES` (default 48 KB) as empty fluid; the `hython` lane
+  records `content_ok` / `content_detail` / `content_frames` in the ledger and
+  reports `status="empty_content"` on failure.
+- `build_flip_sim.py` `cache_output()`: same gate at source; returns non-zero so
+  manual/CI runs fail loudly.
+
 ## Test artifacts
 
 - `probe_flip.py` (this dir) — full diagnostic/repro chain, kept for the fix session.
