@@ -62,6 +62,7 @@ generated/
 Imports/
 VFX/
 my-site-deploy/
+toolchain/**/exports/
 
 # Build artifacts and non-project dirs
 qdk-learning/
