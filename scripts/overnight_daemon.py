@@ -43,10 +43,49 @@ OLLAMA_TAGS_URL = "http://127.0.0.1:11434/api/tags"
 # Fallback chain: first model that loads wins (30b can fail to start on 12GB VRAM).
 QWEN_MODEL_CHAIN = [
     m.strip() for m in os.environ.get(
-        "QWEN_MODEL_CHAIN", "qwen3-coder:30b,qwen2.5:14b,qwen3:8b"
+        "QWEN_MODEL_CHAIN", "granite4.2:8b,granite4.2:3b,qwen3-coder:30b"
     ).split(",") if m.strip()
 ]
 QWEN_MODEL = os.environ.get("QWEN_MODEL", QWEN_MODEL_CHAIN[0])
+
+# Per-tier preference lists (2026-09-01 fleet). pick_model() returns the first of the
+# preferred tier that is actually installed, so the daemon self-adapts to what's local.
+PING_MODELS = [  # ultra-fast health smoke -> must never hang
+    m.strip() for m in os.environ.get("PING_MODELS", "granite4.2:3b,granite4.2:8b,qwen3-coder:30b").split(",") if m.strip()
+]
+WORKER_MODELS = [  # fast structured-JSON lanes
+    m.strip() for m in os.environ.get("WORKER_MODELS", "granite4.2:8b,granite4.2:3b,qwen3-coder:30b").split(",") if m.strip()
+]
+REASONER_MODELS = [  # rich agent/coding/creative lanes
+    m.strip() for m in os.environ.get("REASONER_MODELS", "muse-glimmer:30b,qwen3-coder:30b").split(",") if m.strip()
+]
+
+_installed_cache: tuple[list[str], float] | None = None
+
+
+def installed_models(refresh: bool = False) -> list[str]:
+    """Return models currently installed, cached for a short window."""
+    global _installed_cache
+    now = time.time()
+    if _installed_cache and not refresh and now - _installed_cache[1] < 60:
+        return _installed_cache[0]
+    status, body = http_get(OLLAMA_TAGS_URL, timeout=10)
+    models = []
+    if status == 200:
+        try:
+            models = [m.get("name") for m in json.loads(body).get("models", [])]
+        except Exception:
+            pass
+    _installed_cache = (models, now)
+    return models
+
+
+def pick_model(prefs: list[str]) -> str:
+    """Return the first preferred model that is installed, else the first preferred."""
+    _ = installed_models()
+    installed = {m for m in _installed_cache[0]} if _installed_cache else set()
+    return next((m for m in prefs if m in installed), prefs[0])
+
 
 HF_HEALTH_URL = "http://127.0.0.1:8000/health"
 TD_MCP_URL = "http://127.0.0.1:9870/mcp"
@@ -215,9 +254,8 @@ def lane_health() -> dict:
     report["ok"] &= status == 200
 
     if status == 200:
-        # Smoke-test only a model that is genuinely installed (avoid burning time
-        # on fallback models that aren't present -> spurious 404s).
-        smoke_model = next((m for m in QWEN_MODEL_CHAIN if m in models), None)
+        # Smoke-test the ultra-fast ping tier (avoids the slow 30b offload hang).
+        smoke_model = pick_model(PING_MODELS)
         if smoke_model:
             smoke_ok, smoke_msg = qwen_chat(
                 "You are a health probe. Reply with exactly: OK", "ping",
@@ -297,6 +335,7 @@ def lane_content() -> int:
         ok, out = qwen_chat(
             "You are the Melodia game content daemon. Output ONLY valid JSON matching the requested schema. No prose.",
             seed["prompt"],
+            model=pick_model(WORKER_MODELS),
         )
         if not ok:
             quarantine("content", out, "model call failed")
@@ -348,6 +387,7 @@ def lane_research() -> int:
         "You are a senior UE 5.8 rendering/gameplay researcher. Cite real doc/feature names; "
         "if unsure, mark confidence 'unverified'. Output ONLY valid JSON.",
         seed_prompt,
+        model=pick_model(WORKER_MODELS),
     )
     if not ok:
         quarantine("research", out, "model call failed")
@@ -377,6 +417,7 @@ def lane_git() -> int:
         "You are a repository analyst. Given recent commit history, produce JSON "
         "{digest, themes[], drift_risks[], suggested_next_commits[]}. Do not invent commits.",
         f"Recent commits:\n{log_out}\n\nUncommitted file count: {repo_dirty()}",
+        model=pick_model(WORKER_MODELS),
     )
     if not ok:
         quarantine("git", out, "model call failed")
@@ -451,6 +492,7 @@ def lane_forums() -> int:
         "Translate non-English insights to English but keep the original title. Only cite "
         "URLs present in the snippets.",
         corpus[:30000],
+        model=pick_model(WORKER_MODELS),
     )
     if not ok:
         quarantine("forums", out, "model call failed")
@@ -487,6 +529,7 @@ def lane_playhouse(iteration: int) -> int:
         "Be bold, weird, and concrete. No placeholders.",
         f"Tonight's playhouse prompt: {theme}",
         max_tokens=int(os.environ.get("PLAYHOUSE_MAX_TOKENS", "3000")),
+        model=pick_model(REASONER_MODELS),
     )
     if not ok:
         quarantine("playhouse", out, "model call failed")
@@ -540,6 +583,7 @@ def lane_toolchain() -> int:
         "values, export formats). No placeholders.",
         brief[1],
         max_tokens=int(os.environ.get("TOOLCHAIN_MAX_TOKENS", "3000")),
+        model=pick_model(REASONER_MODELS),
     )
     if not ok:
         quarantine("toolchain", out, "model call failed")
