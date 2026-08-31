@@ -17,6 +17,14 @@ import sys
 
 import hou  # noqa: F401  (hython provides this)
 
+import sys as _sys
+if _sys.argv and any(a == "--list-flip-types" for a in _sys.argv):
+    cat = hou.nodeType(hou.sopNodeTypeCategory(), "box").category()
+    names = sorted(cat.nodeTypes().keys())
+    print([n for n in names if "flip" in n or "fluid" in n])
+    sys.exit(0)
+
+
 
 def build_network(obj: hou.Node, res: int = 0) -> hou.Node:
     """Create /obj/flip_study geometry network: tank + ramp + FLIP sim + output cache."""
@@ -32,42 +40,28 @@ def build_network(obj: hou.Node, res: int = 0) -> hou.Node:
     ramp.parm("ty").set(1.0)
     ramp.parm("rz").set(-28.0)  # slanted so flow must climb
 
-    transform = ramp.createOutputNodeAndConnect("xform", "ramp_world")
+    transform = geo.createNode("xform", "ramp_world")
+    transform.setInput(0, ramp)
     transform.parm("ty").set(1.5)
 
-    # FLIP tank source: block of water at ramp base
-    tank = geo.createNode("box", node_name="water_source")
-    tank.parm("sizex").set(6.0)
-    tank.parm("sizey").set(2.0)
-    tank.parm("sizez").set(4.0)
-    tank.parm("ty").set(-0.5)
-
-    merge = geo.createNode("merge", "sim_inputs")
-    merge.setNextInput(transform)
-    merge.setNextInput(tank)
-
-    # Auto-generate FLIP network from the merge (tank + colliders workflow)
-    shelf = hou.shelves.shelfTool() if hasattr(hou, "shelves") else None
-    # Use the "Auto-generate FLIP" equivalent: fluidcontainer via FLIP configure is UI-side;
-    # headless-safe: build the container network via the 'flipsolver' HDA directly.
-    try:
-        flip = geo.createNode("fluidcontainer::2.0", node_name="flip_study_sim")
-    except hou.OperationFailed:
-        flip = geo.createNode("fluidcontainer", node_name="flip_study_sim")
-    flip.setNextInput(merge)
+    # SOP-level FLIP workflow (H19.5+/22): flipcontainer handles source+solver wiring
+    # and generates its own fluid block; the ramp comes in as a collider on input 1.
+    flip = geo.createNode("flipcontainer", node_name="flip_study_sim")
+    flip.setInput(0, transform)
     flip.moveToGoodPosition()
 
-    out = flip.createOutputNodeAndConnect("null", "OUT_flip_study")
+    out = geo.createNode("null", "OUT_flip_study")
+    out.setInput(0, flip)
     out.setDisplayFlag(True)
     if res:
         # Best-effort resolution override across known parm names (container/solver variants)
         for node in (flip,):
             for child in (node, *node.children()):
-                for parm in ("resolution", "res", "gridres", "divsize"):
+                for parm in ("resolution", "res", "gridres", "divsize", "particlesep"):
                     p = child.parm(parm)
                     if p is not None:
                         try:
-                            p.set(res)
+                            p.set(round(4.0 / res, 4) if parm == "particlesep" else res)
                         except Exception:
                             pass
         print(f"[build_flip_sim] resolution override -> {res}", flush=True)
@@ -76,12 +70,27 @@ def build_network(obj: hou.Node, res: int = 0) -> hou.Node:
 
 def cache_output(out_node: hou.Node, out_dir: str, start: int, end: int) -> None:
     os.makedirs(out_dir, exist_ok=True)
-    rop = out_node.parent().createNode("geometry", "ROP_cache_flip")
-    rop.setNextInput(out_node)
+    rop_parent = hou.node("/out") or out_node.parent()
+    rop = rop_parent.createNode("geometry", "ROP_cache_flip")
+    try:
+        rop.setNextInput(out_node)
+    except Exception:
+        pass
+    try:
+        rop.parm("soppath").set(out_node.path())
+    except Exception:
+        pass
     rop.parm("sopoutput").set(os.path.abspath(os.path.join(out_dir, "flip_study.$F4.bgeo.sc")).replace("\\", "/"))
-    rop.parm("trange").set(1)  # frame range
-    rop.parmTuple("f").set((start, end, 1))
     rop.parm("initsim").set(True)
+    rop.parm("trange").set(1)
+    ft = rop.parmTuple("f")
+    if ft is not None:
+        ft.deleteAllKeyframes()
+        try:
+            ft.setExpression("")
+        except Exception:
+            pass
+        ft.set((start, end, 1))
     rop.render()
     print(f"[build_flip_sim] cached {start}-{end} -> {out_dir}", flush=True)
 
@@ -96,8 +105,8 @@ def main() -> int:
     start, end = int(start_s), int(end_s or start_s)
 
     obj = hou.node("/obj")
-    out = build_network(obj, res=args.res)
     hou.setFps(24)
+    out = build_network(obj, res=args.res)
     cache_output(out, args.out, start, end)
     return 0
 
