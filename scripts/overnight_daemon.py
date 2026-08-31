@@ -151,8 +151,20 @@ def read_ledger_runs() -> list:
         return []
 
 
-def qwen_chat(system: str, user: str, max_tokens: int = MAX_TOKENS) -> tuple[bool, str]:
-    """Chat call with model fallback: try each model in QWEN_MODEL_CHAIN until one responds."""
+def qwen_chat(
+    system: str,
+    user: str,
+    max_tokens: int = MAX_TOKENS,
+    model: str | None = None,
+    timeout: int = SOCKET_TIMEOUT,
+) -> tuple[bool, str]:
+    """Chat call with model fallback: try each model in QWEN_MODEL_CHAIN until one responds.
+
+    When ``model`` is given, only that exact model is attempted (used by the health
+    lane, which must smoke-test a model that is actually installed). ``timeout`` bounds
+    each individual HTTP call so a slow/unloaded model degrades fast instead of hanging
+    the whole health run for SOCKET_TIMEOUT seconds.
+    """
     payload = {
         "messages": [
             {"role": "system", "content": system},
@@ -161,18 +173,19 @@ def qwen_chat(system: str, user: str, max_tokens: int = MAX_TOKENS) -> tuple[boo
         "max_tokens": max_tokens,
         "temperature": 0.6,
     }
+    chain = [model] if model else QWEN_MODEL_CHAIN
     last_err = "no models attempted"
-    for model in QWEN_MODEL_CHAIN:
-        payload["model"] = model
-        status, resp = http_post_json(OLLAMA_URL, payload)
+    for mdl in chain:
+        payload["model"] = mdl
+        status, resp = http_post_json(OLLAMA_URL, payload, timeout=timeout)
         if status == 200 and isinstance(resp, dict):
             try:
                 return True, resp["choices"][0]["message"]["content"].strip()
             except Exception:
                 last_err = f"malformed response: {str(resp)[:300]}"
                 continue
-        last_err = f"status={status} model={model} resp={str(resp)[:300]}"
-        log(f"[MODEL] {model} failed, trying next in chain...")
+        last_err = f"status={status} model={mdl} resp={str(resp)[:300]}"
+        log(f"[MODEL] {mdl} failed, trying next in chain...")
     return False, last_err
 
 
@@ -201,18 +214,26 @@ def lane_health() -> dict:
     report["checks"]["ollama"] = {"ok": status == 200, "models": models}
     report["ok"] &= status == 200
 
-    if status == 200 and any(m in models for m in QWEN_MODEL_CHAIN):
-        smoke_ok, smoke_msg = qwen_chat(
-            "You are a health probe. Reply with exactly: OK", "ping", max_tokens=8
-        )
-        report["checks"]["model_smoke"] = {"ok": smoke_ok, "reply": smoke_msg[:60]}
-        report["ok"] &= smoke_ok
-        report["checks"]["active_model"] = {
-            "ok": True,
-            "model": next((m for m in QWEN_MODEL_CHAIN if m in models), QWEN_MODEL),
-        }
+    if status == 200:
+        # Smoke-test only a model that is genuinely installed (avoid burning time
+        # on fallback models that aren't present -> spurious 404s).
+        smoke_model = next((m for m in QWEN_MODEL_CHAIN if m in models), None)
+        if smoke_model:
+            smoke_ok, smoke_msg = qwen_chat(
+                "You are a health probe. Reply with exactly: OK", "ping",
+                max_tokens=8, model=smoke_model, timeout=45,
+            )
+            report["checks"]["model_smoke"] = {"ok": smoke_ok, "reply": smoke_msg[:60]}
+            report["ok"] &= smoke_ok
+            report["checks"]["active_model"] = {"ok": True, "model": smoke_model}
+        else:
+            report["checks"]["model_smoke"] = {
+                "ok": False, "reply": f"none of {QWEN_MODEL_CHAIN} installed",
+            }
+            report["checks"]["active_model"] = {"ok": False, "model": None}
+            report["ok"] = False
     else:
-        report["checks"]["model_smoke"] = {"ok": False, "reply": "model not loaded"}
+        report["checks"]["model_smoke"] = {"ok": False, "reply": "ollama not reachable"}
         report["ok"] = False
 
     status, body = http_get(HF_HEALTH_URL, timeout=5)
@@ -230,6 +251,16 @@ def lane_health() -> dict:
         free_gb = shutil.disk_usage(str(ROOT)).free / 1e9
         report["checks"]["disk_free_gb"] = round(free_gb, 1)
         report["ok"] &= free_gb > 10
+        # VDB/HF watchdog: VDB caches and local HF models burn disk fast — warn early.
+        threshold = float(os.environ.get("DAEMON_DISK_WARN_GB", "40"))
+        if free_gb < threshold:
+            report["checks"]["disk_watchdog"] = {
+                "ok": False,
+                "detail": f"low disk: {free_gb:.1f}GB free < {threshold}GB threshold",
+            }
+            log(f"[HEALTH] DISK WATCHDOG: {free_gb:.1f}GB free (threshold {threshold}GB)")
+        else:
+            report["checks"]["disk_watchdog"] = {"ok": True, "detail": f"{free_gb:.1f}GB free"}
     except Exception:
         report["checks"]["disk_free_gb"] = None
 
@@ -525,6 +556,51 @@ def lane_toolchain() -> int:
     return 1
 
 
+def _find_hython() -> str | None:
+    """Locate the newest installed hython.exe (Houdini 22 verified on this box)."""
+    base = Path(r"C:\Program Files\Side Effects Software")
+    try:
+        versions = sorted(base.glob("Houdini */bin/hython.exe"), reverse=True)
+    except Exception:
+        return None
+    return str(versions[0]) if versions else None
+
+
+def lane_hython() -> int:
+    """Hython benchmark lane: run a short headless FLIP sim via real hython.
+
+    Outputs to toolchain/houdini_hython/exports/ (gitignored). Frame count and
+    resolution are env-tunable; defaults are a cheap overnight smoke-scale run.
+    """
+    hython = _find_hython()
+    if not hython:
+        log("[HYTHON] no hython.exe found — skipping")
+        return 0
+    script = ROOT / "toolchain" / "houdini_hython" / "build_flip_sim.py"
+    frames = os.environ.get("HYTHON_FRAMES", "1-24")
+    res = os.environ.get("HYTHON_RES", "32")
+    outdir = ROOT / "toolchain" / "houdini_hython" / "exports" / f"run_{datetime.now():%Y%m%d_%H%M%S}"
+    cmd = [hython, str(script), "--frames", frames, "--res", res, "--out", str(outdir)]
+    log(f"[HYTHON] running: {frames} @ res {res}")
+    try:
+        proc = subprocess.run(
+            cmd, cwd=str(ROOT), capture_output=True, text=True,
+            timeout=int(os.environ.get("HYTHON_TIMEOUT_S", "3600")),
+        )
+    except subprocess.TimeoutExpired:
+        log("[HYTHON] timeout — run killed")
+        ledger_append("hython", {"frames": frames, "res": res, "status": "timeout"})
+        return 0
+    ok = proc.returncode == 0
+    status = "done" if ok else f"exit={proc.returncode}"
+    log(f"[HYTHON] {status}; tail: {(proc.stderr or proc.stdout or '')[-300:]}")
+    ledger_append("hython", {
+        "frames": frames, "res": res, "status": status,
+        "output_dir": str(outdir), "hython": hython,
+    })
+    return 1 if ok else 0
+
+
 LANES = {
     "health": lane_health,
     "content": lane_content,
@@ -532,6 +608,7 @@ LANES = {
     "git": lane_git,
     "forums": lane_forums,
     "toolchain": lane_toolchain,
+    "hython": lane_hython,
 }
 
 
@@ -571,8 +648,8 @@ def run_dry_run() -> int:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Melodia Overnight Daemon")
-    parser.add_argument("--lanes", default="health,content,research,git,forums,playhouse,toolchain",
-                        help="Comma-separated lanes: health,content,research,git,forums,playhouse,toolchain")
+    parser.add_argument("--lanes", default="health,content,research,git,forums,playhouse,toolchain,hython",
+                        help="Comma-separated lanes: health,content,research,git,forums,playhouse,toolchain,hython")
     parser.add_argument("--iterations", type=int, default=1, help="Loop iterations")
     parser.add_argument("--delay", type=int, default=900, help="Seconds between iterations")
     parser.add_argument("--once", action="store_true", help="Single iteration")
