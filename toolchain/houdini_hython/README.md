@@ -27,7 +27,18 @@ single grid, baked as attribute-carrying `.bgeo.sc` frames — the "one shared p
 that feeds both IlluGen textures and (Niagara) flow data. (Optional camera-driven COP image
 bake of the scalar field is done in-session; see `toolchain/illugen/`.)
 
-### `repack_vdb.py` — convert LiquiGen/Houdini caches to Niagara-importable .vdb
+### `create_ue_seaabove_assets.py` — Niagara + Material asset creation (headless UE 5.8)
+```cmd
+hython.exe create_ue_seaabove_assets.py  (or run via UE Python -c)
+```
+Spins up the Sea Above volume-flipbook system programmatically. Run from the UE Python
+env (`pip install` within `Engine/Plugins/Editor/ScriptingUtilities` or use UE's builtin
+`Python (Editor)`). Produces:
+- `Content/Melodia/VFX/Niagara/NS_SeaAbove_VolumeFlipbook.upreset`
+- `Content/Melodia/VFX/Materials/M_SeaAbove_VDB_Volume.usm`
+
+These consume the `T_SeaAbove_VDB` volume flipbook that the UE import step
+(see README_SeaAbove.md) generates from `toolchain/houdini_hython/exports/sea_above_vdb/`.
 ```cmd
 hython.exe repack_vdb.py --src exports\flip_study\bgeo --dst exports\sea_above_vdb
 ```
