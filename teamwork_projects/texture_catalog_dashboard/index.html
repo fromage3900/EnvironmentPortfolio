@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PBR Texture Catalog — Melodia Portfolio</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="melodia-shell" data-page="texture-catalog">
+    <header class="catalog-header">
+      <h1 id="page-title">PBR Texture Catalog</h1>
+      <div class="stat-badges">
+        <span class="stat-badge" id="stat-total">0 textures</span>
+        <span class="stat-badge" id="stat-channels">0 channels</span>
+        <span class="stat-badge" id="stat-families">0 families</span>
+      </div>
+    </header>
+
+    <div class="catalog-controls">
+      <input id="texture-search" type="search"
+             placeholder="Search textures, families, contexts…"
+             aria-label="Search textures" autocomplete="off" />
+      <div id="filter-group" class="filter-chips" role="group" aria-label="Filter by PBR channel">
+        <button type="button" class="filter-chip" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="filter-chip" data-filter="BaseColor" aria-pressed="false">BaseColor</button>
+        <button type="button" class="filter-chip" data-filter="Normal" aria-pressed="false">Normal</button>
+        <button type="button" class="filter-chip" data-filter="ORM" aria-pressed="false">ORM</button>
+        <button type="button" class="filter-chip" data-filter="Roughness" aria-pressed="false">Roughness</button>
+        <button type="button" class="filter-chip" data-filter="Metallic" aria-pressed="false">Metallic</button>
+        <button type="button" class="filter-chip" data-filter="AO" aria-pressed="false">AO</button>
+        <button type="button" class="filter-chip" data-filter="Height" aria-pressed="false">Height</button>
+        <button type="button" class="filter-chip" data-filter="Emissive" aria-pressed="false">Emissive</button>
+        <button type="button" class="filter-chip" data-filter="Mask" aria-pressed="false">Mask</button>
+        <button type="button" class="filter-chip" data-filter="Specialty" aria-pressed="false">Specialty</button>
+        <button type="button" class="filter-chip" data-filter="UI" aria-pressed="false">UI</button>
+      </div>
+    </div>
+
+    <main id="texture-grid" class="texture-grid"></main>
+    <div id="grid-sentinel" class="grid-sentinel" aria-hidden="true"></div>
+    <div id="empty-state" class="empty-state" hidden>No textures match your search.</div>
+  </div>
+
+  <script src="catalog-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
