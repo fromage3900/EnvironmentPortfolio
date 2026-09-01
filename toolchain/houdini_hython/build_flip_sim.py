@@ -106,6 +106,45 @@ def cache_output(out_node: hou.Node, out_dir: str, start: int, end: int) -> None
               f"full source contract. See FINDINGS_FLIP_HEADLESS_2026-08-31.md.",
               flush=True)
         return 1  # non-zero so callers/lanes treat this as a failure
+    print(f"[build_flip_sim] CONTENT GATE PASS: {len(cached)} frames all >= {min_bytes} B", flush=True)
+    return 0
+
+
+def load_hip_and_find_output(hip_path: str, out_hint: str = "") -> hou.Node:
+    """Load a UI-authored HIP and locate the sim's output node.
+
+    Search order: exact out_hint path -> node named OUT_flip_study -> the display
+    node of any /obj geometry containing a flip/fluid sim.
+    """
+    hou.hipFile.load(hip_path, suppress_save_prompt=True, ignore_load_warnings=True)
+    print(f"[build_flip_sim] loaded HIP: {hip_path}", flush=True)
+
+    if out_hint:
+        node = hou.node(out_hint)
+        if node is None:
+            raise SystemExit(f"[build_flip_sim] --out-node {out_hint} not found in HIP")
+        return node
+
+    node = hou.node("/obj/flip_study/OUT_flip_study")
+    if node is not None:
+        return node
+
+    for geo in hou.node("/obj").children():
+        if not isinstance(geo, hou.ObjNode):
+            continue
+        for child in geo.children():
+            name = child.name().lower()
+            if name.startswith("out_") or "flip" in name or "fluid" in name:
+                if child.isDisplayFlagSet():
+                    return child
+    # last resort: first geo's display node
+    for geo in hou.node("/obj").children():
+        if isinstance(geo, hou.ObjNode):
+            disp = geo.displayNode()
+            if disp is not None:
+                print(f"[build_flip_sim] falling back to display node {disp.path()}", flush=True)
+                return disp
+    raise SystemExit("[build_flip_sim] no output node found in HIP — pass --out-node /obj/geo/node")
 
 
 def main() -> int:
@@ -113,13 +152,21 @@ def main() -> int:
     parser.add_argument("--frames", default="1-120")
     parser.add_argument("--out", default="exports/flip_study")
     parser.add_argument("--res", type=int, default=0, help="best-effort sim resolution override (0 = defaults)")
+    parser.add_argument("--hip", default="",
+                        help="UI-authored HIP to load instead of building a network "
+                             "(the flipcontainer macro is inert headless — see "
+                             "FINDINGS_FLIP_HEADLESS_2026-08-31.md and UI_SESSION_GUIDE.md)")
+    parser.add_argument("--out-node", default="", dest="out_node",
+                        help="explicit SOP path to cache when using --hip")
     args = parser.parse_args()
     start_s, _, end_s = args.frames.partition("-")
     start, end = int(start_s), int(end_s or start_s)
 
-    obj = hou.node("/obj")
     hou.setFps(24)
-    out = build_network(obj, res=args.res)
+    if args.hip:
+        out = load_hip_and_find_output(args.hip, args.out_node)
+    else:
+        out = build_network(hou.node("/obj"), res=args.res)
     return cache_output(out, args.out, start, end)
 
 
