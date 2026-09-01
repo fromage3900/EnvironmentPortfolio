@@ -62,6 +62,28 @@ Attempted route 2 in-session; results:
   `FLIP_DATA → SETTINGS/rest_dual` — a flipcontainer-only setting the macro chain
   still expects. The stock SOP `flipsolver` headless is a dead end without the UI
   built network.
+
+### Confirmation matrix (DOP-level, all in pure hython — added same session)
+
+Ran an exhaustive matrix of `flipobject` configs into `flipsolver::2.0` and each
+created **zero sim objects** on every frame:
+
+| Config | soppath source | object | result |
+|---|---|---|---|
+| inittype=grid, surfacetype default | (none) | src box | 0 objects |
+| inittype=tetrahedral | (none) | src box | 0 objects |
+| surfacetype=1 (Particle Field) | poly box | src box | 0 objects |
+| surfacetype=1 | point-filled SOP + `gridscale`/`particlesep`/`volumeunits` detail attrs | 15k pts | 0 objects |
+| + `flipconfigureobject`, `solvefirstframe`, `allowcaching`, `createframe` | poly box | conf chain | 0 objects |
+
+**Conclusion (final):** the FLIP DOP macros' fluid-initialization code is gated on
+interactive UI context (`hou.isUIAvailable()` style guards). No headless hython
+configuration — `flipcontainer`, SOP `flipsolver`, or DOP `flipobject` — builds a
+working fluid block. **hython alone cannot realize the FLIP macro sim.** The
+working realization of "scripted" is `--hip` mode: author the tank once in the GUI
+(≈10 min, `UI_SESSION_GUIDE.md`), save the HIP, then hython loads/caches/gates it
+forever after. Everything downstream is already headless and gate-verified.
+
 - Conclusion: **route 1 (UI-authored HIP/HDA) is the only reliable path.** The
   headless "validation" pass must never trust ROP exit codes again — hence the
   content gate (implemented below).
