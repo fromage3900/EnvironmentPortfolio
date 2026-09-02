@@ -41,6 +41,22 @@ This is the "OpenUSD / scene composition" piece of the emerging-3D-architecture
 documentation; the stage can be opened in **usdview**, imported into **Blender**, or
 pulled into **UE 5 via the USD Stage Editor**.
 
+
+## SeaAbove foliage source meshes
+
+`tools/speedtree-audio/generate_seaabove_fbx_family.py` generates the full P0
+SeaAbove foliage family as simple ASCII FBX placeholders:
+
+```cmd
+python tools/speedtree-audio/generate_seaabove_fbx_family.py
+```
+
+This produces one `.fbx` per asset in `Imports/SeaAboveFoliage/<Asset>/`, each
+with normals, UVs, and a single material slot. The intake script
+`tools/speedtree-audio/build_seaabove_kit.py` will import them automatically.
+When SpeedTree Modeler is available, replace the stand-ins with real exports
+keeping the same folder/file names.
+
 Or in VS Code:
 - **Ctrl+Shift+P → Tasks: Run Task → SeaAbove: Build OpenUSD Stage**.
 

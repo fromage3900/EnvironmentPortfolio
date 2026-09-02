@@ -28,6 +28,16 @@ def ensure_pxir():
     except ImportError as e:
         raise SystemExit("This script must be run under hython (ships with pxr/USD).") from e
 
+PRESET_ASSET = {
+    "KelpRibbon": ("ST_Kelp_Ribbon_Tall", "ST_Kelp_Ribbon_Tall"),
+    "Bubbleweed": ("ST_Bubbleweed_Bush", "ST_Bubbleweed_Bush"),
+    "LilyPad": ("ST_LilyPad_Carousel", "ST_LilyPad_Carousel"),
+    "CoralFan": ("ST_Coral_Fan_A", "ST_Coral_Fan_A"),
+    "DropletGrass": ("ST_Droplet_Grass_Card", "ST_Droplet_Grass_Card"),
+    "SpawnGlow": ("ST_SpawnGlow_Mote", "ST_SpawnGlow_Mote"),
+}
+
+
 
 def build_material(stage, mat_name: str, tex_root: str, preset: str):
     Usd, UsdGeom, UsdShade, Sdf, Gf = ensure_pxir()
@@ -85,8 +95,8 @@ def build_stage(src_root: str, tex_root: str, out_path: str):
     presets = ("KelpRibbon", "Bubbleweed", "LilyPad", "CoralFan", "DropletGrass", "SpawnGlow")
     for i, preset in enumerate(presets):
         mat = build_material(stage, f"M_{preset}", tex_root, preset)
-        asset_dir = os.path.join(src_root, f"ST_{preset}")
-        fbx_path = os.path.join(asset_dir, f"ST_{preset}.fbx")
+        dir_name, fbx_name = PRESET_ASSET.get(preset, (f"ST_{preset}", f"ST_{preset}"))
+        fbx_path = os.path.join(src_root, dir_name, f"{fbx_name}.fbx")
         if not os.path.isfile(fbx_path):
             fbx_path = os.path.join(src_root, "ST_Kelp_Ribbon_Tall", "ST_Kelp_Ribbon_Tall.fbx")
         fbx_path = fbx_path.replace("\\", "/")
