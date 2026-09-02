@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SeaAbove Foliage — glTF KHR_materials_variants Lookdev</title>
+  <style>
+    body { margin: 0; overflow: hidden; background: #0b1020; color: #c8e0ff; font-family: sans-serif; }
+    #info {
+      position: absolute; top: 12px; left: 12px; z-index: 10;
+      background: rgba(10, 20, 40, 0.8); padding: 12px 16px; border-radius: 8px;
+      max-width: 420px; line-height: 1.4;
+    }
+    h1 { margin: 0 0 8px; font-size: 18px; }
+    p { margin: 0 0 10px; font-size: 13px; opacity: 0.85; }
+    button {
+      background: #1e3a5f; border: 1px solid #4aa8ff; color: #c8e0ff;
+      padding: 6px 12px; margin-right: 8px; border-radius: 4px; cursor: pointer;
+    }
+    button.active { background: #4aa8ff; color: #0b1020; font-weight: bold; }
+    #status { margin-top: 10px; font-size: 12px; color: #7fb3ff; }
+  </style>
+</head>
+<body>
+  <div id="info">
+    <h1>SeaAbove Foliage — glTF Lookdev</h1>
+    <p>
+      Demonstrates <code>KHR_materials_variants</code> for the "audio-reactive vs. calm"
+      comparison recommended in the emerging-3D-architecture research notes.
+      Toggle the variant to see the Melodia MPC-style emissive/roughness response.
+    </p>
+    <button id="btnCalm" class="active">Calm</button>
+    <button id="btnReactive">Reactive</button>
+    <div id="status">Loading seaabove.glb...</div>
+  </div>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x0b1020);
+
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 100);
+    camera.position.set(0, 0.5, 5.5);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.0;
+    document.body.appendChild(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.target.set(0, 0, 0);
+    controls.enableDamping = true;
+
+    const ambient = new THREE.AmbientLight(0xffffff, 0.4);
+    scene.add(ambient);
+    const key = new THREE.DirectionalLight(0xffffff, 1.2);
+    key.position.set(2, 4, 4);
+    scene.add(key);
+    const rim = new THREE.DirectionalLight(0x4aa8ff, 0.8);
+    rim.position.set(-3, 1, -3);
+    scene.add(rim);
+
+    const status = document.getElementById('status');
+    let variantExtension = null;
+    let gltf = null;
+
+    const loader = new GLTFLoader();
+    loader.load('seaabove.glb',
+      (loaded) => {
+        gltf = loaded;
+        scene.add(gltf.scene);
+        variantExtension = gltf.userData.gltfExtensions && gltf.userData.gltfExtensions['KHR_materials_variants'];
+        status.textContent = 'Loaded. Variant: Calm';
+        selectVariant('Calm');
+      },
+      undefined,
+      (err) => {
+        status.textContent = 'Error loading seaabove.glb: ' + err.message;
+        console.error(err);
+      }
+    );
+
+    function selectVariant(name) {
+      if (!gltf || !THREE.GLTFMaterialsVariantsExtension) return;
+      // Three.js GLTFLoader exposes variants via the KHR_materials_variants extension helper.
+      // We use the lower-level scene traversal because the helper API varies by version.
+      const variants = gltf.userData.gltfExtensions && gltf.userData.gltfExtensions['KHR_materials_variants'];
+      if (!variants || !variants.variants) return;
+      const variantIndex = variants.variants.findIndex(v => v.name === name);
+      if (variantIndex < 0) return;
+
+      gltf.scene.traverse((object) => {
+        if (!object.isMesh || !object.userData.variantMaterials) return;
+        const mapping = object.userData.variantMaterials[variantIndex];
+        if (mapping && mapping.material) {
+          object.material = mapping.material;
+        }
+      });
+      status.textContent = 'Variant: ' + name;
+    }
+
+    document.getElementById('btnCalm').addEventListener('click', () => {
+      document.getElementById('btnCalm').classList.add('active');
+      document.getElementById('btnReactive').classList.remove('active');
+      selectVariant('Calm');
+    });
+
+    document.getElementById('btnReactive').addEventListener('click', () => {
+      document.getElementById('btnReactive').classList.add('active');
+      document.getElementById('btnCalm').classList.remove('active');
+      selectVariant('Reactive');
+    });
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+</body>
+</html>

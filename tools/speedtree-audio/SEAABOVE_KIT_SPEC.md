@@ -35,6 +35,20 @@ under the SeaAbove content root.
 
 `tools/speedtree-audio/generate_seaabove_fbx_family.py` writes dependency-free ASCII
 FBX stand-ins for every asset above. These carry valid normals/UVs and a single
+
+## glTF 2.0 delivery
+
+`tools/speedtree-audio/export_seaabove_glb.py` builds a self-contained `.glb`
+from the baked texture set:
+
+```cmd
+python tools/speedtree-audio/export_seaabove_glb.py --out tools/speedtree-audio/exports/seaabove.glb
+```
+
+The GLB embeds all 24 textures and exposes two `KHR_materials_variants`
+lookdev modes per preset: **Calm** and **Reactive**. Open
+`tools/speedtree-audio/seaabove_viewer.html` in a browser to compare them.
+
 material slot so the intake pipeline (`build_seaabove_kit.py`) can be exercised
 without SpeedTree Modeler installed. When real SpeedTree exports are available,
 simply drop them into the same `Imports/SeaAboveFoliage/<Asset>/` folders; the

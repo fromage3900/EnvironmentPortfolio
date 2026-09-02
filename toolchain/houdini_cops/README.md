@@ -52,6 +52,20 @@ python tools/speedtree-audio/generate_seaabove_fbx_family.py
 ```
 
 This produces one `.fbx` per asset in `Imports/SeaAboveFoliage/<Asset>/`, each
+
+## glTF 2.0 web delivery
+
+`tools/speedtree-audio/export_seaabove_glb.py` generates a self-contained `.glb`
+with embedded BC/N/ORM/IriMask textures and `KHR_materials_variants` Calm /
+Reactive lookdev modes:
+
+```cmd
+python tools/speedtree-audio/export_seaabove_glb.py --out tools/speedtree-audio/exports/seaabove.glb
+```
+
+Open `tools/speedtree-audio/seaabove_viewer.html` in a browser to inspect the
+preset lineup and toggle the audio-reactive variant.
+
 with normals, UVs, and a single material slot. The intake script
 `tools/speedtree-audio/build_seaabove_kit.py` will import them automatically.
 When SpeedTree Modeler is available, replace the stand-ins with real exports
