@@ -154,6 +154,9 @@ Marketing, funding and hiring material lives under `BS_GodFile/Docs/Career/` and
   automation. The local Helix Core pilot at `localhost:1667` owns the seeded
   `//melodia/Exports/...` path (Perforce change `2`, 50 files). Git copies remain until clean-machine
   validation and a verified depot backup; do not edit the same export in both systems.
+- **GitLab mirror:** This repo is mirrored to a GitLab project via `tools/git_mirror.py`. CI runs on
+  both GitHub Actions and GitLab CI. See [`Docs/GitLab_Integration.md`](Docs/GitLab_Integration.md)
+  for setup and job details.
 - `Content/` has **not** moved to Perforce. Its future migration is blocked by active asset edits,
   storage capacity, and the shared-server/backup requirement. See
   [`BS_GodFile/Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md`](BS_GodFile/Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md).
@@ -168,6 +171,6 @@ Marketing, funding and hiring material lives under `BS_GodFile/Docs/Career/` and
   checkouts. The active Unreal setup is documented in
   `BS_GodFile/Docs/ENVIRONMENT_RUNBOOK_2026-08-11.md`; never infer authority from a drive letter
   or a legacy root `.git`.
-- GitHub synchronization is attempted only after local commits and remains subject to network access.
+- GitHub and GitLab synchronization are attempted only after local commits and remain subject to network access.
 - Do not assume website commits are live on GitHub Pages until the website remote history is
   reconciled and the publication push is verified.

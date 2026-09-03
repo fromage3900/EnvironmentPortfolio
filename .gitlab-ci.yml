@@ -1,0 +1,136 @@
+image: python:3.11
+
+stages:
+  - validate
+  - audit
+  - security
+  - release
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  PYTHONUNBUFFERED: "1"
+
+cache:
+  paths:
+    - .cache/pip
+
+# ---------------------------------------------------------------------------
+# Validation stage (mirrors .github/workflows/liveops-ci.yml)
+# ---------------------------------------------------------------------------
+validate:gacha:
+  stage: validate
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - liveops/**
+        - tools/validate_gacha.py
+        - .gitlab-ci.yml
+    - if: $CI_PIPELINE_SOURCE == "push"
+      changes:
+        - liveops/**
+        - tools/validate_gacha.py
+        - .gitlab-ci.yml
+    - if: $CI_PIPELINE_SOURCE == "web"
+  script:
+    - python tools/validate_gacha.py --strict
+
+validate:feature-flags:
+  stage: validate
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - liveops/**
+        - tools/validate_feature_flags.py
+        - .gitlab-ci.yml
+    - if: $CI_PIPELINE_SOURCE == "push"
+      changes:
+        - liveops/**
+        - tools/validate_feature_flags.py
+        - .gitlab-ci.yml
+    - if: $CI_PIPELINE_SOURCE == "web"
+  script:
+    - python tools/validate_feature_flags.py
+
+site:integrity:
+  stage: validate
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - generated/**
+        - tools/validate_assets.py
+        - tools/_verify_site_facts.py
+        - .gitlab-ci.yml
+    - if: $CI_PIPELINE_SOURCE == "push"
+      changes:
+        - generated/**
+        - tools/validate_assets.py
+        - tools/_verify_site_facts.py
+        - .gitlab-ci.yml
+    - if: $CI_PIPELINE_SOURCE == "web"
+  script:
+    - python tools/validate_assets.py
+    - python tools/_verify_site_facts.py
+
+# ---------------------------------------------------------------------------
+# Audit stage (mirrors .github/workflows/lfs-guard.yml)
+# ---------------------------------------------------------------------------
+lfs:audit:
+  stage: audit
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_PIPELINE_SOURCE == "web"
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq git-lfs
+    - git lfs install
+  script:
+    - export GITHUB_ACTIONS=true
+    - python tools/git_lfs_guard.py
+
+# ---------------------------------------------------------------------------
+# Security stage (mirrors .github/workflows/security.yml)
+# ---------------------------------------------------------------------------
+security:secret-scan:
+  stage: security
+  image: trufflesecurity/trufflehog:latest
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_PIPELINE_SOURCE == "push"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web"
+  script:
+    - trufflehog git file://$CI_PROJECT_DIR --only-verified --fail
+
+# ---------------------------------------------------------------------------
+# Release stage (mirrors .github/workflows/liveops-release.yml)
+# ---------------------------------------------------------------------------
+release:prepare:
+  stage: release
+  when: manual
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "web"
+  variables:
+    GITLAB_TOKEN: $CI_JOB_TOKEN
+  before_script:
+    - git config user.name "gitlab-ci[bot]"
+    - git config user.email "gitlab-ci[bot]@users.noreply.gitlab.com"
+  script:
+    - |
+      if [ -z "$BUMP" ]; then
+        echo "ERROR: BUMP variable must be set to patch|minor|major"
+        exit 1
+      fi
+    - python tools/bump_version.py "$BUMP" --no-commit
+    - VERSION=$(cat VERSION)
+    - BRANCH="release/v${VERSION}"
+    - git checkout -b "$BRANCH"
+    - git add VERSION CHANGELOG.md
+    - git commit -m "liveops(release): prepare v${VERSION} [backend]"
+    - git push "https://gitlab-ci-token:${GITLAB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" "$BRANCH"
+    - |
+      curl -f -X POST "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/merge_requests" \
+        --header "PRIVATE-TOKEN: ${GITLAB_TOKEN}" \
+        --form "source_branch=${BRANCH}" \
+        --form "target_branch=${CI_DEFAULT_BRANCH:-main}" \
+        --form "title=Release v${VERSION}" \
+        --form "description=Automated release branch prepared by GitLab CI." \
+        --form "labels=release,liveops"

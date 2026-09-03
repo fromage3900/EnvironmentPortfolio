@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- GitLab CI/CD mirror (`.gitlab-ci.yml`) with jobs for live-ops validation, LFS audit, secret scanning, and manual release preparation.
+- `tools/git_mirror.py` — safe two-remote mirror helper for GitHub + GitLab with divergence checks.
+- `.gitlab/merge_request_templates/default.md` — MR template aligned with Conventional Commits and live-ops impact tags.
+- `scripts/git_runner.py` — centralized git utility with explicit error propagation for the daemon and release tools.
+- `tools/start_overnight.ps1` / `tools/start_overnight.cmd` — one-launch overnight starters that probe Ollama and pull the recommended fleet before running the daemon.
+- `tests/test_git_runner.py` and `tests/test_overnight_daemon.py` covering git-runtime state and model tier defaults.
+
+### Changed
+- `scripts/overnight_daemon.py` model tiers now default to the 2026-09-01 recommended fleet (`granite4.2:3b`, `granite4.2:8b`, `muse-glimmer:30b`) and no longer fall back to `qwen3-coder:30b`, which hangs on 12 GB VRAM.
+- `tools/bootstrap_llamacpp_stack.cmd` replaced the hardcoded GGUF/llama-cpp-python path with Ollama health checks and `tools/pull_fleet.py`.
+- `tools/run_first_overnight_pass.ps1` now waits for `granite4.2:3b` / `granite4.2:8b` instead of the problematic `qwen3-coder:30b`.
+- `tools/bump_version.py` now uses `scripts/git_runner.py`, checks dirty state, and aborts on git errors before committing.
+- `tools/git_lfs_guard.py` now verifies `git` is on PATH and the repo is valid before scanning.
+- `package.json` scripts updated to remove duplicate `overnight` key and add `models:pull`, `models:worker`, `models:reasoner`, `git:mirror:*`, and `overnight:start` helpers.
+
+### Fixed
+- Duplicate `"overnight"` key in `package.json` (JSON is now valid).
+- Runtime git errors in `scripts/overnight_daemon.py` are now surfaced in the `git_health` health check and propagated through the `git` lane.
+- `tools/smoke_models.py` now tests the 2026-09-01 recommended fleet with a 45 s per-model timeout instead of targeting `qwen3-coder:30b` with a 900 s timeout.
+
 ## [0.2.0] - 2026-08-27
 
 ### Added
