@@ -1,0 +1,105 @@
+{
+  "$schema": "https://epicgames.com/ue5/material_function.schema.json",
+  "AssetType": "MaterialFunction",
+  "AssetName": "MF_ThinFilm_Iridescence",
+  "Path": "/Game/Materials/MaterialFunctions/MF_ThinFilm_Iridescence",
+  "Description": "Multi-stop spectral thin-film optical wave interference driven by view angle, film thickness (nm), refractive index (IOR), and surface normal curvature for haute-couture iridescent silks and crystal coatings.",
+  "Category": "HauteCouture/Shading",
+  "HLSLSource": "shaders/hlsl/ThinFilmIridescence.hlsl",
+  "HLSLNode": "CalculateThinFilmAiry",
+  "Inputs": [
+    {
+      "Name": "FilmThickness_nm",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 380.0,
+      "Range": [100.0, 1200.0],
+      "Description": "Physical thickness of the thin optical layer in nanometers (d)."
+    },
+    {
+      "Name": "FilmIOR",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 1.45,
+      "Range": [1.0, 3.0],
+      "Description": "Refractive index of the thin coating layer (n1)."
+    },
+    {
+      "Name": "SubstrateIOR",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 1.55,
+      "Range": [1.0, 3.0],
+      "Description": "Refractive index of the underlying fabric or dielectric substrate (n2)."
+    },
+    {
+      "Name": "Normal",
+      "Type": "FunctionInput_Vector3",
+      "DefaultValue": [0.0, 0.0, 1.0],
+      "Description": "Normalized surface normal vector in world space."
+    },
+    {
+      "Name": "CurvatureMask",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 0.5,
+      "Range": [0.0, 1.0],
+      "Description": "Surface curvature mask for modulating local thin-film thickness in organic folds."
+    },
+    {
+      "Name": "CurvatureIntensity",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 0.5,
+      "Range": [0.0, 2.0],
+      "Description": "Amplitude of curvature-driven thickness variation."
+    },
+    {
+      "Name": "IridescenceIntensity",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 1.0,
+      "Range": [0.0, 2.0],
+      "Description": "Overall amplitude multiplier for spectral interference reflections."
+    },
+    {
+      "Name": "BaseReflectanceTint",
+      "Type": "FunctionInput_Vector3",
+      "DefaultValue": [1.0, 1.0, 1.0],
+      "Description": "Multi-stop chromatic tint applied to interference fringes."
+    },
+    {
+      "Name": "SpectralGradientTex",
+      "Type": "FunctionInput_Texture2D",
+      "DefaultValue": null,
+      "Description": "Optional multi-stop 1D/2D LUT for stylized color remapping."
+    },
+    {
+      "Name": "UseSpectralLUT",
+      "Type": "FunctionInput_StaticBool",
+      "DefaultValue": false,
+      "Description": "Toggle between physical Airy cosine math and LUT texture lookup."
+    }
+  ],
+  "Outputs": [
+    {
+      "Name": "IridescenceColor",
+      "Type": "FunctionOutput_Vector3",
+      "Description": "Spectral RGB interference reflection color."
+    },
+    {
+      "Name": "FresnelMultiplier",
+      "Type": "FunctionOutput_Scalar",
+      "Description": "View-dependent reflection falloff (1 - N.V)^5."
+    },
+    {
+      "Name": "PhaseShift",
+      "Type": "FunctionOutput_Scalar",
+      "Description": "Normalized optical phase [0.0, 1.0] for driving secondary procedural masks."
+    },
+    {
+      "Name": "ModulatedRoughness",
+      "Type": "FunctionOutput_Scalar",
+      "Description": "Micro-roughness perturbation derived from optical interference fringes."
+    },
+    {
+      "Name": "Substrate_F0",
+      "Type": "FunctionOutput_Vector3",
+      "Description": "Specular F0 reflectance vector for direct Substrate Slab BSDF wiring."
+    }
+  ]
+}

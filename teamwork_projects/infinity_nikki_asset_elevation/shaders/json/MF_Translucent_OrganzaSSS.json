@@ -1,0 +1,117 @@
+{
+  "$schema": "https://epicgames.com/ue5/material_function.schema.json",
+  "AssetType": "MaterialFunction",
+  "AssetName": "MF_Translucent_OrganzaSSS",
+  "Path": "/Game/Materials/MaterialFunctions/MF_Translucent_OrganzaSSS",
+  "Description": "Sheer fabric opacity, micro-twill normal blending (RNM), volumetric absorption depth, and dual-sided thin-sheet subsurface scattering for ethereal organza petals and ruffles.",
+  "Category": "HauteCouture/Shading",
+  "HLSLSource": "shaders/hlsl/TranslucentOrganzaSSS.hlsl",
+  "HLSLNode": "CalculateOrganzaTranslucency",
+  "Inputs": [
+    {
+      "Name": "BaseColor",
+      "Type": "FunctionInput_Vector3",
+      "DefaultValue": [0.95, 0.88, 0.92],
+      "Description": "Sheer cloth albedo tint."
+    },
+    {
+      "Name": "SubsurfaceColor",
+      "Type": "FunctionInput_Vector3",
+      "DefaultValue": [1.00, 0.65, 0.78],
+      "Description": "Subsurface transmission scattering glow."
+    },
+    {
+      "Name": "Normal",
+      "Type": "FunctionInput_Vector3",
+      "DefaultValue": [0.0, 0.0, 1.0],
+      "Description": "Macro fold normal vector in world space."
+    },
+    {
+      "Name": "MicroTwillNormal",
+      "Type": "FunctionInput_Vector3",
+      "DefaultValue": [0.0, 0.0, 1.0],
+      "Description": "High-frequency 45-degree micro-twill weave normal map."
+    },
+    {
+      "Name": "TwillTiling",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 32.0,
+      "Range": [1.0, 128.0],
+      "Description": "UV tiling multiplier for micro-twill normal."
+    },
+    {
+      "Name": "TwillWeight",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 0.40,
+      "Range": [0.0, 1.0],
+      "Description": "Blend strength of micro-twill normal."
+    },
+    {
+      "Name": "BaseOpacity",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 0.35,
+      "Range": [0.0, 1.0],
+      "Description": "Perpendicular viewing opacity."
+    },
+    {
+      "Name": "AbsorptionDepth",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 2.50,
+      "Range": [0.1, 20.0],
+      "Description": "Mean Free Path (MFP) / absorption depth in millimeters."
+    },
+    {
+      "Name": "SheernessAnglePower",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 2.20,
+      "Range": [1.0, 6.0],
+      "Description": "Power exponent controlling angle-dependent opacity buildup."
+    },
+    {
+      "Name": "DualSidedScattering",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 0.80,
+      "Range": [0.0, 1.0],
+      "Description": "Backface diffuse subsurface scattering multiplier."
+    },
+    {
+      "Name": "Roughness",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 0.28,
+      "Range": [0.05, 0.9],
+      "Description": "Specular surface roughness."
+    }
+  ],
+  "Outputs": [
+    {
+      "Name": "PerturbedNormal",
+      "Type": "FunctionOutput_Vector3",
+      "Description": "Reoriented Normal Mapped (RNM) blended normal vector."
+    },
+    {
+      "Name": "TransmittanceColor",
+      "Type": "FunctionOutput_Vector3",
+      "Description": "Substrate Transmittance / Volume absorption color."
+    },
+    {
+      "Name": "SubsurfaceScatteringProfile",
+      "Type": "FunctionOutput_Vector3",
+      "Description": "Mean Free Path (MFP) color profile for Substrate SSS."
+    },
+    {
+      "Name": "FinalOpacity",
+      "Type": "FunctionOutput_Scalar",
+      "Description": "Angle-modulated sheer opacity for Translucent Blend Mode."
+    },
+    {
+      "Name": "Thickness",
+      "Type": "FunctionOutput_Scalar",
+      "Description": "Normalized physical thickness for Substrate Thin-Slab."
+    },
+    {
+      "Name": "SubstrateTranslucentBSDF_Inputs",
+      "Type": "FunctionOutput_Vector3",
+      "Description": "Packed parameters for Substrate Translucent integration."
+    }
+  ]
+}

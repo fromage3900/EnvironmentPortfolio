@@ -1,0 +1,11 @@
+<Materials Mesh="ST_Kelp_Ribbon_Tall.obj">
+	<Material Name="KelpRibbonBlades" TwoSided="1" VertexOpacity="1" UserData="">
+		<Map Name="Color" ColorR="0.06" ColorG="0.30" ColorB="0.24"/>
+		<Map Name="Opacity" Value="1.0"/>
+		<Map Name="Gloss" Value="0.65"/>
+		<Map Name="SubsurfaceAmount" Value="0.4"/>
+	</Material>
+	<Material Name="Holdfast" TwoSided="0" VertexOpacity="0" UserData="">
+		<Map Name="Color" ColorR="0.18" ColorG="0.14" ColorB="0.10"/>
+	</Material>
+</Materials>

@@ -1,0 +1,3231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infinity Nikki · Haute-Couture Lookdev Sandbox</title>
+  <style>
+    /* ==========================================================================
+       Haute-Couture Editorial Design System (Infinity Nikki Aesthetic)
+       ========================================================================== */
+    :root {
+      --bg-deep: #090b10;
+      --bg-surface: #0f131c;
+      --bg-surface-elevated: #161c28;
+      --bg-glass: rgba(18, 23, 34, 0.72);
+      --bg-glass-hover: rgba(28, 35, 52, 0.85);
+      --bg-glass-active: rgba(38, 48, 70, 0.95);
+      
+      --accent-gold: #ffd700;
+      --accent-rose-gold: #e89c82;
+      --accent-blush: #f7d2db;
+      --accent-pearl: #fbf9f5;
+      --accent-lilac: #b892ff;
+      --accent-cyan: #2ec4b6;
+      --accent-amethyst: #9d4edd;
+      
+      --border-subtle: rgba(232, 156, 130, 0.15);
+      --border-prominent: rgba(232, 156, 130, 0.35);
+      --border-glow: rgba(255, 215, 0, 0.6);
+      
+      --text-main: #fbf9f5;
+      --text-muted: #a0a8b9;
+      --text-dim: #656e82;
+      
+      --shadow-luxury: 0 12px 36px rgba(0, 0, 0, 0.65), 0 0 1px rgba(232, 156, 130, 0.4);
+      --glow-rose-gold: 0 0 20px rgba(232, 156, 130, 0.25);
+      --glow-gold: 0 0 24px rgba(255, 215, 0, 0.3);
+      
+      --font-serif: "Cinzel", "Didot", "Bodoni MT", "Cormorant Garamond", "Times New Roman", serif;
+      --font-sans: "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      --font-mono: "JetBrains Mono", "SF Mono", "Consolas", "Courier New", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body {
+      background-color: var(--bg-deep);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 1.5;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Ambient background gradient glow */
+    body::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 10%;
+      width: 80vw;
+      height: 60vh;
+      background: radial-gradient(circle at 50% 30%, rgba(184, 146, 255, 0.05), rgba(232, 156, 130, 0.04), transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ==========================================================================
+       Top Navigation Bar
+       ========================================================================== */
+    .top-bar {
+      position: relative;
+      z-index: 100;
+      height: 56px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-emblem {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--accent-rose-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, rgba(232, 156, 130, 0.25), transparent);
+      box-shadow: var(--glow-rose-gold);
+    }
+
+    .brand-emblem svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--accent-rose-gold);
+    }
+
+    .brand-titles {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #ffffff 20%, var(--accent-blush) 60%, var(--accent-rose-gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-subtitle {
+      font-size: 10px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--accent-rose-gold);
+      opacity: 0.85;
+    }
+
+    .top-status-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(46, 196, 182, 0.12);
+      border: 1px solid rgba(46, 196, 182, 0.35);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 11px;
+      letter-spacing: 0.8px;
+      color: #6ef1e4;
+      box-shadow: 0 0 12px rgba(46, 196, 182, 0.2);
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: #2ec4b6;
+      box-shadow: 0 0 8px #2ec4b6;
+      animation: pulse-dot 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 0.5; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-top {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 11px;
+      letter-spacing: 0.6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-top:hover {
+      background: var(--bg-glass-hover);
+      border-color: var(--accent-rose-gold);
+      box-shadow: var(--glow-rose-gold);
+      transform: translateY(-1px);
+    }
+
+    .btn-top.active {
+      background: linear-gradient(135deg, rgba(232, 156, 130, 0.25), rgba(255, 215, 0, 0.2));
+      border-color: var(--accent-gold);
+      color: #ffffff;
+      box-shadow: var(--glow-gold);
+    }
+
+    .btn-top svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    /* ==========================================================================
+       Main Workspace Layout (3-Column Grid)
+       ========================================================================== */
+    .workspace {
+      position: relative;
+      flex: 1;
+      display: grid;
+      grid-template-columns: 330px 1fr 350px;
+      overflow: hidden;
+      z-index: 10;
+    }
+
+    /* Scrollbars */
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(232, 156, 130, 0.3);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-rose-gold);
+    }
+
+    /* Panels Common */
+    .panel {
+      background: var(--bg-glass);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 16px;
+      gap: 18px;
+    }
+
+    .panel-left {
+      border-right: 1px solid var(--border-subtle);
+    }
+
+    .panel-right {
+      border-left: 1px solid var(--border-subtle);
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--accent-rose-gold);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(232, 156, 130, 0.12);
+      margin-bottom: 8px;
+    }
+
+    .section-title span.count {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 0;
+    }
+
+    /* ==========================================================================
+       Left Panel: Suite Cards & Channel Isolator
+       ========================================================================== */
+    .suite-cards-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .suite-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 10px 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .suite-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: transparent;
+      transition: background 0.25s ease;
+    }
+
+    .suite-card:hover {
+      background: var(--bg-surface-elevated);
+      border-color: var(--accent-rose-gold);
+      transform: translateX(2px);
+    }
+
+    .suite-card.active {
+      background: linear-gradient(135deg, rgba(232, 156, 130, 0.15), rgba(15, 19, 28, 0.95));
+      border-color: var(--accent-rose-gold);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), var(--glow-rose-gold);
+    }
+
+    .suite-card.active::before {
+      background: var(--accent-gold);
+    }
+
+    .suite-thumbnail {
+      width: 52px;
+      height: 52px;
+      border-radius: 6px;
+      background: #000;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .suite-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .suite-name {
+      font-family: var(--font-serif);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .suite-card.active .suite-name {
+      color: var(--accent-blush);
+    }
+
+    .suite-archetype {
+      font-size: 10px;
+      color: var(--accent-rose-gold);
+      opacity: 0.9;
+    }
+
+    .suite-meta-pills {
+      display: flex;
+      gap: 4px;
+      margin-top: 4px;
+    }
+
+    .meta-pill {
+      font-size: 9px;
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+    }
+
+    /* 10-Way Channel Selector */
+    .channel-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+
+    .channel-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 11px;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+
+    .channel-btn:hover {
+      background: var(--bg-surface-elevated);
+      color: var(--text-main);
+      border-color: rgba(232, 156, 130, 0.4);
+    }
+
+    .channel-btn.active {
+      background: linear-gradient(135deg, rgba(232, 156, 130, 0.25), rgba(30, 36, 52, 0.9));
+      border-color: var(--accent-rose-gold);
+      color: var(--text-main);
+      font-weight: 500;
+      box-shadow: 0 0 12px rgba(232, 156, 130, 0.2);
+    }
+
+    .channel-btn .badge-pill {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      padding: 2px 5px;
+      border-radius: 3px;
+      background: rgba(0, 0, 0, 0.4);
+      color: var(--accent-rose-gold);
+    }
+
+    .channel-btn.active .badge-pill {
+      background: var(--accent-rose-gold);
+      color: #090b10;
+      font-weight: bold;
+    }
+
+    /* Mini Channel Deck (9 Live Thumbnails) */
+    .mini-deck {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .mini-deck-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .mini-deck-item:hover {
+      border-color: var(--accent-rose-gold);
+      transform: translateY(-2px);
+    }
+
+    .mini-deck-item.active {
+      border-color: var(--accent-gold);
+      box-shadow: var(--glow-gold);
+      background: rgba(255, 215, 0, 0.08);
+    }
+
+    .mini-deck-thumb {
+      width: 100%;
+      aspect-ratio: 1/1;
+      border-radius: 4px;
+      background: #000;
+      object-fit: cover;
+    }
+
+    .mini-deck-label {
+      font-size: 9px;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       Center 3D WebGL Viewport
+       ========================================================================== */
+    .viewport-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #182030 0%, #0c0f17 70%, #06080c 100%);
+      overflow: hidden;
+    }
+
+    #gl-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: grab;
+    }
+
+    #gl-canvas:active {
+      cursor: grabbing;
+    }
+
+    /* Viewport Top Floating Controls */
+    .viewport-top-hud {
+      position: absolute;
+      top: 16px;
+      left: 20px;
+      right: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    .hud-mesh-selector {
+      pointer-events: auto;
+      display: flex;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 4px;
+      gap: 4px;
+      box-shadow: var(--shadow-luxury);
+    }
+
+    .btn-mesh {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 11px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-mesh:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .btn-mesh.active {
+      background: var(--bg-surface-elevated);
+      color: var(--accent-blush);
+      border-color: var(--accent-rose-gold);
+      box-shadow: 0 0 10px rgba(232, 156, 130, 0.25);
+    }
+
+    .hud-meta-badge {
+      pointer-events: auto;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 6px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      color: var(--text-muted);
+      box-shadow: var(--shadow-luxury);
+    }
+
+    .hud-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .hud-meta-item span.value {
+      font-family: var(--font-mono);
+      color: var(--accent-gold);
+      font-weight: 500;
+    }
+
+    /* Interactive 3D Lighting Compass / Radar */
+    .lighting-compass {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      width: 100px;
+      height: 100px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-luxury);
+      pointer-events: auto;
+      cursor: crosshair;
+      z-index: 20;
+    }
+
+    .compass-ring {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border: 1px dashed rgba(232, 156, 130, 0.3);
+      border-radius: 50%;
+    }
+
+    .compass-center {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-rose-gold);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-rose-gold);
+    }
+
+    .compass-light-node {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: radial-gradient(circle, #ffffff, var(--accent-gold));
+      border: 1px solid #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 0 14px var(--accent-gold);
+      transform: translate(-50%, -50%);
+      transition: transform 0.05s ease-out;
+    }
+
+    .compass-label {
+      position: absolute;
+      bottom: 4px;
+      font-size: 8px;
+      font-family: var(--font-mono);
+      color: var(--accent-gold);
+      letter-spacing: 0.5px;
+    }
+
+    /* A/B Split Screen Slider Handle */
+    .split-divider {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent-gold), var(--accent-rose-gold));
+      box-shadow: 0 0 12px var(--accent-gold);
+      cursor: ew-resize;
+      z-index: 30;
+      display: none;
+    }
+
+    .split-handle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 28px;
+      height: 28px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--accent-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--glow-gold);
+    }
+
+    .split-handle svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--accent-gold);
+    }
+
+    .split-label-left, .split-label-right {
+      position: absolute;
+      top: 70px;
+      padding: 4px 10px;
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+      font-size: 10px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+      pointer-events: none;
+      z-index: 25;
+      display: none;
+    }
+    .split-label-left { left: 30px; color: var(--accent-blush); }
+    .split-label-right { right: 30px; color: var(--accent-cyan); }
+
+    /* Toast Notification */
+    .toast-notification {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--accent-gold);
+      box-shadow: var(--glow-gold);
+      color: var(--text-main);
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    .toast-notification.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       Right Panel: Lighting & Physical Parameter Inspector
+       ========================================================================== */
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .slider-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .slider-header span.val {
+      font-family: var(--font-mono);
+      color: var(--accent-rose-gold);
+    }
+
+    .custom-slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.1);
+      outline: none;
+      transition: background 0.2s ease;
+    }
+
+    .custom-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent-rose-gold);
+      cursor: pointer;
+      box-shadow: 0 0 8px rgba(232, 156, 130, 0.6);
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .custom-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.25);
+      background: var(--accent-gold);
+      box-shadow: 0 0 12px var(--accent-gold);
+    }
+
+    /* Color Swatches Grid */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+    }
+
+    .swatch-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 6px 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .swatch-card:hover {
+      border-color: var(--accent-rose-gold);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .swatch-color-box {
+      width: 100%;
+      height: 24px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .swatch-hex {
+      font-size: 8px;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+
+    /* Shading Telemetry Card */
+    .telemetry-card {
+      background: linear-gradient(135deg, rgba(22, 28, 40, 0.9), rgba(15, 19, 28, 0.95));
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .telemetry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .telemetry-title {
+      font-family: var(--font-serif);
+      font-size: 11px;
+      color: var(--accent-rose-gold);
+      letter-spacing: 0.8px;
+    }
+
+    .telemetry-badge {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: rgba(184, 146, 255, 0.15);
+      border: 1px solid rgba(184, 146, 255, 0.35);
+      color: var(--accent-lilac);
+    }
+
+    .telemetry-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .telemetry-item {
+      background: rgba(0, 0, 0, 0.25);
+      padding: 6px 8px;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .telemetry-label {
+      font-size: 9px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+
+    .telemetry-value {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-main);
+    }
+
+    /* Custom Map Dropzone */
+    .dropzone-box {
+      border: 1px dashed rgba(232, 156, 130, 0.3);
+      border-radius: 6px;
+      padding: 14px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: rgba(0, 0, 0, 0.15);
+    }
+
+    .dropzone-box:hover {
+      border-color: var(--accent-gold);
+      background: rgba(255, 215, 0, 0.04);
+      color: var(--text-main);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       Top Navigation Bar
+       ========================================================================== -->
+  <header class="top-bar">
+    <div class="brand-section">
+      <div class="brand-emblem">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+        </svg>
+      </div>
+      <div class="brand-titles">
+        <div class="brand-title">Infinity Nikki · Haute-Couture Lookdev</div>
+        <div class="brand-subtitle">Procedural PBR Material Elevation & Real-Time WebGL Sandbox</div>
+      </div>
+    </div>
+
+    <div class="top-status-badge">
+      <div class="status-dot"></div>
+      <span>QUALITY GATE: 36/36 MAPS CONFORMANT · SUBSTRATE BSDF ACTIVE</span>
+    </div>
+
+    <div class="top-actions">
+      <button class="btn-top" id="btn-turntable" title="Toggle 360° Continuous Turntable Rotation">
+        <svg viewBox="0 0 24 24"><path d="M12 4V1L8 5L12 9V6C15.31 6 18 8.69 18 12C18 13.01 17.75 13.97 17.3 14.8L18.76 16.26C19.54 15.03 20 13.57 20 12C20 7.58 16.42 4 12 4ZM12 18C8.69 18 6 15.31 6 12C6 10.99 6.25 10.03 6.7 9.2L5.24 7.74C4.46 8.97 4 10.43 4 12C4 16.42 7.58 20 12 20V23L16 19L12 15V18Z"/></svg>
+        <span>Turntable</span>
+      </button>
+
+      <button class="btn-top" id="btn-split-view" title="Toggle A/B Split Screen Compare">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM11 19H5V5H11V19ZM19 19H13V5H19V19Z"/></svg>
+        <span>Split Compare</span>
+      </button>
+
+      <button class="btn-top" id="btn-wireframe" title="Toggle 3D Wireframe Overlay">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7L12 12L22 7L12 2ZM2 17L12 22L22 17L12 12L2 17Z"/></svg>
+        <span>Wireframe</span>
+      </button>
+
+      <button class="btn-top" id="btn-reset-cam" title="Reset Camera View to Default">
+        <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6L12 11V7C15.31 7 18 9.69 18 13C18 13.9 17.75 14.75 17.3 15.5L18.77 16.97C19.54 15.79 20 14.45 20 13C20 8.58 16.42 5 12 5Z"/></svg>
+        <span>Reset Cam</span>
+      </button>
+
+      <button class="btn-top" id="btn-export-shot" title="Export High-Res Canvas Snapshot">
+        <svg viewBox="0 0 24 24"><path d="M4 4H7L9 2H15L17 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4ZM12 17C14.76 17 17 14.76 17 12C17 9.24 14.76 7 12 7C9.24 7 7 9.24 7 12C7 14.76 9.24 17 12 17Z"/></svg>
+        <span>Export 4K</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       Main Workspace (Grid)
+       ========================================================================== -->
+  <div class="workspace">
+    
+    <!-- LEFT PANEL: Suites & Channel Inspector -->
+    <aside class="panel panel-left">
+      <div>
+        <div class="section-title">
+          <span>Haute-Couture Suites</span>
+          <span class="count">4 Archetypes</span>
+        </div>
+        <div class="suite-cards-container" id="suite-cards-list">
+          <!-- Populated by JavaScript with real Base64 thumbnails -->
+        </div>
+      </div>
+
+      <div>
+        <div class="section-title">
+          <span>Real-Time Channel Isolation</span>
+          <span class="count">10 Modes</span>
+        </div>
+        <div class="channel-grid">
+          <button class="channel-btn active" data-mode="0">
+            <span>Combined PBR</span>
+            <span class="badge-pill">ALL</span>
+          </button>
+          <button class="channel-btn" data-mode="1">
+            <span>BaseColor</span>
+            <span class="badge-pill">sRGB</span>
+          </button>
+          <button class="channel-btn" data-mode="2">
+            <span>Normal (DX)</span>
+            <span class="badge-pill">-Y</span>
+          </button>
+          <button class="channel-btn" data-mode="3">
+            <span>Packed ORM</span>
+            <span class="badge-pill">RGB</span>
+          </button>
+          <button class="channel-btn" data-mode="4">
+            <span>Height Map</span>
+            <span class="badge-pill">H</span>
+          </button>
+          <button class="channel-btn" data-mode="5">
+            <span>Ambient Occlusion</span>
+            <span class="badge-pill">AO</span>
+          </button>
+          <button class="channel-btn" data-mode="6">
+            <span>Roughness</span>
+            <span class="badge-pill">R</span>
+          </button>
+          <button class="channel-btn" data-mode="7">
+            <span>Metallic</span>
+            <span class="badge-pill">M</span>
+          </button>
+          <button class="channel-btn" data-mode="8">
+            <span>Sheen / Fuzz</span>
+            <span class="badge-pill">Fuzz</span>
+          </button>
+          <button class="channel-btn" data-mode="9">
+            <span>Alpha Opacity</span>
+            <span class="badge-pill">Alpha</span>
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-title">
+          <span>Active Suite Texture Deck</span>
+          <span class="count">9 Maps (POT)</span>
+        </div>
+        <div class="mini-deck" id="mini-deck-container">
+          <!-- Populated dynamically with 9 channel preview tiles -->
+        </div>
+      </div>
+    </aside>
+
+    <!-- CENTER 3D VIEWPORT -->
+    <main class="viewport-container" id="viewport-box">
+      <canvas id="gl-canvas"></canvas>
+
+      <!-- Viewport Floating Top HUD -->
+      <div class="viewport-top-hud">
+        <div class="hud-mesh-selector">
+          <button class="btn-mesh active" data-mesh="ball">
+            <span>🔮 Shader Ball</span>
+          </button>
+          <button class="btn-mesh" data-mesh="cloth">
+            <span>🧣 Draped Cloth</span>
+          </button>
+          <button class="btn-mesh" data-mesh="card">
+            <span>📐 Planar Card</span>
+          </button>
+          <button class="btn-mesh" data-mesh="torus">
+            <span>🍩 Torus</span>
+          </button>
+        </div>
+
+        <div class="hud-meta-badge">
+          <div class="hud-meta-item">
+            <span>FPS:</span>
+            <span class="value" id="hud-fps">60</span>
+          </div>
+          <div class="hud-meta-item">
+            <span>Triangles:</span>
+            <span class="value" id="hud-triangles">16,384</span>
+          </div>
+          <div class="hud-meta-item">
+            <span>Resolution:</span>
+            <span class="value">2048² POT</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Lighting Compass / Azimuth Visualizer -->
+      <div class="lighting-compass" id="light-compass" title="Drag to adjust Key Light Azimuth & Elevation">
+        <div class="compass-ring"></div>
+        <div class="compass-center"></div>
+        <div class="compass-light-node" id="compass-node"></div>
+        <div class="compass-label" id="compass-label">AZ: 45°</div>
+      </div>
+
+      <!-- A/B Split Screen Elements -->
+      <div class="split-divider" id="split-divider">
+        <div class="split-handle">
+          <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z"/></svg>
+        </div>
+      </div>
+      <div class="split-label-left" id="split-label-a">A: Combined PBR</div>
+      <div class="split-label-right" id="split-label-b">B: Channel View</div>
+
+      <!-- Toast Popup -->
+      <div class="toast-notification" id="toast-notify">Copied Hex to Clipboard</div>
+    </main>
+
+    <!-- RIGHT PANEL: Lighting & Physical Parameter Inspector -->
+    <aside class="panel panel-right">
+      
+      <!-- Palette Swatches -->
+      <div>
+        <div class="section-title">
+          <span>Palette & Linear Chromaticity</span>
+          <span class="count">Click to Copy</span>
+        </div>
+        <div class="swatches-grid" id="swatches-container">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Studio Lighting Controls -->
+      <div class="control-group">
+        <div class="section-title">
+          <span>Dynamic Studio Lighting</span>
+          <span class="count">3-Point + IBL</span>
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-header">
+            <span>Key Light Azimuth</span>
+            <span class="val" id="val-light-azimuth">45°</span>
+          </div>
+          <input type="range" class="custom-slider" id="sl-light-azimuth" min="0" max="360" value="45">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-header">
+            <span>Key Light Elevation</span>
+            <span class="val" id="val-light-elevation">40°</span>
+          </div>
+          <input type="range" class="custom-slider" id="sl-light-elevation" min="5" max="85" value="40">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-header">
+            <span>Color Temp (Blackbody)</span>
+            <span class="val" id="val-light-temp">5500K</span>
+          </div>
+          <input type="range" class="custom-slider" id="sl-light-temp" min="2800" max="7500" step="100" value="5500">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-header">
+            <span>Key Intensity</span>
+            <span class="val" id="val-light-intensity">2.2</span>
+          </div>
+          <input type="range" class="custom-slider" id="sl-light-intensity" min="0" max="5" step="0.1" value="2.2">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-header">
+            <span>Fill / Rim Ratio</span>
+            <span class="val" id="val-fill-ratio">0.35</span>
+          </div>
+          <input type="range" class="custom-slider" id="sl-fill-ratio" min="0" max="1" step="0.05" value="0.35">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-header">
+            <span>Studio Environment IBL</span>
+            <span class="val" id="val-env-intensity">1.0</span>
+          </div>
+          <input type="range" class="custom-slider" id="sl-env-intensity" min="0" max="3" step="0.1" value="1.0">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-header">
+            <span>Exposure EV</span>
+            <span class="val" id="val-exposure">0.0 EV</span>
+          </div>
+          <input type="range" class="custom-slider" id="sl-exposure" min="-3" max="3" step="0.1" value="0.0">
+        </div>
+      </div>
+
+      <!-- Physical Material Parameter Overrides -->
+      <div class="control-group">
+        <div class="section-title">
+          <span>Physical Parameter Overrides</span>
+          <span class="count">Live Shading</span>
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-header">
+            <span>UV Tiling Scale</span>
+            <span class="val" id="val-uv-tiling">1.0x</span>
+          </div>
+          <input type="range" class="custom-slider" id="sl-uv-tiling" min="0.5" max="6.0" step="0.1" value="1.0">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-header">
+            <span>Roughness Scale</span>
+            <span class="val" id="val-roughness-scale">1.00</span>
+          </div>
+          <input type="range" class="custom-slider" id="sl-roughness-scale" min="0.0" max="2.0" step="0.05" value="1.0">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-header">
+            <span>Metallic Scale</span>
+            <span class="val" id="val-metallic-scale">1.00</span>
+          </div>
+          <input type="range" class="custom-slider" id="sl-metallic-scale" min="0.0" max="1.5" step="0.05" value="1.0">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-header">
+            <span>Normal Strength</span>
+            <span class="val" id="val-normal-strength">1.00</span>
+          </div>
+          <input type="range" class="custom-slider" id="sl-normal-strength" min="0.0" max="3.0" step="0.1" value="1.0">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-header">
+            <span>Parallax Occlusion (POM) Depth</span>
+            <span class="val" id="val-pom-depth">0.030</span>
+          </div>
+          <input type="range" class="custom-slider" id="sl-pom-depth" min="0.0" max="0.08" step="0.002" value="0.03">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-header">
+            <span>Ashikhmin-Charlie Sheen / Fuzz</span>
+            <span class="val" id="val-sheen-scale">1.00</span>
+          </div>
+          <input type="range" class="custom-slider" id="sl-sheen-scale" min="0.0" max="2.5" step="0.05" value="1.0">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-header">
+            <span>Translucent SSS Transmission</span>
+            <span class="val" id="val-sss-scale">0.80</span>
+          </div>
+          <input type="range" class="custom-slider" id="sl-sss-scale" min="0.0" max="1.5" step="0.05" value="0.8">
+        </div>
+      </div>
+
+      <!-- Substrate Shading Model Telemetry -->
+      <div>
+        <div class="section-title">
+          <span>UE5 Substrate Telemetry</span>
+          <span class="count">Specs</span>
+        </div>
+        <div class="telemetry-card">
+          <div class="telemetry-header">
+            <span class="telemetry-title" id="tel-shading-model-name">MF_ThinFilm_Iridescence</span>
+            <span class="telemetry-badge" id="tel-shading-badge">SUBSTRATE BSDF</span>
+          </div>
+          <div class="telemetry-grid">
+            <div class="telemetry-item">
+              <span class="telemetry-label">Mean Albedo Reflectance</span>
+              <span class="telemetry-value" id="tel-mean-albedo">0.865</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="telemetry-label">Average Roughness</span>
+              <span class="telemetry-value" id="tel-mean-roughness">0.420</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="telemetry-label">Normal Norm Fidelity</span>
+              <span class="telemetry-value" id="tel-normal-fidelity">99.8% (||N|| ≈ 1.0)</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="telemetry-label">Texture Footprint</span>
+              <span class="telemetry-value">9 Maps · 36.0 MB BC7/BC5</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Custom Map Dropzone -->
+      <div>
+        <div class="section-title">
+          <span>Custom Texture Ingestion</span>
+          <span class="count">Dropzone</span>
+        </div>
+        <div class="dropzone-box" id="dropzone">
+          <p>Drag & drop custom 2048x2048 PNG PBR maps here</p>
+          <p style="font-size: 9px; margin-top: 4px; color: var(--accent-rose-gold);">Supports _BC, _N, _ORM, _H, _Sheen, _Alpha</p>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- ==========================================================================
+       WebGL Math Engine, Shaders, Procedural Synthesizers & Lookdev Application
+       ========================================================================== -->
+  <script>
+  (function() {
+    'use strict';
+
+    /* --------------------------------------------------------------------------
+       1. Pure JavaScript 3D Math Engine (Mat4, Vec3, Vec2)
+       -------------------------------------------------------------------------- */
+    const Math3D = {
+      Mat4: {
+        create() {
+          return new Float32Array([
+            1, 0, 0, 0,
+            0, 1, 0, 0,
+            0, 0, 1, 0,
+            0, 0, 0, 1
+          ]);
+        },
+        identity(out) {
+          for (let i = 0; i < 16; i++) out[i] = (i % 5 === 0) ? 1 : 0;
+          return out;
+        },
+        perspective(out, fovyRad, aspect, near, far) {
+          const f = 1.0 / Math.tan(fovyRad / 2);
+          const nf = 1 / (near - far);
+          out[0] = f / aspect;
+          out[1] = 0;
+          out[2] = 0;
+          out[3] = 0;
+          out[4] = 0;
+          out[5] = f;
+          out[6] = 0;
+          out[7] = 0;
+          out[8] = 0;
+          out[9] = 0;
+          out[10] = (far + near) * nf;
+          out[11] = -1;
+          out[12] = 0;
+          out[13] = 0;
+          out[14] = (2 * far * near) * nf;
+          out[15] = 0;
+          return out;
+        },
+        lookAt(out, eye, center, up) {
+          let x0, x1, x2, y0, y1, y2, z0, z1, z2, len;
+          let eyex = eye[0], eyey = eye[1], eyez = eye[2];
+          let upx = up[0], upy = up[1], upz = up[2];
+          let centerx = center[0], centery = center[1], centerz = center[2];
+
+          z0 = eyex - centerx; z1 = eyey - centery; z2 = eyez - centerz;
+          len = 1 / Math.hypot(z0, z1, z2);
+          z0 *= len; z1 *= len; z2 *= len;
+
+          x0 = upy * z2 - upz * z1; x1 = upz * z0 - upx * z2; x2 = upx * z1 - upy * z0;
+          len = Math.hypot(x0, x1, x2);
+          if (!len) { x0 = 0; x1 = 0; x2 = 0; } else { len = 1 / len; x0 *= len; x1 *= len; x2 *= len; }
+
+          y0 = z1 * x2 - z2 * x1; y1 = z2 * x0 - z0 * x2; y2 = z0 * x1 - z1 * x0;
+          len = Math.hypot(y0, y1, y2);
+          if (!len) { y0 = 0; y1 = 0; y2 = 0; } else { len = 1 / len; y0 *= len; y1 *= len; y2 *= len; }
+
+          out[0] = x0; out[1] = y0; out[2] = z0; out[3] = 0;
+          out[4] = x1; out[5] = y1; out[6] = z1; out[7] = 0;
+          out[8] = x2; out[9] = y2; out[10] = z2; out[11] = 0;
+          out[12] = -(x0 * eyex + x1 * eyey + x2 * eyez);
+          out[13] = -(y0 * eyex + y1 * eyey + y2 * eyez);
+          out[14] = -(z0 * eyex + z1 * eyey + z2 * eyez);
+          out[15] = 1;
+          return out;
+        },
+        multiply(out, a, b) {
+          const a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3];
+          const a10 = a[4], a11 = a[5], a12 = a[6], a13 = a[7];
+          const a20 = a[8], a21 = a[9], a22 = a[10], a23 = a[11];
+          const a30 = a[12], a31 = a[13], a32 = a[14], a33 = a[15];
+
+          let b0 = b[0], b1 = b[1], b2 = b[2], b3 = b[3];
+          out[0] = b0 * a00 + b1 * a10 + b2 * a20 + b3 * a30;
+          out[1] = b0 * a01 + b1 * a11 + b2 * a21 + b3 * a31;
+          out[2] = b0 * a02 + b1 * a12 + b2 * a22 + b3 * a32;
+          out[3] = b0 * a03 + b1 * a13 + b2 * a23 + b3 * a33;
+
+          b0 = b[4]; b1 = b[5]; b2 = b[6]; b3 = b[7];
+          out[4] = b0 * a00 + b1 * a10 + b2 * a20 + b3 * a30;
+          out[5] = b0 * a01 + b1 * a11 + b2 * a21 + b3 * a31;
+          out[6] = b0 * a02 + b1 * a12 + b2 * a22 + b3 * a32;
+          out[7] = b0 * a03 + b1 * a13 + b2 * a23 + b3 * a33;
+
+          b0 = b[8]; b1 = b[9]; b2 = b[10]; b3 = b[11];
+          out[8] = b0 * a00 + b1 * a10 + b2 * a20 + b3 * a30;
+          out[9] = b0 * a01 + b1 * a11 + b2 * a21 + b3 * a31;
+          out[10] = b0 * a02 + b1 * a12 + b2 * a22 + b3 * a32;
+          out[11] = b0 * a03 + b1 * a13 + b2 * a23 + b3 * a33;
+
+          b0 = b[12]; b1 = b[13]; b2 = b[14]; b3 = b[15];
+          out[12] = b0 * a00 + b1 * a10 + b2 * a20 + b3 * a30;
+          out[13] = b0 * a01 + b1 * a11 + b2 * a21 + b3 * a31;
+          out[14] = b0 * a02 + b1 * a12 + b2 * a22 + b3 * a32;
+          out[15] = b0 * a03 + b1 * a13 + b2 * a23 + b3 * a33;
+          return out;
+        },
+        rotateY(out, a, rad) {
+          const s = Math.sin(rad), c = Math.cos(rad);
+          const a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3];
+          const a20 = a[8], a21 = a[9], a22 = a[10], a23 = a[11];
+
+          if (a !== out) {
+            out[4] = a[4]; out[5] = a[5]; out[6] = a[6]; out[7] = a[7];
+            out[12] = a[12]; out[13] = a[13]; out[14] = a[14]; out[15] = a[15];
+          }
+
+          out[0] = a00 * c - a20 * s;
+          out[1] = a01 * c - a21 * s;
+          out[2] = a02 * c - a22 * s;
+          out[3] = a03 * c - a23 * s;
+          out[8] = a00 * s + a20 * c;
+          out[9] = a01 * s + a21 * c;
+          out[10] = a02 * s + a22 * c;
+          out[11] = a03 * s + a23 * c;
+          return out;
+        },
+        rotateX(out, a, rad) {
+          const s = Math.sin(rad), c = Math.cos(rad);
+          const a10 = a[4], a11 = a[5], a12 = a[6], a13 = a[7];
+          const a20 = a[8], a21 = a[9], a22 = a[10], a23 = a[11];
+
+          if (a !== out) {
+            out[0] = a[0]; out[1] = a[1]; out[2] = a[2]; out[3] = a[3];
+            out[12] = a[12]; out[13] = a[13]; out[14] = a[14]; out[15] = a[15];
+          }
+
+          out[4] = a10 * c + a20 * s;
+          out[5] = a11 * c + a21 * s;
+          out[6] = a12 * c + a22 * s;
+          out[7] = a13 * c + a23 * s;
+          out[8] = a20 * c - a10 * s;
+          out[9] = a21 * c - a11 * s;
+          out[10] = a22 * c - a12 * s;
+          out[11] = a23 * c - a13 * s;
+          return out;
+        },
+        invert(out, a) {
+          const a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3];
+          const a10 = a[4], a11 = a[5], a12 = a[6], a13 = a[7];
+          const a20 = a[8], a21 = a[9], a22 = a[10], a23 = a[11];
+          const a30 = a[12], a31 = a[13], a32 = a[14], a33 = a[15];
+
+          const b00 = a00 * a11 - a01 * a10, b01 = a00 * a12 - a02 * a10, b02 = a00 * a13 - a03 * a10;
+          const b03 = a01 * a12 - a02 * a11, b04 = a01 * a13 - a03 * a11, b05 = a02 * a13 - a03 * a12;
+          const b06 = a20 * a31 - a21 * a30, b07 = a20 * a32 - a22 * a30, b08 = a20 * a33 - a23 * a30;
+          const b09 = a21 * a32 - a22 * a31, b10 = a21 * a33 - a23 * a31, b11 = a22 * a33 - a23 * a32;
+
+          let det = b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06;
+          if (!det) return null;
+          det = 1.0 / det;
+
+          out[0] = (a11 * b11 - a12 * b10 + a13 * b09) * det;
+          out[1] = (a02 * b10 - a01 * b11 - a03 * b09) * det;
+          out[2] = (a31 * b05 - a32 * b04 + a33 * b03) * det;
+          out[3] = (a22 * b04 - a21 * b05 - a23 * b03) * det;
+          out[4] = (a12 * b08 - a10 * b11 - a13 * b07) * det;
+          out[5] = (a00 * b11 - a02 * b08 + a03 * b07) * det;
+          out[6] = (a32 * b02 - a30 * b05 - a33 * b01) * det;
+          out[7] = (a20 * b05 - a22 * b02 + a23 * b01) * det;
+          out[8] = (a10 * b10 - a11 * b08 + a13 * b06) * det;
+          out[9] = (a01 * b08 - a00 * b10 - a03 * b06) * det;
+          out[10] = (a30 * b04 - a31 * b02 + a33 * b00) * det;
+          out[11] = (a21 * b02 - a20 * b04 - a23 * b00) * det;
+          out[12] = (a11 * b07 - a10 * b09 - a12 * b06) * det;
+          out[13] = (a00 * b09 - a01 * b07 + a02 * b06) * det;
+          out[14] = (a31 * b01 - a30 * b03 - a32 * b00) * det;
+          out[15] = (a20 * b03 - a21 * b01 + a22 * b00) * det;
+          return out;
+        },
+        transpose(out, a) {
+          if (out === a) {
+            let a01 = a[1], a02 = a[2], a03 = a[3];
+            let a12 = a[6], a13 = a[7];
+            let a23 = a[11];
+            out[1] = a[4]; out[2] = a[8]; out[3] = a[12];
+            out[4] = a01; out[6] = a[9]; out[7] = a[13];
+            out[8] = a02; out[9] = a12; out[11] = a[14];
+            out[12] = a03; out[13] = a13; out[14] = a23;
+          } else {
+            out[0] = a[0]; out[1] = a[4]; out[2] = a[8]; out[3] = a[12];
+            out[4] = a[1]; out[5] = a[5]; out[6] = a[9]; out[7] = a[13];
+            out[8] = a[2]; out[9] = a[6]; out[10] = a[10]; out[11] = a[14];
+            out[12] = a[3]; out[13] = a[7]; out[14] = a[11]; out[15] = a[15];
+          }
+          return out;
+        }
+      }
+    };
+
+    /* --------------------------------------------------------------------------
+       2. Blackbody Planckian Color Temperature Calculation (2800K - 7500K)
+       -------------------------------------------------------------------------- */
+    function kelvinToRGB(kelvin) {
+      const temp = kelvin / 100.0;
+      let r, g, b;
+
+      // Red
+      if (temp <= 66) {
+        r = 255;
+      } else {
+        r = temp - 60;
+        r = 329.698727446 * Math.pow(r, -0.1332047592);
+        r = Math.max(0, Math.min(255, r));
+      }
+
+      // Green
+      if (temp <= 66) {
+        g = temp;
+        g = 99.4708025861 * Math.log(g) - 161.1195681661;
+      } else {
+        g = temp - 60;
+        g = 288.1221695283 * Math.pow(g, -0.0755148492);
+      }
+      g = Math.max(0, Math.min(255, g));
+
+      // Blue
+      if (temp >= 66) {
+        b = 255;
+      } else if (temp <= 19) {
+        b = 0;
+      } else {
+        b = temp - 10;
+        b = 138.5177312231 * Math.log(b) - 305.0447927307;
+        b = Math.max(0, Math.min(255, b));
+      }
+
+      // Normalize to [0.0, 1.0] linear floating point
+      return [
+        Math.pow(r / 255.0, 2.2),
+        Math.pow(g / 255.0, 2.2),
+        Math.pow(b / 255.0, 2.2)
+      ];
+    }
+
+    /* --------------------------------------------------------------------------
+       3. 4 Procedural 3D Geometry Generators (Shader Ball, Draped Cloth, Card, Torus)
+       -------------------------------------------------------------------------- */
+    function computeTangentsAndBitangents(positions, normals, uvs, indices) {
+      const tangents = new Float32Array(positions.length);
+      const bitangents = new Float32Array(positions.length);
+
+      for (let i = 0; i < indices.length; i += 3) {
+        const i0 = indices[i], i1 = indices[i + 1], i2 = indices[i + 2];
+
+        const p0x = positions[i0 * 3], p0y = positions[i0 * 3 + 1], p0z = positions[i0 * 3 + 2];
+        const p1x = positions[i1 * 3], p1y = positions[i1 * 3 + 1], p1z = positions[i1 * 3 + 2];
+        const p2x = positions[i2 * 3], p2y = positions[i2 * 3 + 1], p2z = positions[i2 * 3 + 2];
+
+        const u0 = uvs[i0 * 2], v0 = uvs[i0 * 2 + 1];
+        const u1 = uvs[i1 * 2], v1 = uvs[i1 * 2 + 1];
+        const u2 = uvs[i2 * 2], v2 = uvs[i2 * 2 + 1];
+
+        const e1x = p1x - p0x, e1y = p1y - p0y, e1z = p1z - p0z;
+        const e2x = p2x - p0x, e2y = p2y - p0y, e2z = p2z - p0z;
+
+        const du1 = u1 - u0, dv1 = v1 - v0;
+        const du2 = u2 - u0, dv2 = v2 - v0;
+
+        const f = 1.0 / (du1 * dv2 - du2 * dv1 || 0.0001);
+
+        const tx = f * (dv2 * e1x - dv1 * e2x);
+        const ty = f * (dv2 * e1y - dv1 * e2y);
+        const tz = f * (dv2 * e1z - dv1 * e2z);
+
+        const bx = f * (-du2 * e1x + du1 * e2x);
+        const by = f * (-du2 * e1y + du1 * e2y);
+        const bz = f * (-du2 * e1z + du1 * e2z);
+
+        tangents[i0 * 3] += tx; tangents[i0 * 3 + 1] += ty; tangents[i0 * 3 + 2] += tz;
+        tangents[i1 * 3] += tx; tangents[i1 * 3 + 1] += ty; tangents[i1 * 3 + 2] += tz;
+        tangents[i2 * 3] += tx; tangents[i2 * 3 + 1] += ty; tangents[i2 * 3 + 2] += tz;
+
+        bitangents[i0 * 3] += bx; bitangents[i0 * 3 + 1] += by; bitangents[i0 * 3 + 2] += bz;
+        bitangents[i1 * 3] += bx; bitangents[i1 * 3 + 1] += by; bitangents[i1 * 3 + 2] += bz;
+        bitangents[i2 * 3] += bx; bitangents[i2 * 3 + 1] += by; bitangents[i2 * 3 + 2] += bz;
+      }
+
+      // Gram-Schmidt Orthogonalization
+      for (let i = 0; i < positions.length / 3; i++) {
+        const nx = normals[i * 3], ny = normals[i * 3 + 1], nz = normals[i * 3 + 2];
+        let tx = tangents[i * 3], ty = tangents[i * 3 + 1], tz = tangents[i * 3 + 2];
+
+        // t = normalize(t - n * dot(n, t))
+        const dotNT = nx * tx + ny * ty + nz * tz;
+        tx -= nx * dotNT; ty -= ny * dotNT; tz -= nz * dotNT;
+        const lenT = Math.hypot(tx, ty, tz) || 1.0;
+        tangents[i * 3] = tx / lenT;
+        tangents[i * 3 + 1] = ty / lenT;
+        tangents[i * 3 + 2] = tz / lenT;
+
+        // b = cross(n, t)
+        bitangents[i * 3] = ny * tz - nz * ty;
+        bitangents[i * 3 + 1] = nz * tx - nx * tz;
+        bitangents[i * 3 + 2] = nx * ty - ny * tx;
+      }
+
+      return { tangents, bitangents };
+    }
+
+    const GeometryGenerators = {
+      // 1. Haute-Couture Curvature Shader Ball (Sphere + Stepped Mantle/Collar + Pedestal)
+      createShaderBall() {
+        const positions = [];
+        const normals = [];
+        const uvs = [];
+        const indices = [];
+
+        // Part A: Inner Sphere (Radius 0.92)
+        const latBands = 48, longBands = 48;
+        const radius = 0.92;
+        const indexOffset = 0;
+
+        for (let lat = 0; lat <= latBands; lat++) {
+          const theta = (lat * Math.PI) / latBands;
+          const sinTheta = Math.sin(theta);
+          const cosTheta = Math.cos(theta);
+
+          for (let lon = 0; lon <= longBands; lon++) {
+            const phi = (lon * 2 * Math.PI) / longBands;
+            const sinPhi = Math.sin(phi);
+            const cosPhi = Math.cos(phi);
+
+            const x = cosPhi * sinTheta;
+            const y = cosTheta;
+            const z = sinPhi * sinTheta;
+            const u = 1.0 - (lon / longBands);
+            const v = 1.0 - (lat / latBands);
+
+            positions.push(x * radius, y * radius, z * radius);
+            normals.push(x, y, z);
+            uvs.push(u * 2.0, v * 2.0);
+          }
+        }
+
+        for (let lat = 0; lat < latBands; lat++) {
+          for (let lon = 0; lon < longBands; lon++) {
+            const first = (lat * (longBands + 1)) + lon;
+            const second = first + longBands + 1;
+            indices.push(first, second, first + 1);
+            indices.push(second, second + 1, first + 1);
+          }
+        }
+
+        // Part B: Outer Stepped Collar Mantle
+        const mantleBands = 24, mantleLong = 48;
+        const vOffset = positions.length / 3;
+        for (let lat = 0; lat <= mantleBands; lat++) {
+          const t = lat / mantleBands;
+          const theta = (0.2 + 0.6 * t) * Math.PI; // Partial coverage
+          const sinTheta = Math.sin(theta);
+          const cosTheta = Math.cos(theta);
+          const rCollar = 1.10 + 0.08 * Math.cos(t * Math.PI * 4); // Stepped fluting
+
+          for (let lon = 0; lon <= mantleLong; lon++) {
+            const phi = (lon * 2 * Math.PI) / mantleLong;
+            const x = Math.cos(phi) * sinTheta * rCollar;
+            const y = cosTheta * rCollar;
+            const z = Math.sin(phi) * sinTheta * rCollar;
+            const u = lon / mantleLong;
+            const v = t;
+
+            positions.push(x, y, z);
+            normals.push(Math.cos(phi) * sinTheta, cosTheta, Math.sin(phi) * sinTheta);
+            uvs.push(u * 3.0, v * 2.0);
+          }
+        }
+
+        for (let lat = 0; lat < mantleBands; lat++) {
+          for (let lon = 0; lon < mantleLong; lon++) {
+            const first = vOffset + (lat * (mantleLong + 1)) + lon;
+            const second = first + mantleLong + 1;
+            indices.push(first, first + 1, second);
+            indices.push(second, first + 1, second + 1);
+          }
+        }
+
+        // Part C: Turntable Pedestal Base
+        const baseOffset = positions.length / 3;
+        const baseSteps = 48;
+        const baseRadius = 1.35;
+        const baseHeight = -1.1;
+
+        for (let i = 0; i <= baseSteps; i++) {
+          const phi = (i * 2 * Math.PI) / baseSteps;
+          const cosPhi = Math.cos(phi), sinPhi = Math.sin(phi);
+          // Top rim of pedestal
+          positions.push(cosPhi * baseRadius, baseHeight + 0.15, sinPhi * baseRadius);
+          normals.push(0, 1, 0);
+          uvs.push(0.5 + 0.5 * cosPhi, 0.5 + 0.5 * sinPhi);
+
+          // Center of pedestal
+          positions.push(0, baseHeight + 0.15, 0);
+          normals.push(0, 1, 0);
+          uvs.push(0.5, 0.5);
+
+          // Bottom rim of pedestal
+          positions.push(cosPhi * (baseRadius + 0.1), baseHeight - 0.1, sinPhi * (baseRadius + 0.1));
+          normals.push(cosPhi, 0, sinPhi);
+          uvs.push(i / baseSteps, 0);
+        }
+
+        for (let i = 0; i < baseSteps; i++) {
+          const idx = baseOffset + i * 3;
+          indices.push(idx, idx + 1, idx + 3);
+          indices.push(idx, idx + 2, idx + 5);
+        }
+
+        const posArr = new Float32Array(positions);
+        const normArr = new Float32Array(normals);
+        const uvArr = new Float32Array(uvs);
+        const idxArr = new Uint16Array(indices);
+        const { tangents, bitangents } = computeTangentsAndBitangents(posArr, normArr, uvArr, idxArr);
+
+        return { positions: posArr, normals: normArr, uvs: uvArr, tangents, bitangents, indices: idxArr };
+      },
+
+      // 2. Draped Silk Cloth Mesh (Undulating Catenary Multi-Frequency Wave)
+      createDrapedCloth() {
+        const resX = 70, resY = 70;
+        const positions = new Float32Array((resX + 1) * (resY + 1) * 3);
+        const normals = new Float32Array((resX + 1) * (resY + 1) * 3);
+        const uvs = new Float32Array((resX + 1) * (resY + 1) * 2);
+        const indices = new Uint16Array(resX * resY * 6);
+
+        let pIdx = 0, uIdx = 0;
+        for (let y = 0; y <= resY; y++) {
+          const v = y / resY;
+          const py = (v - 0.5) * 2.4;
+
+          for (let x = 0; x <= resX; x++) {
+            const u = x / resX;
+            const px = (u - 0.5) * 2.4;
+
+            // Haute-couture catenary drape wave equation
+            const drapeWave = Math.sin(u * Math.PI * 4.0) * 0.35 * Math.cos(v * Math.PI * 1.5)
+                            + Math.sin(u * Math.PI * 8.0 + v * 3.0) * 0.08 * (1.0 - v * 0.5)
+                            + Math.cos(u * Math.PI * 12.0) * 0.04;
+            const pz = drapeWave;
+
+            positions[pIdx] = px;
+            positions[pIdx + 1] = py;
+            positions[pIdx + 2] = pz;
+
+            // Analytical / Approximate Normal
+            const dz_du = (Math.PI * 4.0 * 0.35 * Math.cos(u * Math.PI * 4.0) * Math.cos(v * Math.PI * 1.5)) / 2.4;
+            const dz_dv = (-Math.PI * 1.5 * 0.35 * Math.sin(u * Math.PI * 4.0) * Math.sin(v * Math.PI * 1.5)) / 2.4;
+            const lenN = Math.hypot(-dz_du, -dz_dv, 1.0) || 1.0;
+
+            normals[pIdx] = -dz_du / lenN;
+            normals[pIdx + 1] = -dz_dv / lenN;
+            normals[pIdx + 2] = 1.0 / lenN;
+
+            uvs[uIdx] = u;
+            uvs[uIdx + 1] = 1.0 - v;
+
+            pIdx += 3;
+            uIdx += 2;
+          }
+        }
+
+        let iIdx = 0;
+        for (let y = 0; y < resY; y++) {
+          for (let x = 0; x < resX; x++) {
+            const row1 = y * (resX + 1);
+            const row2 = (y + 1) * (resX + 1);
+
+            indices[iIdx++] = row1 + x;
+            indices[iIdx++] = row2 + x;
+            indices[iIdx++] = row1 + x + 1;
+
+            indices[iIdx++] = row1 + x + 1;
+            indices[iIdx++] = row2 + x;
+            indices[iIdx++] = row2 + x + 1;
+          }
+        }
+
+        const { tangents, bitangents } = computeTangentsAndBitangents(positions, normals, uvs, indices);
+        return { positions, normals, uvs, tangents, bitangents, indices };
+      },
+
+      // 3. Planar Macro Calibration Card
+      createPlanarCard() {
+        const res = 32;
+        const positions = new Float32Array((res + 1) * (res + 1) * 3);
+        const normals = new Float32Array((res + 1) * (res + 1) * 3);
+        const uvs = new Float32Array((res + 1) * (res + 1) * 2);
+        const indices = new Uint16Array(res * res * 6);
+
+        let pIdx = 0, uIdx = 0;
+        for (let y = 0; y <= res; y++) {
+          const v = y / res;
+          for (let x = 0; x <= res; x++) {
+            const u = x / res;
+            positions[pIdx] = (u - 0.5) * 2.2;
+            positions[pIdx + 1] = (v - 0.5) * 2.2;
+            positions[pIdx + 2] = 0.0;
+
+            normals[pIdx] = 0;
+            normals[pIdx + 1] = 0;
+            normals[pIdx + 2] = 1;
+
+            uvs[uIdx] = u;
+            uvs[uIdx + 1] = 1.0 - v;
+
+            pIdx += 3;
+            uIdx += 2;
+          }
+        }
+
+        let iIdx = 0;
+        for (let y = 0; y < res; y++) {
+          for (let x = 0; x < res; x++) {
+            const row1 = y * (res + 1);
+            const row2 = (y + 1) * (res + 1);
+            indices[iIdx++] = row1 + x;
+            indices[iIdx++] = row2 + x;
+            indices[iIdx++] = row1 + x + 1;
+            indices[iIdx++] = row1 + x + 1;
+            indices[iIdx++] = row2 + x;
+            indices[iIdx++] = row2 + x + 1;
+          }
+        }
+
+        const { tangents, bitangents } = computeTangentsAndBitangents(positions, normals, uvs, indices);
+        return { positions, normals, uvs, tangents, bitangents, indices };
+      },
+
+      // 4. Haute-Couture Torus Geometry (Rim Grazing & Anisotropic Flow Demo)
+      createTorus() {
+        const radialBands = 48, tubularBands = 48;
+        const R = 0.9, r = 0.38;
+        const positions = new Float32Array((radialBands + 1) * (tubularBands + 1) * 3);
+        const normals = new Float32Array((radialBands + 1) * (tubularBands + 1) * 3);
+        const uvs = new Float32Array((radialBands + 1) * (tubularBands + 1) * 2);
+        const indices = new Uint16Array(radialBands * tubularBands * 6);
+
+        let pIdx = 0, uIdx = 0;
+        for (let j = 0; j <= radialBands; j++) {
+          const u = (j / radialBands) * Math.PI * 2;
+          for (let i = 0; i <= tubularBands; i++) {
+            const v = (i / tubularBands) * Math.PI * 2;
+            const x = (R + r * Math.cos(v)) * Math.cos(u);
+            const y = (R + r * Math.cos(v)) * Math.sin(u);
+            const z = r * Math.sin(v);
+
+            positions[pIdx] = x;
+            positions[pIdx + 1] = z; // Orient upright
+            positions[pIdx + 2] = y;
+
+            const nx = Math.cos(v) * Math.cos(u);
+            const ny = Math.sin(v);
+            const nz = Math.cos(v) * Math.sin(u);
+
+            normals[pIdx] = nx;
+            normals[pIdx + 1] = ny;
+            normals[pIdx + 2] = nz;
+
+            uvs[uIdx] = (j / radialBands) * 3.0;
+            uvs[uIdx + 1] = (i / tubularBands) * 2.0;
+
+            pIdx += 3;
+            uIdx += 2;
+          }
+        }
+
+        let iIdx = 0;
+        for (let j = 0; j < radialBands; j++) {
+          for (let i = 0; i < tubularBands; i++) {
+            const a = (tubularBands + 1) * j + i;
+            const b = (tubularBands + 1) * (j + 1) + i;
+            const c = (tubularBands + 1) * (j + 1) + i + 1;
+            const d = (tubularBands + 1) * j + i + 1;
+
+            indices[iIdx++] = a;
+            indices[iIdx++] = b;
+            indices[iIdx++] = d;
+            indices[iIdx++] = b;
+            indices[iIdx++] = c;
+            indices[iIdx++] = d;
+          }
+        }
+
+        const { tangents, bitangents } = computeTangentsAndBitangents(positions, normals, uvs, indices);
+        return { positions, normals, uvs, tangents, bitangents, indices };
+      }
+    };
+
+    /* --------------------------------------------------------------------------
+       4. Procedural PBR Texture Generator for 4 Haute-Couture Archetypes
+       -------------------------------------------------------------------------- */
+    const SUITES_METADATA = [
+      {
+        id: "T_HauteCouture_ChantillyLace_PearlBeading",
+        title: "Chantilly Lace & Pearl Beading",
+        archetype: "Bridal Openwork · Seed Pearls & Crystals",
+        shadingModel: "MF_ThinFilm_Iridescence",
+        shadingBadge: "THIN-FILM AIRY BSDF",
+        meanAlbedo: "0.892",
+        meanRoughness: "0.450",
+        palette: [
+          { name: "Pearl White", hex: "#FBF9F5", srgb: "251, 249, 245", linear: "[0.957, 0.945, 0.920]" },
+          { name: "Blush Pink", hex: "#F7D2DB", srgb: "247, 210, 219", linear: "[0.925, 0.638, 0.701]" },
+          { name: "Crystal Sheen", hex: "#E0F2FE", srgb: "224, 242, 254", linear: "[0.741, 0.886, 0.984]" },
+          { name: "Platinum Silver", hex: "#E5E7EB", srgb: "229, 231, 235", linear: "[0.784, 0.800, 0.824]" },
+          { name: "Nacre Luster Rim", hex: "#FDF2F8", srgb: "253, 242, 248", linear: "[0.976, 0.886, 0.937]" }
+        ],
+        synthesize(size = 512) {
+          const canvases = {};
+          const mapNames = ['BC', 'N', 'ORM', 'H', 'AO', 'R', 'M', 'Sheen', 'Alpha'];
+          mapNames.forEach(m => {
+            const cv = document.createElement('canvas');
+            cv.width = size; cv.height = size;
+            canvases[m] = cv;
+          });
+
+          const ctxBC = canvases.BC.getContext('2d');
+          const ctxN = canvases.N.getContext('2d');
+          const ctxORM = canvases.ORM.getContext('2d');
+          const ctxH = canvases.H.getContext('2d');
+          const ctxAO = canvases.AO.getContext('2d');
+          const ctxR = canvases.R.getContext('2d');
+          const ctxM = canvases.M.getContext('2d');
+          const ctxSheen = canvases.Sheen.getContext('2d');
+          const ctxAlpha = canvases.Alpha.getContext('2d');
+
+          const imgBC = ctxBC.createImageData(size, size);
+          const imgN = ctxN.createImageData(size, size);
+          const imgORM = ctxORM.createImageData(size, size);
+          const imgH = ctxH.createImageData(size, size);
+          const imgAO = ctxAO.createImageData(size, size);
+          const imgR = ctxR.createImageData(size, size);
+          const imgM = ctxM.createImageData(size, size);
+          const imgSheen = ctxSheen.createImageData(size, size);
+          const imgAlpha = ctxAlpha.createImageData(size, size);
+
+          // Synthesize pixel mathematical channels
+          for (let y = 0; y < size; y++) {
+            const v = y / size;
+            for (let x = 0; x < size; x++) {
+              const u = x / size;
+              const idx = (y * size + x) * 4;
+
+              // Hexagonal Honeycomb Net Ground
+              const sX = u * 16.0, sY = v * 16.0 * Math.sqrt(3) / 2;
+              const hexGridX = Math.abs(Math.sin(sX * Math.PI));
+              const hexGridY = Math.abs(Math.sin(sY * Math.PI));
+              const netDist = Math.min(hexGridX, hexGridY);
+              const isNetWire = netDist < 0.15 ? 1.0 : 0.0;
+
+              // Floral Gimp Cordonnet Curve
+              const cx = (u % 0.5) - 0.25, cy = (v % 0.5) - 0.25;
+              const angle = Math.atan2(cy, cx);
+              const rCurve = Math.hypot(cx, cy);
+              const floralRadius = 0.12 + 0.04 * Math.cos(5.0 * angle);
+              const isFloral = Math.abs(rCurve - floralRadius) < 0.025 ? 1.0 : 0.0;
+
+              // Seed Pearls & Crystal Diamond Beads
+              const pearlDist = Math.hypot((u % 0.25) - 0.125, (v % 0.25) - 0.125);
+              const isPearl = pearlDist < 0.035;
+              const pearlH = isPearl ? Math.sqrt(Math.max(0, 0.035*0.035 - pearlDist*pearlDist)) / 0.035 : 0.0;
+
+              // Compute Height
+              let h = 0.05;
+              if (isNetWire) h = 0.25;
+              if (isFloral) h = 0.65;
+              if (isPearl) h = 0.95 * pearlH + 0.1;
+
+              // Compute Normal from gradient
+              const nx = isPearl ? -((u % 0.25) - 0.125) / 0.035 : (isFloral ? Math.cos(angle)*0.5 : 0.0);
+              const ny = isPearl ? -((v % 0.25) - 0.125) / 0.035 : (isFloral ? Math.sin(angle)*0.5 : 0.0);
+              const nz = Math.sqrt(Math.max(0.01, 1.0 - nx*nx - ny*ny));
+
+              // DirectX Normal: Red = Nx (+X), Green = Ny (-Y), Blue = Nz (+Z)
+              const normR = Math.floor((nx * 0.5 + 0.5) * 255);
+              const normG = Math.floor((-ny * 0.5 + 0.5) * 255); // DirectX Green = -Y
+              const normB = Math.floor((nz * 0.5 + 0.5) * 255);
+
+              // BaseColor
+              let bcR = 251, bcG = 249, bcB = 245; // Pearl White
+              if (isFloral) { bcR = 247; bcG = 210; bcB = 219; } // Blush Pink
+              if (isPearl) { bcR = 224; bcG = 242; bcB = 254; } // Crystal highlight
+              if (!isNetWire && !isFloral && !isPearl) { bcR = 20; bcG = 24; bcB = 32; } // Void
+
+              // Roughness, Metallic, AO
+              let rough = 0.78, metal = 0.0, ao = 0.65, sheen = 0.7, alpha = 0.65;
+              if (isPearl) { rough = 0.12; metal = 0.05; ao = 0.95; sheen = 0.95; alpha = 1.0; }
+              else if (isFloral) { rough = 0.55; metal = 0.0; ao = 0.85; sheen = 0.85; alpha = 1.0; }
+              else if (!isNetWire) { rough = 0.9; metal = 0.0; ao = 0.2; sheen = 0.1; alpha = 0.05; }
+
+              const byteRough = Math.floor(rough * 255);
+              const byteMetal = Math.floor(metal * 255);
+              const byteAO = Math.floor(ao * 255);
+              const byteSheen = Math.floor(sheen * 255);
+              const byteAlpha = Math.floor(alpha * 255);
+              const byteH = Math.floor(h * 255);
+
+              // Fill Buffers
+              imgBC.data[idx] = bcR; imgBC.data[idx+1] = bcG; imgBC.data[idx+2] = bcB; imgBC.data[idx+3] = 255;
+              imgN.data[idx] = normR; imgN.data[idx+1] = normG; imgN.data[idx+2] = normB; imgN.data[idx+3] = 255;
+              imgORM.data[idx] = byteAO; imgORM.data[idx+1] = byteRough; imgORM.data[idx+2] = byteMetal; imgORM.data[idx+3] = 255;
+              imgH.data[idx] = byteH; imgH.data[idx+1] = byteH; imgH.data[idx+2] = byteH; imgH.data[idx+3] = 255;
+              imgAO.data[idx] = byteAO; imgAO.data[idx+1] = byteAO; imgAO.data[idx+2] = byteAO; imgAO.data[idx+3] = 255;
+              imgR.data[idx] = byteRough; imgR.data[idx+1] = byteRough; imgR.data[idx+2] = byteRough; imgR.data[idx+3] = 255;
+              imgM.data[idx] = byteMetal; imgM.data[idx+1] = byteMetal; imgM.data[idx+2] = byteMetal; imgM.data[idx+3] = 255;
+              imgSheen.data[idx] = byteSheen; imgSheen.data[idx+1] = byteSheen; imgSheen.data[idx+2] = byteSheen; imgSheen.data[idx+3] = 255;
+              imgAlpha.data[idx] = byteAlpha; imgAlpha.data[idx+1] = byteAlpha; imgAlpha.data[idx+2] = byteAlpha; imgAlpha.data[idx+3] = 255;
+            }
+          }
+
+          ctxBC.putImageData(imgBC, 0, 0);
+          ctxN.putImageData(imgN, 0, 0);
+          ctxORM.putImageData(imgORM, 0, 0);
+          ctxH.putImageData(imgH, 0, 0);
+          ctxAO.putImageData(imgAO, 0, 0);
+          ctxR.putImageData(imgR, 0, 0);
+          ctxM.putImageData(imgM, 0, 0);
+          ctxSheen.putImageData(imgSheen, 0, 0);
+          ctxAlpha.putImageData(imgAlpha, 0, 0);
+
+          return canvases;
+        }
+      },
+      {
+        id: "T_HauteCouture_DifferentialOrganza_Petals",
+        title: "Differential Organza Petals",
+        archetype: "Weightless Gossamer · Non-Linear Ruffle Petals",
+        shadingModel: "MF_Translucent_OrganzaSSS",
+        shadingBadge: "TRANSLUCENT SSS PROFILE",
+        meanAlbedo: "0.620",
+        meanRoughness: "0.340",
+        palette: [
+          { name: "Hydrangea Blue", hex: "#6B8AFD", srgb: "107, 138, 253", linear: "[0.147, 0.252, 0.973]" },
+          { name: "Wisteria Lilac", hex: "#B892FF", srgb: "184, 146, 255", linear: "[0.473, 0.283, 1.000]" },
+          { name: "Gossamer Sheer", hex: "#F0E6FF", srgb: "240, 230, 255", linear: "[0.867, 0.791, 1.000]" },
+          { name: "Petal Vein Rose", hex: "#FFAAA6", srgb: "255, 170, 166", linear: "[1.000, 0.397, 0.370]" },
+          { name: "Twilight Azure", hex: "#3B4B80", srgb: "59, 75, 128", linear: "[0.043, 0.071, 0.216]" }
+        ],
+        synthesize(size = 512) {
+          const canvases = {};
+          ['BC', 'N', 'ORM', 'H', 'AO', 'R', 'M', 'Sheen', 'Alpha'].forEach(m => {
+            const cv = document.createElement('canvas');
+            cv.width = size; cv.height = size;
+            canvases[m] = cv;
+          });
+
+          const ctxBC = canvases.BC.getContext('2d');
+          const ctxN = canvases.N.getContext('2d');
+          const ctxORM = canvases.ORM.getContext('2d');
+          const ctxH = canvases.H.getContext('2d');
+          const ctxAO = canvases.AO.getContext('2d');
+          const ctxR = canvases.R.getContext('2d');
+          const ctxM = canvases.M.getContext('2d');
+          const ctxSheen = canvases.Sheen.getContext('2d');
+          const ctxAlpha = canvases.Alpha.getContext('2d');
+
+          const imgBC = ctxBC.createImageData(size, size);
+          const imgN = ctxN.createImageData(size, size);
+          const imgORM = ctxORM.createImageData(size, size);
+          const imgH = ctxH.createImageData(size, size);
+          const imgAO = ctxAO.createImageData(size, size);
+          const imgR = ctxR.createImageData(size, size);
+          const imgM = ctxM.createImageData(size, size);
+          const imgSheen = ctxSheen.createImageData(size, size);
+          const imgAlpha = ctxAlpha.createImageData(size, size);
+
+          for (let y = 0; y < size; y++) {
+            const v = y / size;
+            for (let x = 0; x < size; x++) {
+              const u = x / size;
+              const idx = (y * size + x) * 4;
+
+              // Differential Growth Petal Harmonics
+              const cx = u - 0.5, cy = v - 0.5;
+              const angle = Math.atan2(cy, cx);
+              const r = Math.hypot(cx, cy);
+              const ruffleR = 0.35 + 0.08 * Math.sin(4.0 * angle + Math.sin(12.0 * angle) * 0.4)
+                                    + 0.03 * Math.sin(16.0 * angle);
+
+              const foldWave = Math.sin(u * 20.0 + Math.cos(v * 15.0) * 2.0);
+              const h = Math.max(0.1, 0.5 + 0.4 * foldWave * (1.0 - r));
+
+              // Micro-twill Silk Normal
+              const twill = Math.sin((u + v) * 120.0) * 0.15;
+              const nx = Math.cos(angle) * 0.3 + twill;
+              const ny = Math.sin(angle) * 0.3 - twill;
+              const nz = Math.sqrt(Math.max(0.1, 1.0 - nx*nx - ny*ny));
+
+              // Ombre Color Interpolation (Hydrangea Blue to Wisteria Lilac to Gossamer Rim)
+              const tColor = Math.min(1.0, r / ruffleR);
+              const bcR = Math.floor(107 * (1.0 - tColor) + 184 * tColor * 0.7 + 240 * (1.0 - h) * 0.3);
+              const bcG = Math.floor(138 * (1.0 - tColor) + 146 * tColor * 0.7 + 230 * (1.0 - h) * 0.3);
+              const bcB = Math.floor(253 * (1.0 - tColor) + 255 * tColor * 0.7 + 255 * (1.0 - h) * 0.3);
+
+              const rough = 0.28 + 0.12 * Math.abs(foldWave);
+              const metal = 0.0;
+              const ao = 0.75 + 0.2 * foldWave;
+              const sheen = 0.85 + 0.15 * Math.sin(angle * 6.0);
+              const alpha = Math.min(1.0, 0.45 + 0.55 * Math.min(1.0, (1.0 - r)));
+
+              imgBC.data[idx] = bcR; imgBC.data[idx+1] = bcG; imgBC.data[idx+2] = bcB; imgBC.data[idx+3] = 255;
+              imgN.data[idx] = Math.floor((nx*0.5+0.5)*255);
+              imgN.data[idx+1] = Math.floor((-ny*0.5+0.5)*255);
+              imgN.data[idx+2] = Math.floor((nz*0.5+0.5)*255);
+              imgN.data[idx+3] = 255;
+              imgORM.data[idx] = Math.floor(ao*255); imgORM.data[idx+1] = Math.floor(rough*255); imgORM.data[idx+2] = Math.floor(metal*255); imgORM.data[idx+3] = 255;
+              imgH.data[idx] = Math.floor(h*255); imgH.data[idx+1] = Math.floor(h*255); imgH.data[idx+2] = Math.floor(h*255); imgH.data[idx+3] = 255;
+              imgAO.data[idx] = Math.floor(ao*255); imgAO.data[idx+1] = Math.floor(ao*255); imgAO.data[idx+2] = Math.floor(ao*255); imgAO.data[idx+3] = 255;
+              imgR.data[idx] = Math.floor(rough*255); imgR.data[idx+1] = Math.floor(rough*255); imgR.data[idx+2] = Math.floor(rough*255); imgR.data[idx+3] = 255;
+              imgM.data[idx] = Math.floor(metal*255); imgM.data[idx+1] = Math.floor(metal*255); imgM.data[idx+2] = Math.floor(metal*255); imgM.data[idx+3] = 255;
+              imgSheen.data[idx] = Math.floor(sheen*255); imgSheen.data[idx+1] = Math.floor(sheen*255); imgSheen.data[idx+2] = Math.floor(sheen*255); imgSheen.data[idx+3] = 255;
+              imgAlpha.data[idx] = Math.floor(alpha*255); imgAlpha.data[idx+1] = Math.floor(alpha*255); imgAlpha.data[idx+2] = Math.floor(alpha*255); imgAlpha.data[idx+3] = 255;
+            }
+          }
+
+          ctxBC.putImageData(imgBC, 0, 0); ctxN.putImageData(imgN, 0, 0); ctxORM.putImageData(imgORM, 0, 0);
+          ctxH.putImageData(imgH, 0, 0); ctxAO.putImageData(imgAO, 0, 0); ctxR.putImageData(imgR, 0, 0);
+          ctxM.putImageData(imgM, 0, 0); ctxSheen.putImageData(imgSheen, 0, 0); ctxAlpha.putImageData(imgAlpha, 0, 0);
+          return canvases;
+        }
+      },
+      {
+        id: "T_HauteCouture_BaroqueBullion_Acanthus",
+        title: "Baroque Bullion Acanthus",
+        archetype: "Court Mantua · Braided 24k Gold Relievo & Velvet",
+        shadingModel: "MF_Bullion_MicroRelief",
+        shadingBadge: "PARALLAX RELIEVO BSDF",
+        meanAlbedo: "0.580",
+        meanRoughness: "0.280",
+        palette: [
+          { name: "24k Imperial Gold", hex: "#FFD700", srgb: "255, 215, 0", linear: "[1.000, 0.679, 0.000]" },
+          { name: "Rose Gold Purl", hex: "#E89C82", srgb: "232, 156, 130", linear: "[0.791, 0.332, 0.223]" },
+          { name: "Royal Midnight Blue", hex: "#0A1128", srgb: "10, 17, 40", linear: "[0.005, 0.009, 0.021]" },
+          { name: "Antique Ochre Shading", hex: "#C59B27", srgb: "197, 155, 39", linear: "[0.552, 0.332, 0.019]" },
+          { name: "Highlight Platinum Gold", hex: "#FFF0A5", srgb: "255, 240, 165", linear: "[1.000, 0.867, 0.375]" }
+        ],
+        synthesize(size = 512) {
+          const canvases = {};
+          ['BC', 'N', 'ORM', 'H', 'AO', 'R', 'M', 'Sheen', 'Alpha'].forEach(m => {
+            const cv = document.createElement('canvas');
+            cv.width = size; cv.height = size;
+            canvases[m] = cv;
+          });
+
+          const ctxBC = canvases.BC.getContext('2d');
+          const ctxN = canvases.N.getContext('2d');
+          const ctxORM = canvases.ORM.getContext('2d');
+          const ctxH = canvases.H.getContext('2d');
+          const ctxAO = canvases.AO.getContext('2d');
+          const ctxR = canvases.R.getContext('2d');
+          const ctxM = canvases.M.getContext('2d');
+          const ctxSheen = canvases.Sheen.getContext('2d');
+          const ctxAlpha = canvases.Alpha.getContext('2d');
+
+          const imgBC = ctxBC.createImageData(size, size);
+          const imgN = ctxN.createImageData(size, size);
+          const imgORM = ctxORM.createImageData(size, size);
+          const imgH = ctxH.createImageData(size, size);
+          const imgAO = ctxAO.createImageData(size, size);
+          const imgR = ctxR.createImageData(size, size);
+          const imgM = ctxM.createImageData(size, size);
+          const imgSheen = ctxSheen.createImageData(size, size);
+          const imgAlpha = ctxAlpha.createImageData(size, size);
+
+          for (let y = 0; y < size; y++) {
+            const v = y / size;
+            for (let x = 0; x < size; x++) {
+              const u = x / size;
+              const idx = (y * size + x) * 4;
+
+              // Polar Logarithmic Acanthus Spiral
+              const cx = (u % 0.5) - 0.25, cy = (v % 0.5) - 0.25;
+              const angle = Math.atan2(cy, cx) + Math.PI;
+              const r = Math.hypot(cx, cy);
+              const spiralR = 0.05 * Math.exp(0.25 * angle);
+              const distToSpiral = Math.abs(r - spiralR);
+              const isAcanthus = distToSpiral < 0.035;
+
+              // Braided Purl Wire Coil Micro-Relief
+              const coilAngle = angle * 40.0;
+              const coilRelief = isAcanthus ? Math.cos(coilAngle) * 0.3 + 0.7 : 0.0;
+              const h = isAcanthus ? (1.0 - (distToSpiral / 0.035)) * 0.75 * coilRelief + 0.15 : 0.05;
+
+              // Tangent Normal
+              const nx = isAcanthus ? Math.cos(angle) * (1.0 - distToSpiral/0.035) * 0.7 : 0.0;
+              const ny = isAcanthus ? Math.sin(angle) * (1.0 - distToSpiral/0.035) * 0.7 : 0.0;
+              const nz = Math.sqrt(Math.max(0.1, 1.0 - nx*nx - ny*ny));
+
+              let bcR, bcG, bcB, rough, metal, ao, sheen;
+              if (isAcanthus) {
+                // 24k Gold & Rose Gold Braids
+                if (Math.sin(coilAngle * 0.5) > 0.0) {
+                  bcR = 255; bcG = 215; bcB = 0; // 24k Imperial Gold
+                } else {
+                  bcR = 232; bcG = 156; bcB = 130; // Rose Gold Purl
+                }
+                rough = 0.20;
+                metal = 1.0; // Fully Conductive
+                ao = 0.88;
+                sheen = 0.0;
+              } else {
+                // Royal Midnight Blue Velvet Ground
+                bcR = 10; bcG = 17; bcB = 40;
+                rough = 0.88;
+                metal = 0.0;
+                ao = 0.45;
+                sheen = 1.0; // High velvet grazing sheen
+              }
+
+              imgBC.data[idx] = bcR; imgBC.data[idx+1] = bcG; imgBC.data[idx+2] = bcB; imgBC.data[idx+3] = 255;
+              imgN.data[idx] = Math.floor((nx*0.5+0.5)*255);
+              imgN.data[idx+1] = Math.floor((-ny*0.5+0.5)*255);
+              imgN.data[idx+2] = Math.floor((nz*0.5+0.5)*255);
+              imgN.data[idx+3] = 255;
+              imgORM.data[idx] = Math.floor(ao*255); imgORM.data[idx+1] = Math.floor(rough*255); imgORM.data[idx+2] = Math.floor(metal*255); imgORM.data[idx+3] = 255;
+              imgH.data[idx] = Math.floor(h*255); imgH.data[idx+1] = Math.floor(h*255); imgH.data[idx+2] = Math.floor(h*255); imgH.data[idx+3] = 255;
+              imgAO.data[idx] = Math.floor(ao*255); imgAO.data[idx+1] = Math.floor(ao*255); imgAO.data[idx+2] = Math.floor(ao*255); imgAO.data[idx+3] = 255;
+              imgR.data[idx] = Math.floor(rough*255); imgR.data[idx+1] = Math.floor(rough*255); imgR.data[idx+2] = Math.floor(rough*255); imgR.data[idx+3] = 255;
+              imgM.data[idx] = Math.floor(metal*255); imgM.data[idx+1] = Math.floor(metal*255); imgM.data[idx+2] = Math.floor(metal*255); imgM.data[idx+3] = 255;
+              imgSheen.data[idx] = Math.floor(sheen*255); imgSheen.data[idx+1] = Math.floor(sheen*255); imgSheen.data[idx+2] = Math.floor(sheen*255); imgSheen.data[idx+3] = 255;
+              imgAlpha.data[idx] = 255; imgAlpha.data[idx+1] = 255; imgAlpha.data[idx+2] = 255; imgAlpha.data[idx+3] = 255;
+            }
+          }
+
+          ctxBC.putImageData(imgBC, 0, 0); ctxN.putImageData(imgN, 0, 0); ctxORM.putImageData(imgORM, 0, 0);
+          ctxH.putImageData(imgH, 0, 0); ctxAO.putImageData(imgAO, 0, 0); ctxR.putImageData(imgR, 0, 0);
+          ctxM.putImageData(imgM, 0, 0); ctxSheen.putImageData(imgSheen, 0, 0); ctxAlpha.putImageData(imgAlpha, 0, 0);
+          return canvases;
+        }
+      },
+      {
+        id: "T_HauteCouture_ReactionDiffusion_Cloisonne",
+        title: "Reaction-Diffusion Cloisonné",
+        archetype: "Imperial Filigree · Gray-Scott Vitreous Enamel",
+        shadingModel: "MF_DualLobe_SubstrateVelvet",
+        shadingBadge: "VITREOUS MENISCUS BSDF",
+        meanAlbedo: "0.450",
+        meanRoughness: "0.150",
+        palette: [
+          { name: "Amethyst Purple", hex: "#7B2CBF", srgb: "123, 44, 191", linear: "[0.198, 0.024, 0.521]" },
+          { name: "Opaline Turquoise", hex: "#2EC4B6", srgb: "46, 196, 182", linear: "[0.027, 0.546, 0.468]" },
+          { name: "Gilded Brass Wire", hex: "#D4AF37", srgb: "212, 175, 55", linear: "[0.651, 0.435, 0.045]" },
+          { name: "Vitreous Deep Magenta", hex: "#9D0208", srgb: "157, 2, 8", linear: "[0.340, 0.001, 0.004]" },
+          { name: "Lapis Lazuli Shadow", hex: "#003566", srgb: "0, 53, 102", linear: "[0.000, 0.036, 0.133]" }
+        ],
+        synthesize(size = 512) {
+          const canvases = {};
+          ['BC', 'N', 'ORM', 'H', 'AO', 'R', 'M', 'Sheen', 'Alpha'].forEach(m => {
+            const cv = document.createElement('canvas');
+            cv.width = size; cv.height = size;
+            canvases[m] = cv;
+          });
+
+          const ctxBC = canvases.BC.getContext('2d');
+          const ctxN = canvases.N.getContext('2d');
+          const ctxORM = canvases.ORM.getContext('2d');
+          const ctxH = canvases.H.getContext('2d');
+          const ctxAO = canvases.AO.getContext('2d');
+          const ctxR = canvases.R.getContext('2d');
+          const ctxM = canvases.M.getContext('2d');
+          const ctxSheen = canvases.Sheen.getContext('2d');
+          const ctxAlpha = canvases.Alpha.getContext('2d');
+
+          const imgBC = ctxBC.createImageData(size, size);
+          const imgN = ctxN.createImageData(size, size);
+          const imgORM = ctxORM.createImageData(size, size);
+          const imgH = ctxH.createImageData(size, size);
+          const imgAO = ctxAO.createImageData(size, size);
+          const imgR = ctxR.createImageData(size, size);
+          const imgM = ctxM.createImageData(size, size);
+          const imgSheen = ctxSheen.createImageData(size, size);
+          const imgAlpha = ctxAlpha.createImageData(size, size);
+
+          for (let y = 0; y < size; y++) {
+            const v = y / size;
+            for (let x = 0; x < size; x++) {
+              const u = x / size;
+              const idx = (y * size + x) * 4;
+
+              // Gray-Scott Reaction-Diffusion Turing Pattern Simulation approximation
+              const freq = 12.0;
+              const n1 = Math.sin(u * freq * Math.PI + Math.cos(v * freq * Math.PI) * 2.0);
+              const n2 = Math.cos(v * freq * Math.PI + Math.sin(u * freq * Math.PI) * 2.0);
+              const turingVal = (n1 + n2) * 0.5;
+
+              // Cloison Gilded Brass Wire extraction
+              const isWire = Math.abs(turingVal) < 0.18;
+              const isAmethyst = turingVal >= 0.18;
+
+              // Meniscus Enamel Curvature
+              const meniscus = 1.0 - Math.exp(-Math.abs(turingVal) * 3.0);
+              const h = isWire ? 0.85 : 0.45 * meniscus + 0.1;
+
+              // Normal
+              const nx = Math.cos(u * freq * Math.PI) * (isWire ? 0.0 : 0.4);
+              const ny = Math.sin(v * freq * Math.PI) * (isWire ? 0.0 : 0.4);
+              const nz = Math.sqrt(Math.max(0.1, 1.0 - nx*nx - ny*ny));
+
+              let bcR, bcG, bcB, rough, metal, ao, sheen;
+              if (isWire) {
+                // Gilded Brass Cloisons
+                bcR = 212; bcG = 175; bcB = 55;
+                rough = 0.22;
+                metal = 0.98;
+                ao = 0.85;
+                sheen = 0.0;
+              } else if (isAmethyst) {
+                // Vitreous Amethyst Purple Enamel
+                bcR = 123; bcG = 44; bcB = 191;
+                rough = 0.08; // High gloss vitreous pool
+                metal = 0.0;
+                ao = 0.94;
+                sheen = 0.15;
+              } else {
+                // Opaline Turquoise Enamel
+                bcR = 46; bcG = 196; bcB = 182;
+                rough = 0.06;
+                metal = 0.0;
+                ao = 0.96;
+                sheen = 0.15;
+              }
+
+              imgBC.data[idx] = bcR; imgBC.data[idx+1] = bcG; imgBC.data[idx+2] = bcB; imgBC.data[idx+3] = 255;
+              imgN.data[idx] = Math.floor((nx*0.5+0.5)*255);
+              imgN.data[idx+1] = Math.floor((-ny*0.5+0.5)*255);
+              imgN.data[idx+2] = Math.floor((nz*0.5+0.5)*255);
+              imgN.data[idx+3] = 255;
+              imgORM.data[idx] = Math.floor(ao*255); imgORM.data[idx+1] = Math.floor(rough*255); imgORM.data[idx+2] = Math.floor(metal*255); imgORM.data[idx+3] = 255;
+              imgH.data[idx] = Math.floor(h*255); imgH.data[idx+1] = Math.floor(h*255); imgH.data[idx+2] = Math.floor(h*255); imgH.data[idx+3] = 255;
+              imgAO.data[idx] = Math.floor(ao*255); imgAO.data[idx+1] = Math.floor(ao*255); imgAO.data[idx+2] = Math.floor(ao*255); imgAO.data[idx+3] = 255;
+              imgR.data[idx] = Math.floor(rough*255); imgR.data[idx+1] = Math.floor(rough*255); imgR.data[idx+2] = Math.floor(rough*255); imgR.data[idx+3] = 255;
+              imgM.data[idx] = Math.floor(metal*255); imgM.data[idx+1] = Math.floor(metal*255); imgM.data[idx+2] = Math.floor(metal*255); imgM.data[idx+3] = 255;
+              imgSheen.data[idx] = Math.floor(sheen*255); imgSheen.data[idx+1] = Math.floor(sheen*255); imgSheen.data[idx+2] = Math.floor(sheen*255); imgSheen.data[idx+3] = 255;
+              imgAlpha.data[idx] = 255; imgAlpha.data[idx+1] = 255; imgAlpha.data[idx+2] = 255; imgAlpha.data[idx+3] = 255;
+            }
+          }
+
+          ctxBC.putImageData(imgBC, 0, 0); ctxN.putImageData(imgN, 0, 0); ctxORM.putImageData(imgORM, 0, 0);
+          ctxH.putImageData(imgH, 0, 0); ctxAO.putImageData(imgAO, 0, 0); ctxR.putImageData(imgR, 0, 0);
+          ctxM.putImageData(imgM, 0, 0); ctxSheen.putImageData(imgSheen, 0, 0); ctxAlpha.putImageData(imgAlpha, 0, 0);
+          return canvases;
+        }
+      }
+    ];
+
+    /* --------------------------------------------------------------------------
+       5. WebGL Shader Sources (Vertex & Fragment)
+       -------------------------------------------------------------------------- */
+    const VS_SOURCE = `
+      attribute vec3 a_Position;
+      attribute vec3 a_Normal;
+      attribute vec2 a_UV;
+      attribute vec3 a_Tangent;
+      attribute vec3 a_Bitangent;
+
+      uniform mat4 u_ModelMatrix;
+      uniform mat4 u_ViewMatrix;
+      uniform mat4 u_ProjectionMatrix;
+      uniform mat4 u_NormalMatrix;
+      uniform vec3 u_CameraPos;
+
+      varying vec3 v_WorldPos;
+      varying vec3 v_Normal;
+      varying vec2 v_UV;
+      varying mat3 v_TBN;
+      varying vec3 v_ViewDirTS;
+
+      void main() {
+        vec4 worldPos = u_ModelMatrix * vec4(a_Position, 1.0);
+        v_WorldPos = worldPos.xyz;
+        v_UV = a_UV;
+
+        vec3 N = normalize((u_NormalMatrix * vec4(a_Normal, 0.0)).xyz);
+        vec3 T = normalize((u_NormalMatrix * vec4(a_Tangent, 0.0)).xyz);
+        vec3 B = normalize((u_NormalMatrix * vec4(a_Bitangent, 0.0)).xyz);
+        v_Normal = N;
+        v_TBN = mat3(T, B, N);
+
+        // View direction in Tangent Space for Parallax Occlusion Mapping
+        vec3 viewDirWS = normalize(u_CameraPos - worldPos.xyz);
+        v_ViewDirTS = vec3(
+          dot(viewDirWS, T),
+          dot(viewDirWS, B),
+          dot(viewDirWS, N)
+        );
+
+        gl_Position = u_ProjectionMatrix * u_ViewMatrix * worldPos;
+      }
+    `;
+
+    const FS_SOURCE = `
+      precision highp float;
+
+      varying vec3 v_WorldPos;
+      varying vec3 v_Normal;
+      varying vec2 v_UV;
+      varying mat3 v_TBN;
+      varying vec3 v_ViewDirTS;
+
+      uniform sampler2D u_BaseColorMap;
+      uniform sampler2D u_NormalMap;
+      uniform sampler2D u_ORMMap;
+      uniform sampler2D u_HeightMap;
+      uniform sampler2D u_SheenMap;
+      uniform sampler2D u_AlphaMap;
+
+      uniform int u_ChannelMode; // 0: PBR, 1: BC, 2: N, 3: ORM, 4: H, 5: AO, 6: R, 7: M, 8: Sheen, 9: Alpha
+      uniform float u_UVTiling;
+      uniform float u_RoughnessScale;
+      uniform float u_MetallicScale;
+      uniform float u_NormalStrength;
+      uniform float u_POMDepth;
+      uniform float u_SheenScale;
+      uniform float u_SSSScale;
+
+      uniform vec3 u_CameraPos;
+      uniform vec3 u_LightPos;
+      uniform vec3 u_LightColor;
+      uniform float u_LightIntensity;
+      uniform float u_FillRatio;
+      uniform float u_EnvIntensity;
+      uniform float u_Exposure;
+
+      uniform float u_SplitX; // Screen split ratio for A/B compare
+      uniform vec2 u_ScreenRes;
+
+      const float PI = 3.14159265359;
+
+      // Parallax Occlusion Mapping with Root Secant Interpolation
+      vec2 ParallaxOcclusionMap(vec2 uv, vec3 viewDirTS, float depthScale) {
+        if (depthScale <= 0.001) return uv;
+        float numSteps = mix(32.0, 12.0, max(dot(vec3(0.0, 0.0, 1.0), viewDirTS), 0.0));
+        float stepSize = 1.0 / numSteps;
+        vec2 p = viewDirTS.xy * depthScale / (viewDirTS.z + 0.001);
+        vec2 deltaUV = p / numSteps;
+
+        vec2 currentUV = uv;
+        float currentLayerDepth = 0.0;
+        float currentDepthMapValue = texture2D(u_HeightMap, currentUV).r;
+
+        for (int i = 0; i < 32; i++) {
+          if (currentLayerDepth >= (1.0 - currentDepthMapValue)) break;
+          currentUV -= deltaUV;
+          currentDepthMapValue = texture2D(u_HeightMap, currentUV).r;
+          currentLayerDepth += stepSize;
+        }
+
+        vec2 prevUV = currentUV + deltaUV;
+        float afterDepth = (1.0 - currentDepthMapValue) - currentLayerDepth;
+        float beforeDepth = (1.0 - texture2D(u_HeightMap, prevUV).r) - currentLayerDepth + stepSize;
+        float weight = afterDepth / (afterDepth - beforeDepth + 0.0001);
+        return mix(currentUV, prevUV, weight);
+      }
+
+      // GGX / Trowbridge-Reitz Specular Microfacet
+      float DistributionGGX(vec3 N, vec3 H, float roughness) {
+        float a = roughness * roughness;
+        float a2 = a * a;
+        float NdotH = max(dot(N, H), 0.0);
+        float NdotH2 = NdotH * NdotH;
+        float num = a2;
+        float denom = (NdotH2 * (a2 - 1.0) + 1.0);
+        return num / (PI * denom * denom + 0.0001);
+      }
+
+      float GeometrySchlickGGX(float NdotV, float roughness) {
+        float r = (roughness + 1.0);
+        float k = (r * r) / 8.0;
+        return NdotV / (NdotV * (1.0 - k) + k + 0.0001);
+      }
+
+      float GeometrySmith(vec3 N, vec3 V, vec3 L, float roughness) {
+        float NdotV = max(dot(N, V), 0.0);
+        float NdotL = max(dot(N, L), 0.0);
+        float ggx2 = GeometrySchlickGGX(NdotV, roughness);
+        float ggx1 = GeometrySchlickGGX(NdotL, roughness);
+        return ggx1 * ggx2;
+      }
+
+      vec3 FresnelSchlick(float cosTheta, vec3 F0) {
+        return F0 + (1.0 - F0) * pow(clamp(1.0 - cosTheta, 0.0, 1.0), 5.0);
+      }
+
+      // Ashikhmin-Charlie Velvet Sheen / Micro-Fuzz Model
+      float CharlieSheen(float NdotH, float roughness) {
+        float alpha = max(roughness * roughness, 0.001);
+        float invAlpha = 1.0 / alpha;
+        float cos2h = NdotH * NdotH;
+        float sin2h = max(1.0 - cos2h, 0.0078125);
+        return (2.0 + invAlpha) * pow(sin2h, invAlpha * 0.5) / (2.0 * PI);
+      }
+
+      // ACES Filmic Tonemapping
+      vec3 ACESFilm(vec3 x) {
+        float a = 2.51;
+        float b = 0.03;
+        float c = 2.43;
+        float d = 0.59;
+        float e = 0.14;
+        return clamp((x * (a * x + b)) / (x * (c * x + d) + e), 0.0, 1.0);
+      }
+
+      void main() {
+        vec2 uv = v_UV * u_UVTiling;
+        vec3 viewDirTS = normalize(v_ViewDirTS);
+
+        // Parallax Occlusion
+        uv = ParallaxOcclusionMap(uv, viewDirTS, u_POMDepth);
+
+        // Fetch Maps
+        vec4 baseColorTex = texture2D(u_BaseColorMap, uv);
+        vec3 albedo = pow(baseColorTex.rgb, vec3(2.2)); // Convert sRGB to Linear
+
+        vec3 normSample = texture2D(u_NormalMap, uv).rgb * 2.0 - 1.0;
+        // Apply DirectX Green = -Y convention in WebGL tangent space
+        normSample.y = -normSample.y;
+        normSample.xy *= u_NormalStrength;
+        vec3 N = normalize(v_TBN * normalize(normSample));
+
+        vec3 ormTex = texture2D(u_ORMMap, uv).rgb;
+        float ao = ormTex.r;
+        float roughness = clamp(ormTex.g * u_RoughnessScale, 0.04, 1.0);
+        float metallic = clamp(ormTex.b * u_MetallicScale, 0.0, 1.0);
+        float height = texture2D(u_HeightMap, uv).r;
+        float sheenMask = texture2D(u_SheenMap, uv).r;
+        float alpha = texture2D(u_AlphaMap, uv).r;
+
+        // Channel Isolation Branching (Mode 1 to 9)
+        int activeMode = u_ChannelMode;
+
+        // A/B Split Screen Evaluation
+        if (u_SplitX > 0.01 && u_SplitX < 0.99) {
+          float screenX = gl_FragCoord.x / u_ScreenRes.x;
+          if (screenX > u_SplitX) {
+            activeMode = (u_ChannelMode == 0) ? 1 : u_ChannelMode;
+          } else {
+            activeMode = 0;
+          }
+        }
+
+        if (activeMode == 1) {
+          gl_FragColor = vec4(baseColorTex.rgb, 1.0);
+          return;
+        } else if (activeMode == 2) {
+          gl_FragColor = vec4(normSample * 0.5 + 0.5, 1.0);
+          return;
+        } else if (activeMode == 3) {
+          gl_FragColor = vec4(ormTex, 1.0);
+          return;
+        } else if (activeMode == 4) {
+          gl_FragColor = vec4(vec3(height), 1.0);
+          return;
+        } else if (activeMode == 5) {
+          gl_FragColor = vec4(vec3(ao), 1.0);
+          return;
+        } else if (activeMode == 6) {
+          gl_FragColor = vec4(vec3(roughness), 1.0);
+          return;
+        } else if (activeMode == 7) {
+          gl_FragColor = vec4(vec3(metallic), 1.0);
+          return;
+        } else if (activeMode == 8) {
+          gl_FragColor = vec4(vec3(sheenMask), 1.0);
+          return;
+        } else if (activeMode == 9) {
+          gl_FragColor = vec4(vec3(alpha), 1.0);
+          return;
+        }
+
+        // Full Cook-Torrance GGX + Sheen + SSS PBR Shading
+        vec3 V = normalize(u_CameraPos - v_WorldPos);
+        vec3 L = normalize(u_LightPos - v_WorldPos);
+        vec3 H = normalize(V + L);
+
+        float NdotL = max(dot(N, L), 0.0);
+        float NdotV = max(dot(N, V), 0.001);
+        float NdotH = max(dot(N, H), 0.0);
+        float VdotH = max(dot(V, H), 0.0);
+
+        vec3 F0 = mix(vec3(0.04), albedo, metallic);
+        vec3 F = FresnelSchlick(VdotH, F0);
+
+        float D = DistributionGGX(N, H, roughness);
+        float G = GeometrySmith(N, V, L, roughness);
+        vec3 specular = (D * G * F) / (4.0 * NdotV * NdotL + 0.0001);
+
+        vec3 kD = (vec3(1.0) - F) * (1.0 - metallic);
+        vec3 diffuse = kD * albedo / PI;
+
+        // Ashikhmin-Charlie Sheen / Micro-Fuzz
+        float sheenD = CharlieSheen(NdotH, 0.4);
+        vec3 sheenColor = mix(vec3(1.0), albedo, 0.6);
+        vec3 sheenBRDF = sheenD * sheenColor * sheenMask * u_SheenScale;
+
+        // Translucent Subsurface Scattering (SSS) Transmission
+        vec3 sssL = normalize(L + N * 0.4);
+        float sssDot = pow(clamp(dot(V, -sssL), 0.0, 1.0), 3.0);
+        vec3 sss = albedo * sssDot * (1.0 - alpha * 0.8) * u_SSSScale * 1.5;
+
+        // Studio Key Light
+        vec3 directLighting = (diffuse + specular + sheenBRDF + sss) * u_LightColor * u_LightIntensity * NdotL;
+
+        // Soft Fill Light (Counter-Angle)
+        vec3 fillDir = normalize(-L + vec3(0.0, 0.5, 0.0));
+        float fillNdotL = max(dot(N, fillDir), 0.0);
+        vec3 fillLighting = diffuse * vec3(0.8, 0.85, 1.0) * (u_LightIntensity * u_FillRatio) * fillNdotL;
+
+        // Studio Ambient IBL Simulation
+        vec3 ambientSky = vec3(0.18, 0.22, 0.32) * u_EnvIntensity;
+        vec3 ambientGround = vec3(0.08, 0.06, 0.05) * u_EnvIntensity;
+        vec3 ambientLight = mix(ambientGround, ambientSky, N.y * 0.5 + 0.5) * albedo * ao;
+
+        vec3 finalColor = (directLighting + fillLighting + ambientLight) * pow(2.0, u_Exposure);
+
+        // ACES Filmic Tonemapping & Gamma 2.2 Correction
+        finalColor = ACESFilm(finalColor);
+        finalColor = pow(finalColor, vec3(1.0 / 2.2));
+
+        gl_FragColor = vec4(finalColor, alpha);
+      }
+    `;
+
+    /* --------------------------------------------------------------------------
+       6. WebGL Engine Controller & State
+       -------------------------------------------------------------------------- */
+    class LookdevEngine {
+      constructor(canvas) {
+        this.canvas = canvas;
+        this.gl = canvas.getContext('webgl', { antialias: true, preserveDrawingBuffer: true });
+        if (!this.gl) alert('WebGL not supported');
+
+        this.currentSuiteIdx = 0;
+        this.currentMeshType = 'ball';
+        this.channelMode = 0;
+        this.uvTiling = 1.0;
+        this.roughnessScale = 1.0;
+        this.metallicScale = 1.0;
+        this.normalStrength = 1.0;
+        this.pomDepth = 0.03;
+        this.sheenScale = 1.0;
+        this.sssScale = 0.8;
+
+        // Lighting
+        this.lightAzimuth = 45;
+        this.lightElevation = 40;
+        this.lightTemp = 5500;
+        this.lightIntensity = 2.2;
+        this.fillRatio = 0.35;
+        this.envIntensity = 1.0;
+        this.exposure = 0.0;
+
+        // Camera Orbit Controls
+        this.cameraDist = 3.5;
+        this.cameraRotX = 0.25;
+        this.cameraRotY = 0.6;
+        this.isMouseDown = false;
+        this.lastMouseX = 0;
+        this.lastMouseY = 0;
+        this.isTurntableActive = false;
+        this.isWireframe = false;
+        this.splitX = 0.0; // 0.0 = disabled
+
+        this.initGL();
+        this.initTextures();
+        this.initGeometries();
+        this.setupEventHandlers();
+        this.render = this.render.bind(this);
+        requestAnimationFrame(this.render);
+      }
+
+      initGL() {
+        const gl = this.gl;
+        gl.enable(gl.DEPTH_TEST);
+        gl.depthFunc(gl.LEQUAL);
+        gl.enable(gl.BLEND);
+        gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+        // Compile Shaders
+        const vs = gl.createShader(gl.VERTEX_SHADER);
+        gl.shaderSource(vs, VS_SOURCE);
+        gl.compileShader(vs);
+        if (!gl.getShaderParameter(vs, gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(vs));
+
+        const fs = gl.createShader(gl.FRAGMENT_SHADER);
+        gl.shaderSource(fs, FS_SOURCE);
+        gl.compileShader(fs);
+        if (!gl.getShaderParameter(fs, gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(fs));
+
+        this.program = gl.createProgram();
+        gl.attachShader(this.program, vs);
+        gl.attachShader(this.program, fs);
+        gl.linkProgram(this.program);
+        if (!gl.getProgramParameter(this.program, gl.LINK_STATUS)) console.error(gl.getProgramInfoLog(this.program));
+
+        gl.useProgram(this.program);
+
+        // Cache Uniform Locations
+        this.uLocs = {
+          u_ModelMatrix: gl.getUniformLocation(this.program, 'u_ModelMatrix'),
+          u_ViewMatrix: gl.getUniformLocation(this.program, 'u_ViewMatrix'),
+          u_ProjectionMatrix: gl.getUniformLocation(this.program, 'u_ProjectionMatrix'),
+          u_NormalMatrix: gl.getUniformLocation(this.program, 'u_NormalMatrix'),
+          u_CameraPos: gl.getUniformLocation(this.program, 'u_CameraPos'),
+          u_LightPos: gl.getUniformLocation(this.program, 'u_LightPos'),
+          u_LightColor: gl.getUniformLocation(this.program, 'u_LightColor'),
+          u_LightIntensity: gl.getUniformLocation(this.program, 'u_LightIntensity'),
+          u_FillRatio: gl.getUniformLocation(this.program, 'u_FillRatio'),
+          u_EnvIntensity: gl.getUniformLocation(this.program, 'u_EnvIntensity'),
+          u_Exposure: gl.getUniformLocation(this.program, 'u_Exposure'),
+          u_ChannelMode: gl.getUniformLocation(this.program, 'u_ChannelMode'),
+          u_UVTiling: gl.getUniformLocation(this.program, 'u_UVTiling'),
+          u_RoughnessScale: gl.getUniformLocation(this.program, 'u_RoughnessScale'),
+          u_MetallicScale: gl.getUniformLocation(this.program, 'u_MetallicScale'),
+          u_NormalStrength: gl.getUniformLocation(this.program, 'u_NormalStrength'),
+          u_POMDepth: gl.getUniformLocation(this.program, 'u_POMDepth'),
+          u_SheenScale: gl.getUniformLocation(this.program, 'u_SheenScale'),
+          u_SSSScale: gl.getUniformLocation(this.program, 'u_SSSScale'),
+          u_SplitX: gl.getUniformLocation(this.program, 'u_SplitX'),
+          u_ScreenRes: gl.getUniformLocation(this.program, 'u_ScreenRes'),
+          u_BaseColorMap: gl.getUniformLocation(this.program, 'u_BaseColorMap'),
+          u_NormalMap: gl.getUniformLocation(this.program, 'u_NormalMap'),
+          u_ORMMap: gl.getUniformLocation(this.program, 'u_ORMMap'),
+          u_HeightMap: gl.getUniformLocation(this.program, 'u_HeightMap'),
+          u_SheenMap: gl.getUniformLocation(this.program, 'u_SheenMap'),
+          u_AlphaMap: gl.getUniformLocation(this.program, 'u_AlphaMap')
+        };
+      }
+
+      initGeometries() {
+        const gl = this.gl;
+        this.meshes = {};
+
+        const rawMeshes = {
+          ball: GeometryGenerators.createShaderBall(),
+          cloth: GeometryGenerators.createDrapedCloth(),
+          card: GeometryGenerators.createPlanarCard(),
+          torus: GeometryGenerators.createTorus()
+        };
+
+        for (const [key, data] of Object.entries(rawMeshes)) {
+          const vao = {
+            posBuf: gl.createBuffer(),
+            normBuf: gl.createBuffer(),
+            uvBuf: gl.createBuffer(),
+            tanBuf: gl.createBuffer(),
+            bitanBuf: gl.createBuffer(),
+            idxBuf: gl.createBuffer(),
+            indexCount: data.indices.length,
+            triangleCount: Math.floor(data.indices.length / 3)
+          };
+
+          gl.bindBuffer(gl.ARRAY_BUFFER, vao.posBuf);
+          gl.bufferData(gl.ARRAY_BUFFER, data.positions, gl.STATIC_DRAW);
+
+          gl.bindBuffer(gl.ARRAY_BUFFER, vao.normBuf);
+          gl.bufferData(gl.ARRAY_BUFFER, data.normals, gl.STATIC_DRAW);
+
+          gl.bindBuffer(gl.ARRAY_BUFFER, vao.uvBuf);
+          gl.bufferData(gl.ARRAY_BUFFER, data.uvs, gl.STATIC_DRAW);
+
+          gl.bindBuffer(gl.ARRAY_BUFFER, vao.tanBuf);
+          gl.bufferData(gl.ARRAY_BUFFER, data.tangents, gl.STATIC_DRAW);
+
+          gl.bindBuffer(gl.ARRAY_BUFFER, vao.bitanBuf);
+          gl.bufferData(gl.ARRAY_BUFFER, data.bitangents, gl.STATIC_DRAW);
+
+          gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, vao.idxBuf);
+          gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, data.indices, gl.STATIC_DRAW);
+
+          this.meshes[key] = vao;
+        }
+      }
+
+      initTextures() {
+        const gl = this.gl;
+        this.suiteTextures = [];
+
+        SUITES_METADATA.forEach((meta, sIdx) => {
+          const canvases = meta.synthesize(512);
+          const textures = {};
+
+          for (const [mapName, cv] of Object.entries(canvases)) {
+            const tex = gl.createTexture();
+            gl.bindTexture(gl.TEXTURE_2D, tex);
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, cv);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
+            textures[mapName] = tex;
+          }
+
+          this.suiteTextures.push({ textures, canvases });
+        });
+      }
+
+      bindMesh(meshKey) {
+        const gl = this.gl;
+        const mesh = this.meshes[meshKey];
+        const aPos = gl.getAttribLocation(this.program, 'a_Position');
+        const aNorm = gl.getAttribLocation(this.program, 'a_Normal');
+        const aUV = gl.getAttribLocation(this.program, 'a_UV');
+        const aTan = gl.getAttribLocation(this.program, 'a_Tangent');
+        const aBitan = gl.getAttribLocation(this.program, 'a_Bitangent');
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, mesh.posBuf);
+        gl.enableVertexAttribArray(aPos);
+        gl.vertexAttribPointer(aPos, 3, gl.FLOAT, false, 0, 0);
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, mesh.normBuf);
+        gl.enableVertexAttribArray(aNorm);
+        gl.vertexAttribPointer(aNorm, 3, gl.FLOAT, false, 0, 0);
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, mesh.uvBuf);
+        gl.enableVertexAttribArray(aUV);
+        gl.vertexAttribPointer(aUV, 2, gl.FLOAT, false, 0, 0);
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, mesh.tanBuf);
+        gl.enableVertexAttribArray(aTan);
+        gl.vertexAttribPointer(aTan, 3, gl.FLOAT, false, 0, 0);
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, mesh.bitanBuf);
+        gl.enableVertexAttribArray(aBitan);
+        gl.vertexAttribPointer(aBitan, 3, gl.FLOAT, false, 0, 0);
+
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, mesh.idxBuf);
+      }
+
+      bindSuiteTextures(suiteIdx) {
+        const gl = this.gl;
+        const texGroup = this.suiteTextures[suiteIdx].textures;
+
+        const mapSlots = [
+          { loc: this.uLocs.u_BaseColorMap, tex: texGroup.BC, unit: 0 },
+          { loc: this.uLocs.u_NormalMap, tex: texGroup.N, unit: 1 },
+          { loc: this.uLocs.u_ORMMap, tex: texGroup.ORM, unit: 2 },
+          { loc: this.uLocs.u_HeightMap, tex: texGroup.H, unit: 3 },
+          { loc: this.uLocs.u_SheenMap, tex: texGroup.Sheen, unit: 4 },
+          { loc: this.uLocs.u_AlphaMap, tex: texGroup.Alpha, unit: 5 }
+        ];
+
+        mapSlots.forEach(slot => {
+          gl.activeTexture(gl.TEXTURE0 + slot.unit);
+          gl.bindTexture(gl.TEXTURE_2D, slot.tex);
+          gl.uniform1i(slot.loc, slot.unit);
+        });
+      }
+
+      render(timestamp) {
+        const gl = this.gl;
+
+        // Handle Canvas Resize
+        const width = this.canvas.clientWidth;
+        const height = this.canvas.clientHeight;
+        if (this.canvas.width !== width || this.canvas.height !== height) {
+          this.canvas.width = width;
+          this.canvas.height = height;
+          gl.viewport(0, 0, width, height);
+        }
+
+        gl.clearColor(0.035, 0.043, 0.062, 1.0);
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+        if (this.isTurntableActive) {
+          this.cameraRotY += 0.008;
+        }
+
+        // Camera Matrices
+        const aspect = width / height;
+        const projMatrix = Math3D.Mat4.perspective(Math3D.Mat4.create(), Math.PI / 4, aspect, 0.1, 100.0);
+
+        const camX = this.cameraDist * Math.sin(this.cameraRotY) * Math.cos(this.cameraRotX);
+        const camY = this.cameraDist * Math.sin(this.cameraRotX);
+        const camZ = this.cameraDist * Math.cos(this.cameraRotY) * Math.cos(this.cameraRotX);
+        const cameraPos = [camX, camY, camZ];
+
+        const viewMatrix = Math3D.Mat4.lookAt(Math3D.Mat4.create(), cameraPos, [0, 0, 0], [0, 1, 0]);
+        const modelMatrix = Math3D.Mat4.identity(Math3D.Mat4.create());
+        const normalMatrix = Math3D.Mat4.transpose(Math3D.Mat4.create(), Math3D.Mat4.invert(Math3D.Mat4.create(), modelMatrix));
+
+        // Key Light Vector
+        const azRad = (this.lightAzimuth * Math.PI) / 180.0;
+        const elRad = (this.lightElevation * Math.PI) / 180.0;
+        const lightPos = [
+          5.0 * Math.cos(azRad) * Math.cos(elRad),
+          5.0 * Math.sin(elRad),
+          5.0 * Math.sin(azRad) * Math.cos(elRad)
+        ];
+        const lightColor = kelvinToRGB(this.lightTemp);
+
+        gl.useProgram(this.program);
+
+        // Upload Uniforms
+        gl.uniformMatrix4fv(this.uLocs.u_ProjectionMatrix, false, projMatrix);
+        gl.uniformMatrix4fv(this.uLocs.u_ViewMatrix, false, viewMatrix);
+        gl.uniformMatrix4fv(this.uLocs.u_ModelMatrix, false, modelMatrix);
+        gl.uniformMatrix4fv(this.uLocs.u_NormalMatrix, false, normalMatrix);
+
+        gl.uniform3fv(this.uLocs.u_CameraPos, cameraPos);
+        gl.uniform3fv(this.uLocs.u_LightPos, lightPos);
+        gl.uniform3fv(this.uLocs.u_LightColor, lightColor);
+        gl.uniform1f(this.uLocs.u_LightIntensity, this.lightIntensity);
+        gl.uniform1f(this.uLocs.u_FillRatio, this.fillRatio);
+        gl.uniform1f(this.uLocs.u_EnvIntensity, this.envIntensity);
+        gl.uniform1f(this.uLocs.u_Exposure, this.exposure);
+
+        gl.uniform1i(this.uLocs.u_ChannelMode, this.channelMode);
+        gl.uniform1f(this.uLocs.u_UVTiling, this.uvTiling);
+        gl.uniform1f(this.uLocs.u_RoughnessScale, this.roughnessScale);
+        gl.uniform1f(this.uLocs.u_MetallicScale, this.metallicScale);
+        gl.uniform1f(this.uLocs.u_NormalStrength, this.normalStrength);
+        gl.uniform1f(this.uLocs.u_POMDepth, this.pomDepth);
+        gl.uniform1f(this.uLocs.u_SheenScale, this.sheenScale);
+        gl.uniform1f(this.uLocs.u_SSSScale, this.sssScale);
+
+        gl.uniform1f(this.uLocs.u_SplitX, this.splitX);
+        gl.uniform2f(this.uLocs.u_ScreenRes, width, height);
+
+        // Bind Textures & Geometry
+        this.bindSuiteTextures(this.currentSuiteIdx);
+        this.bindMesh(this.currentMeshType);
+
+        const currentMesh = this.meshes[this.currentMeshType];
+        const drawMode = this.isWireframe ? gl.LINES : gl.TRIANGLES;
+        gl.drawElements(drawMode, currentMesh.indexCount, gl.UNSIGNED_SHORT, 0);
+
+        requestAnimationFrame(this.render);
+      }
+
+      setupEventHandlers() {
+        const canvas = this.canvas;
+
+        canvas.addEventListener('mousedown', (e) => {
+          this.isMouseDown = true;
+          this.lastMouseX = e.clientX;
+          this.lastMouseY = e.clientY;
+        });
+
+        window.addEventListener('mouseup', () => {
+          this.isMouseDown = false;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+          if (!this.isMouseDown) return;
+          const deltaX = e.clientX - this.lastMouseX;
+          const deltaY = e.clientY - this.lastMouseY;
+          this.lastMouseX = e.clientX;
+          this.lastMouseY = e.clientY;
+
+          this.cameraRotY += deltaX * 0.006;
+          this.cameraRotX = Math.max(-1.4, Math.min(1.4, this.cameraRotX + deltaY * 0.006));
+        });
+
+        canvas.addEventListener('wheel', (e) => {
+          e.preventDefault();
+          this.cameraDist = Math.max(1.2, Math.min(8.0, this.cameraDist + e.deltaY * 0.003));
+        }, { passive: false });
+      }
+    }
+
+    /* --------------------------------------------------------------------------
+       7. UI Controller & Interactive Lookdev Binding
+       -------------------------------------------------------------------------- */
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('gl-canvas');
+      const engine = new LookdevEngine(canvas);
+
+      // Populate Suite Cards
+      const suiteCardsList = document.getElementById('suite-cards-list');
+      SUITES_METADATA.forEach((meta, idx) => {
+        const card = document.createElement('div');
+        card.className = `suite-card ${idx === 0 ? 'active' : ''}`;
+        card.dataset.index = idx;
+
+        // Generate Base64 Thumbnail for UI Card
+        const cv = engine.suiteTextures[idx].canvases.BC;
+        const thumbUrl = cv.toDataURL('image/jpeg', 0.85);
+
+        card.innerHTML = `
+          <img class="suite-thumbnail" src="${thumbUrl}" alt="${meta.title}">
+          <div class="suite-info">
+            <div class="suite-name">${meta.title}</div>
+            <div class="suite-archetype">${meta.archetype}</div>
+            <div class="suite-meta-pills">
+              <span class="meta-pill">2048² POT</span>
+              <span class="meta-pill">9 MAPS</span>
+            </div>
+          </div>
+        `;
+
+        card.addEventListener('click', () => {
+          document.querySelectorAll('.suite-card').forEach(c => c.classList.remove('active'));
+          card.classList.add('active');
+          engine.currentSuiteIdx = idx;
+          updateTelemetryAndSwatches(idx);
+          updateMiniDeck(idx);
+        });
+
+        suiteCardsList.appendChild(card);
+      });
+
+      // Update Mini Deck (9 Channels)
+      function updateMiniDeck(suiteIdx) {
+        const container = document.getElementById('mini-deck-container');
+        container.innerHTML = '';
+        const mapNames = [
+          { key: 'BC', label: 'BC', mode: 1 },
+          { key: 'N', label: 'Normal', mode: 2 },
+          { key: 'ORM', label: 'ORM', mode: 3 },
+          { key: 'H', label: 'Height', mode: 4 },
+          { key: 'AO', label: 'AO', mode: 5 },
+          { key: 'R', label: 'Rough', mode: 6 },
+          { key: 'M', label: 'Metal', mode: 7 },
+          { key: 'Sheen', label: 'Sheen', mode: 8 },
+          { key: 'Alpha', label: 'Alpha', mode: 9 }
+        ];
+
+        const canvases = engine.suiteTextures[suiteIdx].canvases;
+        mapNames.forEach(item => {
+          const deckItem = document.createElement('div');
+          deckItem.className = `mini-deck-item ${engine.channelMode === item.mode ? 'active' : ''}`;
+          deckItem.innerHTML = `
+            <img class="mini-deck-thumb" src="${canvases[item.key].toDataURL('image/jpeg', 0.7)}" alt="${item.label}">
+            <span class="mini-deck-label">${item.label}</span>
+          `;
+          deckItem.addEventListener('click', () => {
+            document.querySelectorAll('.mini-deck-item').forEach(d => d.classList.remove('active'));
+            deckItem.classList.add('active');
+            engine.channelMode = item.mode;
+            document.querySelectorAll('.channel-btn').forEach(btn => {
+              btn.classList.toggle('active', parseInt(btn.dataset.mode) === item.mode);
+            });
+          });
+          container.appendChild(deckItem);
+        });
+      }
+
+      // Update Telemetry & Swatches
+      function updateTelemetryAndSwatches(suiteIdx) {
+        const meta = SUITES_METADATA[suiteIdx];
+        document.getElementById('tel-shading-model-name').textContent = meta.shadingModel;
+        document.getElementById('tel-shading-badge').textContent = meta.shadingBadge;
+        document.getElementById('tel-mean-albedo').textContent = meta.meanAlbedo;
+        document.getElementById('tel-mean-roughness').textContent = meta.meanRoughness;
+
+        // Swatches
+        const swatchesContainer = document.getElementById('swatches-container');
+        swatchesContainer.innerHTML = '';
+        meta.palette.forEach(swatch => {
+          const card = document.createElement('div');
+          card.className = 'swatch-card';
+          card.title = `${swatch.name}\nHex: ${swatch.hex}\nsRGB: (${swatch.srgb})\nLinear: ${swatch.linear}\nClick to Copy Hex`;
+          card.innerHTML = `
+            <div class="swatch-color-box" style="background-color: ${swatch.hex};"></div>
+            <div class="swatch-hex">${swatch.hex}</div>
+          `;
+          card.addEventListener('click', () => {
+            navigator.clipboard.writeText(swatch.hex).then(() => {
+              showToast(`Copied ${swatch.name} (${swatch.hex}) to clipboard!`);
+            }).catch(() => {
+              showToast(`Hex: ${swatch.hex}`);
+            });
+          });
+          swatchesContainer.appendChild(card);
+        });
+      }
+
+      // Toast Notification
+      function showToast(msg) {
+        const toast = document.getElementById('toast-notify');
+        toast.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+      }
+
+      // 10-Way Channel Selection Buttons
+      document.querySelectorAll('.channel-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.channel-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const mode = parseInt(btn.dataset.mode);
+          engine.channelMode = mode;
+          document.querySelectorAll('.mini-deck-item').forEach((item, idx) => {
+            item.classList.toggle('active', idx + 1 === mode);
+          });
+        });
+      });
+
+      // 3D Geometry Selector
+      document.querySelectorAll('.btn-mesh').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.btn-mesh').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const meshType = btn.dataset.mesh;
+          engine.currentMeshType = meshType;
+          document.getElementById('hud-triangles').textContent = engine.meshes[meshType].triangleCount.toLocaleString();
+        });
+      });
+
+      // Top Action Buttons
+      const btnTurntable = document.getElementById('btn-turntable');
+      btnTurntable.addEventListener('click', () => {
+        engine.isTurntableActive = !engine.isTurntableActive;
+        btnTurntable.classList.toggle('active', engine.isTurntableActive);
+      });
+
+      const btnWireframe = document.getElementById('btn-wireframe');
+      btnWireframe.addEventListener('click', () => {
+        engine.isWireframe = !engine.isWireframe;
+        btnWireframe.classList.toggle('active', engine.isWireframe);
+      });
+
+      const btnResetCam = document.getElementById('btn-reset-cam');
+      btnResetCam.addEventListener('click', () => {
+        engine.cameraDist = 3.5;
+        engine.cameraRotX = 0.25;
+        engine.cameraRotY = 0.6;
+      });
+
+      const btnSplitView = document.getElementById('btn-split-view');
+      const splitDivider = document.getElementById('split-divider');
+      const splitLabelA = document.getElementById('split-label-a');
+      const splitLabelB = document.getElementById('split-label-b');
+
+      btnSplitView.addEventListener('click', () => {
+        if (engine.splitX > 0.0) {
+          engine.splitX = 0.0;
+          btnSplitView.classList.remove('active');
+          splitDivider.style.display = 'none';
+          splitLabelA.style.display = 'none';
+          splitLabelB.style.display = 'none';
+        } else {
+          engine.splitX = 0.5;
+          btnSplitView.classList.add('active');
+          splitDivider.style.display = 'block';
+          splitDivider.style.left = '50%';
+          splitLabelA.style.display = 'block';
+          splitLabelB.style.display = 'block';
+        }
+      });
+
+      // Split Divider Dragging
+      let isDraggingSplit = false;
+      splitDivider.addEventListener('mousedown', () => { isDraggingSplit = true; });
+      window.addEventListener('mouseup', () => { isDraggingSplit = false; });
+      window.addEventListener('mousemove', (e) => {
+        if (!isDraggingSplit) return;
+        const rect = canvas.getBoundingClientRect();
+        const ratio = Math.max(0.05, Math.min(0.95, (e.clientX - rect.left) / rect.width));
+        engine.splitX = ratio;
+        splitDivider.style.left = `${ratio * 100}%`;
+      });
+
+      // Export Canvas Snapshot
+      document.getElementById('btn-export-shot').addEventListener('click', () => {
+        const link = document.createElement('a');
+        link.download = `InfinityNikki_Lookdev_${SUITES_METADATA[engine.currentSuiteIdx].id}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        showToast('Exported High-Resolution Lookdev Canvas');
+      });
+
+      // Studio Lighting Compass / Azimuth Visualizer
+      const lightCompass = document.getElementById('light-compass');
+      const compassNode = document.getElementById('compass-node');
+      const compassLabel = document.getElementById('compass-label');
+
+      function updateCompassUI(azimuth, elevation) {
+        const rad = (azimuth * Math.PI) / 180.0;
+        const dist = 38.0 * (1.0 - elevation / 90.0);
+        const nx = 50 + Math.cos(rad) * dist;
+        const ny = 50 + Math.sin(rad) * dist;
+        compassNode.style.left = `${nx}%`;
+        compassNode.style.top = `${ny}%`;
+        compassLabel.textContent = `AZ: ${Math.round(azimuth)}°`;
+      }
+
+      let isDraggingCompass = false;
+      lightCompass.addEventListener('mousedown', (e) => { isDraggingCompass = true; updateCompassFromMouse(e); });
+      window.addEventListener('mouseup', () => { isDraggingCompass = false; });
+      window.addEventListener('mousemove', (e) => {
+        if (isDraggingCompass) updateCompassFromMouse(e);
+      });
+
+      function updateCompassFromMouse(e) {
+        const rect = lightCompass.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = e.clientX - cx;
+        const dy = e.clientY - cy;
+        let deg = (Math.atan2(dy, dx) * 180.0) / Math.PI;
+        if (deg < 0) deg += 360;
+        engine.lightAzimuth = deg;
+        document.getElementById('sl-light-azimuth').value = Math.round(deg);
+        document.getElementById('val-light-azimuth').textContent = `${Math.round(deg)}°`;
+        updateCompassUI(engine.lightAzimuth, engine.lightElevation);
+      }
+
+      // Slider Bindings
+      function bindSlider(id, valId, suffix, callback) {
+        const el = document.getElementById(id);
+        const valEl = document.getElementById(valId);
+        el.addEventListener('input', () => {
+          const v = parseFloat(el.value);
+          valEl.textContent = `${el.value}${suffix}`;
+          callback(v);
+        });
+      }
+
+      bindSlider('sl-light-azimuth', 'val-light-azimuth', '°', (v) => {
+        engine.lightAzimuth = v;
+        updateCompassUI(engine.lightAzimuth, engine.lightElevation);
+      });
+
+      bindSlider('sl-light-elevation', 'val-light-elevation', '°', (v) => {
+        engine.lightElevation = v;
+        updateCompassUI(engine.lightAzimuth, engine.lightElevation);
+      });
+
+      bindSlider('sl-light-temp', 'val-light-temp', 'K', (v) => { engine.lightTemp = v; });
+      bindSlider('sl-light-intensity', 'val-light-intensity', '', (v) => { engine.lightIntensity = v; });
+      bindSlider('sl-fill-ratio', 'val-fill-ratio', '', (v) => { engine.fillRatio = v; });
+      bindSlider('sl-env-intensity', 'val-env-intensity', '', (v) => { engine.envIntensity = v; });
+      bindSlider('sl-exposure', 'val-exposure', ' EV', (v) => { engine.exposure = v; });
+
+      bindSlider('sl-uv-tiling', 'val-uv-tiling', 'x', (v) => { engine.uvTiling = v; });
+      bindSlider('sl-roughness-scale', 'val-roughness-scale', '', (v) => { engine.roughnessScale = v; });
+      bindSlider('sl-metallic-scale', 'val-metallic-scale', '', (v) => { engine.metallicScale = v; });
+      bindSlider('sl-normal-strength', 'val-normal-strength', '', (v) => { engine.normalStrength = v; });
+      bindSlider('sl-pom-depth', 'val-pom-depth', '', (v) => { engine.pomDepth = v; });
+      bindSlider('sl-sheen-scale', 'val-sheen-scale', '', (v) => { engine.sheenScale = v; });
+      bindSlider('sl-sss-scale', 'val-sss-scale', '', (v) => { engine.sssScale = v; });
+
+      // Drag and Drop Ingestion
+      const dropzone = document.getElementById('dropzone');
+      dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.style.borderColor = '#ffd700'; });
+      dropzone.addEventListener('dragleave', () => { dropzone.style.borderColor = 'rgba(232, 156, 130, 0.3)'; });
+      dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.style.borderColor = 'rgba(232, 156, 130, 0.3)';
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+          showToast(`Ingested custom texture: ${files[0].name}`);
+        }
+      });
+
+      // Initial View Setup
+      updateTelemetryAndSwatches(0);
+      updateMiniDeck(0);
+      updateCompassUI(45, 40);
+    });
+
+  })();
+  </script>
+</body>
+</html>

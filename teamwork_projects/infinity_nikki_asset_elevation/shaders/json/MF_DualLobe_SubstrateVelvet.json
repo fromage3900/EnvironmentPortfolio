@@ -1,0 +1,122 @@
+{
+  "$schema": "https://epicgames.com/ue5/material_function.schema.json",
+  "AssetType": "MaterialFunction",
+  "AssetName": "MF_DualLobe_SubstrateVelvet",
+  "Path": "/Game/Materials/MaterialFunctions/MF_DualLobe_SubstrateVelvet",
+  "Description": "Dual-lobe anisotropic velvet/fuzz shading with customizable edge rim glow, Ashikhmin-Charlie forward/backward scattering lobes, and chromatic pile shift.",
+  "Category": "HauteCouture/Shading",
+  "HLSLSource": "shaders/hlsl/DualLobeVelvet.hlsl",
+  "HLSLNode": "CalculateVelvetDualLobe",
+  "Inputs": [
+    {
+      "Name": "BaseColor",
+      "Type": "FunctionInput_Vector3",
+      "DefaultValue": [0.12, 0.04, 0.22],
+      "Description": "Core dye color of the fabric weave (sRGB converted)."
+    },
+    {
+      "Name": "RimColor",
+      "Type": "FunctionInput_Vector3",
+      "DefaultValue": [0.85, 0.45, 0.95],
+      "Description": "Sheen rim tint at grazing viewing angles."
+    },
+    {
+      "Name": "Normal",
+      "Type": "FunctionInput_Vector3",
+      "DefaultValue": [0.0, 0.0, 1.0],
+      "Description": "Normalized surface normal vector in world space."
+    },
+    {
+      "Name": "TangentFlowMap",
+      "Type": "FunctionInput_Vector3",
+      "DefaultValue": [1.0, 0.0, 0.0],
+      "Description": "Directional tangent flow vector for fabric pile combing."
+    },
+    {
+      "Name": "RoughnessCore",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 0.85,
+      "Range": [0.5, 1.0],
+      "Description": "Micro-roughness of the core fabric body."
+    },
+    {
+      "Name": "RoughnessRim",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 0.30,
+      "Range": [0.1, 0.6],
+      "Description": "Micro-roughness of the grazing sheen highlight."
+    },
+    {
+      "Name": "RimExponent",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 3.5,
+      "Range": [1.0, 8.0],
+      "Description": "Exponential falloff curve for rim lighting."
+    },
+    {
+      "Name": "RimIntensity",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 1.5,
+      "Range": [0.0, 5.0],
+      "Description": "Amplitude multiplier for edge fuzz glow."
+    },
+    {
+      "Name": "AnisotropyStrength",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 0.70,
+      "Range": [0.0, 1.0],
+      "Description": "Anisotropic pile stretch factor along tangent direction."
+    },
+    {
+      "Name": "ChromaticShiftAmount",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 0.60,
+      "Range": [0.0, 1.0],
+      "Description": "Weight of the core-to-rim chromatic shift."
+    },
+    {
+      "Name": "BackscatterIntensity",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 0.40,
+      "Range": [0.0, 2.0],
+      "Description": "Intensity of retro-reflective backward scattering."
+    }
+  ],
+  "Outputs": [
+    {
+      "Name": "CompositeBaseColor",
+      "Type": "FunctionOutput_Vector3",
+      "Description": "BaseColor with chromatic pile shift applied."
+    },
+    {
+      "Name": "SheenColor",
+      "Type": "FunctionOutput_Vector3",
+      "Description": "Sheen color for Substrate Sheen / Cloth BSDF."
+    },
+    {
+      "Name": "SheenRoughness",
+      "Type": "FunctionOutput_Scalar",
+      "Description": "Micro-fuzz roughness input for Substrate Sheen."
+    },
+    {
+      "Name": "AnisotropicTangent",
+      "Type": "FunctionOutput_Vector3",
+      "Description": "Perturbed and combed tangent vector."
+    },
+    {
+      "Name": "AnisotropyAmount",
+      "Type": "FunctionOutput_Scalar",
+      "Description": "Substrate Anisotropy scalar input."
+    },
+    {
+      "Name": "RimMask",
+      "Type": "FunctionOutput_Scalar",
+      "Description": "Isolated scalar rim glow mask for secondary styling."
+    },
+    {
+      "Name": "SubstrateClothWeight",
+      "Type": "FunctionOutput_Scalar",
+      "Description": "Blend weight for activating Substrate Cloth Shading Model."
+    }
+  ]
+}

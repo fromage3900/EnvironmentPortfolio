@@ -1,0 +1,131 @@
+{
+  "$schema": "https://epicgames.com/ue5/material_function.schema.json",
+  "AssetType": "MaterialFunction",
+  "AssetName": "MF_Bullion_MicroRelief",
+  "Path": "/Game/Materials/MaterialFunctions/MF_Bullion_MicroRelief",
+  "Description": "Metallic embroidery dynamic-step Parallax Occlusion Mapping (POM), micro-cavity contact self-shadowing, and height-blended dielectric/conductor physical parameter transitions.",
+  "Category": "HauteCouture/Shading",
+  "HLSLSource": "shaders/hlsl/BullionMicroRelief.hlsl",
+  "HLSLNode": "CalculateParallaxMicroRelief",
+  "Inputs": [
+    {
+      "Name": "UVs",
+      "Type": "FunctionInput_Vector2",
+      "DefaultValue": [0.0, 0.0],
+      "Description": "Base texture coordinates."
+    },
+    {
+      "Name": "HeightMap",
+      "Type": "FunctionInput_Texture2D",
+      "DefaultValue": null,
+      "Description": "16-bit linear height / micro-displacement map."
+    },
+    {
+      "Name": "HeightScale",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 0.04,
+      "Range": [0.0, 0.15],
+      "Description": "Maximum parallax displacement depth."
+    },
+    {
+      "Name": "MinSteps",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 8.0,
+      "Range": [4.0, 32.0],
+      "Description": "Minimum POM raymarch steps (perpendicular angle)."
+    },
+    {
+      "Name": "MaxSteps",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 32.0,
+      "Range": [16.0, 128.0],
+      "Description": "Maximum POM raymarch steps (grazing angle)."
+    },
+    {
+      "Name": "ShadowSteps",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 8.0,
+      "Range": [0.0, 32.0],
+      "Description": "Raymarch step count for contact self-shadowing."
+    },
+    {
+      "Name": "ShadowHardness",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 4.0,
+      "Range": [1.0, 10.0],
+      "Description": "Softness/hardness curve for micro-cavity shadows."
+    },
+    {
+      "Name": "BullionMetallic",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 1.00,
+      "Range": [0.0, 1.0],
+      "Description": "Metallic parameter for gold/rose-gold bullion threads."
+    },
+    {
+      "Name": "BullionRoughness",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 0.22,
+      "Range": [0.05, 0.6],
+      "Description": "Roughness parameter for metallic coils."
+    },
+    {
+      "Name": "FabricRoughness",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 0.82,
+      "Range": [0.3, 1.0],
+      "Description": "Roughness parameter for backing fabric."
+    },
+    {
+      "Name": "HeightThreshold",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 0.35,
+      "Range": [0.0, 1.0],
+      "Description": "Height transition cutoff separating bullion from backing cloth."
+    },
+    {
+      "Name": "BlendContrast",
+      "Type": "FunctionInput_Scalar",
+      "DefaultValue": 8.00,
+      "Range": [1.0, 32.0],
+      "Description": "Edge sharpness of the bullion-to-fabric boundary."
+    }
+  ],
+  "Outputs": [
+    {
+      "Name": "DisplacedUV",
+      "Type": "FunctionOutput_Vector2",
+      "Description": "Parallax-shifted UV coordinate for sampling all PBR maps."
+    },
+    {
+      "Name": "ParallaxHeight",
+      "Type": "FunctionOutput_Scalar",
+      "Description": "Refined surface elevation at the displaced UV."
+    },
+    {
+      "Name": "SelfShadowAO",
+      "Type": "FunctionOutput_Scalar",
+      "Description": "Directional micro-cavity contact self-shadowing factor [0.0, 1.0]."
+    },
+    {
+      "Name": "BullionMask",
+      "Type": "FunctionOutput_Scalar",
+      "Description": "Anti-aliased binary mask (1.0 = Bullion, 0.0 = Fabric)."
+    },
+    {
+      "Name": "BlendedRoughness",
+      "Type": "FunctionOutput_Scalar",
+      "Description": "Composite roughness blended across height relief."
+    },
+    {
+      "Name": "BlendedMetallic",
+      "Type": "FunctionOutput_Scalar",
+      "Description": "Composite metallic blended across height relief."
+    },
+    {
+      "Name": "ContactCavityNormal",
+      "Type": "FunctionOutput_Vector3",
+      "Description": "Enhanced micro-relief normal perturbation derived from cavity height gradients."
+    }
+  ]
+}

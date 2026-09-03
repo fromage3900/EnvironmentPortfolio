@@ -1,0 +1,213 @@
+{
+  "$schema": "https://epicgames.com/ue5/material.schema.json",
+  "AssetType": "Material",
+  "AssetName": "M_Master_HauteCouture_Substrate",
+  "Path": "/Game/Materials/M_Master_HauteCouture_Substrate",
+  "Description": "Production Master Substrate BSDF Shader Graph for Infinity Nikki Haute-Couture materials. Integrates multi-layer Slabs (Fabric Base, Bullion Metallic, Thin-Film Optical Interference Clearcoat) with dynamic POM micro-relief, RNM micro-twill normal blending, and dual-lobe anisotropic velvet fuzz.",
+  "ShadingModel": "Substrate",
+  "BlendMode": "MaskedOrTranslucent",
+  "TwoSided": true,
+  "SubstrateTopology": {
+    "Slabs": [
+      {
+        "ID": "Slab_FabricBase",
+        "Type": "SubstrateSlabBSDF",
+        "Description": "Base dielectric textile slab with Charlie sheen fuzz and volume SSS.",
+        "Parameters": {
+          "DiffuseAlbedo": "MF_DualLobe_SubstrateVelvet.CompositeBaseColor",
+          "Roughness": "MF_Bullion_MicroRelief.BlendedRoughness",
+          "F0": 0.04,
+          "Sheen": "MF_DualLobe_SubstrateVelvet.SheenColor",
+          "SheenRoughness": "MF_DualLobe_SubstrateVelvet.SheenRoughness",
+          "SSSTransmittance": "MF_Translucent_OrganzaSSS.TransmittanceColor",
+          "Normal": "MF_Translucent_OrganzaSSS.PerturbedNormal",
+          "Anisotropy": "MF_DualLobe_SubstrateVelvet.AnisotropyAmount",
+          "Tangent": "MF_DualLobe_SubstrateVelvet.AnisotropicTangent"
+        }
+      },
+      {
+        "ID": "Slab_BullionMetallic",
+        "Type": "SubstrateSlabBSDF",
+        "Description": "Conductor metallic slab for 24k gold and rose-gold embroidery coils.",
+        "Parameters": {
+          "DiffuseAlbedo": [0.0, 0.0, 0.0],
+          "F0": [1.0, 0.78, 0.42],
+          "Metallic": 1.0,
+          "Roughness": 0.22,
+          "Normal": "MF_Bullion_MicroRelief.ContactCavityNormal"
+        }
+      },
+      {
+        "ID": "Slab_ThinFilmClearcoat",
+        "Type": "SubstrateSlabBSDF",
+        "Description": "Optical interference top clearcoat slab simulating iridescent crystal coatings.",
+        "Parameters": {
+          "F0": "MF_ThinFilm_Iridescence.Substrate_F0",
+          "Roughness": "MF_ThinFilm_Iridescence.ModulatedRoughness",
+          "Coverage": "MF_ThinFilm_Iridescence.FresnelMultiplier",
+          "Normal": "MF_Translucent_OrganzaSSS.PerturbedNormal"
+        }
+      }
+    ],
+    "Operators": [
+      {
+        "Type": "SubstrateHorizontalBlend",
+        "Description": "Blends dielectric cloth backing with metallic bullion coils using POM mask.",
+        "Background": "Slab_FabricBase",
+        "Foreground": "Slab_BullionMetallic",
+        "MixWeight": "MF_Bullion_MicroRelief.BullionMask"
+      },
+      {
+        "Type": "SubstrateVerticalLayer",
+        "Description": "Layers thin-film interference clearcoat on top of blended cloth/bullion base.",
+        "TopLayer": "Slab_ThinFilmClearcoat",
+        "BottomLayer": "SubstrateHorizontalBlend_Result"
+      }
+    ]
+  },
+  "MaterialFunctionDependencies": [
+    {
+      "Function": "MF_ThinFilm_Iridescence",
+      "Path": "shaders/json/MF_ThinFilm_Iridescence.json",
+      "Role": "Airy spectral wave interference & F0 modulation"
+    },
+    {
+      "Function": "MF_DualLobe_SubstrateVelvet",
+      "Path": "shaders/json/MF_DualLobe_SubstrateVelvet.json",
+      "Role": "Ashikhmin-Charlie sheen, retro-backscatter, chromatic pile shift"
+    },
+    {
+      "Function": "MF_Translucent_OrganzaSSS",
+      "Path": "shaders/json/MF_Translucent_OrganzaSSS.json",
+      "Role": "RNM micro-twill blending, angle-dependent sheer opacity, dual-sided SSS"
+    },
+    {
+      "Function": "MF_Bullion_MicroRelief",
+      "Path": "shaders/json/MF_Bullion_MicroRelief.json",
+      "Role": "Dynamic POM raymarch, contact self-shadowing, height-driven PBR blend"
+    }
+  ],
+  "TextureBindings": {
+    "BaseColor": {
+      "Semantic": "DiffuseAlbedo",
+      "Suffix": "_BC",
+      "sRGB": true,
+      "Format": "BC7",
+      "Description": "High-dynamic painterly watercolor glazes and metallic bullion accents."
+    },
+    "Normal": {
+      "Semantic": "TangentNormal",
+      "Suffix": "_N",
+      "sRGB": false,
+      "Format": "BC5",
+      "Orientation": "DirectX_Green_NegY",
+      "Description": "Unit-normalized tangent-space vectors with DirectX Green = -Y orientation."
+    },
+    "ORM": {
+      "Semantic": "PackedLinearMask",
+      "Suffix": "_ORM",
+      "sRGB": false,
+      "Format": "BC7_Linear",
+      "Channels": {
+        "Red": "AmbientOcclusion",
+        "Green": "Roughness",
+        "Blue": "Metallic"
+      },
+      "Description": "Packed linear material parameters (Red = AO, Green = Roughness, Blue = Metallic)."
+    },
+    "Height": {
+      "Semantic": "DisplacementHeight",
+      "Suffix": "_H",
+      "sRGB": false,
+      "Format": "Float16_Grayscale",
+      "Description": "16-bit linear micro-relief elevation map driving Parallax Occlusion Mapping."
+    },
+    "Sheen": {
+      "Semantic": "MicrofiberFuzz",
+      "Suffix": "_Sheen",
+      "sRGB": false,
+      "Format": "BC7_Linear",
+      "Description": "Microfiber velvet sheen intensity and chromatic edge rim tint mask."
+    },
+    "Alpha": {
+      "Semantic": "CoverageOrSheerness",
+      "Suffix": "_Alpha",
+      "sRGB": false,
+      "Format": "Grayscale_Linear",
+      "Description": "Translucent sheer fabric opacity or masked lace cutout alpha."
+    }
+  },
+  "ParameterGroups": [
+    {
+      "GroupName": "01 - Textures",
+      "Parameters": [
+        "Texture_BaseColor",
+        "Texture_Normal",
+        "Texture_ORM",
+        "Texture_Height",
+        "Texture_Sheen",
+        "Texture_Alpha"
+      ]
+    },
+    {
+      "GroupName": "02 - Thin Film Iridescence",
+      "Parameters": [
+        "bEnableThinFilm",
+        "FilmThickness_nm",
+        "FilmIOR",
+        "SubstrateIOR",
+        "CurvatureIntensity",
+        "IridescenceIntensity",
+        "BaseReflectanceTint"
+      ]
+    },
+    {
+      "GroupName": "03 - Velvet Dual Lobe",
+      "Parameters": [
+        "bEnableVelvetSheen",
+        "RimColor",
+        "RoughnessCore",
+        "RoughnessRim",
+        "RimExponent",
+        "RimIntensity",
+        "AnisotropyStrength",
+        "ChromaticShiftAmount",
+        "BackscatterIntensity"
+      ]
+    },
+    {
+      "GroupName": "04 - Organza Translucency & SSS",
+      "Parameters": [
+        "bEnableOrganzaSSS",
+        "SubsurfaceColor",
+        "TwillTiling",
+        "TwillWeight",
+        "BaseOpacity",
+        "AbsorptionDepth",
+        "SheernessAnglePower",
+        "DualSidedScattering"
+      ]
+    },
+    {
+      "GroupName": "05 - Bullion Parallax & Relief",
+      "Parameters": [
+        "bEnableParallaxRelief",
+        "HeightScale",
+        "MinSteps",
+        "MaxSteps",
+        "ShadowSteps",
+        "ShadowHardness",
+        "BullionMetallic",
+        "BullionRoughness",
+        "FabricRoughness",
+        "HeightThreshold",
+        "BlendContrast"
+      ]
+    }
+  ],
+  "LegacyFallback": {
+    "Enabled": true,
+    "ShadingModel": "Cloth",
+    "Description": "Automatic fallback mapping to UE5 Standard Lit / Cloth Shading Model when Substrate is disabled in project settings."
+  }
+}
