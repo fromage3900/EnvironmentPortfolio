@@ -30,6 +30,8 @@ import urllib.error
 from datetime import datetime, timezone
 from pathlib import Path
 
+from git_runner import git_status, git_log_summary, git_remotes, is_git_repo
+
 ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = ROOT / "generated" / "overnight"
 LOG_DIR = ROOT / "logs" / "overnight"
@@ -40,10 +42,11 @@ SEEDS_PATH = OUT_DIR / "content_seeds.json"
 
 OLLAMA_URL = os.environ.get("OLLAMA_CHAT_URL", "http://127.0.0.1:11434/v1/chat/completions")
 OLLAMA_TAGS_URL = "http://127.0.0.1:11434/api/tags"
-# Fallback chain: first model that loads wins (30b can fail to start on 12GB VRAM).
+# Fallback chain: prefer fast models that fit in 12 GB VRAM; never fall back to
+# qwen3-coder:30b because it offloads to system RAM and hangs the health smoke.
 QWEN_MODEL_CHAIN = [
     m.strip() for m in os.environ.get(
-        "QWEN_MODEL_CHAIN", "granite4.2:8b,granite4.2:3b,qwen3-coder:30b"
+        "QWEN_MODEL_CHAIN", "granite4.2:8b,granite4.2:3b,muse-glimmer:30b"
     ).split(",") if m.strip()
 ]
 QWEN_MODEL = os.environ.get("QWEN_MODEL", QWEN_MODEL_CHAIN[0])
@@ -51,13 +54,13 @@ QWEN_MODEL = os.environ.get("QWEN_MODEL", QWEN_MODEL_CHAIN[0])
 # Per-tier preference lists (2026-09-01 fleet). pick_model() returns the first of the
 # preferred tier that is actually installed, so the daemon self-adapts to what's local.
 PING_MODELS = [  # ultra-fast health smoke -> must never hang
-    m.strip() for m in os.environ.get("PING_MODELS", "granite4.2:3b,granite4.2:8b,qwen3-coder:30b").split(",") if m.strip()
+    m.strip() for m in os.environ.get("PING_MODELS", "granite4.2:3b,granite4.2:8b,muse-glimmer:30b").split(",") if m.strip()
 ]
 WORKER_MODELS = [  # fast structured-JSON lanes
-    m.strip() for m in os.environ.get("WORKER_MODELS", "granite4.2:8b,granite4.2:3b,qwen3-coder:30b").split(",") if m.strip()
+    m.strip() for m in os.environ.get("WORKER_MODELS", "granite4.2:8b,granite4.2:3b,muse-glimmer:30b").split(",") if m.strip()
 ]
 REASONER_MODELS = [  # rich agent/coding/creative lanes
-    m.strip() for m in os.environ.get("REASONER_MODELS", "muse-glimmer:30b,qwen3-coder:30b").split(",") if m.strip()
+    m.strip() for m in os.environ.get("REASONER_MODELS", "muse-glimmer:30b,granite4.2:8b").split(",") if m.strip()
 ]
 
 _installed_cache: tuple[list[str], float] | None = None
@@ -229,14 +232,15 @@ def qwen_chat(
 
 
 
+def repo_status() -> dict:
+    """Structured repo status using the centralized git runner."""
+    return git_status(cwd=ROOT)
+
+
 def repo_dirty() -> int:
-    try:
-        out = subprocess.run(
-            ["git", "status", "--short"], cwd=str(ROOT), capture_output=True, text=True, timeout=30
-        )
-        return len([l for l in out.stdout.splitlines() if l.strip()])
-    except Exception:
-        return -1
+    """Return dirty file count, or -1 if the git check failed."""
+    status = repo_status()
+    return status.get("dirty_count", -1) if status.get("ok") else -1
 
 
 def lane_health() -> dict:
@@ -306,6 +310,16 @@ def lane_health() -> dict:
     report["checks"]["repo_dirty_files"] = dirty
     if dirty > 0:
         log(f"[HEALTH] WARNING: {dirty} uncommitted files — daemon stays read-only over repo")
+
+    git_status_result = repo_status()
+    report["checks"]["git_health"] = {
+        "ok": git_status_result["ok"],
+        "is_repo": is_git_repo(ROOT),
+        "remotes": git_remotes(ROOT)["remotes"],
+        "dirty_count": git_status_result.get("dirty_count", -1),
+        "error": git_status_result.get("error"),
+    }
+    report["ok"] &= git_status_result["ok"]
 
     write_text("generated/overnight/health_status.json", json.dumps(report, indent=2))
     log(f"[HEALTH] ok={report['ok']}")
@@ -405,14 +419,18 @@ def lane_research() -> int:
 
 
 def lane_git() -> int:
-    """Read-only git research lane: history digest + drift notes."""
-    try:
-        log_out = subprocess.run(
-            ["git", "log", "--oneline", "-25"], cwd=str(ROOT), capture_output=True, text=True, timeout=30
-        ).stdout
-    except Exception as exc:
-        log(f"[GIT] git log failed: {exc}")
+    """Read-only git research lane: history digest + drift notes.
+
+    Returns 1 on success, 0 on failure. Failures are also quarantined so the
+    cycle result is visible as an error rather than silently producing zero items.
+    """
+    log_summary = git_log_summary(count=25, cwd=ROOT)
+    if not log_summary["ok"]:
+        err = log_summary.get("error") or "git log unavailable"
+        log(f"[GIT] git log failed: {err}")
+        quarantine("git", err, "git log failed")
         return 0
+    log_out = "\n".join(log_summary["lines"])
     ok, out = qwen_chat(
         "You are a repository analyst. Given recent commit history, produce JSON "
         "{digest, themes[], drift_risks[], suggested_next_commits[]}. Do not invent commits.",

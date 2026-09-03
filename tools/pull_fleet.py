@@ -6,6 +6,7 @@ optional (large). Writes progress to logs/overnight/fleet_pull.log.
 """
 from __future__ import annotations
 
+import argparse
 import subprocess
 import sys
 from pathlib import Path
@@ -27,9 +28,19 @@ def log(msg: str) -> None:
 
 
 def main() -> int:
-    models = sys.argv[1:]
-    if not models:
-        models = [m for m, _ in FLEET]
+    parser = argparse.ArgumentParser(description="Pull the recommended Ollama fleet")
+    parser.add_argument("models", nargs="*", help="Specific models to pull")
+    parser.add_argument("--dry-run", action="store_true", help="Print what would be pulled")
+    args = parser.parse_args()
+
+    models = args.models or [m for m, _ in FLEET]
+    if args.dry_run:
+        log("[DRY-RUN] would pull the following models:")
+        for model in models:
+            label = next((d for m, d in FLEET if m == model), model)
+            log(f"  - {model} ({label})")
+        return 0
+
     for model in models:
         label = next((d for m, d in FLEET if m == model), model)
         log(f"[PULL] {model} ({label}) ...")

@@ -6,10 +6,13 @@ import argparse
 import datetime as dt
 import pathlib
 import re
-import subprocess
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+
+from git_runner import git_run, git_status, is_git_repo
+
 VERSION_FILE = ROOT / "VERSION"
 CHANGELOG = ROOT / "CHANGELOG.md"
 
@@ -42,16 +45,27 @@ def _update_changelog(new_version: str) -> None:
     CHANGELOG.write_text(updated, encoding="utf-8")
 
 
-def _git(args: list[str]) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(["git"] + args, cwd=ROOT, check=False, text=True)
-
-
 def main() -> int:
     parser = argparse.ArgumentParser(description="Bump Melodia monorepo version")
     parser.add_argument("part", choices=["major", "minor", "patch"], help="Semver segment to bump")
     parser.add_argument("--message", default="", help="Extra release note line")
     parser.add_argument("--no-commit", action="store_true", help="Do not commit or tag")
     args = parser.parse_args()
+
+    if not is_git_repo(ROOT):
+        print("::error::not inside a git repository")
+        return 1
+
+    if not args.no_commit:
+        status = git_status(ROOT)
+        if not status["ok"]:
+            print(f"::error::git status failed: {status['error']}")
+            return 1
+        if status["dirty_count"] > 0:
+            print("::error::working tree is dirty; commit or stash before release")
+            for f in status["dirty_files"]:
+                print(f"  {f}")
+            return 1
 
     current = _current_version()
     new = _bump(current, args.part)
@@ -64,14 +78,18 @@ def main() -> int:
         print(f"Version bumped to {new}. Review VERSION and CHANGELOG, then commit/tag manually.")
         return 0
 
-    _git(["add", str(VERSION_FILE.relative_to(ROOT)), str(CHANGELOG.relative_to(ROOT))])
+    rc = git_run(["add", str(VERSION_FILE.relative_to(ROOT)), str(CHANGELOG.relative_to(ROOT))], cwd=ROOT).returncode
+    if rc != 0:
+        print("::error::git add failed")
+        return rc
+
     commit_msg = f"liveops(release): bump version {current} -> {new} [backend]\n\n{args.message}"
-    rc = _git(["commit", "-m", commit_msg]).returncode
+    rc = git_run(["commit", "-m", commit_msg], cwd=ROOT).returncode
     if rc != 0:
         print("::error::git commit failed")
         return rc
 
-    rc = _git(["tag", "-a", f"v{new}", "-m", f"Release v{new}"]).returncode
+    rc = git_run(["tag", "-a", f"v{new}", "-m", f"Release v{new}"], cwd=ROOT).returncode
     if rc != 0:
         print("::error::git tag failed")
         return rc

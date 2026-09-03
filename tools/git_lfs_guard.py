@@ -11,21 +11,20 @@ from __future__ import annotations
 
 import os
 import pathlib
+import shutil
 import subprocess
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+
+from git_runner import git_run, is_git_repo
+
 GITATTRS = ROOT / ".gitattributes"
 
 
 def _git(args: list[str]) -> str:
-    return subprocess.run(
-        ["git"] + args,
-        cwd=ROOT,
-        capture_output=True,
-        text=True,
-        check=False,
-    ).stdout.strip()
+    return git_run(args, cwd=ROOT, check=False).stdout.strip()
 
 
 def _lockable_patterns() -> list[str]:
@@ -59,6 +58,14 @@ def _is_lockable(path: pathlib.Path, patterns: list[str]) -> bool:
 
 
 def main() -> int:
+    if shutil.which("git") is None:
+        print("::error::git executable not found on PATH")
+        return 1
+
+    if not is_git_repo(ROOT):
+        print("::warning::Not inside a git repository; skipping LFS lock guard")
+        return 0
+
     if not (ROOT / ".git").is_dir():
         print("::warning::Not inside a git repository; skipping LFS lock guard")
         return 0
