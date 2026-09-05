@@ -8,8 +8,15 @@ node_modules/
 **/.pytest_cache/
 .vscode/
 .idea/
+# Nested independent repositories (managed separately)
 wix/
 BS_GodFile/
+apps/melodia-tidecall/
+diff-svc/
+flstudio-mcp/
+apps/melodia-tidecall/
+diff-svc/
+flstudio-mcp/
 .git_disabled/
 
 # API keys & credentials — DO NOT COMMIT
@@ -88,4 +95,7 @@ CrashAutoSave*
 # Windows / OS metadata
 desktop.ini
 Thumbs.db
+
+# Loose scratch markers
+135
 
