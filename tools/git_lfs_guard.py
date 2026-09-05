@@ -108,7 +108,7 @@ def main() -> int:
     for line in locks_raw.splitlines():
         # Format: <path>	<id> [<user>] or similar depending on git-lfs version.
         if "\t" in line:
-            locked_path = line.split("\t")[0]
+            locked_path = line.split("\t")[0].strip()
             locked_by_me.add(locked_path.replace("\\", "/"))
 
     failures: list[str] = []
