@@ -1,5 +1,11 @@
 # Dependencies & IDEs
 node_modules/
+**/.next/
+**/.vinext/
+**/.openai/
+**/.venv/
+**/__pycache__/
+**/.pytest_cache/
 .vscode/
 .idea/
 wix/
@@ -29,6 +35,7 @@ _site_backup_20260820_145000/
 _merge_backup_20260822/
 scratch/
 ui_binding_backup/
+_temp_untracked/
 # Scratch/test request files and generated binary test outputs
 req.json
 req2.json
@@ -68,19 +75,17 @@ toolchain/**/exports/
 qdk-learning/
 O58pkg/
 O58src/
-__pycache__/
-.pytest_cache/
-
-# wix/ and BS_GodFile/ are independent repos — exclude from parent
-wix/
-BS_GodFile/
 
 # Embody / Envoy (auto-managed)
 Backup/
 logs/
 CrashAutoSave*
-.venv/
 .embody/*
 !.embody/project.json
 .claude/projects/
 .DS_Store
+
+# Windows / OS metadata
+desktop.ini
+Thumbs.db
+

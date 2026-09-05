@@ -8,7 +8,7 @@ This project uses **[Embody](https://github.com/dylanroscover/Embody)** (TouchDe
 - Envoy provides MCP tools for AI assistants to inspect and modify the live TD network
 - Use the `Aiclient` parameter on the Embody COMP to regenerate these files for your AI tool
 
-> **Note:** For Claude Code users, a `CLAUDE.md` with modular `.claude/rules/` and `.claude/skills/` is also generated. This `AGENTS.md` is the universal fallback read by Codex, Cursor, GitHub Copilot, Windsurf, Gemini, and others.
+> **Note:** For Claude Code users, see `CLAUDE.md`. This `AGENTS.md` is the universal fallback read by Codex, Cursor, GitHub Copilot, Windsurf, Gemini, and others.
 
 ---
 
@@ -60,18 +60,24 @@ This project uses **[Embody](https://github.com/dylanroscover/Embody)** (TouchDe
 ## Project Structure
 
 ```
-Embody/
+EnvironmentPortfolio/
 ├── AGENTS.md                              # This file — universal AI instructions
-├── CLAUDE.md                              # Claude Code specific instructions (if using Claude)
-├── dev/
-│   ├── embody/
-│   │   ├── externalizations.tsv          # Tracking table (NEVER edit directly)
-│   │   └── Embody/                       # Main extension source
-│   │       ├── EmbodyExt.py              # Core externalization engine
-│   │       ├── EnvoyExt.py               # MCP server extension
-│   │       └── TDNExt.py                 # TDN network format export/import
+├── CLAUDE.md                              # Claude Code specific instructions
+├── GEMINI.md                              # Gemini CLI wrapper
+├── .embody/project.json                   # Embody externalization project config
+├── _TouchDesigner/
+│   └── grandmaster_melodia/
+│       └── project/                       # Embody/Envoy externalized operators
+│           ├── project1.tdn               # Full TDN network export
+│           ├── project1/externalizations.tsv  # Tracking table (NEVER edit directly)
+│           └── project1/                  # Externalized operators (.py, .tdn, .json, etc.)
+├── studio/                                # Music / audio projects
+├── teamwork_projects/                     # Shared PBR / asset generation work
+├── toolchain/                             # Houdini / SpeedTree / UE bridges
+├── tools/                                 # Repo automation, validation, mirroring
+├── scripts/                               # Daemon, git runners, offload scripts
 └── release/
-    └── Embody-v*.tox                     # Latest release build
+    └── Embody-v*.tox                      # Latest release build
 ```
 
 ## Extension Referencing
